@@ -18,6 +18,8 @@
 		86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95319EF8204005A7314 /* FriendsNavigationController.m */; };
 		86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */; };
 		86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95919EF827B005A7314 /* FriendsTableViewController.m */; };
+		86A9B95E19EF96B4005A7314 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95D19EF96B4005A7314 /* User.m */; };
+		86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B96019EF96CA005A7314 /* MealRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewController.m; sourceTree = "<group>"; };
 		86A9B95819EF827B005A7314 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
 		86A9B95919EF827B005A7314 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
+		86A9B95C19EF96B4005A7314 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		86A9B95D19EF96B4005A7314 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		86A9B95F19EF96CA005A7314 /* MealRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequest.h; sourceTree = "<group>"; };
+		86A9B96019EF96CA005A7314 /* MealRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 		86A3350D19EC7E0F000DFA43 /* YANA */ = {
 			isa = PBXGroup;
 			children = (
+				86A9B95B19EF969C005A7314 /* Model */,
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
 				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
@@ -137,6 +144,17 @@
 				86A3352919EC7E0F000DFA43 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86A9B95B19EF969C005A7314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86A9B95C19EF96B4005A7314 /* User.h */,
+				86A9B95D19EF96B4005A7314 /* User.m */,
+				86A9B95F19EF96CA005A7314 /* MealRequest.h */,
+				86A9B96019EF96CA005A7314 /* MealRequest.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A9B95E19EF96B4005A7314 /* User.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
@@ -246,6 +265,7 @@
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */,
+				86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
