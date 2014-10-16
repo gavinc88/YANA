@@ -8,6 +8,10 @@
 
 #import "MealRequest.h"
 
+@interface MealRequest ()
+
+@end
+
 @implementation MealRequest
 
 //used by CreateMealRequestViewController

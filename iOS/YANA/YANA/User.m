@@ -8,6 +8,10 @@
 
 #import "User.h"
 
+@interface User ()
+
+@end
+
 @implementation User
 
 - (instancetype) initWithUserid:(NSString *)userid
