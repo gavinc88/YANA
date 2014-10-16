@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		86A3351119EC7E0F000DFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351019EC7E0F000DFA43 /* main.m */; };
 		86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351319EC7E0F000DFA43 /* AppDelegate.m */; };
-		86A3351719EC7E0F000DFA43 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351619EC7E0F000DFA43 /* ViewController.m */; };
 		86A3351A19EC7E0F000DFA43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A3351819EC7E0F000DFA43 /* Main.storyboard */; };
 		86A3351C19EC7E0F000DFA43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A3351B19EC7E0F000DFA43 /* Images.xcassets */; };
 		86A3351F19EC7E0F000DFA43 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */; };
 		86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3352A19EC7E0F000DFA43 /* YANATests.m */; };
+		86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B94D19EF815A005A7314 /* MainTabBarController.m */; };
+		86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */; };
+		86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95319EF8204005A7314 /* FriendsNavigationController.m */; };
+		86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */; };
+		86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B95919EF827B005A7314 /* FriendsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,22 @@
 		86A3351019EC7E0F000DFA43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		86A3351219EC7E0F000DFA43 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		86A3351319EC7E0F000DFA43 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		86A3351519EC7E0F000DFA43 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		86A3351619EC7E0F000DFA43 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		86A3351919EC7E0F000DFA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86A3351B19EC7E0F000DFA43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		86A3351E19EC7E0F000DFA43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		86A3352419EC7E0F000DFA43 /* YANATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YANATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A3352919EC7E0F000DFA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86A3352A19EC7E0F000DFA43 /* YANATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YANATests.m; sourceTree = "<group>"; };
+		86A9B94C19EF815A005A7314 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		86A9B94D19EF815A005A7314 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestsNavigationController.h; sourceTree = "<group>"; };
+		86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsNavigationController.m; sourceTree = "<group>"; };
+		86A9B95219EF8204005A7314 /* FriendsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsNavigationController.h; sourceTree = "<group>"; };
+		86A9B95319EF8204005A7314 /* FriendsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsNavigationController.m; sourceTree = "<group>"; };
+		86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestsTableViewController.h; sourceTree = "<group>"; };
+		86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewController.m; sourceTree = "<group>"; };
+		86A9B95819EF827B005A7314 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
+		86A9B95919EF827B005A7314 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +95,20 @@
 			children = (
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
 				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
-				86A3351519EC7E0F000DFA43 /* ViewController.h */,
-				86A3351619EC7E0F000DFA43 /* ViewController.m */,
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
+				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
+				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
+				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
+				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
+				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,
+				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
+				86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */,
+				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
+				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
+				86A9B95919EF827B005A7314 /* FriendsTableViewController.m */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -219,9 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A3351719EC7E0F000DFA43 /* ViewController.m in Sources */,
+				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
+				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
 				86A3351119EC7E0F000DFA43 /* main.m in Sources */,
+				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
+				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
+				86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -332,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -414,6 +438,7 @@
 				86A3353019EC7E0F000DFA43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86A3353119EC7E0F000DFA43 /* Build configuration list for PBXNativeTarget "YANATests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +447,7 @@
 				86A3353319EC7E0F000DFA43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
