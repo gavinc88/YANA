@@ -5,13 +5,19 @@ var router = express.Router();
 /* GET users listing. */
 
 router.get('/friendlist', function(req, res) {
-  data.allusers(function(result) {
+  data.allfriends(function(result) {
     return res.json(result);
   });
 });
 
-router.post('/follow', function(req, res) {
+router.post('/add_friend', function(req, res) {
   data.follow(req.body.to_id, req.body.from_id, function(result) {
+    return res.json(result);
+  });
+});
+
+router.post('/delete_friend', function(req, res) {
+  data.unfollow(req.body.to_id, req.body.from_id, function(result) {
     return res.json(result);
   });
 });

@@ -16,7 +16,7 @@ router.post('/login', function(req, res) {
   });
 });
 
-router.post('/add', function(req, res) {
+router.post('/create_user', function(req, res) {
   var nvalidU = data.checkUser(req.body.user);
   var nvalidP = data.checkPwd(req.body.password);
   if (nvalidP) return res.json({'errCode': nvalidP});

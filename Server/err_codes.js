@@ -11,6 +11,7 @@ global.INVALID_PARAMS = -8;
 global.INVALID_ACTION = -9;
 global.MEAL_REQUEST_EXPIRED = -10;
 global.NO_PERMISSION = -11;
+global.NOT_FOLLOWING = -12;
 global.ERROR = -99;
 global.MAX_USERNAME_LENGTH = 128;
 global.MAX_PASSWORD_LENGTH = 128;
