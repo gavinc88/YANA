@@ -1,11 +1,5 @@
-// Global variables
-global.SUCCESS = 1;
-global.ERR_BAD_CREDENTIALS = -1;
-global.ERR_USER_EXISTS = -2;
-global.ERR_BAD_USERNAME = -3;
-global.ERR_BAD_PASSWORD = -4;
-global.MAX_USERNAME_LENGTH = 128;
-global.MAX_PASSWORD_LENGTH = 128;
+// Load all global ERROR CODES
+require('./err_codes');
 
 var express = require('express');
 var path = require('path');
@@ -17,6 +11,7 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var friends = require('./routes/friends')
 
 var app = express();
 
@@ -38,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/friends', friends);
 
 app.use(function(req, res, next) {
     req.collections = collections;

@@ -1,5 +1,5 @@
 var express = require('express');
-var data = require('../model/userModel');
+var data = require('../model/user_model');
 var router = express.Router();
 
 /* GET users listing. */
@@ -26,5 +26,5 @@ router.post('/add', function(req, res) {
     return res.json(result);
   })
 });
-  
+
 module.exports = router;
