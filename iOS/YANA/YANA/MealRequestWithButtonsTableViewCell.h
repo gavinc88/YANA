@@ -11,8 +11,7 @@
 @interface MealRequestWithButtonsTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *mealLabel;
-
-- (IBAction)acceptClicked:(UIButton *)sender;
-- (IBAction)declineClicked:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+@property (weak, nonatomic) IBOutlet UIButton *declineButon;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MealRequestWithButtonsTableViewCell.h"
+#import "MealRequestsTableViewController.h"
 
 @implementation MealRequestWithButtonsTableViewCell
 
@@ -18,14 +19,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-- (IBAction)acceptClicked:(UIButton *)sender {
-    NSLog(@"accept clicked");
-}
-
-- (IBAction)declineClicked:(UIButton *)sender {
-    NSLog(@"decline clicked");
 }
 
 @end

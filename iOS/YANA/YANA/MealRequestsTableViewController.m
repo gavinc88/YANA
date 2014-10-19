@@ -71,13 +71,21 @@ NSDateFormatter *timeFormatter;
     MealRequest *r4 = [[MealRequest alloc] initForOthersWithRequestId:@"4" ownername:@"Shane" type:@"Dinner" time:t4 location:@"Restaurant D" status:self.user.userid responded:YES accepted:YES comment:nil];
     [self.mealRequestsFromOthers addObject:r4];// show accepted
     
-    NSDate *t5 = [timeFormatter dateFromString:@"7:00 PM"];
-    MealRequest *r5 = [[MealRequest alloc] initForOthersWithRequestId:@"5" ownername:@"Yaohui" type:@"Dinner" time:t5 location:@"Restaurant E" status:nil responded:YES accepted:NO comment:nil];
+    NSDate *t5 = [timeFormatter dateFromString:@"1:30 PM"];
+    MealRequest *r5 = [[MealRequest alloc] initForOthersWithRequestId:@"5" ownername:@"Yaohui" type:@"Lunch" time:t5 location:@"Restaurant E" status:nil responded:YES accepted:NO comment:nil];
     [self.mealRequestsFromOthers addObject:r5]; //show declined
     
-    NSDate *t6 = [timeFormatter dateFromString:@"7:30 PM"];
+    NSDate *t6 = [timeFormatter dateFromString:@"7:00 PM"];
     MealRequest *r6 = [[MealRequest alloc] initForOthersWithRequestId:@"6" ownername:@"George" type:@"Dinner" time:t6 location:@"Restaurant F" status:@"accepted_id" responded:nil accepted:nil comment:nil];
     [self.mealRequestsFromOthers addObject:r6]; //show someone else accepted it; check by checking if accepted_friends = nil
+    
+    NSDate *t7 = [timeFormatter dateFromString:@"8:30 AM"];
+    MealRequest *r7 = [[MealRequest alloc] initForOthersWithRequestId:@"7" ownername:@"Andy" type:@"Breakfast" time:t7 location:@"Restaurant G" status:nil responded:NO accepted:nil comment:nil];
+    [self.mealRequestsFromOthers addObject:r7]; //test accept
+    
+    NSDate *t8 = [timeFormatter dateFromString:@"11:00 PM"];
+    MealRequest *r8 = [[MealRequest alloc] initForOthersWithRequestId:@"8" ownername:@"Byron" type:@"Other" time:t8 location:@"Restaurant H" status:nil responded:NO accepted:nil comment:@"Late Night"];
+    [self.mealRequestsFromOthers addObject:r8]; //test decline
 }
 
 #pragma mark - Table view data source
@@ -105,7 +113,7 @@ NSDateFormatter *timeFormatter;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section==0) {
+    if (indexPath.section==0) { //self requests
         MealRequest *request = self.mealRequestsFromSelf[indexPath.row];
         MealRequestWithoutButtonsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:requestWithoutButtonsCellIdentifier];
         NSString *title = [self constructTitleForSelf:request];
@@ -113,7 +121,7 @@ NSDateFormatter *timeFormatter;
         [cell.mealLabel setText:title];
         [cell.messageLabel setText:message];
         return cell;
-    } else {
+    } else { //other requests
         MealRequest *request = self.mealRequestsFromOthers[indexPath.row];
         if (request.matched) {
             if ([self.user.userid isEqualToString:request.status]){
@@ -143,6 +151,10 @@ NSDateFormatter *timeFormatter;
                 MealRequestWithButtonsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:requestWithButtonsCellIdentifier];
                 NSString *title = [self constructTitleForOther:request];
                 [cell.mealLabel setText:title];
+                cell.acceptButton.tag = indexPath.row;
+                cell.declineButon.tag = indexPath.row;
+                [cell.acceptButton addTarget:self action:@selector(acceptButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.declineButon addTarget:self action:@selector(declineButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
                 return cell;
             }
         }
@@ -171,6 +183,26 @@ NSDateFormatter *timeFormatter;
             ([request.type isEqualToString:@"Other"] && request.comment) ? request.comment : request.type,
             [timeFormatter stringFromDate:request.time],
             request.location ? [NSString stringWithFormat:@"@ %@", request.location] : @"(Location TBD)"];
+}
+
+- (IBAction)acceptButtonClicked:(UIButton *)sender {
+    NSLog(@"accept clicked");
+    NSLog(@"current Row=%ld", sender.tag);
+    MealRequest *request = self.mealRequestsFromOthers[sender.tag];
+    request.status = self.user.userid;
+    request.matched = YES;
+    request.responded = YES;
+    request.accepted = YES;
+    [self.tableView reloadData];
+}
+
+- (IBAction)declineButtonClicked:(UIButton *)sender {
+    NSLog(@"decline clicked");
+    NSLog(@"current Row=%ld",sender.tag);
+    MealRequest *request = self.mealRequestsFromOthers[sender.tag];
+    request.responded = YES;
+    request.accepted = NO;
+    [self.tableView reloadData];
 }
 
 /*
