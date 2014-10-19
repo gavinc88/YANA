@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface MealRequestsTableViewController : UITableViewController
+
+@property (nonatomic, strong) NSMutableArray *mealRequestsFromSelf;
+
+@property (nonatomic, strong) NSMutableArray *mealRequestsFromOthers;
+
+@property (nonatomic, strong) User *user;
 
 @end

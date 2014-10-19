@@ -37,14 +37,13 @@
 }
 
 //MealRequestsTableViewController
-- (instancetype) initWithRequestId:(NSString *)requestid
-                         ownername:(NSString *)ownerUsername
-                              type:(NSString *)type
-                              time:(NSDate *)time
-                          location:(NSString *)location
-                        canRespond:(BOOL)canRespond
-                          accepted:(BOOL)accepted
-                           comment:(NSString *)comment {
+- (instancetype) initForSelfWithRequestId:(NSString *)requestid
+                                ownername:(NSString *)ownerUsername
+                                     type:(NSString *)type
+                                     time:(NSDate *)time
+                                 location:(NSString *)location
+                                   status:(NSString *)status
+                                  comment:(NSString *)comment {
     self = [super init];
     if(self){
         self.requestid = requestid;
@@ -52,7 +51,41 @@
         self.type = type;
         self.time = time;
         self.location = location;
-        self.canRespond = canRespond;
+        self.isSelf = YES;
+        self.status = status;
+        if(self.status){
+            self.matched = YES;
+        }else{
+            self.matched = NO;
+        }
+        self.comment = comment;
+    }
+    return self;
+}
+- (instancetype) initForOthersWithRequestId:(NSString *)requestid
+                                  ownername:(NSString *)ownerUsername
+                                       type:(NSString *)type
+                                       time:(NSDate *)time
+                                   location:(NSString *)location
+                                     status:(NSString *)status
+                                  responded:(BOOL)responded
+                                   accepted:(BOOL)accepted
+                                    comment:(NSString *)comment{
+    self = [super init];
+    if(self){
+        self.requestid = requestid;
+        self.ownerUsername= ownerUsername;
+        self.type = type;
+        self.time = time;
+        self.location = location;
+        self.isSelf = NO;
+        self.status = status;
+        if(self.status){
+            self.matched = YES;
+        }else{
+            self.matched = NO;
+        }
+        self.responded = responded;
         self.accepted = accepted;
         self.comment = comment;
     }
