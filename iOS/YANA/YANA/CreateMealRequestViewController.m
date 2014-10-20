@@ -26,15 +26,10 @@
     self.time = [NSDate date];
 }
 
+/* Pass the MealRequest Object to InviteFriendsViewController */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
         InviteFriendsViewController *controller = segue.destinationViewController;
-        
-        //[MealRequest initWithUserid = self.user.Userid, type
-        
-        
-        
-        
         controller.mealRequest = self.mealRequest;
     }
 }
@@ -43,8 +38,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (IBAction)mealTypeSelected:(id)sender {
     NSLog(@"mealTypeSelected");
