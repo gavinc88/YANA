@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
+		34D1328219F4F0C7001EDB51 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
 		866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */; };
 		86A3351119EC7E0F000DFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351019EC7E0F000DFA43 /* main.m */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMealRequestViewController.h; sourceTree = "<group>"; };
+		34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestViewController.m; sourceTree = "<group>"; };
+		34D1328019F4F0C7001EDB51 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
+		34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
 		8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithButtonsTableViewCell.h; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
+				34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */,
+				34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */,
+				34D1328019F4F0C7001EDB51 /* InviteFriendsViewController.h */,
+				34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
@@ -272,12 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */,
 				86A9B95E19EF96B4005A7314 /* User.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
+				34D1328219F4F0C7001EDB51 /* InviteFriendsViewController.m in Sources */,
 				86A3351119EC7E0F000DFA43 /* main.m in Sources */,
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
