@@ -116,12 +116,147 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Meal Requests" id="rHE-0N-ETu">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="1dP-wT-7k3"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qOb-cr-oai"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qOb-cr-oai">
+                            <connections>
+                                <segue destination="QbC-PE-MnJ" kind="show" id="9lx-UO-Hkp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3P-49-sKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-828"/>
+            <point key="canvasLocation" x="1634" y="-826"/>
+        </scene>
+        <!--Create Meal Request-->
+        <scene sceneID="520-Mw-Z01">
+            <objects>
+                <viewController id="QbC-PE-MnJ" customClass="CreateMealRequestViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hpB-qn-JnB"/>
+                        <viewControllerLayoutGuide type="bottom" id="dfZ-Ie-geI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8ob-qV-5T9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H7f-kr-vH2">
+                                <rect key="frame" x="49" y="72" width="502" height="29"/>
+                                <segments>
+                                    <segment title="Breakfast"/>
+                                    <segment title="Lunch"/>
+                                    <segment title="Dinner"/>
+                                    <segment title="Other"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mealTypeSelected:" destination="QbC-PE-MnJ" eventType="valueChanged" id="cNC-ki-aeO"/>
+                                </connections>
+                            </segmentedControl>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="UUb-aH-VnR">
+                                <rect key="frame" x="12" y="137" width="572" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="435453971.47110599">
+                                    <!--2014-10-19 23:26:11 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Kp-0a-5gN">
+                                <rect key="frame" x="85" y="429" width="431" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Invite friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bvp-yx-guS" kind="show" identifier="inviteFriendsButton" id="09j-QU-LMJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIk-0K-z01">
+                                <rect key="frame" x="16" y="374" width="67" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="vGx-85-CH2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T9n-YC-zC8">
+                                <rect key="frame" x="140" y="322" width="376" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7NU-o4-cfN">
+                                <rect key="frame" x="140" y="370" width="376" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAg-B3-kyy">
+                                <rect key="frame" x="16" y="326" width="84" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="63I-RD-Zii"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7NU-o4-cfN" firstAttribute="top" secondItem="T9n-YC-zC8" secondAttribute="bottom" constant="18" id="1Ej-Aw-XBZ"/>
+                            <constraint firstItem="dfZ-Ie-geI" firstAttribute="top" secondItem="sIk-0K-z01" secondAttribute="bottom" constant="205" id="2IF-XN-aVI"/>
+                            <constraint firstItem="6Kp-0a-5gN" firstAttribute="leading" secondItem="8ob-qV-5T9" secondAttribute="leadingMargin" constant="69" id="6gV-xN-8CT"/>
+                            <constraint firstItem="sIk-0K-z01" firstAttribute="top" secondItem="WAg-B3-kyy" secondAttribute="bottom" constant="27" id="88l-6c-Yoj"/>
+                            <constraint firstItem="6Kp-0a-5gN" firstAttribute="top" secondItem="7NU-o4-cfN" secondAttribute="bottom" constant="29" id="8SS-FM-odp"/>
+                            <constraint firstItem="UUb-aH-VnR" firstAttribute="trailing" secondItem="8ob-qV-5T9" secondAttribute="trailingMargin" id="9uN-1j-Y4H"/>
+                            <constraint firstItem="dfZ-Ie-geI" firstAttribute="top" secondItem="6Kp-0a-5gN" secondAttribute="bottom" constant="131" id="Du9-2P-cqQ"/>
+                            <constraint firstItem="UUb-aH-VnR" firstAttribute="leading" secondItem="8ob-qV-5T9" secondAttribute="leadingMargin" constant="-4" id="M4k-Es-hLR"/>
+                            <constraint firstItem="H7f-kr-vH2" firstAttribute="leading" secondItem="8ob-qV-5T9" secondAttribute="leadingMargin" constant="33" id="NIV-dK-nRO"/>
+                            <constraint firstItem="sIk-0K-z01" firstAttribute="leading" secondItem="WAg-B3-kyy" secondAttribute="leading" id="NPZ-fr-wQv"/>
+                            <constraint firstItem="6Kp-0a-5gN" firstAttribute="centerX" secondItem="H7f-kr-vH2" secondAttribute="centerX" id="Nme-nb-fAw"/>
+                            <constraint firstItem="WAg-B3-kyy" firstAttribute="top" secondItem="UUb-aH-VnR" secondAttribute="bottom" constant="27" id="PmL-6u-6rm"/>
+                            <constraint firstItem="T9n-YC-zC8" firstAttribute="leading" secondItem="WAg-B3-kyy" secondAttribute="trailing" constant="40" id="UXM-z6-71F"/>
+                            <constraint firstItem="WAg-B3-kyy" firstAttribute="leading" secondItem="8ob-qV-5T9" secondAttribute="leadingMargin" id="VGG-mh-UaU"/>
+                            <constraint firstItem="7NU-o4-cfN" firstAttribute="trailing" secondItem="T9n-YC-zC8" secondAttribute="trailing" id="kNn-Ck-07e"/>
+                            <constraint firstItem="6Kp-0a-5gN" firstAttribute="centerX" secondItem="8ob-qV-5T9" secondAttribute="centerX" id="kY3-gh-V82"/>
+                            <constraint firstItem="H7f-kr-vH2" firstAttribute="top" secondItem="hpB-qn-JnB" secondAttribute="bottom" constant="8" symbolic="YES" id="kpe-zD-sPf"/>
+                            <constraint firstItem="T9n-YC-zC8" firstAttribute="top" secondItem="UUb-aH-VnR" secondAttribute="bottom" constant="23" id="mW0-dA-258"/>
+                            <constraint firstItem="6Kp-0a-5gN" firstAttribute="trailing" secondItem="7NU-o4-cfN" secondAttribute="trailing" id="o9v-rJ-wgV"/>
+                            <constraint firstItem="7NU-o4-cfN" firstAttribute="leading" secondItem="sIk-0K-z01" secondAttribute="trailing" constant="57" id="oLL-c9-SpG"/>
+                            <constraint firstItem="T9n-YC-zC8" firstAttribute="leading" secondItem="7NU-o4-cfN" secondAttribute="leading" id="x0I-Gn-lA6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Meal Request" id="KQt-E9-ZQz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MMz-RJ-0GE">
+                            <connections>
+                                <segue destination="7lW-uy-nif" kind="show" id="g7f-jd-dQF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inviteFriendsButton" destination="6Kp-0a-5gN" id="tcR-Q1-583"/>
+                        <outlet property="locationTextBox" destination="7NU-o4-cfN" id="ArS-st-epS"/>
+                        <outlet property="restaurantTextBox" destination="T9n-YC-zC8" id="yHV-bE-Q3n"/>
+                        <outlet property="timePicker" destination="UUb-aH-VnR" id="d70-bR-zR3"/>
+                        <outlet property="typeButtons" destination="H7f-kr-vH2" id="fsJ-tx-lxd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6n-Nw-Ffe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349" y="-826"/>
+        </scene>
+        <!--Invite Friends View Controller-->
+        <scene sceneID="7vB-kk-pOK">
+            <objects>
+                <viewController id="bvp-yx-guS" customClass="InviteFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vlK-w0-iFV"/>
+                        <viewControllerLayoutGuide type="bottom" id="MiX-mf-ulw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMW-oK-7Di">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c7Q-u5-xSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3182" y="-826"/>
         </scene>
         <!--Friends-->
         <scene sceneID="K2s-ue-ygH">
@@ -399,4 +534,7 @@
             <point key="canvasLocation" x="222" y="-1631"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="g7f-jd-dQF"/>
+    </inferredMetricsTieBreakers>
 </document>
