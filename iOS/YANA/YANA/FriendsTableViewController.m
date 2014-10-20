@@ -7,6 +7,9 @@
 //
 
 #import "FriendsTableViewController.h"
+#import "Friend.h"
+#import "AddFriendTableViewCell.h"
+#import "InviteFriendTableViewCell.h"
 
 @interface FriendsTableViewController ()
 
@@ -14,8 +17,13 @@
 
 @implementation FriendsTableViewController
 
+static NSString * const addFriendCellIdentifier = @"addFriendCell";
+static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initializeMockUser];
+    [self initializeFriends];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -29,29 +37,118 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initializeMockUser{
+    self.user = [[User alloc] initWithUserid:@"userid" username:@"Gavin"];
+}
+
+- (void)initializeFriends{
+    self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    Friend *newf1 = [[Friend alloc] initWithid:@"123" andUsername:@"Shane Wong 2"];
+    Friend *newf2 = [[Friend alloc] initWithid:@"456" andUsername:@"Kevin Hsieh 2"];
+    Friend *newf3 = [[Friend alloc] initWithid:@"789" andUsername:@"Yaohui Ye 2"];
+    [self.friendsWhoAddedYou addObject:newf1];
+    [self.friendsWhoAddedYou addObject:newf2];
+    [self.friendsWhoAddedYou addObject:newf3];
+    
+    self.allFriends = [[NSMutableArray alloc] init];
+    Friend *f1 = [[Friend alloc] initWithid:@"1" andUsername:@"Shane Wong"];
+    Friend *f2 = [[Friend alloc] initWithid:@"2" andUsername:@"Kevin Hsieh"];
+    Friend *f3 = [[Friend alloc] initWithid:@"3" andUsername:@"Yaohui Ye"];
+    [self.allFriends addObject:f1];
+    [self.allFriends addObject:f2];
+    [self.allFriends addObject:f3];
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    //sort alphabetically
+    NSArray *sortedArray;
+    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
+    
+    [self.friendsWhoAddedYou removeAllObjects];
+    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
+
+    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.allFriends removeAllObjects];
+    [self.allFriends addObjectsFromArray:sortedArray];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    if(section == 0)
+        return [self.friendsWhoAddedYou count];
+    else if(section == 1)
+        return [self.allFriends count];
     return 0;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    // Configure the cell...
-    
-    return cell;
+    if(section == 0){
+        if([self.friendsWhoAddedYou count]){
+            return @"Who Added You";
+        }else{
+            return nil;
+        }
+    }
+    if(section == 1){
+        return @"All Friends";
+    }
+    return @"";
 }
-*/
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0){
+        AddFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:addFriendCellIdentifier forIndexPath:indexPath];
+        Friend *friend = self.friendsWhoAddedYou[indexPath.row];
+        [cell.friendUsername setText:friend.friendUsername];
+        cell.addButton.tag = indexPath.row;
+        [cell.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }else{
+        InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
+        Friend *friend = self.allFriends[indexPath.row];
+        [cell.friendUsername setText:friend.friendUsername];
+        cell.inviteButton.tag = indexPath.row;
+        [cell.inviteButton addTarget:self action:@selector(inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }
+}
+
+- (IBAction)addButtonClicked:(UIButton *)sender {
+    NSLog(@"add clicked");
+    NSLog(@"current Row=%ld", sender.tag);
+    Friend *friend = self.friendsWhoAddedYou[sender.tag];
+    [self.friendsWhoAddedYou removeObject:friend];
+    [self.allFriends addObject:friend];
+    
+    //resort all friends before reload
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.allFriends removeAllObjects];
+    [self.allFriends addObjectsFromArray:sortedArray];
+    [self.tableView reloadData];
+}
+
+- (IBAction)inviteButtonClicked:(UIButton *)sender {
+    NSLog(@"invite clicked");
+    NSLog(@"current Row=%ld",sender.tag);
+    //Friend *friend = self.friendsWhoAddedYou[sender.tag];
+    [self.tableView reloadData];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

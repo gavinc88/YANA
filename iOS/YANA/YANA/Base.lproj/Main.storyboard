@@ -127,16 +127,113 @@
         <scene sceneID="K2s-ue-ygH">
             <objects>
                 <tableViewController id="66S-HI-aoh" customClass="FriendsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Kvy-nP-4pk">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="inviteFriendCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="inviteFriendCell" id="3hE-00-uh4" customClass="InviteFriendTableViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="friendUsername" tableViewCell="3hE-00-uh4" id="5DB-q3-Kqo">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="inviteButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-eA-p4A">
+                                            <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="afT-9M-9j9"/>
+                                                <constraint firstAttribute="width" constant="60" id="tqC-k5-fLz"/>
+                                            </constraints>
+                                            <state key="normal" title="Invite">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="inviteFriendUsername" text="Yaohui Ye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCV-PP-VWv">
+                                            <rect key="frame" x="18" y="11" width="210" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="6xc-Rp-zUZ"/>
+                                                <constraint firstAttribute="width" constant="210" id="feA-17-ob3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="6xc-Rp-zUZ"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Wv7-eA-p4A" firstAttribute="centerY" secondItem="ZCV-PP-VWv" secondAttribute="centerY" id="44n-jc-eqC"/>
+                                        <constraint firstItem="ZCV-PP-VWv" firstAttribute="leading" secondItem="5DB-q3-Kqo" secondAttribute="leadingMargin" constant="10" id="4DP-KQ-BVD"/>
+                                        <constraint firstItem="ZCV-PP-VWv" firstAttribute="centerY" secondItem="5DB-q3-Kqo" secondAttribute="centerY" id="8qM-hK-Sxk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Wv7-eA-p4A" secondAttribute="trailing" constant="-8" id="FHH-IL-NYu"/>
+                                        <constraint firstItem="Wv7-eA-p4A" firstAttribute="top" secondItem="5DB-q3-Kqo" secondAttribute="top" id="hwd-Un-ibd"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wv7-eA-p4A" secondAttribute="trailing" id="q5T-1r-nSX"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="hwd-Un-ibd"/>
+                                            <exclude reference="q5T-1r-nSX"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendUsername" destination="ZCV-PP-VWv" id="bQH-1l-eDx"/>
+                                    <outlet property="inviteButton" destination="Wv7-eA-p4A" id="KUq-Yc-hM0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="addFriendCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="addFriendCell" id="Kvy-nP-4pk" customClass="AddFriendTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kvy-nP-4pk" id="We0-2y-cXu">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
+                                            <rect key="frame" x="18" y="11.5" width="210" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="210" id="aC8-Jk-rOP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="addButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCo-WA-1Vp">
+                                            <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                            <color key="backgroundColor" red="0.20115855640822206" green="0.81634646045918369" blue="0.11094557851917553" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="0xa-dp-mGP"/>
+                                                <constraint firstAttribute="width" constant="60" id="4l3-ji-JDV"/>
+                                            </constraints>
+                                            <state key="normal" title="Add">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pCo-WA-1Vp" firstAttribute="trailing" secondItem="We0-2y-cXu" secondAttribute="trailingMargin" id="1vk-Sa-Qwe"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="pCo-WA-1Vp" secondAttribute="trailing" constant="-8" id="Npi-xu-CPm"/>
+                                        <constraint firstItem="pCo-WA-1Vp" firstAttribute="centerY" secondItem="csW-H8-Wuf" secondAttribute="centerY" constant="-1.75" id="Nww-nd-zWQ"/>
+                                        <constraint firstItem="csW-H8-Wuf" firstAttribute="leading" secondItem="We0-2y-cXu" secondAttribute="leadingMargin" constant="10" id="RpF-VA-KUG"/>
+                                        <constraint firstAttribute="centerY" secondItem="pCo-WA-1Vp" secondAttribute="centerY" id="iod-gk-Srw"/>
+                                        <constraint firstAttribute="centerY" secondItem="csW-H8-Wuf" secondAttribute="centerY" id="l5q-G1-hiP"/>
+                                        <constraint firstItem="pCo-WA-1Vp" firstAttribute="top" secondItem="We0-2y-cXu" secondAttribute="top" id="qgS-pU-jRM"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="1vk-Sa-Qwe"/>
+                                            <exclude reference="Nww-nd-zWQ"/>
+                                            <exclude reference="qgS-pU-jRM"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addButton" destination="pCo-WA-1Vp" id="KoP-vi-uJC"/>
+                                    <outlet property="friendUsername" destination="csW-H8-Wuf" id="fzr-Fq-BHG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

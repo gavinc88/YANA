@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
+		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
+		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
+		860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */; };
 		866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */; };
 		86A3351119EC7E0F000DFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351019EC7E0F000DFA43 /* main.m */; };
 		86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351319EC7E0F000DFA43 /* AppDelegate.m */; };
@@ -38,6 +41,12 @@
 /* Begin PBXFileReference section */
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
+		860ED7B419F58036008D9810 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		860ED7B519F58036008D9810 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		860ED7B719F58A97008D9810 /* AddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableViewCell.h; sourceTree = "<group>"; };
+		860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewCell.m; sourceTree = "<group>"; };
+		860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendTableViewCell.h; sourceTree = "<group>"; };
+		860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendTableViewCell.m; sourceTree = "<group>"; };
 		8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithButtonsTableViewCell.h; sourceTree = "<group>"; };
 		8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithButtonsTableViewCell.m; sourceTree = "<group>"; };
 		86A3350B19EC7E0F000DFA43 /* YANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +96,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860ED7BD19F5D32B008D9810 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
+				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
+				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
+				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
+				86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */,
+				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
+				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,
+				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
+				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
+				86A9B95919EF827B005A7314 /* FriendsTableViewController.m */,
+				8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */,
+				8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */,
+				860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */,
+				860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */,
+				860ED7B719F58A97008D9810 /* AddFriendTableViewCell.h */,
+				860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */,
+				860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */,
+				860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		860ED7BE19F5D346008D9810 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				86A9B96319EFACE6005A7314 /* LoginViewController.h */,
+				86A9B96419EFACE6005A7314 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		86A3350219EC7E0F000DFA43 = {
 			isa = PBXGroup;
 			children = (
@@ -115,22 +158,8 @@
 				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
-				86A9B96319EFACE6005A7314 /* LoginViewController.h */,
-				86A9B96419EFACE6005A7314 /* LoginViewController.m */,
-				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
-				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
-				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
-				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
-				86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */,
-				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
-				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,
-				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
-				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
-				86A9B95919EF827B005A7314 /* FriendsTableViewController.m */,
-				8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */,
-				8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */,
-				860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */,
-				860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */,
+				860ED7BE19F5D346008D9810 /* Login */,
+				860ED7BD19F5D32B008D9810 /* Main */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -166,6 +195,8 @@
 			children = (
 				86A9B95C19EF96B4005A7314 /* User.h */,
 				86A9B95D19EF96B4005A7314 /* User.m */,
+				860ED7B419F58036008D9810 /* Friend.h */,
+				860ED7B519F58036008D9810 /* Friend.m */,
 				86A9B95F19EF96CA005A7314 /* MealRequest.h */,
 				86A9B96019EF96CA005A7314 /* MealRequest.m */,
 			);
@@ -273,7 +304,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				86A9B95E19EF96B4005A7314 /* User.m in Sources */,
+				860ED7B619F58036008D9810 /* Friend.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
+				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
@@ -282,6 +315,7 @@
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */,
+				860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */,
 				86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */,
 				86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */,
 			);

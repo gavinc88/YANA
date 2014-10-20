@@ -47,7 +47,6 @@ NSDateFormatter *timeFormatter;
 
 - (void)initializeMockUser{
     self.user = [[User alloc] initWithUserid:@"userid" username:@"Gavin"];
-    
 }
 
 - (void)initializeMockMealRequests{
