@@ -561,18 +561,17 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="xIF-ra-bXq" eventType="touchUpInside" id="Hlv-pa-skW"/>
-                                    <segue destination="irN-av-fR1" kind="show" id="f8z-vW-jZD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhB-jX-LaW">
                                 <rect key="frame" x="60" y="255" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Create Account">
+                                <state key="normal" title="Create User">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createAccount:" destination="xIF-ra-bXq" eventType="touchUpInside" id="6W1-xf-vjy"/>
+                                    <action selector="createUser:" destination="xIF-ra-bXq" eventType="touchUpInside" id="GkB-dk-H2k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGu-xe-N44">
@@ -613,11 +612,12 @@
                         <outlet property="loginButton" destination="On1-jp-N5M" id="pRz-dq-B5e"/>
                         <outlet property="passwordText" destination="Rx8-4b-PYA" id="cQL-B1-UOP"/>
                         <outlet property="usernameText" destination="l1q-Ju-vrY" id="BsL-1Y-62C"/>
+                        <segue destination="irN-av-fR1" kind="show" identifier="openMain" id="foV-kG-Lbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97f-ua-6U9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="-1631"/>
+            <point key="canvasLocation" x="222" y="-1543"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
