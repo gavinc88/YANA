@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34B5B54319F6F13000C470E2 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B5B54219F6F13000C470E2 /* InviteFriendsTableViewController.m */; };
+		34B5B54619F6FCB300C470E2 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B5B54519F6FCB300C470E2 /* FriendTableViewCell.m */; };
 		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
-		34D1328219F4F0C7001EDB51 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
@@ -42,10 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34B5B54119F6F13000C470E2 /* InviteFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableViewController.h; sourceTree = "<group>"; };
+		34B5B54219F6F13000C470E2 /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
+		34B5B54419F6FCB300C470E2 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		34B5B54519F6FCB300C470E2 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
 		34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMealRequestViewController.h; sourceTree = "<group>"; };
 		34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestViewController.m; sourceTree = "<group>"; };
-		34D1328019F4F0C7001EDB51 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
-		34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
 		860ED7B419F58036008D9810 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -161,10 +164,12 @@
 			isa = PBXGroup;
 			children = (
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
+				34B5B54119F6F13000C470E2 /* InviteFriendsTableViewController.h */,
+				34B5B54219F6F13000C470E2 /* InviteFriendsTableViewController.m */,
 				34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */,
 				34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */,
-				34D1328019F4F0C7001EDB51 /* InviteFriendsViewController.h */,
-				34D1328119F4F0C7001EDB51 /* InviteFriendsViewController.m */,
+				34B5B54419F6FCB300C470E2 /* FriendTableViewCell.h */,
+				34B5B54519F6FCB300C470E2 /* FriendTableViewCell.m */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
@@ -322,17 +327,18 @@
 				86A9B95E19EF96B4005A7314 /* User.m in Sources */,
 				860ED7B619F58036008D9810 /* Friend.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
+				34B5B54319F6F13000C470E2 /* InviteFriendsTableViewController.m in Sources */,
 				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
-				34D1328219F4F0C7001EDB51 /* InviteFriendsViewController.m in Sources */,
 				86A3351119EC7E0F000DFA43 /* main.m in Sources */,
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */,
+				34B5B54619F6FCB300C470E2 /* FriendTableViewCell.m in Sources */,
 				860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */,
 				86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */,
 				86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */,

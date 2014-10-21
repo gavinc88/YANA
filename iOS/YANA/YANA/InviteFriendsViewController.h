@@ -13,4 +13,6 @@
 
 @interface InviteFriendsViewController : UIViewController
 @property(strong, nonatomic) MealRequest *mealRequest;
+@property(strong, nonatomic) NSMutableArray *allFriends;
+@property(strong, nonatomic) NSMutableArray *selectedFriends;
 @end
