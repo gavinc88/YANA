@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
 
 @interface MainTabBarController : UITabBarController
-
-@property (nonatomic,strong) User *user;
 
 @end
