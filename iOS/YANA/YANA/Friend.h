@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *friendid;
 @property (nonatomic, strong) NSString *friendUsername;
+@property BOOL selected;
 
 - (instancetype) initWithid:(NSString *)friendid andUsername:(NSString *)username;
 

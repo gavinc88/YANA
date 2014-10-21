@@ -7,11 +7,7 @@
 //
 
 #import "CreateMealRequestViewController.h"
-#import "MealRequest.h"
-#import <UIKit/UIKit.h>
-#import "MealRequest.h"
-#import "InviteFriendsViewController.h"
-#import "MealRequestsTableViewController.h"
+#import "InviteFriendsTableViewController.h"
 
 @interface CreateMealRequestViewController ()
 
@@ -29,7 +25,7 @@
 /* Pass the MealRequest Object to InviteFriendsViewController */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
-        InviteFriendsViewController *controller = segue.destinationViewController;
+        InviteFriendsTableViewController *controller = segue.destinationViewController;
         controller.mealRequest = self.mealRequest;
     }
 }

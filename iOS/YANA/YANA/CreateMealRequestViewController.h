@@ -6,12 +6,9 @@
 //  Copyright (c) 2014 CS169. All rights reserved.
 //
 
-#import "CreateMealRequestViewController.h"
-#import "MealRequest.h"
 #import <UIKit/UIKit.h>
-#import "MealRequest.h"
-#import "InviteFriendsViewController.h"
 #import "User.h"
+#import "MealRequest.h"
 
 @interface CreateMealRequestViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISegmentedControl *typeButtons;
