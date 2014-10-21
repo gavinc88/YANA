@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) User *user;
 
+- (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue;
+
 @end

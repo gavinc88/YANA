@@ -10,6 +10,7 @@
 #import "Friend.h"
 #import "AddFriendTableViewCell.h"
 #import "InviteFriendTableViewCell.h"
+#import "SearchAndAddFriendViewController.h"
 
 @interface FriendsTableViewController ()
 
@@ -20,10 +21,34 @@
 static NSString * const addFriendCellIdentifier = @"addFriendCell";
 static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 
+#pragma mark - Segue
+
+- (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue
+{
+    NSLog(@"returned from SearchAndAddFriend");
+    SearchAndAddFriendViewController *source = [segue sourceViewController];
+    Friend *friend = source.addedFriend;
+    if (friend != nil) {
+        [self.allFriends addObject:friend];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"openSearchAndAddFriend"]) {
+        SearchAndAddFriendViewController *destViewController = segue.destinationViewController;
+        // Hide bottom tab bar in the detail view
+        destViewController.hidesBottomBarWhenPushed = YES;
+    }
+}
+
+#pragma mark - Setup
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeMockUser];
     [self initializeFriends];
+    self.tableView.rowHeight = 44;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -123,6 +148,8 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
         return cell;
     }
 }
+
+#pragma mark - Button Clicks
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
     NSLog(@"add clicked");

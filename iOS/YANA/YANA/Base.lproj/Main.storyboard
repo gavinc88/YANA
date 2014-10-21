@@ -125,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3P-49-sKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-826"/>
+            <point key="canvasLocation" x="1634" y="-898"/>
         </scene>
         <!--Create Meal Request-->
         <scene sceneID="520-Mw-Z01">
@@ -238,7 +238,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6n-Nw-Ffe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2349" y="-826"/>
+            <point key="canvasLocation" x="2344" y="-898"/>
+        </scene>
+        <!--Friend Search-->
+        <scene sceneID="c1x-Wi-giR">
+            <objects>
+                <viewController title="Friend Search" id="y5v-ly-pdB" customClass="SearchAndAddFriendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pyg-Cu-z2y"/>
+                        <viewControllerLayoutGuide type="bottom" id="udt-Pb-YJy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uPT-Vg-1G4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message: &quot;Friend A&quot; not found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-2l-dUW">
+                                <rect key="frame" x="160" y="131" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="XGn-sl-w7A"/>
+                                    <constraint firstAttribute="width" constant="280" id="sfv-Pf-acc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcq-yD-Ycc">
+                                <rect key="frame" x="250" y="160" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0py-BN-4yf"/>
+                                    <constraint firstAttribute="height" constant="30" id="2KY-jK-ZcH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Add Friend">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFriend:" destination="y5v-ly-pdB" eventType="touchUpInside" id="hQJ-bF-dhn"/>
+                                    <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="bFa-pw-hN9"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" placeholder="friend username" translatesAutoresizingMaskIntoConstraints="NO" id="8Qy-Ph-6bO">
+                                <rect key="frame" x="140" y="64" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="qAF-8H-tBe"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ErY-2l-dUW" secondAttribute="centerX" id="5cg-nG-RhF"/>
+                            <constraint firstItem="ErY-2l-dUW" firstAttribute="top" secondItem="8Qy-Ph-6bO" secondAttribute="bottom" constant="23" id="7Gm-bc-I62"/>
+                            <constraint firstItem="8Qy-Ph-6bO" firstAttribute="top" secondItem="pyg-Cu-z2y" secondAttribute="bottom" id="BtF-CB-6E1"/>
+                            <constraint firstAttribute="centerX" secondItem="hcq-yD-Ycc" secondAttribute="centerX" id="jWG-ku-8GA"/>
+                            <constraint firstAttribute="centerX" secondItem="8Qy-Ph-6bO" secondAttribute="centerX" id="oHa-x2-cB1"/>
+                            <constraint firstItem="hcq-yD-Ycc" firstAttribute="top" secondItem="ErY-2l-dUW" secondAttribute="bottom" constant="8" symbolic="YES" id="rLs-NJ-zKt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H7S-Ej-fda">
+                            <connections>
+                                <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="tMF-Or-dT7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="friendSearchBar" destination="8Qy-Ph-6bO" id="AHS-i7-M7U"/>
+                        <outlet property="friendSearchButton" destination="hcq-yD-Ycc" id="kFn-Pm-zn4"/>
+                        <outlet property="friendSearchMessage" destination="ErY-2l-dUW" id="IWM-8M-QOn"/>
+                        <outlet property="searchDisplayController" destination="Z1Y-5W-N2L" id="Cyd-dZ-8wd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qYW-Gf-jpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fMr-Y7-Pm3" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="Z1Y-5W-N2L">
+                    <connections>
+                        <outlet property="delegate" destination="y5v-ly-pdB" id="uvy-NZ-udv"/>
+                        <outlet property="searchContentsController" destination="y5v-ly-pdB" id="3f6-Pe-cvH"/>
+                        <outlet property="searchResultsDataSource" destination="y5v-ly-pdB" id="ClL-FU-7sj"/>
+                        <outlet property="searchResultsDelegate" destination="y5v-ly-pdB" id="YPZ-ni-mF9"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2344" y="-68"/>
         </scene>
         <!--Invite Friends View Controller-->
         <scene sceneID="7vB-kk-pOK">
@@ -256,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7Q-u5-xSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3182" y="-826"/>
+            <point key="canvasLocation" x="3020" y="-898"/>
         </scene>
         <!--Friends-->
         <scene sceneID="K2s-ue-ygH">
@@ -377,12 +459,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="8SP-oF-TJI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YYj-x1-o9a"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YYj-x1-o9a">
+                            <connections>
+                                <segue destination="y5v-ly-pdB" kind="show" id="hDg-HI-aeX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaY-Ph-Uje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-164"/>
+            <point key="canvasLocation" x="1634" y="-68"/>
         </scene>
         <!--Friends-->
         <scene sceneID="aBs-Rf-lVZ">
@@ -399,7 +485,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxk-XJ-c3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="-164"/>
+            <point key="canvasLocation" x="942" y="-68"/>
         </scene>
         <!--Requests-->
         <scene sceneID="qam-Iy-cDk">
@@ -416,7 +502,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uer-IK-tGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="-826"/>
+            <point key="canvasLocation" x="942" y="-898"/>
         </scene>
         <!--MainTab-->
         <scene sceneID="85R-cA-75s">

@@ -13,6 +13,7 @@
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
 		860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */; };
+		8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */; };
 		866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */; };
 		86A3351119EC7E0F000DFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351019EC7E0F000DFA43 /* main.m */; };
 		86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351319EC7E0F000DFA43 /* AppDelegate.m */; };
@@ -53,6 +54,8 @@
 		860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewCell.m; sourceTree = "<group>"; };
 		860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendTableViewCell.h; sourceTree = "<group>"; };
 		860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendTableViewCell.m; sourceTree = "<group>"; };
+		8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendViewController.h; sourceTree = "<group>"; };
+		8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendViewController.m; sourceTree = "<group>"; };
 		8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithButtonsTableViewCell.h; sourceTree = "<group>"; };
 		8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithButtonsTableViewCell.m; sourceTree = "<group>"; };
 		86A3350B19EC7E0F000DFA43 /* YANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +173,8 @@
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
 				860ED7BD19F5D32B008D9810 /* Main */,
+				8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */,
+				8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
+				8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
