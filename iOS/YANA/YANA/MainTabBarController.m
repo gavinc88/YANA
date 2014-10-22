@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"MainTabBarController Userid: %@\tusername: %@", self.user.userid, self.user.username);
 }
 
 - (void)didReceiveMemoryWarning {

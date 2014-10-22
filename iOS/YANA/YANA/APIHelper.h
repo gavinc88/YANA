@@ -26,20 +26,20 @@ extern NSString* const action_delete_friend;
 extern NSString* const action_get_friend_list;
 extern NSString* const action_get_profile_by_id;
 
-extern NSString* const SUCCESS;
-extern NSString* const INVALID_USERNAME;
-extern NSString* const INVALID_PASSWORD;
-extern NSString* const USERNAME_ALREADY_EXISTS;
-extern NSString* const WRONG_USERNAME_OR_PASSWORD;
-extern NSString* const INVALID_USER_ID;
-extern NSString* const ALREADY_FOLLOWED;
-extern NSString* const INVALID_FRIEND_ID;
-extern NSString* const INVALID_PARAMS;
-extern NSString* const INVALID_ACTION;
-extern NSString* const MEAL_REQUEST_EXPIRED;
-extern NSString* const NO_PERMISSION;
-extern NSString* const NOT_FOLLOWING;
-extern NSString* const ERROR;
+@property (nonatomic, strong) NSString* SUCCESS;
+@property (nonatomic, strong) NSString* INVALID_USERNAME;
+@property (nonatomic, strong) NSString* INVALID_PASSWORD;
+@property (nonatomic, strong) NSString* USERNAME_ALREADY_EXISTS;
+@property (nonatomic, strong) NSString* WRONG_USERNAME_OR_PASSWORD;
+@property (nonatomic, strong) NSString* INVALID_USER_ID;
+@property (nonatomic, strong) NSString* ALREADY_FOLLOWED;
+@property (nonatomic, strong) NSString* INVALID_FRIEND_ID;
+@property (nonatomic, strong) NSString* INVALID_PARAMS;
+@property (nonatomic, strong) NSString* INVALID_ACTION;
+@property (nonatomic, strong) NSString* MEAL_REQUEST_EXPIRED;
+@property (nonatomic, strong) NSString* NO_PERMISSION;
+@property (nonatomic, strong) NSString* NOT_FOLLOWING;
+@property (nonatomic, strong) NSString* ERROR;
 
 @property (nonatomic, strong) NSDictionary* statusCodeDictionary;
 

@@ -46,6 +46,20 @@ NSString* const ERROR = @"ERROR";
 
 - (instancetype) init{
     self = [super init];
+    self.SUCCESS = @"SUCCESS";
+    self.INVALID_USERNAME = @"INVALID_USERNAME";
+    self.INVALID_PASSWORD = @"INVALID_PASSWORD";
+    self.USERNAME_ALREADY_EXISTS = @"USERNAME_ALREADY_EXISTS";
+    self.WRONG_USERNAME_OR_PASSWORD = @"WRONG_USERNAME_OR_PASSWORD";
+    self.INVALID_USER_ID = @"INVALID_USER_ID";
+    self.ALREADY_FOLLOWED = @"ALREADY_FOLLOWED";
+    self.INVALID_FRIEND_ID = @"INVALID_FRIEND_ID";
+    self.INVALID_PARAMS = @"INVALID_PARAMS";
+    self.INVALID_ACTION = @"INVALID_ACTION";
+    self.MEAL_REQUEST_EXPIRED = @"MEAL_REQUEST_EXPIRED";
+    self.NO_PERMISSION = @"NO_PERMISSION";
+    self.NOT_FOLLOWING = @"NOT_FOLLOWING";
+    self.ERROR = @"ERROR";
     if(self){
         self.statusCodeDictionary = @{
           @"1": SUCCESS,
@@ -73,6 +87,7 @@ NSString* const ERROR = @"ERROR";
 
 - (NSDictionary *) makeSynchronousPostRequestWithURL:(NSString *)url
                                       args:(NSDictionary *)args{
+    NSLog(@"POST to %@", url);
     // Setup POST request
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     urlRequest.HTTPMethod = @"POST";
@@ -123,30 +138,20 @@ NSString* const ERROR = @"ERROR";
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;
-    
-    
-//    if (error == nil)
-//    {
-
-//        if (!jsonResponse) {
-//            NSLog(@"Error parsing JSON: %@", error);
-//            _messageText.text = SERVER_ERROR;
-//        } else {
-//            //            for(NSString *key in [jsonResponse allKeys]) {
-//            //                NSLog(@"%@: %@", key, [jsonResponse objectForKey:key]);
-//            //            }
-//            errorCode = [[jsonResponse objectForKey:@"errCode"] intValue];
-//            loginCount = [[jsonResponse objectForKey:@"count"] intValue];
-//            if (errorCode < 0) {
-//                [statusCodeDictionary objectForKey:[NSString stringWithFormat: @"%zd", errorCode]];
-//            }
-//        }
-//    }
 }
 
 - (NSDictionary *) loginWithUsername:(NSString *)username
                      andPassword:(NSString *)password{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_login];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          username, @"username",
+                          password, @"password",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) logout:(NSString *)userid{

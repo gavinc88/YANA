@@ -13,7 +13,7 @@
 
 @interface LoginViewController ()
 
-@property (nonatomic,weak) User *user;
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -35,26 +35,89 @@ APIHelper *apiHelper;
 - (IBAction)login:(UIButton *)sender {
     NSDictionary *response = [apiHelper loginWithUsername:self.usernameText.text andPassword:self.passwordText.text];
     if(response){
-        [self performSegueWithIdentifier:@"openMain" sender:self];
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        NSLog(@"statusCode: %d", statusCode);
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSString *userid = [response objectForKey:@"user_id"];
+            self.user = [[User alloc] initWithUserid:userid username:self.usernameText.text];
+            [self performSegueWithIdentifier:@"openMain" sender:self];
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.WRONG_USERNAME_OR_PASSWORD]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Invalid Credentials"
+                                  message:@"Wrong username or password."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
 - (IBAction)createUser:(UIButton *)sender {
     NSDictionary *response = [apiHelper createUserWithUsername:self.usernameText.text andPassword:self.passwordText.text];
     if(response){
-        [self performSegueWithIdentifier:@"openMain" sender:self];
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSString *userid = [response objectForKey:@"user_id"];
+            self.user = [[User alloc] initWithUserid:userid username:self.usernameText.text];
+            [self performSegueWithIdentifier:@"openMain" sender:self];
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.INVALID_USERNAME]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Invalid Username"
+                                  message:@"Username is empty or it's too long."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.INVALID_PASSWORD]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Invalid Password"
+                                  message:@"Password is too long."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.USERNAME_ALREADY_EXISTS]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Invalid Username"
+                                  message:@"Username already exists"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"openMain"]) {
-        NSLog(@"preparingForSegue");
+        NSLog(@"preparingForSegue for LoginViewController");
         
         MainTabBarController *vc = [segue destinationViewController];
         vc.user = self.user;
     } else {
         return;
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)textFieldDidEnd:(id)sender {
