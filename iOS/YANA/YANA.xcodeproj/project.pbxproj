@@ -168,6 +168,8 @@
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86AC7CD319F65D0100760EC4 /* APIHelper.h */,
 				86AC7CD419F65D0100760EC4 /* APIHelper.m */,
+				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
+				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
@@ -181,8 +183,6 @@
 		86A3350E19EC7E0F000DFA43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
-				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
 				86A3350F19EC7E0F000DFA43 /* Info.plist */,
 				86A3351019EC7E0F000DFA43 /* main.m */,
 			);

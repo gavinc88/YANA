@@ -7,6 +7,7 @@
 //
 
 #import "FriendsTableViewController.h"
+#import "AppDelegate.h"
 #import "Friend.h"
 #import "AddFriendTableViewCell.h"
 #import "InviteFriendTableViewCell.h"
@@ -46,7 +47,7 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initializeMockUser];
+    [self initializeUser];
     [self initializeFriends];
     self.tableView.rowHeight = 44;
     
@@ -60,6 +61,12 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initializeUser{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = ad.user;
+    [self.user toString];
 }
 
 - (void)initializeMockUser{

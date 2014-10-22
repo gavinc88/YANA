@@ -7,6 +7,7 @@
 //
 
 #import "MealRequestsTableViewController.h"
+#import "AppDelegate.h"
 #import "MealRequest.h"
 #import "MealRequestWithButtonsTableViewCell.h"
 #import "MealRequestWithoutButtonsTableViewCell.h"
@@ -25,7 +26,7 @@ NSDateFormatter *timeFormatter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeTimeFormatter];
-    [self initializeMockUser];
+    [self initializeUser];
     [self initializeMockMealRequests];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -43,6 +44,12 @@ NSDateFormatter *timeFormatter;
 - (void)initializeTimeFormatter{
     timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h:mm a"];
+}
+
+- (void)initializeUser{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = ad.user;
+    [self.user toString];
 }
 
 - (void)initializeMockUser{

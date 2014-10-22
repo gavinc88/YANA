@@ -24,4 +24,9 @@
     return self;
 }
 
+- (void) toString{
+    NSLog(@"User Object:\n\tusername:%@\n\tuserid:%@\n\tfriends:%@\n\tmealRequests:%@",
+          self.username, self.userid, self.friends, self.mealRequests);
+}
+
 @end

@@ -11,6 +11,4 @@
 
 @interface MainTabBarController : UITabBarController
 
-@property (nonatomic,strong) User *user;
-
 @end

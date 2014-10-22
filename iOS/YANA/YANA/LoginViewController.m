@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 #import "APIHelper.h"
 #import "User.h"
 #import "MainTabBarController.h"
@@ -108,9 +109,8 @@ APIHelper *apiHelper;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"openMain"]) {
         NSLog(@"preparingForSegue for LoginViewController");
-        
-        MainTabBarController *vc = [segue destinationViewController];
-        vc.user = self.user;
+        AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ad.user = self.user;
     } else {
         return;
     }

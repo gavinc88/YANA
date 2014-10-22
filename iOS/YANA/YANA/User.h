@@ -18,4 +18,6 @@
 - (instancetype) initWithUserid:(NSString *)userid
                        username:(NSString *)username;
 
+- (void) toString;
+
 @end
