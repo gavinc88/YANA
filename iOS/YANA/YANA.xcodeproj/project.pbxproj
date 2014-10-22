@@ -29,7 +29,7 @@
 		86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B96019EF96CA005A7314 /* MealRequest.m */; };
 		86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B96419EFACE6005A7314 /* LoginViewController.m */; };
 		86AC7CD519F65D0100760EC4 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CD419F65D0100760EC4 /* APIHelper.m */; };
-		86AC7CDA19F7A9E900760EC4 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CD919F7A9E900760EC4 /* InviteFriendsTableViewController.m */; };
+		86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +86,8 @@
 		86A9B96419EFACE6005A7314 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		86AC7CD319F65D0100760EC4 /* APIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHelper.h; sourceTree = "<group>"; };
 		86AC7CD419F65D0100760EC4 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelper.m; sourceTree = "<group>"; };
-		86AC7CD819F7A9E900760EC4 /* InviteFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableViewController.h; sourceTree = "<group>"; };
-		86AC7CD919F7A9E900760EC4 /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
+		86AC7CDB19F7B81000760EC4 /* InviteFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableViewController.h; sourceTree = "<group>"; };
+		86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,8 +224,8 @@
 			children = (
 				34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */,
 				34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */,
-				86AC7CD819F7A9E900760EC4 /* InviteFriendsTableViewController.h */,
-				86AC7CD919F7A9E900760EC4 /* InviteFriendsTableViewController.m */,
+				86AC7CDB19F7B81000760EC4 /* InviteFriendsTableViewController.h */,
+				86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */,
 			);
 			name = CreateMealRequest;
 			sourceTree = "<group>";
@@ -354,9 +354,9 @@
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */,
+				86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */,
 				860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */,
 				86A9B94E19EF815A005A7314 /* MainTabBarController.m in Sources */,
-				86AC7CDA19F7A9E900760EC4 /* InviteFriendsTableViewController.m in Sources */,
 				86A9B96119EF96CA005A7314 /* MealRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
