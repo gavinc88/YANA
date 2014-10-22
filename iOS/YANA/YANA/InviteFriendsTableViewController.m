@@ -16,11 +16,11 @@
 @end
 
 @implementation InviteFriendsTableViewController
-FriendTableViewCell *friendCell;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeFakeFriends];
-    self.tableView.rowHeight = 45;
+    self.tableView.rowHeight = 44;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -77,16 +77,14 @@ FriendTableViewCell *friendCell;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendCell" forIndexPath:indexPath];
-    friendCell = cell;
-    Friend *friend = self.allFriends[indexPath.row];
-    [cell.friendName setText:friend.friendUsername];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendCell" forIndexPath:indexPath];
+    Friend *friend = [self.allFriends objectAtIndex:indexPath.row];
+    cell.textLabel.text = friend.friendUsername;
     if (friend.selected) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-
     return cell;
 }
 
