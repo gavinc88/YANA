@@ -195,6 +195,12 @@ APIHelper *apiHelper;
     [self.view endEditing:YES];
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:YES];
+    [self setHidesBottomBarWhenPushed:YES];
+    [self.tabBarController.tabBar setHidden:YES];
+}
 
 /*
 #pragma mark - Navigation
