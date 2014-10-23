@@ -8,6 +8,7 @@
 
 #import "FriendsTableViewController.h"
 #import "AppDelegate.h"
+#import "APIHelper.h"
 #import "Friend.h"
 #import "AddFriendTableViewCell.h"
 #import "InviteFriendTableViewCell.h"
@@ -21,6 +22,8 @@
 
 static NSString * const addFriendCellIdentifier = @"addFriendCell";
 static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
+
+APIHelper *apiHelper;
 
 #pragma mark - Segue
 
@@ -48,8 +51,10 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeUser];
-    [self initializeFriends];
+    [self initializeMockFriends];
+    apiHelper = [[APIHelper alloc] init];
     self.tableView.rowHeight = 44;
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,6 +78,32 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 }
 
 - (void)initializeFriends{
+    self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    Friend *newf1 = [[Friend alloc] initWithid:@"123" andUsername:@"Shane Wong 2"];
+    [self.friendsWhoAddedYou addObject:newf1];
+    
+    self.allFriends = [[NSMutableArray alloc] init];
+    Friend *f1 = [[Friend alloc] initWithid:@"1" andUsername:@"Shane Wong"];
+    [self.allFriends addObject:f1];
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    //sort alphabetically
+    NSArray *sortedArray;
+    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
+    
+    [self.friendsWhoAddedYou removeAllObjects];
+    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
+    
+    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.allFriends removeAllObjects];
+    [self.allFriends addObjectsFromArray:sortedArray];
+}
+
+- (void)initializeMockFriends{
     self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
     Friend *newf1 = [[Friend alloc] initWithid:@"123" andUsername:@"Shane Wong 2"];
     Friend *newf2 = [[Friend alloc] initWithid:@"456" andUsername:@"Kevin Hsieh 2"];
@@ -161,24 +192,80 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
     }
 }
 
-#pragma mark - Button Clicks
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+BOOL deleted = NO;
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        if(indexPath.section == 0){
+            [self.friendsWhoAddedYou removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }else if(indexPath.section == 1){
+            Friend *friend = self.allFriends[indexPath.row];
+            [self deleteFriend:friend];
+            if(deleted){
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                deleted = NO;
+            }
+        }
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+#pragma mark - Actions
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
     NSLog(@"add clicked");
     NSLog(@"current Row=%ld", sender.tag);
-    Friend *friend = self.friendsWhoAddedYou[sender.tag];
-    [self.friendsWhoAddedYou removeObject:friend];
-    [self.allFriends addObject:friend];
     
-    //resort all friends before reload
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-    [self.allFriends removeAllObjects];
-    [self.allFriends addObjectsFromArray:sortedArray];
-    [self.tableView reloadData];
+    Friend *friend = self.friendsWhoAddedYou[sender.tag];
+    
+    //update server
+    NSDictionary *response = [apiHelper addFriend:friend.friendid toYou:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            [self.friendsWhoAddedYou removeObject:friend];
+            [self.allFriends addObject:friend];
+            
+            //resort all friends before reload
+            NSSortDescriptor *sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                         ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+            [self.allFriends removeAllObjects];
+            [self.allFriends addObjectsFromArray:sortedArray];
+            [self.tableView reloadData];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (IBAction)inviteButtonClicked:(UIButton *)sender {
@@ -188,26 +275,37 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
     [self.tableView reloadData];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)deleteFriend:(Friend *)friend {
+    NSLog(@"delete clicked");
+    //update server
+    NSDictionary *response = [apiHelper deleteFriend:friend.friendid fromYou:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            deleted = YES;
+            [self.allFriends removeObject:friend];
+            [self.tableView reloadData];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
 /*
 // Override to support rearranging the table view.

@@ -243,13 +243,30 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 
 - (NSDictionary *) addFriend:(NSString *) friendid
                    toYou:(NSString *)userid{
+    NSString *requestURL = [self generateFullUrl:action_add_friend];
     
-    return @{};
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          friendid, @"to_id",
+                          userid, @"from_id",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) deleteFriend:(NSString *) friendid
                     fromYou:(NSString *)userid{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_delete_friend];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          friendid, @"to_id",
+                          userid, @"from_id",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) getFriendList:(NSString *)userid{
