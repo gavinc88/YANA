@@ -9,6 +9,7 @@
 #import "InviteFriendsTableViewController.h"
 #import "Friend.h"
 #import "MealRequestsNavigationController.h"
+#import "APIHelper.h"
 
 @interface InviteFriendsTableViewController ()
 
@@ -34,9 +35,12 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"inviteFriendsToMealRequests"]){
-        MealRequestsNavigationController *controller = segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"backToMealRequests"]){
+        [self.mealRequest addInvitedFriends:self.selectedFriends];
         
+        APIHelper *helper = [[APIHelper alloc] init];
+        NSDictionary *response = [helper createMealRequest:self.mealRequest];
+        NSLog(@"response is %@", response);
     }
 }
 

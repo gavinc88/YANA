@@ -9,6 +9,7 @@
 #import "CreateMealRequestViewController.h"
 #import "InviteFriendsTableViewController.h"
 #import "AppDelegate.h"
+#import "MealRequest.h"
 
 @interface CreateMealRequestViewController ()
 
@@ -21,12 +22,16 @@
     NSLog(@"CreateMealRequestView loaded");
     // Do any additional setup after loading the view.
     self.time = [NSDate date];
+    [self initializeUser];
 }
 
 /* Pass the MealRequest Object to InviteFriendsViewController */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
         InviteFriendsTableViewController *controller = segue.destinationViewController;
+        //Create MealRequest object
+        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time location:nil comment:nil];
+        //pass MealRequest object to InviteFriendViewController
         controller.mealRequest = self.mealRequest;
     }
 }
@@ -63,6 +68,7 @@
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
         self.time = date;
+        self.type = @"breakfast";
     }
     if (self.typeButtons.selectedSegmentIndex == 1) {
         [components setYear:currYear];
@@ -73,6 +79,7 @@
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
         self.time = date;
+        self.type = @"lunch";
     }
     if (self.typeButtons.selectedSegmentIndex == 2) {
         [components setYear:currYear];
@@ -83,9 +90,11 @@
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
         self.time = date;
+        self.type = @"dinner";
     }
     if (self.typeButtons.selectedSegmentIndex == 3) {
         [self.timePicker setDate: [NSDate date]];
+        self.type = @"other";
     }
 }
 
