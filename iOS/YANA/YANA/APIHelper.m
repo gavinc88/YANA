@@ -85,6 +85,45 @@ NSString* const ERROR = @"ERROR";
     return [NSString stringWithFormat:@"%@/%@", base_url, action];
 }
 
+- (NSDictionary *) makeSynchronousGetRequestWithURL:(NSString *)url
+                                             params:(NSDictionary *)params{
+    // Format params to url
+    if([params count]){
+        
+        NSMutableArray *parts = [NSMutableArray array];
+        for (NSString *key in [params allKeys]) {
+            NSString *value = [params objectForKey:key];
+            NSString *part = [NSString stringWithFormat: @"%@=%@", key, value];
+            [parts addObject: part];
+        }
+        [url stringByAppendingFormat:@"?%@", [parts componentsJoinedByString: @"&"]];
+    }
+    NSLog(@"GET from %@", url);
+    
+    // Setup GET request
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    urlRequest.HTTPMethod = @"GET";
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(error){
+        NSLog(@"server error: %@", error);
+        return nil;
+    }
+    
+    NSError *jsonError = nil;
+    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
+    
+    if(jsonError){
+        NSLog(@"error converting response to json: %@", jsonError);
+        return nil;
+    }else{
+        NSLog(@"response: %@", jsonResponse);
+        return jsonResponse;
+    }
+}
+
 - (NSDictionary *) makeSynchronousPostRequestWithURL:(NSString *)url
                                       args:(NSDictionary *)args{
     NSLog(@"POST to %@", url);
@@ -180,6 +219,7 @@ NSString* const ERROR = @"ERROR";
 
 - (NSDictionary *) addFriend:(NSString *) friendid
                    toYou:(NSString *)userid{
+    
     return @{};
 }
 
