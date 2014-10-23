@@ -31,9 +31,9 @@ APIHelper *apiHelper;
 {
     NSLog(@"returned from SearchAndAddFriend");
     SearchAndAddFriendViewController *source = [segue sourceViewController];
-    Friend *friend = source.addedFriend;
-    if (friend != nil) {
-        [self.allFriends addObject:friend];
+    NSMutableArray *friends = source.addedFriends;
+    if (friends != nil) {
+        [self.allFriends addObjectsFromArray:friends];
         [self.tableView reloadData];
     }
 }
@@ -238,6 +238,7 @@ BOOL deleted = NO;
             
             [self.friendsWhoAddedYou removeObject:friend];
             [self.allFriends addObject:friend];
+            [self.user.friends addObject:friend];
             
             //resort all friends before reload
             NSSortDescriptor *sortDescriptor;

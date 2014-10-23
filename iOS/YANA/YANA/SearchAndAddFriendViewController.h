@@ -17,6 +17,6 @@
 
 @property (nonatomic,retain) NSMutableArray *tableData;
 
-@property (nonatomic, strong) Friend *addedFriend;
+@property (nonatomic, strong) NSMutableArray *addedFriends; //array of Friend
 
 @end

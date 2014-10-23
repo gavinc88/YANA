@@ -29,6 +29,7 @@ APIHelper *apiHelper;
     [self initializeUser];
     apiHelper = [[APIHelper alloc]init];
     self.tableData = [[NSMutableArray alloc] init];
+    self.addedFriends = [[NSMutableArray alloc] init];
     //Friend *friend1 = [[Friend alloc] initWithid:@"123" andUsername:@"Will Smith"];
     //[self.tableData addObject:friend1];
     //Friend *friend2 = [[Friend alloc] initWithid:@"456" andUsername:@"Will Tang"];
@@ -101,14 +102,28 @@ APIHelper *apiHelper;
 
 - (void) displaySearchResult{
     NSLog(@"displaySearchResult");
+    
+    NSMutableArray *toBeFilteredFriends = [[NSMutableArray alloc] init];
+    
+    //filter search result
     for(Friend *searchedFriend in self.tableData){
+        //filter users who are already your friend
         for(Friend *yourFriend in self.user.friends){
             if([searchedFriend.friendUsername isEqualToString:yourFriend.friendUsername]){
-                [self.tableData removeObject:searchedFriend];
+                [toBeFilteredFriends addObject:searchedFriend];
                 break;
             }
         }
+        
+        //never include self in result
+        if([searchedFriend.friendid isEqualToString:self.user.userid]){
+            [toBeFilteredFriends addObject:searchedFriend];
+        }
     }
+    
+    //remove all filtered friends afterwards to avoid mutating self.tableData
+    [self.tableData removeObjectsInArray:toBeFilteredFriends];
+    
     [self.tableView reloadData];
 }
 
@@ -143,20 +158,43 @@ APIHelper *apiHelper;
     NSLog(@"add clicked");
     NSLog(@"current Row=%ld", sender.tag);
     Friend *friend = self.tableData[sender.tag];
-    [self.user.friends addObject:friend];
-    [self.tableData removeObject:friend];
-    [self.tableView reloadData];
+    
+    //update server
+    NSDictionary *response = [apiHelper addFriend:friend.friendid toYou:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            [self.addedFriends addObject:friend];
+            [self.user.friends addObject:friend];
+            [self.tableData removeObject:friend];
+            [self.tableView reloadData];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
 
-#pragma mark - Add
-- (IBAction)addFriend:(UIButton *)sender {
-    NSLog(@"add friend");
-    self.addedFriend = [[Friend alloc] initWithid:@"friendid" andUsername:@"Added Friend"];
-}
 
 /*
 #pragma mark - Navigation

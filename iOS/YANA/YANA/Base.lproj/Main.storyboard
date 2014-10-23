@@ -410,9 +410,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H7S-Ej-fda">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="j9x-k2-ynd">
                             <connections>
-                                <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="tMF-Or-dT7"/>
+                                <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="Fx2-ZX-Bwn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
