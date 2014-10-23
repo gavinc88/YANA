@@ -5,6 +5,80 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--User Profile-->
+        <scene sceneID="PoE-rK-Hhs">
+            <objects>
+                <viewController id="fEm-fF-NIK" customClass="UserProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x71-da-Mge"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mry-Vx-QiW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wrV-kk-GBL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvl-fn-Mut">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="d10-Zw-mBe"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dm8-sn-JkM">
+                                <rect key="frame" x="180" y="194" width="91" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="RRY-g5-JwX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnu-Ei-zZg">
+                                <rect key="frame" x="165" y="409" width="271" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="271" id="kyv-re-BBp"/>
+                                </constraints>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xIF-ra-bXq" kind="modal" identifier="backToLoginPage" id="1eH-Yc-S40"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nvl-fn-Mut" firstAttribute="top" secondItem="Dm8-sn-JkM" secondAttribute="bottom" constant="21" id="0eZ-o4-I8a"/>
+                            <constraint firstItem="Mry-Vx-QiW" firstAttribute="top" secondItem="Qnu-Ei-zZg" secondAttribute="bottom" constant="161" id="8De-TC-m4n"/>
+                            <constraint firstItem="nvl-fn-Mut" firstAttribute="centerY" secondItem="wrV-kk-GBL" secondAttribute="centerY" id="MPr-Xc-UN2"/>
+                            <constraint firstItem="Qnu-Ei-zZg" firstAttribute="top" secondItem="nvl-fn-Mut" secondAttribute="bottom" constant="45" id="RaY-sp-Dwb"/>
+                            <constraint firstItem="Dm8-sn-JkM" firstAttribute="top" secondItem="x71-da-Mge" secondAttribute="bottom" constant="130" id="d2b-RE-5mg"/>
+                            <constraint firstItem="Qnu-Ei-zZg" firstAttribute="centerX" secondItem="nvl-fn-Mut" secondAttribute="centerX" id="oXH-XX-5tW"/>
+                            <constraint firstItem="Dm8-sn-JkM" firstAttribute="leading" secondItem="nvl-fn-Mut" secondAttribute="leading" id="yTA-o1-4wh"/>
+                            <constraint firstItem="nvl-fn-Mut" firstAttribute="centerX" secondItem="wrV-kk-GBL" secondAttribute="centerX" id="zLm-2t-kcQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Profile" id="KXA-Os-74O">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fCi-aD-g1G">
+                            <connections>
+                                <segue destination="exD-5H-l1U" kind="modal" id="nyt-Cb-Z4R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="Qnu-Ei-zZg" id="hLa-qa-lCm"/>
+                        <outlet property="userInfo" destination="nvl-fn-Mut" id="SXl-zg-qq6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDT-4c-atA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1634" y="-1572"/>
+        </scene>
         <!--Meal Requests-->
         <scene sceneID="SBj-0B-v9a">
             <objects>
@@ -114,7 +188,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Meal Requests" id="rHE-0N-ETu">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="1dP-wT-7k3"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="1dP-wT-7k3">
+                            <connections>
+                                <segue destination="fEm-fF-NIK" kind="show" id="iQe-Of-5pb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qOb-cr-oai">
                             <connections>
                                 <segue destination="QbC-PE-MnJ" kind="show" id="9lx-UO-Hkp"/>
@@ -728,7 +806,8 @@
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aDb-i9-AGf"/>
+        <segue reference="9lx-UO-Hkp"/>
+        <segue reference="nyt-Cb-Z4R"/>
         <segue reference="QtV-oB-p0S"/>
     </inferredMetricsTieBreakers>
 </document>

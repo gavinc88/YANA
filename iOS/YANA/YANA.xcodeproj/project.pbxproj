@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
+		34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D15919F99276005D011C /* UserProfileViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
@@ -46,6 +47,8 @@
 /* Begin PBXFileReference section */
 		34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMealRequestViewController.h; sourceTree = "<group>"; };
 		34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestViewController.m; sourceTree = "<group>"; };
+		34D5D15819F99276005D011C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		34D5D15919F99276005D011C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
 		860ED7B419F58036008D9810 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -111,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34D5D15B19F996E4005D011C /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				34D5D15819F99276005D011C /* UserProfileViewController.h */,
+				34D5D15919F99276005D011C /* UserProfileViewController.m */,
+			);
+			name = "User Profile";
+			sourceTree = "<group>";
+		};
 		860ED7BD19F5D32B008D9810 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +173,7 @@
 				86AC7CD419F65D0100760EC4 /* APIHelper.m */,
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
 				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
+				34D5D15B19F996E4005D011C /* User Profile */,
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
@@ -365,6 +378,7 @@
 				860ED7B619F58036008D9810 /* Friend.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
+				34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
