@@ -16,11 +16,10 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
 @property (strong, nonatomic) NSDate *time;
 @property (strong, nonatomic) IBOutlet UITextField *restaurantTextBox;
-@property (strong, nonatomic) IBOutlet UIButton *inviteFriendsButton;
 @property (strong, nonatomic) NSString *restaurant;
-@property (strong, nonatomic) IBOutlet UITextField *locationTextBox;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) MealRequest *mealRequest;
+@property (nonatomic, strong) User *user;
 
 
 

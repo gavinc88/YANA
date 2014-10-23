@@ -225,7 +225,7 @@
                     <navigationItem key="navigationItem" title="Create Meal Request" id="KQt-E9-ZQz">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MMz-RJ-0GE">
                             <connections>
-                                <segue destination="7lW-uy-nif" kind="show" id="g7f-jd-dQF"/>
+                                <segue destination="7lW-uy-nif" kind="modal" id="nik-Zf-0BQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -347,7 +347,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhh-jJ-jIC" id="O3H-ks-TIh">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
                                                     <rect key="frame" x="18" y="12" width="210" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="210" id="4fe-sO-4YZ"/>
@@ -380,9 +380,9 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="SAB-Ed-4CB"/>
-                                                    <exclude reference="OgQ-Ur-eZL"/>
                                                     <exclude reference="7xF-Li-2sx"/>
+                                                    <exclude reference="OgQ-Ur-eZL"/>
+                                                    <exclude reference="SAB-Ed-4CB"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -494,7 +494,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kvy-nP-4pk" id="We0-2y-cXu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
                                             <rect key="frame" x="18" y="12" width="210" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="210" id="aC8-Jk-rOP"/>
@@ -707,7 +707,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g7f-jd-dQF"/>
         <segue reference="aDb-i9-AGf"/>
+        <segue reference="nik-Zf-0BQ"/>
     </inferredMetricsTieBreakers>
 </document>

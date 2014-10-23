@@ -8,6 +8,7 @@
 
 #import "CreateMealRequestViewController.h"
 #import "InviteFriendsTableViewController.h"
+#import "AppDelegate.h"
 
 @interface CreateMealRequestViewController ()
 
@@ -33,6 +34,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// initialize User
+- (void)initializeUser{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = appDelegate.user;
 }
 
 - (IBAction)mealTypeSelected:(id)sender {
@@ -82,4 +89,10 @@
     }
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:YES];
+    [self setHidesBottomBarWhenPushed:YES];
+    [self.tabBarController.tabBar setHidden:YES];
+}
 @end
