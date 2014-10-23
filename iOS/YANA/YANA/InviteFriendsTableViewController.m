@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initializeFakeFriends];
+    [self initializeMockFriends];
     self.tableView.rowHeight = 44;
     
     // Uncomment the following line to preserve selection between presentations.
@@ -44,7 +44,7 @@
     }
 }
 
-- (void) initializeFakeFriends {
+- (void) initializeMockFriends {
     self.allFriends = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
     Friend *friend1 = [[Friend alloc] initWithid:@"1" andUsername:@"Shane Wang"];
