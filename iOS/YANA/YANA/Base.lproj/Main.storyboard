@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -347,8 +346,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhh-jJ-jIC" id="O3H-ks-TIh">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
-                                                    <rect key="frame" x="18" y="12" width="210" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
+                                                    <rect key="frame" x="18" y="12.5" width="210" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="210" id="4fe-sO-4YZ"/>
                                                     </constraints>
@@ -357,11 +356,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="addButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nO5-Ek-V7v">
-                                                    <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                                    <rect key="frame" x="520" y="0.0" width="80" height="44"/>
                                                     <color key="backgroundColor" red="0.20115855639999999" green="0.81634646050000004" blue="0.1109455785" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="67m-gJ-GA8"/>
-                                                        <constraint firstAttribute="width" constant="60" id="AcT-vg-hND"/>
+                                                        <constraint firstAttribute="width" constant="80" id="AcT-vg-hND"/>
                                                     </constraints>
                                                     <state key="normal" title="Add">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -412,7 +411,7 @@
                     <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="j9x-k2-ynd">
                             <connections>
-                                <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="Fx2-ZX-Bwn"/>
+                                <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="fMV-KG-T7Q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -424,7 +423,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYW-Gf-jpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fMr-Y7-Pm3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2344" y="-68"/>
+            <point key="canvasLocation" x="3156" y="-68"/>
         </scene>
         <!--Friends-->
         <scene sceneID="K2s-ue-ygH">
@@ -442,11 +441,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="inviteButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-eA-p4A">
-                                            <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                            <rect key="frame" x="520" y="0.0" width="80" height="44"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="afT-9M-9j9"/>
-                                                <constraint firstAttribute="width" constant="60" id="tqC-k5-fLz"/>
+                                                <constraint firstAttribute="width" constant="80" id="tqC-k5-fLz"/>
                                             </constraints>
                                             <state key="normal" title="Invite">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -454,7 +453,7 @@
                                             </state>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="inviteFriendUsername" text="Yaohui Ye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCV-PP-VWv">
-                                            <rect key="frame" x="18" y="11" width="210" height="21"/>
+                                            <rect key="frame" x="18" y="11.5" width="210" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="6xc-Rp-zUZ"/>
                                                 <constraint firstAttribute="width" constant="210" id="feA-17-ob3"/>
@@ -494,8 +493,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kvy-nP-4pk" id="We0-2y-cXu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
-                                            <rect key="frame" x="18" y="12" width="210" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
+                                            <rect key="frame" x="18" y="12.5" width="210" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="210" id="aC8-Jk-rOP"/>
                                             </constraints>
@@ -504,11 +503,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="addButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCo-WA-1Vp">
-                                            <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                            <rect key="frame" x="520" y="0.0" width="80" height="44"/>
                                             <color key="backgroundColor" red="0.20115855640822206" green="0.81634646045918369" blue="0.11094557851917553" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="0xa-dp-mGP"/>
-                                                <constraint firstAttribute="width" constant="60" id="4l3-ji-JDV"/>
+                                                <constraint firstAttribute="width" constant="80" id="4l3-ji-JDV"/>
                                             </constraints>
                                             <state key="normal" title="Add">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -547,7 +546,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="8SP-oF-TJI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YYj-x1-o9a">
                             <connections>
-                                <segue destination="y5v-ly-pdB" kind="show" id="hDg-HI-aeX"/>
+                                <segue destination="lhs-t2-oNO" kind="presentation" identifier="openSearchAndAddFriend" id="hDg-HI-aeX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -560,7 +559,7 @@
         <scene sceneID="aBs-Rf-lVZ">
             <objects>
                 <navigationController id="Eee-QN-lvT" customClass="FriendsNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="jJ7-Gn-bh0"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends" id="jJ7-Gn-bh0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j4s-TS-4PN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -577,7 +576,7 @@
         <scene sceneID="qam-Iy-cDk">
             <objects>
                 <navigationController id="7lW-uy-nif" customClass="MealRequestsNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Requests" id="zcc-e6-Gfd"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="reqeusts" id="zcc-e6-Gfd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tsq-XM-kGK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -705,7 +704,29 @@
             </objects>
             <point key="canvasLocation" x="222" y="-1543"/>
         </scene>
+        <!--Search And Add Friend Navigation Controller-->
+        <scene sceneID="uu8-oQ-Cjr">
+            <objects>
+                <navigationController restorationIdentifier="SearchAndAddFriendNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="lhs-t2-oNO" customClass="SearchAndAddFriendNavigationController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4bJ-uJ-tvn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y5v-ly-pdB" kind="relationship" relationship="rootViewController" id="kLm-fU-CSo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LfF-lA-CjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344" y="-68"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="friends" width="29" height="30"/>
+        <image name="reqeusts" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aDb-i9-AGf"/>
         <segue reference="QtV-oB-p0S"/>

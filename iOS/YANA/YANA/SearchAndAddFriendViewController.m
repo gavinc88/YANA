@@ -170,6 +170,15 @@ APIHelper *apiHelper;
             [self.user.friends addObject:friend];
             [self.tableData removeObject:friend];
             [self.tableView reloadData];
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.ALREADY_FOLLOWED]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Can't Add User"
+                                  message:[NSString stringWithFormat: @"\"%@\" is already your friend."
+                                           , friend.friendUsername]
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
@@ -196,10 +205,9 @@ APIHelper *apiHelper;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:YES];
-    [self setHidesBottomBarWhenPushed:YES];
-    [self.tabBarController.tabBar setHidden:YES];
+    //[self setHidesBottomBarWhenPushed:YES];
+    //[self.tabBarController.tabBar setHidden:YES];
 }
 
 /*

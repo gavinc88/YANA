@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import "AddFriendTableViewCell.h"
 #import "InviteFriendTableViewCell.h"
+#import "SearchAndAddFriendNavigationController.h"
 #import "SearchAndAddFriendViewController.h"
 
 @interface FriendsTableViewController ()
@@ -39,8 +40,10 @@ APIHelper *apiHelper;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"prepareForSegue for %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"openSearchAndAddFriend"]) {
-        SearchAndAddFriendViewController *destViewController = segue.destinationViewController;
+        NSLog(@"opening SearchAndAddFriend");
+        SearchAndAddFriendNavigationController *destViewController = segue.destinationViewController;
         // Hide bottom tab bar in the detail view
         destViewController.hidesBottomBarWhenPushed = YES;
     }
@@ -51,7 +54,8 @@ APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeUser];
-    [self initializeMockFriends];
+    [self initializeFriends];
+    //[self initializeMockFriends];
     apiHelper = [[APIHelper alloc] init];
     self.tableView.rowHeight = 44;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
@@ -79,12 +83,37 @@ APIHelper *apiHelper;
 
 - (void)initializeFriends{
     self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
-    Friend *newf1 = [[Friend alloc] initWithid:@"123" andUsername:@"Shane Wong 2"];
-    [self.friendsWhoAddedYou addObject:newf1];
-    
     self.allFriends = [[NSMutableArray alloc] init];
-    Friend *f1 = [[Friend alloc] initWithid:@"1" andUsername:@"Shane Wong"];
-    [self.allFriends addObject:f1];
+    
+    NSDictionary *response = [apiHelper getFriendList:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"user_id"] andUsername:friend[@"user_name"]];
+                [self.allFriends addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
     
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"

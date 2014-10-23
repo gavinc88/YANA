@@ -30,6 +30,7 @@
 		86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9B96419EFACE6005A7314 /* LoginViewController.m */; };
 		86AC7CD519F65D0100760EC4 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CD419F65D0100760EC4 /* APIHelper.m */; };
 		86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */; };
+		86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		86AC7CD419F65D0100760EC4 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelper.m; sourceTree = "<group>"; };
 		86AC7CDB19F7B81000760EC4 /* InviteFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableViewController.h; sourceTree = "<group>"; };
 		86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
+		86AC7CE019F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendNavigationController.h; sourceTree = "<group>"; };
+		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,24 +114,12 @@
 		860ED7BD19F5D32B008D9810 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
-				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
-				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
-				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
+				86AC7CDE19F995E200760EC4 /* TableCells */,
+				86AC7CDF19F9960F00760EC4 /* Unused ViewControllers */,
 				86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */,
 				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
-				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,
-				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
 				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
 				86A9B95919EF827B005A7314 /* FriendsTableViewController.m */,
-				8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */,
-				8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */,
-				860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */,
-				860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */,
-				860ED7B719F58A97008D9810 /* AddFriendTableViewCell.h */,
-				860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */,
-				860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */,
-				860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -235,8 +226,38 @@
 			children = (
 				8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */,
 				8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */,
+				86AC7CE019F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.h */,
+				86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */,
 			);
 			name = FriendManagement;
+			sourceTree = "<group>";
+		};
+		86AC7CDE19F995E200760EC4 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */,
+				8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */,
+				860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */,
+				860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */,
+				860ED7B719F58A97008D9810 /* AddFriendTableViewCell.h */,
+				860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */,
+				860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */,
+				860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */,
+			);
+			name = TableCells;
+			sourceTree = "<group>";
+		};
+		86AC7CDF19F9960F00760EC4 /* Unused ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
+				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
+				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
+				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
+				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,
+				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
+			);
+			name = "Unused ViewControllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +373,7 @@
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
 				86A3351119EC7E0F000DFA43 /* main.m in Sources */,
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
+				86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */,
 				86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */,

@@ -1,30 +1,27 @@
 //
-//  MainTabBarController.m
+//  SearchAndAddFriendNavigationController.m
 //  YANA
 //
-//  Created by Gavin Chu on 10/15/14.
+//  Created by Gavin Chu on 10/23/14.
 //  Copyright (c) 2014 CS169. All rights reserved.
 //
 
-#import "MainTabBarController.h"
+#import "SearchAndAddFriendNavigationController.h"
 
-@interface MainTabBarController ()
+@interface SearchAndAddFriendNavigationController ()
 
 @end
 
-@implementation MainTabBarController
+@implementation SearchAndAddFriendNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(UIViewController *)viewControllerForUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender {
-    return [self.selectedViewController viewControllerForUnwindSegueAction:action fromViewController:fromViewController withSender:sender];
 }
 
 /*
