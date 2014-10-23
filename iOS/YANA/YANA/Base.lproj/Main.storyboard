@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -329,47 +330,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message: &quot;Friend A&quot; not found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-2l-dUW">
-                                <rect key="frame" x="160" y="131" width="280" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="XGn-sl-w7A"/>
-                                    <constraint firstAttribute="width" constant="280" id="sfv-Pf-acc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcq-yD-Ycc">
-                                <rect key="frame" x="250" y="160" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="0py-BN-4yf"/>
-                                    <constraint firstAttribute="height" constant="30" id="2KY-jK-ZcH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Add Friend">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addFriend:" destination="y5v-ly-pdB" eventType="touchUpInside" id="hQJ-bF-dhn"/>
-                                    <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="bFa-pw-hN9"/>
-                                </connections>
-                            </button>
-                            <searchBar contentMode="redraw" placeholder="friend username" translatesAutoresizingMaskIntoConstraints="NO" id="8Qy-Ph-6bO">
-                                <rect key="frame" x="140" y="64" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="qAF-8H-tBe"/>
-                                </constraints>
+                            <searchBar contentMode="redraw" placeholder="username" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-51-KBi">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="y5v-ly-pdB" id="l3A-kP-Mfr"/>
+                                </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="friendSearchResultTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Hi8-Pn-G0J">
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="addFriendCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="addFriendCell" id="yhh-jJ-jIC" customClass="AddFriendTableViewCell">
+                                        <rect key="frame" x="0.0" y="278" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhh-jJ-jIC" id="O3H-ks-TIh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
+                                                    <rect key="frame" x="18" y="12" width="210" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="210" id="4fe-sO-4YZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="addButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nO5-Ek-V7v">
+                                                    <rect key="frame" x="540" y="0.0" width="60" height="44"/>
+                                                    <color key="backgroundColor" red="0.20115855639999999" green="0.81634646050000004" blue="0.1109455785" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="67m-gJ-GA8"/>
+                                                        <constraint firstAttribute="width" constant="60" id="AcT-vg-hND"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Add">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TWu-WS-v6D" firstAttribute="leading" secondItem="O3H-ks-TIh" secondAttribute="leadingMargin" constant="10" id="33n-gr-e5i"/>
+                                                <constraint firstAttribute="centerY" secondItem="nO5-Ek-V7v" secondAttribute="centerY" id="5iW-df-1zd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nO5-Ek-V7v" secondAttribute="trailing" constant="-8" id="6IL-NQ-Rcv"/>
+                                                <constraint firstItem="nO5-Ek-V7v" firstAttribute="top" secondItem="O3H-ks-TIh" secondAttribute="top" id="7xF-Li-2sx"/>
+                                                <constraint firstItem="nO5-Ek-V7v" firstAttribute="centerY" secondItem="TWu-WS-v6D" secondAttribute="centerY" constant="-1.75" id="OgQ-Ur-eZL"/>
+                                                <constraint firstItem="nO5-Ek-V7v" firstAttribute="trailing" secondItem="O3H-ks-TIh" secondAttribute="trailingMargin" id="SAB-Ed-4CB"/>
+                                                <constraint firstAttribute="centerY" secondItem="TWu-WS-v6D" secondAttribute="centerY" id="oAu-bl-zhs"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="SAB-Ed-4CB"/>
+                                                    <exclude reference="OgQ-Ur-eZL"/>
+                                                    <exclude reference="7xF-Li-2sx"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addButton" destination="nO5-Ek-V7v" id="6Ih-NP-UX3"/>
+                                            <outlet property="friendUsername" destination="TWu-WS-v6D" id="hyF-6u-64R"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="y5v-ly-pdB" id="0RK-a1-4Lb"/>
+                                    <outlet property="delegate" destination="y5v-ly-pdB" id="XA7-Qf-Icy"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ErY-2l-dUW" secondAttribute="centerX" id="5cg-nG-RhF"/>
-                            <constraint firstItem="ErY-2l-dUW" firstAttribute="top" secondItem="8Qy-Ph-6bO" secondAttribute="bottom" constant="23" id="7Gm-bc-I62"/>
-                            <constraint firstItem="8Qy-Ph-6bO" firstAttribute="top" secondItem="pyg-Cu-z2y" secondAttribute="bottom" id="BtF-CB-6E1"/>
-                            <constraint firstAttribute="centerX" secondItem="hcq-yD-Ycc" secondAttribute="centerX" id="jWG-ku-8GA"/>
-                            <constraint firstAttribute="centerX" secondItem="8Qy-Ph-6bO" secondAttribute="centerX" id="oHa-x2-cB1"/>
-                            <constraint firstItem="hcq-yD-Ycc" firstAttribute="top" secondItem="ErY-2l-dUW" secondAttribute="bottom" constant="8" symbolic="YES" id="rLs-NJ-zKt"/>
+                            <constraint firstItem="Hi8-Pn-G0J" firstAttribute="top" secondItem="yCJ-51-KBi" secondAttribute="bottom" id="CeE-mh-MUa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yCJ-51-KBi" secondAttribute="trailing" constant="-16" id="HIY-6O-bCd"/>
+                            <constraint firstItem="Hi8-Pn-G0J" firstAttribute="leading" secondItem="uPT-Vg-1G4" secondAttribute="leadingMargin" constant="-16" id="Ntv-pu-p13"/>
+                            <constraint firstItem="yCJ-51-KBi" firstAttribute="leading" secondItem="uPT-Vg-1G4" secondAttribute="leadingMargin" constant="-16" id="Q18-sY-tJh"/>
+                            <constraint firstItem="yCJ-51-KBi" firstAttribute="top" secondItem="pyg-Cu-z2y" secondAttribute="bottom" id="Sls-5I-YR3"/>
+                            <constraint firstItem="Hi8-Pn-G0J" firstAttribute="bottom" secondItem="udt-Pb-YJy" secondAttribute="top" id="hf2-aj-T8W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Hi8-Pn-G0J" secondAttribute="trailing" constant="-16" id="tMe-aI-87N"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
@@ -380,22 +417,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="friendSearchBar" destination="8Qy-Ph-6bO" id="AHS-i7-M7U"/>
-                        <outlet property="friendSearchButton" destination="hcq-yD-Ycc" id="kFn-Pm-zn4"/>
-                        <outlet property="friendSearchMessage" destination="ErY-2l-dUW" id="IWM-8M-QOn"/>
-                        <outlet property="searchDisplayController" destination="Z1Y-5W-N2L" id="Cyd-dZ-8wd"/>
+                        <outlet property="friendSearchBar" destination="yCJ-51-KBi" id="59p-1K-SLV"/>
+                        <outlet property="tableView" destination="Hi8-Pn-G0J" id="9uH-yL-jed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYW-Gf-jpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fMr-Y7-Pm3" userLabel="Exit" sceneMemberID="exit"/>
-                <searchDisplayController id="Z1Y-5W-N2L">
-                    <connections>
-                        <outlet property="delegate" destination="y5v-ly-pdB" id="uvy-NZ-udv"/>
-                        <outlet property="searchContentsController" destination="y5v-ly-pdB" id="3f6-Pe-cvH"/>
-                        <outlet property="searchResultsDataSource" destination="y5v-ly-pdB" id="ClL-FU-7sj"/>
-                        <outlet property="searchResultsDelegate" destination="y5v-ly-pdB" id="YPZ-ni-mF9"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2344" y="-68"/>
         </scene>

@@ -66,7 +66,6 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 - (void)initializeUser{
     AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = ad.user;
-    [self.user toString];
 }
 
 - (void)initializeMockUser{
@@ -141,15 +140,21 @@ static NSString * const inviteFriendCellIdentifier = @"inviteFriendCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0){
         AddFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:addFriendCellIdentifier forIndexPath:indexPath];
+        
         Friend *friend = self.friendsWhoAddedYou[indexPath.row];
+        
         [cell.friendUsername setText:friend.friendUsername];
+        
         cell.addButton.tag = indexPath.row;
         [cell.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }else{
         InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
+        
         Friend *friend = self.allFriends[indexPath.row];
+        
         [cell.friendUsername setText:friend.friendUsername];
+        
         cell.inviteButton.tag = indexPath.row;
         [cell.inviteButton addTarget:self action:@selector(inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         return cell;

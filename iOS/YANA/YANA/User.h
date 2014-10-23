@@ -12,8 +12,8 @@
 
 @property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSMutableArray *friends;
-@property (nonatomic, strong) NSMutableArray *mealRequests;
+@property (nonatomic, strong) NSMutableArray *friends; //array of Friend
+@property (nonatomic, strong) NSMutableArray *mealRequests; //array of MealRequest
 
 - (instancetype) initWithUserid:(NSString *)userid
                        username:(NSString *)username;

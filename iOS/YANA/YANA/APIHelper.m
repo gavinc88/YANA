@@ -29,21 +29,6 @@ NSString* const action_delete_friend = @"friends/delete_friend";
 NSString* const action_get_friend_list = @"friends/get_friend_list";
 NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 
-NSString* const SUCCESS = @"SUCCESS";
-NSString* const INVALID_USERNAME = @"INVALID_USERNAME";
-NSString* const INVALID_PASSWORD = @"INVALID_PASSWORD";
-NSString* const USERNAME_ALREADY_EXISTS = @"USERNAME_ALREADY_EXISTS";
-NSString* const WRONG_USERNAME_OR_PASSWORD = @"WRONG_USERNAME_OR_PASSWORD";
-NSString* const INVALID_USER_ID = @"INVALID_USER_ID";
-NSString* const ALREADY_FOLLOWED = @"ALREADY_FOLLOWED";
-NSString* const INVALID_FRIEND_ID = @"INVALID_FRIEND_ID";
-NSString* const INVALID_PARAMS = @"INVALID_PARAMS";
-NSString* const INVALID_ACTION = @"INVALID_ACTION";
-NSString* const MEAL_REQUEST_EXPIRED = @"MEAL_REQUEST_EXPIRED";
-NSString* const NO_PERMISSION = @"NO_PERMISSION";
-NSString* const NOT_FOLLOWING = @"NOT_FOLLOWING";
-NSString* const ERROR = @"ERROR";
-
 - (instancetype) init{
     self = [super init];
     self.SUCCESS = @"SUCCESS";
@@ -62,20 +47,20 @@ NSString* const ERROR = @"ERROR";
     self.ERROR = @"ERROR";
     if(self){
         self.statusCodeDictionary = @{
-          @"1": SUCCESS,
-          @"-1" : INVALID_USERNAME,
-          @"-2" : INVALID_PASSWORD,
-          @"-3" : USERNAME_ALREADY_EXISTS,
-          @"-4" : WRONG_USERNAME_OR_PASSWORD,
-          @"-5" : INVALID_USER_ID,
-          @"-6" : ALREADY_FOLLOWED,
-          @"-7" : INVALID_FRIEND_ID,
-          @"-8" : INVALID_PARAMS,
-          @"-9" : INVALID_ACTION,
-          @"-10" : MEAL_REQUEST_EXPIRED,
-          @"-11" : NO_PERMISSION,
-          @"-12" : NOT_FOLLOWING,
-          @"-99" : ERROR
+          @"1": self.SUCCESS,
+          @"-1" : self.INVALID_USERNAME,
+          @"-2" : self.INVALID_PASSWORD,
+          @"-3" : self.USERNAME_ALREADY_EXISTS,
+          @"-4" : self.WRONG_USERNAME_OR_PASSWORD,
+          @"-5" : self.INVALID_USER_ID,
+          @"-6" : self.ALREADY_FOLLOWED,
+          @"-7" : self.INVALID_FRIEND_ID,
+          @"-8" : self.INVALID_PARAMS,
+          @"-9" : self.INVALID_ACTION,
+          @"-10" : self.MEAL_REQUEST_EXPIRED,
+          @"-11" : self.NO_PERMISSION,
+          @"-12" : self.NOT_FOLLOWING,
+          @"-99" : self.ERROR
           };
     }
     return self;
@@ -85,8 +70,35 @@ NSString* const ERROR = @"ERROR";
     return [NSString stringWithFormat:@"%@/%@", base_url, action];
 }
 
+- (NSDictionary *) makeSynchronousGetRequestWithURL:(NSString *)url{
+    NSLog(@"GET from %@", url);
+    
+    // Setup GET request
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    urlRequest.HTTPMethod = @"GET";
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(error){
+        NSLog(@"server error: %@", error);
+        return nil;
+    }
+    
+    NSError *jsonError = nil;
+    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
+    
+    if(jsonError){
+        NSLog(@"error converting response to json: %@", jsonError);
+        return nil;
+    }else{
+        NSLog(@"response: %@", jsonResponse);
+        return jsonResponse;
+    }
+}
+
 - (NSDictionary *) makeSynchronousGetRequestWithURL:(NSString *)url
-                                             params:(NSDictionary *)params{
+                                             andParams:(NSDictionary *)params{
     // Format params to url
     if([params count]){
         
@@ -210,11 +222,23 @@ NSString* const ERROR = @"ERROR";
 }
 
 - (NSDictionary *) searchUserByUsername:(NSString *)username{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_search_users_by_name];
+    
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", username];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) searchUserById:(NSString *)userid{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_search_users_by_id];
+    
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) addFriend:(NSString *) friendid

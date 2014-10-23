@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Friend.h"
 
-@interface SearchAndAddFriendViewController : UIViewController
+@interface SearchAndAddFriendViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *friendSearchBar;
-@property (weak, nonatomic) IBOutlet UILabel *friendSearchMessage;
-@property (weak, nonatomic) IBOutlet UIButton *friendSearchButton;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic,retain) NSMutableArray *tableData;
 
 @property (nonatomic, strong) Friend *addedFriend;
 
