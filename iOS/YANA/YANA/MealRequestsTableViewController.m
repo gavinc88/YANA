@@ -33,17 +33,17 @@ APIHelper *apiHelper;
 
 - (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
 {
-    NSLog(@"returned from CreateMealRequest");
-    InviteFriendsTableViewController *source = [segue sourceViewController];
-    if (source.mealRequestCreated) {
-        [self.mealRequestsFromSelf addObject:source.mealRequest];
-        [self.tableView reloadData];
+    if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
+        NSLog(@"returned from InviteFriends");
+        InviteFriendsTableViewController *source = [segue sourceViewController];
+        if (source.mealRequestCreated) {
+            [self.mealRequestsFromSelf addObject:source.mealRequest];
+            [self.tableView reloadData];
+        }
+    }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
+        NSLog(@"returned from CreateMealRequest");
+        
     }
-//    NSMutableArray *friends = source.addedFriends;
-//    if (friends != nil) {
-//        [self.allFriends addObjectsFromArray:friends];
-//        [self.tableView reloadData];
-//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -68,8 +68,8 @@ APIHelper *apiHelper;
     apiHelper = [[APIHelper alloc]init];
     [self initializeTimeFormatter];
     [self initializeUser];
-    //[self initializeMealRequests];
-    [self initializeMockMealRequests];
+    [self initializeMealRequests];
+    //[self initializeMockMealRequests];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -100,8 +100,44 @@ APIHelper *apiHelper;
 
 - (void)initializeMealRequests{
     self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
-    
     self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
+    
+    NSDictionary *response = [apiHelper getAllMealRequests:self.user.userid];
+    if (response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            NSArray *requests = [response objectForKey:@"requests"];
+            for(NSDictionary *request in requests){
+//                new_request.owner_id = user_id;
+//                new_request.invitations = invitations;
+//                new_request.meal_type = meal_type;
+//                new_request.restaurant = restaurant;
+//                new_request.comment = comment;
+//                
+//                new_request.accepted_user = "";
+            }
+            
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+
 }
 
 - (void)initializeMockMealRequests{
@@ -117,6 +153,7 @@ APIHelper *apiHelper;
     
     
     self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
+    
     NSDate *t3 = [timeFormatter dateFromString:@"6:00 PM"];
     MealRequest *r3 = [[MealRequest alloc] initForOthersWithRequestId:@"3" ownername:@"Kevin" type:@"Dinner" time:t3 location:@"Restaurant C" status:nil responded:NO accepted:nil comment:nil];
     [self.mealRequestsFromOthers addObject:r3]; //show buttons
@@ -157,11 +194,17 @@ APIHelper *apiHelper;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    if(section == 0)
-        return @"Your Requests";
-    if(section == 1)
+    if(section == 0){
+        if([self.mealRequestsFromSelf count]){
+            return @"Your Requests";
+        }else{
+            return nil;
+        }
+    }
+
+    if(section == 1){
         return @"Requests From Others";
+    }
     return @"";
 }
 

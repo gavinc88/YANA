@@ -194,7 +194,7 @@ APIHelper *apiHelper;
     if(section == 1){
         return @"All Friends";
     }
-    return @"";
+    return nil;
 }
 
 
