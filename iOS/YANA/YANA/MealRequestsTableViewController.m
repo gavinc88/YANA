@@ -35,6 +35,10 @@ APIHelper *apiHelper;
 {
     NSLog(@"returned from CreateMealRequest");
     InviteFriendsTableViewController *source = [segue sourceViewController];
+    if (source.mealRequestCreated) {
+        [self.mealRequestsFromSelf addObject:source.mealRequest];
+        [self.tableView reloadData];
+    }
 //    NSMutableArray *friends = source.addedFriends;
 //    if (friends != nil) {
 //        [self.allFriends addObjectsFromArray:friends];
