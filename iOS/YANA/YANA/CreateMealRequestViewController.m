@@ -36,7 +36,7 @@
         
         InviteFriendsTableViewController *controller = segue.destinationViewController;
         //Create MealRequest object
-        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time location:nil comment:nil];
+        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time location:self.restaurantTextBox.text comment:nil];
         //pass MealRequest object to InviteFriendViewController
         controller.mealRequest = self.mealRequest;
         

@@ -63,10 +63,8 @@ APIHelper *apiHelper;
     if (response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-            MealRequestsTableViewController *controller = segue.destinationViewController;
             self.mealRequestCreated = YES;
-            controller.mealRequestCreated = self.mealRequestCreated;
-            NSLog(@"Bool mealRequestCreated is %@", (controller.mealRequestCreated) ? @"YES" : @"NO");
+            NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
         } else {
             NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
             UIAlertView *alert = [[UIAlertView alloc]
