@@ -22,6 +22,7 @@
     [super viewDidLoad];
     [self initializeUser];
     [self initializeMockFriends];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
 //    [self initializeFriends];
     
@@ -50,16 +51,22 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"backToMealRequests"]){
-        NSLog(@"prepraring segue back to MealRequestsViewController");
-        [self.mealRequest addInvitedFriends:self.selectedFriends];
+    NSLog(@"prepraring segue back to MealRequestsViewController");
+    [self.mealRequest addInvitedFriends:self.selectedFriends];
         //check if friends are added to mealRequest
         NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
-        
+    
         APIHelper *helper = [[APIHelper alloc] init];
         NSDictionary *response = [helper createMealRequest:self.mealRequest];
         NSLog(@"response is %@", response);
-    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Error"
+                          message:@"Please check your internet connection or try again later."
+                          delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void) initializeMockFriends {
@@ -90,7 +97,9 @@
     NSDictionary *response = [helper getFriendList:self.user.userid];
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
         if([helper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:helper.SUCCESS]){
+            
             NSArray *friends = [response objectForKey:@"friends"];
             for(NSDictionary *friend in friends){
                 Friend *f = [[Friend alloc] initWithid:friend[@"user_id"] andUsername:friend[@"user_name"]];
@@ -114,6 +123,7 @@
                               otherButtonTitles:nil];
         [alert show];
     }
+    
     //prepare for sorting
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
@@ -167,8 +177,13 @@
         NSLog(@"selectedFriends are %@", self.selectedFriends);
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    if([self.selectedFriends count]){
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
-
 
 /*
 // Override to support conditional editing of the table view.

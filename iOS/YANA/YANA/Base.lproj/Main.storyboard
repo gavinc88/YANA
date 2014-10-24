@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -328,7 +329,7 @@
                     <navigationItem key="navigationItem" title="Invite Friends" id="IkP-dQ-Jkw">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="oiA-3q-xsj">
                             <connections>
-                                <segue destination="1La-iR-kw9" kind="unwind" unwindAction="unwindFromCreateMealRequest:" id="txW-pq-m1L"/>
+                                <segue destination="1La-iR-kw9" kind="unwind" unwindAction="unwindFromCreateMealRequest:" id="nlf-EP-vgN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -432,6 +433,7 @@
                     <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="j9x-k2-ynd">
                             <connections>
+                                <action selector="doneclicked:" destination="y5v-ly-pdB" id="iYa-fc-UYb"/>
                                 <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="fMV-KG-T7Q"/>
                             </connections>
                         </barButtonItem>
