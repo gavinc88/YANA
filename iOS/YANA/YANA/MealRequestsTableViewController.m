@@ -11,6 +11,9 @@
 #import "MealRequest.h"
 #import "MealRequestWithButtonsTableViewCell.h"
 #import "MealRequestWithoutButtonsTableViewCell.h"
+#import "CreateMealRequestViewController.h"
+#import "UserProfileViewController.h"
+#import "InviteFriendsTableViewController.h"
 
 @interface MealRequestsTableViewController ()
 
@@ -22,6 +25,36 @@ static NSString * const requestWithButtonsCellIdentifier = @"requestWithButtons"
 static NSString * const requestWithoutButtonsCellIdentifier = @"requestWithoutButtons";
 
 NSDateFormatter *timeFormatter;
+
+#pragma mark - Segue
+
+- (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
+{
+    NSLog(@"returned from CreateMealRequest");
+    InviteFriendsTableViewController *source = [segue sourceViewController];
+//    NSMutableArray *friends = source.addedFriends;
+//    if (friends != nil) {
+//        [self.allFriends addObjectsFromArray:friends];
+//        [self.tableView reloadData];
+//    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"prepareForSegue for %@",segue.identifier);
+    if ([segue.identifier isEqualToString:@"openCreateMealRequest"]) {
+        NSLog(@"opening CreateMealRequest");
+        CreateMealRequestViewController *destViewController = segue.destinationViewController;
+        // Hide bottom tab bar in the detail view
+        destViewController.hidesBottomBarWhenPushed = YES;
+    } else if([segue.identifier isEqualToString:@"openUserProfile"]) {
+        NSLog(@"opening CreateMealRequest");
+        CreateMealRequestViewController *destViewController = segue.destinationViewController;
+        // Hide bottom tab bar in the detail view
+        destViewController.hidesBottomBarWhenPushed = YES;
+    }
+}
+
+#pragma mark - Setup
 
 - (void)viewDidLoad {
     [super viewDidLoad];

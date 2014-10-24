@@ -9,6 +9,7 @@
 #import "UserProfileViewController.h"
 #import "APIHelper.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface UserProfileViewController ()
 
@@ -36,13 +37,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Hide main tab bar
--(void) viewWillAppear:(BOOL)animated {
+- (IBAction)logoutClicked:(UIButton *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    [super viewWillAppear:YES];
-    [self setHidesBottomBarWhenPushed:YES];
-    [self.tabBarController.tabBar setHidden:YES];
+    LoginViewController *loginController = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.user = nil;
+    
+    [self presentViewController:loginController
+                       animated:YES
+                     completion:nil];
 }
+
+//// Hide main tab bar
+//-(void) viewWillAppear:(BOOL)animated {
+//    
+//    [super viewWillAppear:YES];
+//    [self setHidesBottomBarWhenPushed:YES];
+//    [self.tabBarController.tabBar setHidden:YES];
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"backToLoginPage"]){
