@@ -39,10 +39,13 @@ APIHelper *apiHelper;
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         NSLog(@"statusCode: %d", statusCode);
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
             NSString *userid = [response objectForKey:@"user_id"];
             self.user = [[User alloc] initWithUserid:userid username:self.usernameText.text];
             [self performSegueWithIdentifier:@"openMain" sender:self];
+            
         }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.WRONG_USERNAME_OR_PASSWORD]){
+            
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Invalid Credentials"
                                   message:@"Wrong username or password."
@@ -59,6 +62,14 @@ APIHelper *apiHelper;
                                   otherButtonTitles:nil];
             [alert show];
         }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 

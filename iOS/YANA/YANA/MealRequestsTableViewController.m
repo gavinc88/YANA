@@ -8,6 +8,7 @@
 
 #import "MealRequestsTableViewController.h"
 #import "AppDelegate.h"
+#import "APIHelper.h"
 #import "MealRequest.h"
 #import "MealRequestWithButtonsTableViewCell.h"
 #import "MealRequestWithoutButtonsTableViewCell.h"
@@ -25,6 +26,8 @@ static NSString * const requestWithButtonsCellIdentifier = @"requestWithButtons"
 static NSString * const requestWithoutButtonsCellIdentifier = @"requestWithoutButtons";
 
 NSDateFormatter *timeFormatter;
+
+APIHelper *apiHelper;
 
 #pragma mark - Segue
 
@@ -58,6 +61,7 @@ NSDateFormatter *timeFormatter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    apiHelper = [[APIHelper alloc]init];
     [self initializeTimeFormatter];
     [self initializeUser];
     [self initializeMockMealRequests];
@@ -228,6 +232,49 @@ NSDateFormatter *timeFormatter;
     NSLog(@"accept clicked");
     NSLog(@"current Row=%ld", sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
+    
+    NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"accept" ForUser:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        NSLog(@"statusCode: %d", statusCode);
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            request.status = self.user.userid;
+            request.matched = YES;
+            request.responded = YES;
+            request.accepted = YES;
+            [self.tableView reloadData];
+            
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.MEAL_REQUEST_EXPIRED]){
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Request Expired"
+                                  message:@"Sorry, someone else accepted this request before you."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    //delete after integration with live data
     request.status = self.user.userid;
     request.matched = YES;
     request.responded = YES;
@@ -239,6 +286,47 @@ NSDateFormatter *timeFormatter;
     NSLog(@"decline clicked");
     NSLog(@"current Row=%ld",sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
+    
+    NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"decline" ForUser:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        NSLog(@"statusCode: %d", statusCode);
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            request.responded = YES;
+            request.accepted = NO;
+            [self.tableView reloadData];
+            
+        }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.MEAL_REQUEST_EXPIRED]){
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Request Expired"
+                                  message:@"Sorry, someone else accepted this request before you."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+
+    //delete after integration with live data
     request.responded = YES;
     request.accepted = NO;
     [self.tableView reloadData];

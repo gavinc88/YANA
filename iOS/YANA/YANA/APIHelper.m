@@ -217,8 +217,20 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     return @{};
 }
 
-- (NSDictionary *) handleMealRequests:(NSString *)action{
-    return @{};
+- (NSDictionary *) handleMealRequestsForRequest:(NSString *)req_id
+                                     WithAction:(NSString *)action
+                                        ForUser:(NSString *)userid{
+    NSString *requestURL = [self generateFullUrl:action_handle_meal_request];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          req_id, @"req_id",
+                          action, @"action",
+                          userid, @"user_id",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) searchUserByUsername:(NSString *)username{

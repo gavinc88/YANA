@@ -51,7 +51,9 @@ extern NSString* const action_get_profile_by_id;
 
 - (NSDictionary *) createMealRequest:(MealRequest *)mealRequest;
 - (NSDictionary *) getAllMealRequests:(NSString *)userid;
-- (NSDictionary *) handleMealRequests:(NSString *)action;
+- (NSDictionary *) handleMealRequestsForRequest:(NSString *)req_id
+                                     WithAction:(NSString *)action
+                                        ForUser:(NSString *)userid;
 
 - (NSDictionary *) searchUserByUsername:(NSString *)username;
 - (NSDictionary *) searchUserById:(NSString *)userid;
