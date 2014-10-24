@@ -103,80 +103,52 @@ APIHelper *apiHelper;
     self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
     self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
     
-    NSDictionary *response = [apiHelper getAllMealRequests:self.user.userid];
-    if (response){
-        int statusCode = [[response objectForKey:@"errCode"] intValue];
-        
-        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-            
-            NSArray *requests = [response objectForKey:@"requests"];
-            for(NSDictionary *request in requests){
-//                new_request.owner_id = user_id;
-//                new_request.invitations = invitations;
-//                new_request.meal_type = meal_type;
-//                new_request.restaurant = restaurant;
-//                new_request.comment = comment;
-//                
-//                new_request.accepted_user = "";
-            }
-            
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
+    for (MealRequest *mealRequest in self.user.mealRequests){
+        [mealRequest toString];
+        if(mealRequest.isSelf){
+            [self.mealRequestsFromSelf addObject:mealRequest];
+        }else{
+            [self.mealRequestsFromOthers addObject:mealRequest];
         }
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
     }
-
 }
 
 - (void)initializeMockMealRequests{
     self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
     
     NSDate *t1 = [timeFormatter dateFromString:@"1:00 PM"];
-    MealRequest *r1 = [[MealRequest alloc] initForSelfWithRequestId:@"1" ownername:self.user.username type:@"Lunch" time:t1 location:@"Restaurant A" status:@"accepted_id" comment:nil];
+    MealRequest *r1 = [[MealRequest alloc] initForSelfWithRequestId:@"1" ownerid:@"temp" ownername:self.user.username type:@"Lunch" time:t1 restaurant:@"Restaurant A" acceptedUser:@"accepted_id" comment:nil];
     [self.mealRequestsFromSelf addObject:r1];
     
     NSDate *t2 = [timeFormatter dateFromString:@"7:30 PM"];
-    MealRequest *r2 = [[MealRequest alloc] initForSelfWithRequestId:@"2" ownername:self.user.username type:@"Dinner" time:t2 location:@"Restaurant B" status:nil comment:nil];
+    MealRequest *r2 = [[MealRequest alloc] initForSelfWithRequestId:@"2" ownerid:@"temp" ownername:self.user.username type:@"Dinner" time:t2 restaurant:@"Restaurant B" acceptedUser:nil comment:nil];
     [self.mealRequestsFromSelf addObject:r2];
     
     
     self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
     
     NSDate *t3 = [timeFormatter dateFromString:@"6:00 PM"];
-    MealRequest *r3 = [[MealRequest alloc] initForOthersWithRequestId:@"3" ownername:@"Kevin" type:@"Dinner" time:t3 location:@"Restaurant C" status:nil responded:NO accepted:nil comment:nil];
+    MealRequest *r3 = [[MealRequest alloc] initForOthersWithRequestId:@"3" ownerid:@"temp" ownername:@"Kevin" type:@"Dinner" time:t3 restaurant:@"Restaurant C" acceptedUser:nil declinedUsers:@[] responded:NO accepted:nil comment:nil];
     [self.mealRequestsFromOthers addObject:r3]; //show buttons
     
     NSDate *t4 = [timeFormatter dateFromString:@"6:30 PM"];
-    MealRequest *r4 = [[MealRequest alloc] initForOthersWithRequestId:@"4" ownername:@"Shane" type:@"Dinner" time:t4 location:@"Restaurant D" status:self.user.userid responded:YES accepted:YES comment:nil];
+    MealRequest *r4 = [[MealRequest alloc] initForOthersWithRequestId:@"4" ownerid:@"temp" ownername:@"Shane" type:@"Dinner" time:t4 restaurant:@"Restaurant D" acceptedUser:self.user.userid declinedUsers:@[] responded:YES accepted:YES comment:nil];
     [self.mealRequestsFromOthers addObject:r4];// show accepted
     
     NSDate *t5 = [timeFormatter dateFromString:@"1:30 PM"];
-    MealRequest *r5 = [[MealRequest alloc] initForOthersWithRequestId:@"5" ownername:@"Yaohui" type:@"Lunch" time:t5 location:@"Restaurant E" status:nil responded:YES accepted:NO comment:nil];
+    MealRequest *r5 = [[MealRequest alloc] initForOthersWithRequestId:@"5" ownerid:@"temp" ownername:@"Yaohui" type:@"Lunch" time:t5 restaurant:@"Restaurant E" acceptedUser:nil declinedUsers:@[] responded:YES accepted:NO comment:nil];
     [self.mealRequestsFromOthers addObject:r5]; //show declined
     
     NSDate *t6 = [timeFormatter dateFromString:@"7:00 PM"];
-    MealRequest *r6 = [[MealRequest alloc] initForOthersWithRequestId:@"6" ownername:@"George" type:@"Dinner" time:t6 location:@"Restaurant F" status:@"accepted_id" responded:nil accepted:nil comment:nil];
+    MealRequest *r6 = [[MealRequest alloc] initForOthersWithRequestId:@"6" ownerid:@"temp" ownername:@"George" type:@"Dinner" time:t6 restaurant:@"Restaurant F" acceptedUser:@"accepted_id" declinedUsers:@[] responded:nil accepted:nil comment:nil];
     [self.mealRequestsFromOthers addObject:r6]; //show someone else accepted it; check by checking if accepted_friends = nil
     
     NSDate *t7 = [timeFormatter dateFromString:@"8:30 AM"];
-    MealRequest *r7 = [[MealRequest alloc] initForOthersWithRequestId:@"7" ownername:@"Andy" type:@"Breakfast" time:t7 location:@"Restaurant G" status:nil responded:NO accepted:nil comment:nil];
+    MealRequest *r7 = [[MealRequest alloc] initForOthersWithRequestId:@"7" ownerid:@"temp" ownername:@"Andy" type:@"Breakfast" time:t7 restaurant:@"Restaurant G" acceptedUser:nil declinedUsers:@[] responded:NO accepted:nil comment:nil];
     [self.mealRequestsFromOthers addObject:r7]; //test accept
     
     NSDate *t8 = [timeFormatter dateFromString:@"11:00 PM"];
-    MealRequest *r8 = [[MealRequest alloc] initForOthersWithRequestId:@"8" ownername:@"Byron" type:@"Other" time:t8 location:@"Restaurant H" status:nil responded:NO accepted:nil comment:@"Late Night"];
+    MealRequest *r8 = [[MealRequest alloc] initForOthersWithRequestId:@"8" ownerid:@"temp" ownername:@"Byron" type:@"Other" time:t8 restaurant:@"Restaurant H" acceptedUser:nil declinedUsers:@[] responded:NO accepted:nil comment:@"Late Night"];
     [self.mealRequestsFromOthers addObject:r8]; //test decline
 }
 
@@ -204,7 +176,11 @@ APIHelper *apiHelper;
     }
 
     if(section == 1){
-        return @"Requests From Others";
+        if([self.mealRequestsFromSelf count]){
+            return @"Requests From Others";
+        }else{
+            return nil;
+        }
     }
     return @"";
 }
@@ -222,7 +198,7 @@ APIHelper *apiHelper;
     } else { //other requests
         MealRequest *request = self.mealRequestsFromOthers[indexPath.row];
         if (request.matched) {
-            if ([self.user.userid isEqualToString:request.status]){
+            if ([self.user.userid isEqualToString:request.acceptedUser]){
                 MealRequestWithoutButtonsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:requestWithoutButtonsCellIdentifier];
                 NSString *title = [self constructTitleForOther:request];
                 NSString *message = @"You have accepted this request";
@@ -263,12 +239,12 @@ APIHelper *apiHelper;
     return [NSString stringWithFormat:@"Requested %@ at %@\n%@",
             ([request.type isEqualToString:@"Other"] && request.comment) ? request.comment : request.type,
             [timeFormatter stringFromDate:request.time],
-            request.location ? [NSString stringWithFormat:@"@ %@", request.location] : @"(Location TBD)"];
+            ([request.restaurant isEqualToString:@""] || !request.restaurant) ? @"(Location TBD)" : [NSString stringWithFormat:@"@ %@", request.restaurant]];
 }
 
 - (NSString *)constructMessageForSelf:(MealRequest *)request{
     if (request.matched){
-        NSString *friendName = request.status;
+        NSString *friendName = request.acceptedUser;
         return [NSString stringWithFormat:@"%@ accepted your request!", friendName];
     }else{
         return @"Waiting for response.";
@@ -280,7 +256,7 @@ APIHelper *apiHelper;
             request.ownerUsername,
             ([request.type isEqualToString:@"Other"] && request.comment) ? request.comment : request.type,
             [timeFormatter stringFromDate:request.time],
-            request.location ? [NSString stringWithFormat:@"@ %@", request.location] : @"(Location TBD)"];
+            ([request.restaurant isEqualToString:@""] || !request.restaurant) ? @"(Location TBD)" : [NSString stringWithFormat:@"@ %@", request.restaurant]];
 }
 
 - (IBAction)acceptButtonClicked:(UIButton *)sender {
@@ -295,7 +271,7 @@ APIHelper *apiHelper;
         NSLog(@"statusCode: %d", statusCode);
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
-            request.status = self.user.userid;
+            request.acceptedUser = self.user.userid;
             request.matched = YES;
             request.responded = YES;
             request.accepted = YES;
@@ -330,7 +306,7 @@ APIHelper *apiHelper;
     }
     
     //delete after integration with live data
-    request.status = self.user.userid;
+    request.acceptedUser = self.user.userid;
     request.matched = YES;
     request.responded = YES;
     request.accepted = YES;

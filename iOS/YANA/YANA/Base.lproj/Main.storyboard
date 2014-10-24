@@ -211,7 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gag-K4-hlm">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="gag-K4-hlm">
                                 <rect key="frame" x="16" y="88" width="568" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="a2b-vw-x52"/>
@@ -464,11 +464,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="inviteButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-eA-p4A">
-                                            <rect key="frame" x="520" y="0.0" width="80" height="44"/>
+                                            <rect key="frame" x="519" y="0.0" width="81" height="44"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="afT-9M-9j9"/>
-                                                <constraint firstAttribute="width" constant="80" id="tqC-k5-fLz"/>
+                                                <constraint firstAttribute="width" constant="81" id="tqC-k5-fLz"/>
                                             </constraints>
                                             <state key="normal" title="Invite">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -526,11 +526,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="addButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCo-WA-1Vp">
-                                            <rect key="frame" x="520" y="0.0" width="80" height="44"/>
+                                            <rect key="frame" x="519" y="0.0" width="81" height="44"/>
                                             <color key="backgroundColor" red="0.20115855640822206" green="0.81634646045918369" blue="0.11094557851917553" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="0xa-dp-mGP"/>
-                                                <constraint firstAttribute="width" constant="80" id="4l3-ji-JDV"/>
+                                                <constraint firstAttribute="width" constant="81" id="4l3-ji-JDV"/>
                                             </constraints>
                                             <state key="normal" title="Add">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

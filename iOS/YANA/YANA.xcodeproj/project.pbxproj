@@ -128,6 +128,8 @@
 			children = (
 				86AC7CDE19F995E200760EC4 /* TableCells */,
 				86AC7CDF19F9960F00760EC4 /* Unused ViewControllers */,
+				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
+				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
 				86A9B95519EF8245005A7314 /* MealRequestsTableViewController.h */,
 				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
 				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
@@ -263,8 +265,6 @@
 		86AC7CDF19F9960F00760EC4 /* Unused ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				86A9B94C19EF815A005A7314 /* MainTabBarController.h */,
-				86A9B94D19EF815A005A7314 /* MainTabBarController.m */,
 				86A9B94F19EF81B4005A7314 /* MealRequestsNavigationController.h */,
 				86A9B95019EF81B4005A7314 /* MealRequestsNavigationController.m */,
 				86A9B95219EF8204005A7314 /* FriendsNavigationController.h */,

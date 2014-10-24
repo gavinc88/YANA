@@ -224,7 +224,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
                           mealRequest.ownerid, @"user_id",
                           [NSString stringWithFormat:@"%@", mealRequest.invitedFriends], @"invitations",
                           mealRequest.type, @"meal_type",
-                          mealRequest.location, @"restaurant",
+                          mealRequest.restaurant, @"restaurant",
                           mealRequest.comment, @"comment",
                           nil];
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];

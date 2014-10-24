@@ -32,9 +32,8 @@ APIHelper *apiHelper;
 {
     NSLog(@"returned from SearchAndAddFriend");
     SearchAndAddFriendViewController *source = [segue sourceViewController];
-    NSMutableArray *friends = source.addedFriends;
-    if (friends != nil) {
-        [self.allFriends addObjectsFromArray:friends];
+    if ([source.addedFriends count]) {
+        [self sorthFriends];
         [self.tableView reloadData];
     }
 }
@@ -83,54 +82,9 @@ APIHelper *apiHelper;
 
 - (void)initializeFriends{
     self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
-    self.allFriends = [[NSMutableArray alloc] init];
+    self.allFriends = self.user.friends;
     
-    NSDictionary *response = [apiHelper getFriendList:self.user.userid];
-    
-    if(response){
-        int statusCode = [[response objectForKey:@"errCode"] intValue];
-        
-        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-            NSArray *friends = [response objectForKey:@"friends"];
-            for(NSDictionary *friend in friends){
-                Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
-                [self.allFriends addObject:f];
-                [f toString];
-            }
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
-    //sort alphabetically
-    NSArray *sortedArray;
-    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
-    
-    [self.friendsWhoAddedYou removeAllObjects];
-    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
-    
-    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-    [self.allFriends removeAllObjects];
-    [self.allFriends addObjectsFromArray:sortedArray];
+    [self sorthFriends];
     
     [self saveFriends];
 }
@@ -152,21 +106,7 @@ APIHelper *apiHelper;
     [self.allFriends addObject:f2];
     [self.allFriends addObject:f3];
     
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
-    //sort alphabetically
-    NSArray *sortedArray;
-    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
-    
-    [self.friendsWhoAddedYou removeAllObjects];
-    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
-
-    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-    [self.allFriends removeAllObjects];
-    [self.allFriends addObjectsFromArray:sortedArray];
+    [self sorthFriends];
 }
 
 #pragma mark - Table view data source
@@ -243,7 +183,8 @@ BOOL deleted = NO;
             Friend *friend = self.allFriends[indexPath.row];
             [self deleteFriend:friend];
             if(deleted){
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.allFriends removeObject:friend];
                 deleted = NO;
             }
         }
@@ -253,6 +194,24 @@ BOOL deleted = NO;
 }
 
 #pragma mark - Actions
+
+- (void)sorthFriends{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    //sort alphabetically
+    NSArray *sortedArray;
+    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
+    
+    [self.friendsWhoAddedYou removeAllObjects];
+    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
+    
+    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.allFriends removeAllObjects];
+    [self.allFriends addObjectsFromArray:sortedArray];
+}
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
     NSLog(@"add clicked");
@@ -318,7 +277,7 @@ BOOL deleted = NO;
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             deleted = YES;
-            [self.allFriends removeObject:friend];
+            [self.user.friends removeObject:friend];
             [self.tableView reloadData];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
@@ -338,6 +297,8 @@ BOOL deleted = NO;
                               otherButtonTitles:nil];
         [alert show];
     }
+    
+    [self saveFriends];
 }
 
 - (void) saveFriends{

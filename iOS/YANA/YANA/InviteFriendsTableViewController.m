@@ -33,14 +33,6 @@ APIHelper *apiHelper;
     self.tableView.rowHeight = 44;
     
     [self.mealRequest toString];
-    //check if mealRequest received from CreateMealRequestViewController
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,15 +47,20 @@ APIHelper *apiHelper;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepraring segue back to MealRequestsViewController");
+    
     [self.mealRequest addInvitedFriends:self.selectedFriends];
+    
     //check if friends are added to mealRequest
     NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
+    
+    
     NSDictionary *response = [apiHelper createMealRequest:self.mealRequest];
     if (response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             self.mealRequestCreated = YES;
+            self.mealRequest.requestid = [response objectForKey:@"request_id"];
             [self.mealRequest toString];
             
         } else {
@@ -115,48 +112,26 @@ APIHelper *apiHelper;
     
     if(self.user.friends){
         [self.allFriends addObjectsFromArray:self.user.friends];
+        
+        //prepare for sorting
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                     ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        //sort
+        NSArray *sortedArray;
+        sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+        [self.allFriends removeAllObjects];
+        [self.allFriends addObjectsFromArray:sortedArray];
     }else{
-        NSDictionary *response = [apiHelper getFriendList:self.user.userid];
-        if(response){
-            int statusCode = [[response objectForKey:@"errCode"] intValue];
-            
-            if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-                
-                NSArray *friends = [response objectForKey:@"friends"];
-                for(NSDictionary *friend in friends){
-                    Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
-                    [self.allFriends addObject:f];
-                }
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      initWithTitle:@"Error"
-                                      message:@"Please check your internet connection or try again later."
-                                      delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Server Error"
-                                  message:@"Please check your internet connection or try again later."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        }
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
-    
-    //prepare for sorting
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    //sort
-    NSArray *sortedArray;
-    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-    [self.allFriends removeAllObjects];
-    [self.allFriends addObjectsFromArray:sortedArray];
 }
 
 #pragma mark - Table view data source
@@ -192,11 +167,11 @@ APIHelper *apiHelper;
     selectedFriend.selected = !selectedFriend.selected;
     if (selectedFriend.selected == YES) {
         //add friend to SelectedFriends array
-        [self.selectedFriends addObject: selectedFriend];
+        [self.selectedFriends addObject: selectedFriend.friendid];
         NSLog(@"selectedFriends are %@", self.selectedFriends);
     } else {
         //delete friend from SelectedFriends array
-        [self.selectedFriends removeObject: selectedFriend];
+        [self.selectedFriends removeObject: selectedFriend.friendid];
         NSLog(@"selectedFriends are %@", self.selectedFriends);
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -18,14 +18,14 @@
 - (instancetype) initWithUserid:(NSString *)ownerid
                            type:(NSString *)type
                            time:(NSDate *)time
-                       location:(NSString *)location
+                     restaurant:(NSString *)restaurant
                         comment:(NSString *)comment {
     self = [super init];
     if(self){
         self.ownerid = ownerid;
         self.type= type;
         self.time = time;
-        self.location = location;
+        self.restaurant = restaurant;
         self.comment = comment;
     }
     return self;
@@ -38,11 +38,12 @@
 
 //MealRequestsTableViewController
 - (instancetype) initForSelfWithRequestId:(NSString *)requestid
+                                  ownerid:(NSString *)ownerid
                                 ownername:(NSString *)ownerUsername
                                      type:(NSString *)type
                                      time:(NSDate *)time
-                                 location:(NSString *)location
-                                   status:(NSString *)status
+                               restaurant:(NSString *)restaurant
+                             acceptedUser:(NSString *)acceptedUser
                                   comment:(NSString *)comment {
     self = [super init];
     if(self){
@@ -50,10 +51,10 @@
         self.ownerUsername= ownerUsername;
         self.type = type;
         self.time = time;
-        self.location = location;
+        self.restaurant = restaurant;
         self.isSelf = YES;
-        self.status = status;
-        if(self.status){
+        self.acceptedUser = acceptedUser;
+        if(![self.acceptedUser isEqualToString:@""]){
             self.matched = YES;
         }else{
             self.matched = NO;
@@ -63,11 +64,13 @@
     return self;
 }
 - (instancetype) initForOthersWithRequestId:(NSString *)requestid
+                                    ownerid:(NSString *)ownerid
                                   ownername:(NSString *)ownerUsername
                                        type:(NSString *)type
                                        time:(NSDate *)time
-                                   location:(NSString *)location
-                                     status:(NSString *)status
+                                 restaurant:(NSString *)restaurant
+                               acceptedUser:(NSString *)acceptedUser
+                              declinedUsers:(NSArray *)declinedUsers
                                   responded:(BOOL)responded
                                    accepted:(BOOL)accepted
                                     comment:(NSString *)comment{
@@ -77,14 +80,15 @@
         self.ownerUsername = ownerUsername;
         self.type = type;
         self.time = time;
-        self.location = location;
+        self.restaurant = restaurant;
         self.isSelf = NO;
-        self.status = status;
-        if(self.status){
+        self.acceptedUser = acceptedUser;
+        if(![self.acceptedUser isEqualToString:@""]){
             self.matched = YES;
         }else{
             self.matched = NO;
         }
+        self.declinedUsers = declinedUsers;
         self.responded = responded;
         self.accepted = accepted;
         self.comment = comment;
@@ -93,8 +97,8 @@
 }
 
 - (void) toString{
-    NSLog(@"Meal Request Object:  \n\trequestid:%@  \n\towner:%@ \n\ttype:%@",
-          self.requestid, self.ownerUsername, self.type);
+    NSLog(@"Meal Request Object:  \n\trequestid: %@  \n\towner: %@ \n\ttype: %@  \n\trestaurant: %@ \n\t acceptedUser: %@",
+          self.requestid, self.ownerid, self.type, self.restaurant, self.acceptedUser);
 }
 
 @end

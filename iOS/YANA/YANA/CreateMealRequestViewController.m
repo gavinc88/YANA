@@ -24,6 +24,12 @@
     // Do any additional setup after loading the view.
     self.time = [NSDate date];
     [self initializeUser];
+    
+    //set default type and time
+    NSDate *currentTime = [NSDate date];
+    [self.timePicker setDate: currentTime];
+    self.time = currentTime;
+    self.type = @"other";
 }
 
 /* Pass the MealRequest Object to InviteFriendsViewController */
@@ -33,7 +39,7 @@
 
         InviteFriendsTableViewController *controller = segue.destinationViewController;
         //Create MealRequest object
-        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time location:self.restaurantTextBox.text comment:nil];
+        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time restaurant:self.restaurantTextBox.text comment:nil];
         
         //pass MealRequest object to InviteFriendViewController
         controller.mealRequest = self.mealRequest;
