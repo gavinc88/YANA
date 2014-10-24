@@ -20,13 +20,13 @@ NSString* const action_create_user = @"users/create_user";
 NSString* const action_login = @"users/login";
 NSString* const action_logout = @"users/logout";
 NSString* const action_create_request = @"request/create_request";
-NSString* const action_view_requests = @"request/view_requests";
+NSString* const action_view_requests = @"request/request_list";
 NSString* const action_handle_meal_request = @"request/handle_meal_request";
 NSString* const action_search_users_by_name = @"users/search_users_by_name";
 NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
 NSString* const action_delete_friend = @"friends/delete_friend";
-NSString* const action_get_friend_list = @"users/get_friends";
+NSString* const action_get_friend_list = @"friends/friend_list";
 NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 
 - (instancetype) init{
@@ -214,7 +214,13 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 }
 
 - (NSDictionary *) getAllMealRequests:(NSString *)userid{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_view_requests];
+    
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) handleMealRequestsForRequest:(NSString *)req_id

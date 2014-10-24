@@ -16,4 +16,6 @@
 
 - (instancetype) initWithid:(NSString *)friendid andUsername:(NSString *)username;
 
+- (void) toString;
+
 @end

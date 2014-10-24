@@ -93,8 +93,9 @@ APIHelper *apiHelper;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             NSArray *friends = [response objectForKey:@"friends"];
             for(NSDictionary *friend in friends){
-                Friend *f = [[Friend alloc] initWithid:friend[@"user_id"] andUsername:friend[@"user_name"]];
+                Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
                 [self.allFriends addObject:f];
+                [f toString];
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]

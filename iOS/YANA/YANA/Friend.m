@@ -19,4 +19,9 @@
     return self;
 }
 
+- (void) toString{
+    NSLog(@"Friend Object:\n\tusername:%@\n\tuserid:%@",
+          self.friendUsername, self.friendid);
+}
+
 @end

@@ -64,6 +64,7 @@ APIHelper *apiHelper;
     apiHelper = [[APIHelper alloc]init];
     [self initializeTimeFormatter];
     [self initializeUser];
+    //[self initializeMealRequests];
     [self initializeMockMealRequests];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -91,6 +92,12 @@ APIHelper *apiHelper;
 
 - (void)initializeMockUser{
     self.user = [[User alloc] initWithUserid:@"userid" username:@"Gavin"];
+}
+
+- (void)initializeMealRequests{
+    self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
+    
+    self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
 }
 
 - (void)initializeMockMealRequests{
