@@ -15,5 +15,5 @@
 @property (nonatomic, strong) NSMutableArray *selectedFriends;
 @property (nonatomic, strong) MealRequest *mealRequest;
 @property (nonatomic, strong) User *user;
-
+@property BOOL mealRequestCreated;
 @end

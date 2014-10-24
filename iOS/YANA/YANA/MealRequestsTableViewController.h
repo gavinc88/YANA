@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) User *user;
 
+@property BOOL mealRequestCreated;
+
 @end
