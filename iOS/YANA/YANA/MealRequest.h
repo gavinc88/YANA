@@ -60,4 +60,6 @@
                                    accepted:(BOOL)accepted
                                     comment:(NSString *)comment;
 
+- (void) toString;
+
 @end

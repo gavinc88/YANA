@@ -74,7 +74,7 @@
     self = [super init];
     if(self){
         self.requestid = requestid;
-        self.ownerUsername= ownerUsername;
+        self.ownerUsername = ownerUsername;
         self.type = type;
         self.time = time;
         self.location = location;
@@ -90,6 +90,11 @@
         self.comment = comment;
     }
     return self;
+}
+
+- (void) toString{
+    NSLog(@"Meal Request Object:  \n\trequestid:%@  \n\towner:%@ \n\ttype:%@",
+          self.requestid, self.ownerUsername, self.type);
 }
 
 @end

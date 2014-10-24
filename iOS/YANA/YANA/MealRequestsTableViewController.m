@@ -36,9 +36,12 @@ APIHelper *apiHelper;
     if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
         NSLog(@"returned from InviteFriends");
         InviteFriendsTableViewController *source = [segue sourceViewController];
-        if (source.mealRequestCreated) {
+        if (source.mealRequestCreated && source.mealRequest) {
+            [source.mealRequest toString];
             [self.mealRequestsFromSelf addObject:source.mealRequest];
             [self.tableView reloadData];
+        }else{
+            NSLog(@"meal request is null");
         }
     }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
         NSLog(@"returned from CreateMealRequest");
@@ -51,12 +54,10 @@ APIHelper *apiHelper;
     if ([segue.identifier isEqualToString:@"openCreateMealRequest"]) {
         NSLog(@"opening CreateMealRequest");
         CreateMealRequestViewController *destViewController = segue.destinationViewController;
-        // Hide bottom tab bar in the detail view
         destViewController.hidesBottomBarWhenPushed = YES;
     } else if([segue.identifier isEqualToString:@"openUserProfile"]) {
         NSLog(@"opening CreateMealRequest");
         CreateMealRequestViewController *destViewController = segue.destinationViewController;
-        // Hide bottom tab bar in the detail view
         destViewController.hidesBottomBarWhenPushed = YES;
     }
 }

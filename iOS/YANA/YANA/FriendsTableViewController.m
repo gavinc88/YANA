@@ -131,6 +131,8 @@ APIHelper *apiHelper;
     sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
     [self.allFriends removeAllObjects];
     [self.allFriends addObjectsFromArray:sortedArray];
+    
+    [self saveFriends];
 }
 
 - (void)initializeMockFriends{
@@ -336,6 +338,12 @@ BOOL deleted = NO;
                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (void) saveFriends{
+    self.user.friends = self.allFriends;
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ad.user = self.user;
 }
 
 /*

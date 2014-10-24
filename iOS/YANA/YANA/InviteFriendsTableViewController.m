@@ -18,7 +18,9 @@
 @end
 
 @implementation InviteFriendsTableViewController
+
 APIHelper *apiHelper;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mealRequestCreated = NO;
@@ -29,11 +31,10 @@ APIHelper *apiHelper;
     [self initializeFriends];
     
     self.tableView.rowHeight = 44;
+    
+    [self.mealRequest toString];
     //check if mealRequest received from CreateMealRequestViewController
-    NSLog(@"Mealrequest type is %@", self.mealRequest.type);
-    NSLog(@"Mealrequest time is %@", self.mealRequest.time);
-    NSLog(@"Mealrequest ownerid is %@", self.mealRequest.ownerid);
-    NSLog(@"--------------------------");
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,7 +62,10 @@ APIHelper *apiHelper;
     if (response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
             self.mealRequestCreated = YES;
+            [self.mealRequest toString];
+            
         } else {
             NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
             UIAlertView *alert = [[UIAlertView alloc]
@@ -105,38 +109,42 @@ APIHelper *apiHelper;
 }
 
 - (void) initializeFriends {
-    APIHelper *helper = [[APIHelper alloc] init];
+    //APIHelper *helper = [[APIHelper alloc] init];
     self.allFriends = [[NSMutableArray alloc] init];
     self.selectedFriends = [[NSMutableArray alloc] init];
     
-    NSDictionary *response = [helper getFriendList:self.user.userid];
-    if(response){
-        int statusCode = [[response objectForKey:@"errCode"] intValue];
-        
-        if([helper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:helper.SUCCESS]){
+    if(self.user.friends){
+        [self.allFriends addObjectsFromArray:self.user.friends];
+    }else{
+        NSDictionary *response = [apiHelper getFriendList:self.user.userid];
+        if(response){
+            int statusCode = [[response objectForKey:@"errCode"] intValue];
             
-            NSArray *friends = [response objectForKey:@"friends"];
-            for(NSDictionary *friend in friends){
-                Friend *f = [[Friend alloc] initWithid:friend[@"user_id"] andUsername:friend[@"user_name"]];
-                [self.allFriends addObject:f];
+            if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+                
+                NSArray *friends = [response objectForKey:@"friends"];
+                for(NSDictionary *friend in friends){
+                    Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
+                    [self.allFriends addObject:f];
+                }
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:@"Please check your internet connection or try again later."
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
+                                  initWithTitle:@"Server Error"
                                   message:@"Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
         }
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
     }
     
     //prepare for sorting
