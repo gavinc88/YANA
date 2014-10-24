@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MealRequest.h"
+#import "User.h"
 
 @interface InviteFriendsTableViewController : UITableViewController
 @property (nonatomic, strong) NSMutableArray *allFriends;
 @property (nonatomic, strong) NSMutableArray *selectedFriends;
 @property (nonatomic, strong) MealRequest *mealRequest;
+@property (nonatomic, strong) User *user;
 
 @end
