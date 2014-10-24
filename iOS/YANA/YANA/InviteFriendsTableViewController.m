@@ -11,15 +11,18 @@
 #import "MealRequestsNavigationController.h"
 #import "APIHelper.h"
 #import "AppDelegate.h"
+#import "MealRequestsTableViewController.h"
 
 @interface InviteFriendsTableViewController ()
 
 @end
 
 @implementation InviteFriendsTableViewController
-
+APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mealRequestCreated = NO;
+    apiHelper = [[APIHelper alloc] init];
     [self initializeUser];
     [self initializeMockFriends];
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -53,20 +56,37 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepraring segue back to MealRequestsViewController");
     [self.mealRequest addInvitedFriends:self.selectedFriends];
-        //check if friends are added to mealRequest
-        NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
-    
-        APIHelper *helper = [[APIHelper alloc] init];
-        NSDictionary *response = [helper createMealRequest:self.mealRequest];
-        NSLog(@"response is %@", response);
-    
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Error"
-                          message:@"Please check your internet connection or try again later."
-                          delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
+    //check if friends are added to mealRequest
+    NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
+    NSDictionary *response = [apiHelper createMealRequest:self.mealRequest];
+    NSLog(@"response is %@", response);
+    if (response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            MealRequestsTableViewController *controller = segue.destinationViewController;
+            self.mealRequestCreated = YES;
+            controller.mealRequestCreated = self.mealRequestCreated;
+            NSLog(@"Bool mealRequestCreated is %@", (controller.mealRequestCreated) ? @"YES" : @"NO");
+        } else {
+            NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Server Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void) initializeMockFriends {
