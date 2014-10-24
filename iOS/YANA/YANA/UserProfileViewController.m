@@ -24,7 +24,7 @@
     [self initializeUser];
     NSDictionary *response = [helper getUserById:self.user.userid];
     NSLog(@"user info is %@", response);
-    self.userInfo.text = [NSString stringWithFormat:@"My profile: %@", response];
+    self.userInfo.text = [NSString stringWithFormat:@"My username: %@", self.user.username];
 }
 
 - (void)initializeUser{
