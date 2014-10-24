@@ -10,6 +10,7 @@
 #import "Friend.h"
 #import "MealRequestsNavigationController.h"
 #import "APIHelper.h"
+#import "AppDelegate.h"
 
 @interface InviteFriendsTableViewController ()
 
@@ -19,8 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initializeUser];
     [self initializeMockFriends];
+    
+//    [self initializeFriends];
+    
     self.tableView.rowHeight = 44;
+    //check if mealRequest received from CreateMealRequestViewController
+    NSLog(@"Mealrequest type is %@", self.mealRequest.type);
+    NSLog(@"Mealrequest time is %@", self.mealRequest.time);
+    NSLog(@"Mealrequest ownerid is %@", self.mealRequest.ownerid);
+    NSLog(@"--------------------------");
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,9 +44,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initializeUser{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = appDelegate.user;
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"backToMealRequests"]){
+        NSLog(@"prepraring segue back to MealRequestsViewController");
         [self.mealRequest addInvitedFriends:self.selectedFriends];
+        //check if friends are added to mealRequest
+        NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
         
         APIHelper *helper = [[APIHelper alloc] init];
         NSDictionary *response = [helper createMealRequest:self.mealRequest];
@@ -62,6 +80,50 @@
     [self.allFriends removeAllObjects];
     [self.allFriends addObjectsFromArray:sortedFriendList];
     
+}
+
+- (void) initializeFriends {
+    APIHelper *helper = [[APIHelper alloc] init];
+    self.allFriends = [[NSMutableArray alloc] init];
+    self.selectedFriends = [[NSMutableArray alloc] init];
+    
+    NSDictionary *response = [helper getFriendList:self.user.userid];
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        if([helper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:helper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"user_id"] andUsername:friend[@"user_name"]];
+                [self.allFriends addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    //prepare for sorting
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    //sort
+    NSArray *sortedArray;
+    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.allFriends removeAllObjects];
+    [self.allFriends addObjectsFromArray:sortedArray];
 }
 
 #pragma mark - Table view data source

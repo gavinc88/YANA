@@ -28,11 +28,17 @@
 /* Pass the MealRequest Object to InviteFriendsViewController */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
+        NSLog(@"Preparing for segue to InviteFriendsViewController");
+        
+        //check if restaurant name entered
+
+        
         InviteFriendsTableViewController *controller = segue.destinationViewController;
         //Create MealRequest object
         self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time location:nil comment:nil];
         //pass MealRequest object to InviteFriendViewController
         controller.mealRequest = self.mealRequest;
+        
     }
 }
 
