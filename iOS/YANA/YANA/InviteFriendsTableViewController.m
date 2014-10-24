@@ -24,10 +24,9 @@ APIHelper *apiHelper;
     self.mealRequestCreated = NO;
     apiHelper = [[APIHelper alloc] init];
     [self initializeUser];
-    [self initializeMockFriends];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
-//    [self initializeFriends];
+    [self initializeFriends];
     
     self.tableView.rowHeight = 44;
     //check if mealRequest received from CreateMealRequestViewController
