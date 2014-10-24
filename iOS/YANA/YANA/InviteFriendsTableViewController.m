@@ -59,7 +59,6 @@ APIHelper *apiHelper;
     //check if friends are added to mealRequest
     NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
     NSDictionary *response = [apiHelper createMealRequest:self.mealRequest];
-    NSLog(@"response is %@", response);
     if (response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
