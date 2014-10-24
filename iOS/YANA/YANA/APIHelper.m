@@ -206,11 +206,30 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 }
 
 - (NSDictionary *) logout:(NSString *)userid{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_logout];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          userid, @"user_id",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) createMealRequest:(MealRequest *)mealRequest{
-    return @{};
+    NSString *requestURL = [self generateFullUrl:action_create_request];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          mealRequest.ownerid, @"user_id",
+                          [NSString stringWithFormat:@"%@", mealRequest.invitedFriends], @"invitations",
+                          mealRequest.type, @"meal_type",
+                          mealRequest.location, @"restaurant",
+                          mealRequest.comment, @"comment",
+                          nil];
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
 }
 
 - (NSDictionary *) getAllMealRequests:(NSString *)userid{
