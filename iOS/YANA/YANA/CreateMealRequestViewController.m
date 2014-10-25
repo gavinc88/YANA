@@ -18,34 +18,40 @@
 
 @implementation CreateMealRequestViewController
 
+NSDateFormatter *timeFormatter;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"CreateMealRequestView loaded");
-    // Do any additional setup after loading the view.
-    self.time = [NSDate date];
     [self initializeUser];
+    [self initializeTimeFormatter];
     
     //set default type and time
     NSDate *currentTime = [NSDate date];
     [self.timePicker setDate: currentTime];
-    self.time = currentTime;
+    self.time = [timeFormatter stringFromDate:[self.timePicker date]];
     self.type = @"other";
 }
 
 /* Pass the MealRequest Object to InviteFriendsViewController */
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
         NSLog(@"Preparing for segue to InviteFriendsViewController");
 
-        InviteFriendsTableViewController *controller = segue.destinationViewController;
         //Create MealRequest object
-        self.mealRequest = [[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:self.time restaurant:self.restaurantTextBox.text comment:nil];
+        self.mealRequest = [self prepareMealRequest];
         
         //pass MealRequest object to InviteFriendViewController
+        InviteFriendsTableViewController *controller = segue.destinationViewController;
         controller.mealRequest = self.mealRequest;
-        [controller.mealRequest toString];
         
+        [controller.mealRequest toString];
     }
+}
+
+- (MealRequest *)prepareMealRequest {
+    NSString *time = [timeFormatter stringFromDate:[self.timePicker date]];
+    return[[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:time restaurant:self.restaurantTextBox.text comment:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +63,11 @@
 - (void)initializeUser{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = appDelegate.user;
+}
+
+- (void)initializeTimeFormatter{
+    timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"h:mm a"];
 }
 
 - (IBAction)mealTypeSelected:(id)sender {
@@ -79,7 +90,7 @@
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = date;
+        self.time = [timeFormatter stringFromDate:date];
         self.type = @"breakfast";
     }
     if (self.typeButtons.selectedSegmentIndex == 1) {
@@ -90,7 +101,7 @@
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = date;
+        self.time = [timeFormatter stringFromDate:date];
         self.type = @"lunch";
     }
     if (self.typeButtons.selectedSegmentIndex == 2) {
@@ -101,7 +112,7 @@
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = date;
+        self.time = [timeFormatter stringFromDate:date];
         self.type = @"dinner";
     }
     if (self.typeButtons.selectedSegmentIndex == 3) {

@@ -21,7 +21,7 @@ NSString* const action_login = @"users/login";
 NSString* const action_logout = @"users/logout";
 NSString* const action_create_request = @"request/create_request";
 NSString* const action_view_requests = @"request/request_list";
-NSString* const action_handle_meal_request = @"request/handle_meal_request";
+NSString* const action_handle_meal_request = @"request//handle_request";
 NSString* const action_search_users_by_name = @"users/search_users_by_name";
 NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
@@ -144,15 +144,24 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     urlRequest.HTTPMethod = @"POST";
     [urlRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
-    // Convert your data and set your request's HTTPBody property
+    // Convert your args to json and set it to request's HTTPBody
     NSError *jsonError = nil;
-    NSData *postdata = [NSJSONSerialization dataWithJSONObject:args options:0 error:&jsonError];
-    NSLog(@"args: %@", args);
-    if(jsonError){
-        NSLog(@"error forming json: %@", jsonError);
-        return nil;
+    NSData *json;
+    if ([NSJSONSerialization isValidJSONObject:args]){
+        json = [NSJSONSerialization dataWithJSONObject:args options:NSJSONWritingPrettyPrinted error:&jsonError];
+        
+        if (json != nil && jsonError == nil){
+            NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+            
+            NSLog(@"JSON: %@", jsonString);
+            urlRequest.HTTPBody = json;
+        }else{
+            NSLog(@"error forming json: %@", jsonError);
+            return nil;
+        }
     }else{
-        urlRequest.HTTPBody = postdata;
+        NSLog(@"Invalid args");
+        return nil;
     }
     
     NSURLResponse *response = nil;
@@ -162,9 +171,6 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
         NSLog(@"server error: %@", error);
         return nil;
     }
-    
-//    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSLog(@"%@", responseString);
     
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
     
@@ -217,16 +223,21 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     return jsonResponse;
 }
 
-- (NSDictionary *) createMealRequest:(MealRequest *)mealRequest{
+- (NSDictionary *) createMealRequest:(MealRequest *)mealRequest {
     NSString *requestURL = [self generateFullUrl:action_create_request];
+  
+    NSLog(@"%@", mealRequest.invitedFriends);
     
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
                           mealRequest.ownerid, @"user_id",
-                          [NSString stringWithFormat:@"%@", mealRequest.invitedFriends], @"invitations",
+                          mealRequest.invitedFriends, @"invitations",
                           mealRequest.type, @"meal_type",
+                          mealRequest.time, @"meal_time",
                           mealRequest.restaurant, @"restaurant",
                           mealRequest.comment, @"comment",
                           nil];
+    NSLog(@"create meal request args: %@", args);
+    
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;
@@ -248,7 +259,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     NSString *requestURL = [self generateFullUrl:action_handle_meal_request];
     
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          req_id, @"req_id",
+                          req_id, @"request_id",
                           action, @"action",
                           userid, @"user_id",
                           nil];

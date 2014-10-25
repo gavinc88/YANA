@@ -48,6 +48,10 @@ APIHelper *apiHelper;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepraring segue back to MealRequestsViewController");
     
+    [self createMealRequest];
+}
+
+- (void) createMealRequest {
     [self.mealRequest addInvitedFriends:self.selectedFriends];
     
     //check if friends are added to mealRequest
@@ -83,6 +87,7 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
+    
 }
 
 - (void) initializeMockFriends {

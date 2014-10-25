@@ -44,6 +44,7 @@ APIHelper *apiHelper;
 - (void)initializeUser{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = appDelegate.user;
+    [self.user toString];
 }
 
 - (void)updateUser{
@@ -67,21 +68,15 @@ APIHelper *apiHelper;
                 NSString *ownerid = request[@"owner_id"];
                 //make separate request to get owner username
                 NSString *ownerUsername = [self getOwnerUsername:ownerid];
-                NSDate *mealTime = request[@"meal_time"];
+                NSString *mealTime = request[@"meal_time"];
                 NSString *mealType = request[@"meal_type"];
                 NSString *restaurant = request[@"restaurant"];
                 NSString *comment = request[@"comment"];
                 NSString *acceptedUser = request[@"accepted_user"];
-                NSArray *declinedUsers = request[@"declined_users"];
+                NSMutableArray *declinedUsers = request[@"declined_users"];
                 
-                if([ownerid isEqualToString:self.user.userid]){
-                    MealRequest *mealRequest = [[MealRequest alloc] initForSelfWithRequestId:requestid ownerid:ownerid ownername:ownerUsername type:mealType time:mealTime restaurant:restaurant acceptedUser:acceptedUser comment:comment];
-                    [self.user.mealRequests addObject:mealRequest];
-                }else{
-                    BOOL responded = [declinedUsers containsObject:self.user.userid];
-                    MealRequest *mealRequest = [[MealRequest alloc] initForOthersWithRequestId:requestid ownerid:ownerid ownername:ownerUsername type:mealType time:mealTime restaurant:restaurant acceptedUser:acceptedUser declinedUsers:declinedUsers responded:responded accepted:NO comment:comment];
-                    [self.user.mealRequests addObject:mealRequest];
-                }
+                MealRequest *mealRequest = [[MealRequest alloc] initWithRequestId:requestid ownerid:ownerid ownername:ownerUsername type:mealType time:mealTime restaurant:restaurant comment:comment acceptedUser:acceptedUser declinedUsers:declinedUsers selfId:self.user.userid];
+                [self.user.mealRequests addObject:mealRequest];
             }
         } else {
             UIAlertView *alert = [[UIAlertView alloc]
@@ -130,7 +125,6 @@ APIHelper *apiHelper;
             for(NSDictionary *friend in friends){
                 Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
                 [self.user.friends addObject:f];
-                [f toString];
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]

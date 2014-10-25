@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *typeButtons;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
-@property (strong, nonatomic) NSDate *time;
+@property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) IBOutlet UITextField *restaurantTextBox;
 @property (strong, nonatomic) NSString *restaurant;
 @property (strong, nonatomic) NSString *location;
