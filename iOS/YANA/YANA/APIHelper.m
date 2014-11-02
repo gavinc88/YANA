@@ -14,6 +14,7 @@
 
 @implementation APIHelper
 
+#define ServerApiURL @"http://yana169.herokuapp.com"
 NSString* const base_url = @"http://yana169.herokuapp.com";
 
 NSString* const action_create_user = @"users/create_user";
