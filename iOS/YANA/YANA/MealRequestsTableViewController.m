@@ -278,7 +278,7 @@ APIHelper *apiHelper;
 
 - (IBAction)acceptButtonClicked:(UIButton *)sender {
     NSLog(@"accept clicked");
-    NSLog(@"current Row=%ld", sender.tag);
+    NSLog(@"current Row=%d", sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
     
     NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"accept" ForUser:self.user.userid];
@@ -332,7 +332,7 @@ APIHelper *apiHelper;
 
 - (IBAction)declineButtonClicked:(UIButton *)sender {
     NSLog(@"decline clicked");
-    NSLog(@"current Row=%ld",sender.tag);
+    NSLog(@"current Row=%d",sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
     
     NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"decline" ForUser:self.user.userid];

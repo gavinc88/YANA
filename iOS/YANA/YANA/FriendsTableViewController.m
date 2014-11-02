@@ -215,7 +215,7 @@ BOOL deleted = NO;
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
     NSLog(@"add clicked");
-    NSLog(@"current Row=%ld", sender.tag);
+    NSLog(@"current Row=%d", sender.tag);
     
     Friend *friend = self.friendsWhoAddedYou[sender.tag];
     
@@ -262,7 +262,7 @@ BOOL deleted = NO;
 
 - (IBAction)inviteButtonClicked:(UIButton *)sender {
     NSLog(@"invite clicked");
-    NSLog(@"current Row=%ld",sender.tag);
+    NSLog(@"current Row=%d",sender.tag);
     //Friend *friend = self.friendsWhoAddedYou[sender.tag];
     [self.tableView reloadData];
 }
