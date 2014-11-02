@@ -63,6 +63,7 @@ extern NSString* const action_get_profile_by_id;
                     fromYou:(NSString *)userid;
 
 - (NSDictionary *) getFriendList:(NSString *)userid;
+- (NSDictionary *) getFriendRequests:(NSString *)userid;
 - (NSDictionary *) getUserById:(NSString *)userid;
 
 

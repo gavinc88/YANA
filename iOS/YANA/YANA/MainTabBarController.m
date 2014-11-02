@@ -29,7 +29,9 @@ APIHelper *apiHelper;
     [self initializeUser];
     [self getAllRequests];
     [self getAllFriends];
+    [self getFriendsWhoAddedYou];
     [self updateUser];
+    [self.user toString];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,6 +127,40 @@ APIHelper *apiHelper;
             for(NSDictionary *friend in friends){
                 Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
                 [self.user.friends addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)getFriendsWhoAddedYou{
+    self.user.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    
+    NSDictionary *response = [apiHelper getFriendRequests:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"from_id"] andUsername:friend[@"from_username"]];
+                [self.user.friendsWhoAddedYou addObject:f];
             }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]

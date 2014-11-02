@@ -28,7 +28,8 @@ NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
 NSString* const action_delete_friend = @"friends/delete_friend";
 NSString* const action_get_friend_list = @"friends/friend_list";
-NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
+NSString* const action_get_friend_requests = @"friends/friend_requests";
+NSString* const action_get_profile_by_id = @"users/profile";
 
 - (instancetype) init{
     self = [super init];
@@ -90,7 +91,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
     
     if(jsonError){
-        NSLog(@"error converting response to json: %@", jsonError);
+        NSLog(@"error converting response to json: %@\n\nresponse: %@", jsonError, jsonResponse);
         return nil;
     }else{
         NSLog(@"response: %@", jsonResponse);
@@ -129,7 +130,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
     
     if(jsonError){
-        NSLog(@"error converting response to json: %@", jsonError);
+        NSLog(@"error converting response to json: %@\n\nresponse: %@", jsonError, jsonResponse);
         return nil;
     }else{
         NSLog(@"response: %@", jsonResponse);
@@ -176,7 +177,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
     
     if(jsonError){
-        NSLog(@"error converting response to json: %@", jsonError);
+        NSLog(@"error converting response to json: %@\n\nresponse: %@", jsonError, jsonResponse);
         return nil;
     }else{
         NSLog(@"response: %@", jsonResponse);
@@ -320,6 +321,16 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
 
 - (NSDictionary *) getFriendList:(NSString *)userid{
     NSString *requestURL = [self generateFullUrl:action_get_friend_list];
+    
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
+    
+    return jsonResponse;
+}
+
+- (NSDictionary *) getFriendRequests:(NSString *)userid{
+    NSString *requestURL = [self generateFullUrl:action_get_friend_requests];
     
     requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
     

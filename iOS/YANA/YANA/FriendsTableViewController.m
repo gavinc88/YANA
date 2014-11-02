@@ -33,7 +33,7 @@ APIHelper *apiHelper;
     NSLog(@"returned from SearchAndAddFriend");
     SearchAndAddFriendViewController *source = [segue sourceViewController];
     if ([source.addedFriends count]) {
-        [self sorthFriends];
+        [self sortFriends];
         [self.tableView reloadData];
     }
 }
@@ -81,12 +81,12 @@ APIHelper *apiHelper;
 }
 
 - (void)initializeFriends{
-    self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    self.friendsWhoAddedYou = self.user.friendsWhoAddedYou;
     self.allFriends = self.user.friends;
     
-    [self sorthFriends];
+    [self sortFriends];
     
-    [self saveFriends];
+    //[self saveFriends];
 }
 
 - (void)initializeMockFriends{
@@ -106,7 +106,7 @@ APIHelper *apiHelper;
     [self.allFriends addObject:f2];
     [self.allFriends addObject:f3];
     
-    [self sorthFriends];
+    [self sortFriends];
 }
 
 #pragma mark - Table view data source
@@ -128,7 +128,7 @@ APIHelper *apiHelper;
     
     if(section == 0){
         if([self.friendsWhoAddedYou count]){
-            return @"Who Added You";
+            return @"Friends Who Added You";
         }else{
             return nil;
         }
@@ -195,7 +195,7 @@ BOOL deleted = NO;
 
 #pragma mark - Actions
 
-- (void)sorthFriends{
+- (void)sortFriends{
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
                                                  ascending:YES];
@@ -204,7 +204,6 @@ BOOL deleted = NO;
     //sort alphabetically
     NSArray *sortedArray;
     sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
-    
     [self.friendsWhoAddedYou removeAllObjects];
     [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
     
@@ -303,6 +302,7 @@ BOOL deleted = NO;
 
 - (void) saveFriends{
     self.user.friends = self.allFriends;
+    self.user.friendsWhoAddedYou = self.friendsWhoAddedYou;
     AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     ad.user = self.user;
 }
