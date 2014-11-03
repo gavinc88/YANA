@@ -9,6 +9,7 @@
 #import "RestaurantSearchViewController.h"
 #import "AppDelegate.h"
 #import "User.h"
+#import "OAMutableURLRequest.h"
 
 @interface RestaurantSearchViewController ()
 
@@ -25,6 +26,54 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    //NSLog(@"searchBarTextDidBeginEditing");
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"textDidChange");
+    if ([searchText length] == 0)
+    {
+        [searchBar performSelector:@selector(resignFirstResponder)
+                        withObject:nil
+                        afterDelay:0];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Search Clicked");
+    [self searchRestaurant];
+}
+
+- (void)searchRestaurant {
+    NSLog(@"search restaurant....");
+    NSURL *URL = [NSURL URLWithString:@"http://api.yelp.com/v2/search?term=restaurants&location=berkeley"];
+    //customer key and secret provided by Yelp
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"82yR04gPM2XKnQ_hAHEs6A" secret:@"8UqXa3N64AXvQFaj6ki3SUXzQKY"];
+    //token and secret provided by yelp
+    OAToken *token = [[OAToken alloc] initWithKey:@"-8H9NbueOkM2fugXfeW9L9HCLSWCQ4Ti" secret:@"UAEOWnFHtfUjMJbAQZBAsgpwHFU"] ;
+    
+    id<OASignatureProviding, NSObject> provider = [[OAHMAC_SHA1SignatureProvider alloc] init] ;
+    NSString *realm = nil;
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:URL
+                                                                   consumer:consumer
+                                                                      token:token
+                                                                      realm:realm
+                                                          signatureProvider:provider];
+    [request prepare];
+    NSURLResponse *requestResponse;
+    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [requestReply dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: nil];
+    NSLog(@"First restaurant is: %@", [[JSON objectForKey:@"businesses"][0] objectForKey:@"name"]);
+    NSLog(@"Second restaurant is: %@", [[JSON objectForKey:@"businesses"][1] objectForKey:@"name"]);
+    NSLog(@"Third restaurant is: %@", [[JSON objectForKey:@"businesses"][2] objectForKey:@"name"]);
+}
+
 
 /*
 #pragma mark - Navigation

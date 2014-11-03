@@ -256,6 +256,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="H7n-fK-KIU" id="6pu-WG-0X7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMP-Vl-ZMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Xja-WT-uZ8" userLabel="Exit" sceneMemberID="exit"/>
