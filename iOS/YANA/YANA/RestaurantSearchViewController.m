@@ -7,6 +7,8 @@
 //
 
 #import "RestaurantSearchViewController.h"
+#import "AppDelegate.h"
+#import "User.h"
 
 @interface RestaurantSearchViewController ()
 
