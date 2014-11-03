@@ -17,8 +17,11 @@
 
 @implementation RestaurantSearchViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.restaurants = [[NSMutableArray alloc] init];
+
     // Do any additional setup after loading the view.
 }
 
@@ -33,12 +36,10 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSLog(@"textDidChange");
-    if ([searchText length] == 0)
-    {
-        [searchBar performSelector:@selector(resignFirstResponder)
-                        withObject:nil
-                        afterDelay:0];
-    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Cancel clicked");
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -70,8 +71,37 @@
                                     options: NSJSONReadingMutableContainers
                                       error: nil];
     NSLog(@"First restaurant is: %@", [[JSON objectForKey:@"businesses"][0] objectForKey:@"name"]);
+    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][0] objectForKey:@"name"]];
     NSLog(@"Second restaurant is: %@", [[JSON objectForKey:@"businesses"][1] objectForKey:@"name"]);
+    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][1] objectForKey:@"name"]];
     NSLog(@"Third restaurant is: %@", [[JSON objectForKey:@"businesses"][2] objectForKey:@"name"]);
+    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][2] objectForKey:@"name"]];
+    
+    [self.tableView reloadData];
+    NSLog(@"Restaurants are %@", self.restaurants);
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return [self.restaurants count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"restaurantCell" forIndexPath:indexPath];
+    cell.textLabel.text = [self.restaurants objectAtIndex:indexPath.row];
+    
+    
+    
+    NSLog(@"tableview loaded");
+    return cell;
 }
 
 

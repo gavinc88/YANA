@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface RestaurantSearchViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *restaurantSearchBar;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic,retain) NSMutableArray *tableData;
+
+@property (nonatomic, strong) NSMutableArray *restaurants;
 
 @end
