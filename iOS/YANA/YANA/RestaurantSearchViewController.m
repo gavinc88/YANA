@@ -36,6 +36,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSLog(@"textDidChange");
+    self.searchTerm = searchBar.text;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -44,12 +45,16 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Search Clicked");
+    [self.restaurants removeAllObjects];
     [self searchRestaurant];
 }
 
 - (void)searchRestaurant {
     NSLog(@"search restaurant....");
-    NSURL *URL = [NSURL URLWithString:@"http://api.yelp.com/v2/search?term=restaurants&location=berkeley"];
+    NSLog(@"searchTerm is %@", self.searchTerm);
+    NSString *urlString = [NSString stringWithFormat:@"http://api.yelp.com/v2/search?term=%@&location=berkeley",self.searchTerm];
+    NSLog(@"urlString is %@", urlString);
+    NSURL *URL = [NSURL URLWithString:urlString];
     //customer key and secret provided by Yelp
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"82yR04gPM2XKnQ_hAHEs6A" secret:@"8UqXa3N64AXvQFaj6ki3SUXzQKY"];
     //token and secret provided by yelp
@@ -70,13 +75,12 @@
     [NSJSONSerialization JSONObjectWithData: [requestReply dataUsingEncoding:NSUTF8StringEncoding]
                                     options: NSJSONReadingMutableContainers
                                       error: nil];
-    NSLog(@"First restaurant is: %@", [[JSON objectForKey:@"businesses"][0] objectForKey:@"name"]);
-    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][0] objectForKey:@"name"]];
-    NSLog(@"Second restaurant is: %@", [[JSON objectForKey:@"businesses"][1] objectForKey:@"name"]);
-    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][1] objectForKey:@"name"]];
-    NSLog(@"Third restaurant is: %@", [[JSON objectForKey:@"businesses"][2] objectForKey:@"name"]);
-    [self.restaurants addObject:[[JSON objectForKey:@"businesses"][2] objectForKey:@"name"]];
     
+    NSMutableArray *venueList = [JSON objectForKey:@"businesses"];
+    
+    for (int i = 0; i < [venueList count] ; i++) {
+        [self.restaurants addObject:[[JSON objectForKey:@"businesses"][i] objectForKey:@"name"]];
+    }
     [self.tableView reloadData];
     NSLog(@"Restaurants are %@", self.restaurants);
     

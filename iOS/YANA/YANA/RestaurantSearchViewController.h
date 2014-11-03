@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
 
+@property (nonatomic, strong) NSString *searchTerm;
+
 @end
