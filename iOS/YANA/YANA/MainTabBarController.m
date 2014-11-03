@@ -66,8 +66,7 @@ APIHelper *apiHelper;
             for(NSDictionary *request in requests){
                 NSString *requestid = request[@"_id"];
                 NSString *ownerid = request[@"owner_id"];
-                //make separate request to get owner username
-                NSString *ownerUsername = [self getOwnerUsername:ownerid];
+                NSString *ownerUsername = request[@"owner_username"];
                 NSString *mealTime = request[@"meal_time"];
                 NSString *mealType = request[@"meal_type"];
                 NSString *restaurant = request[@"restaurant"];
@@ -96,20 +95,6 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
-}
-
-- (NSString *)getOwnerUsername:(NSString *)ownerid {
-    
-    NSDictionary *response = [apiHelper searchUserById:ownerid];
-    
-    if (response){
-        int statusCode = [[response objectForKey:@"errCode"] intValue];
-        
-        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-            return response[@"username"];
-        }
-    }
-    return nil;
 }
 
 - (void)getAllFriends{

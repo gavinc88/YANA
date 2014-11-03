@@ -51,7 +51,7 @@ NSDateFormatter *timeFormatter;
 
 - (MealRequest *)prepareMealRequest {
     NSString *time = [timeFormatter stringFromDate:[self.timePicker date]];
-    return[[MealRequest alloc] initWithUserid:self.user.userid type:self.type time:time restaurant:self.restaurantTextBox.text comment:nil];
+    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:time restaurant:self.restaurantTextBox.text comment:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,10 +121,14 @@ NSDateFormatter *timeFormatter;
     }
 }
 
--(void) viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:YES];
-    [self setHidesBottomBarWhenPushed:YES];
-    [self.tabBarController.tabBar setHidden:YES];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
+
+//-(void) viewWillAppear:(BOOL)animated {
+//    
+//    [super viewWillAppear:YES];
+//    [self setHidesBottomBarWhenPushed:YES];
+//    [self.tabBarController.tabBar setHidden:YES];
+//}
 @end

@@ -231,6 +231,7 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
                           mealRequest.ownerid, @"user_id",
+                          mealRequest.ownerUsername, @"username",
                           mealRequest.invitedFriends, @"invitations",
                           mealRequest.type, @"meal_type",
                           mealRequest.time, @"meal_time",

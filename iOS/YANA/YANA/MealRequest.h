@@ -29,6 +29,7 @@
 @property (nonatomic) BOOL accepted; //used to determine message
 
 - (instancetype) initWithUserid:(NSString *)ownerid
+                       username:(NSString *)username
                            type:(NSString *)type
                            time:(NSString *)time
                      restaurant:(NSString *)restaurant

@@ -16,6 +16,7 @@
 
 //used by CreateMealRequestViewController
 - (instancetype) initWithUserid:(NSString *)ownerid
+                       username:(NSString *)username
                            type:(NSString *)type
                            time:(NSString *)time
                      restaurant:(NSString *)restaurant
@@ -23,6 +24,7 @@
     self = [super init];
     if(self){
         self.ownerid = ownerid;
+        self.ownerUsername = username;
         self.type= type;
         self.time = time;
         self.restaurant = restaurant;

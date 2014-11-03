@@ -175,13 +175,13 @@
 				86AC7CD419F65D0100760EC4 /* APIHelper.m */,
 				86A3351219EC7E0F000DFA43 /* AppDelegate.h */,
 				86A3351319EC7E0F000DFA43 /* AppDelegate.m */,
-				34D5D15B19F996E4005D011C /* User Profile */,
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
 				860ED7BD19F5D32B008D9810 /* Main */,
 				86AC7CD619F65D5500760EC4 /* CreateMealRequest */,
 				86AC7CD719F65D8600760EC4 /* FriendManagement */,
+				34D5D15B19F996E4005D011C /* User Profile */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
