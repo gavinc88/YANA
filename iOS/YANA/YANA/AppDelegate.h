@@ -15,5 +15,7 @@
 
 @property (nonatomic, strong) User *user;
 
+@property (nonatomic, strong) NSString *deviceToken;
+
 @end
 

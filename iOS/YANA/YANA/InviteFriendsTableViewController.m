@@ -57,7 +57,6 @@ APIHelper *apiHelper;
     //check if friends are added to mealRequest
     NSLog(@"Mealrequest friends are %@", self.mealRequest.invitedFriends);
     
-    
     NSDictionary *response = [apiHelper createMealRequest:self.mealRequest];
     if (response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
@@ -68,20 +67,18 @@ APIHelper *apiHelper;
             [self.mealRequest toString];
             
         } else {
-            NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Server Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  initWithTitle:@"Error"
+                                  message:@"Create meal request failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
         }
     } else {
-        NSLog(@"Bool mealRequestCreated is %@", (self.mealRequestCreated) ? @"YES" : @"NO");
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
+                              message:@"Create meal request failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -128,14 +125,6 @@ APIHelper *apiHelper;
         sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
         [self.allFriends removeAllObjects];
         [self.allFriends addObjectsFromArray:sortedArray];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
     }
 }
 

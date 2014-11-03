@@ -130,8 +130,39 @@ APIHelper *apiHelper;
         NSLog(@"preparingForSegue for LoginViewController");
         AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ad.user = self.user;
+        [self registerDeviceToken];
     } else {
         return;
+    }
+}
+
+- (void)registerDeviceToken{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if(ad.deviceToken){
+        NSDictionary *response = [apiHelper updateDeviceToken:ad.deviceToken forUser:ad.user.userid];
+        if(response){
+            int statusCode = [[response objectForKey:@"errCode"] intValue];
+            if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+                //do nothing
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:@"Please check your internet connection or try again later."
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Server Error"
+                                  message:@"Can't register device. Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 

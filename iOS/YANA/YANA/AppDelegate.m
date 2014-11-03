@@ -44,6 +44,7 @@
                             stringByReplacingOccurrencesOfString:@"<"withString:@""]
                            stringByReplacingOccurrencesOfString:@">" withString:@""]
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
+    self.deviceToken = devToken;
     NSLog(@"My Device token is: %@", devToken);
 }
 

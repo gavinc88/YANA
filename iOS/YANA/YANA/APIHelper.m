@@ -22,13 +22,14 @@ NSString* const action_login = @"users/login";
 NSString* const action_logout = @"users/logout";
 NSString* const action_create_request = @"request/create_request";
 NSString* const action_view_requests = @"request/request_list";
-NSString* const action_handle_meal_request = @"request//handle_request";
+NSString* const action_handle_meal_request = @"request/handle_request";
 NSString* const action_search_users_by_name = @"users/search_users_by_name";
 NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
 NSString* const action_delete_friend = @"friends/delete_friend";
 NSString* const action_get_friend_list = @"friends/friend_list";
 NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
+NSString* const action_update_device_token = @"users/update_device_token";
 
 - (instancetype) init{
     self = [super init];
@@ -335,6 +336,20 @@ NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
     requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
     
     NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
+    
+    return jsonResponse;
+}
+
+- (NSDictionary *) updateDeviceToken:(NSString *)deviceToken
+                             forUser:(NSString *)userid{
+    NSString *requestURL = [self generateFullUrl:action_update_device_token];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          deviceToken, @"device_token",
+                          userid, @"user_id",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;
 }

@@ -57,13 +57,15 @@ extern NSString* const action_get_profile_by_id;
 
 - (NSDictionary *) searchUserByUsername:(NSString *)username;
 - (NSDictionary *) searchUserById:(NSString *)userid;
-- (NSDictionary *) addFriend:(NSString *) friendid
+- (NSDictionary *) addFriend:(NSString *)friendid
                    toYou:(NSString *)userid;
-- (NSDictionary *) deleteFriend:(NSString *) friendid
+- (NSDictionary *) deleteFriend:(NSString *)friendid
                     fromYou:(NSString *)userid;
 
 - (NSDictionary *) getFriendList:(NSString *)userid;
 - (NSDictionary *) getUserById:(NSString *)userid;
 
+- (NSDictionary *) updateDeviceToken:(NSString *)deviceToken
+                             forUser:(NSString *)userid;
 
 @end

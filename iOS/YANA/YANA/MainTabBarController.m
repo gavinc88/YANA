@@ -80,7 +80,7 @@ APIHelper *apiHelper;
         } else {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  message:@"Get all meal requests failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -89,7 +89,7 @@ APIHelper *apiHelper;
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
+                              message:@"Get all meal requests failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -114,7 +114,7 @@ APIHelper *apiHelper;
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  message:@"Get all friends failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -123,7 +123,7 @@ APIHelper *apiHelper;
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Server Error"
-                              message:@"Please check your internet connection or try again later."
+                              message:@"Get all friends failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
