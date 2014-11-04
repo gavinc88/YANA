@@ -61,7 +61,7 @@ NSDateFormatter *timeFormatter;
 
 - (MealRequest *)prepareMealRequest {
     NSString *time = [timeFormatter stringFromDate:[self.timePicker date]];
-    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:time restaurant:self.restaurantTextBox.text comment:nil];
+    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:time restaurant:self.restaurantTextBox.text comment:self.commentTextBox.text];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,10 +135,34 @@ NSDateFormatter *timeFormatter;
     [self.view endEditing:YES];
 }
 
-//-(void) viewWillAppear:(BOOL)animated {
-//    
-//    [super viewWillAppear:YES];
-//    [self setHidesBottomBarWhenPushed:YES];
-//    [self.tabBarController.tabBar setHidden:YES];
-//}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: NO];
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    const int movementDistance = 150; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
 @end

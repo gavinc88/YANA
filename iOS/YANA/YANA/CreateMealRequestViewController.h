@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) MealRequest *mealRequest;
 @property (nonatomic, strong) User *user;
+@property (weak, nonatomic) IBOutlet UITextField *commentTextBox;
 
 
 
