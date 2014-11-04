@@ -170,18 +170,24 @@ APIHelper *apiHelper;
     [self.view endEditing:YES];
 }
 
-- (IBAction)textFieldDidEnd:(id)sender {
-    if ([sender isEqual: self.usernameText]){
-        if ([self.usernameText.text length] == 0) {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Invalid Username"
-                                        message:@"Username cannot be empty."
-                                        delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                otherButtonTitles:nil];
-            [alert show];
-        }
-    }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
+
+//- (IBAction)textFieldDidEnd:(id)sender {
+//    if ([sender isEqual: self.usernameText]){
+//        if ([self.usernameText.text length] == 0) {
+//            UIAlertView *alert = [[UIAlertView alloc]
+//                                  initWithTitle:@"Invalid Username"
+//                                        message:@"Username cannot be empty."
+//                                        delegate:nil
+//                                  cancelButtonTitle:@"OK"
+//                                otherButtonTitles:nil];
+//            [alert show];
+//        }
+//    }
+//}
 
 @end

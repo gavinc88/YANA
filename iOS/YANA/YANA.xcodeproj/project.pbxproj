@@ -31,7 +31,11 @@
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
 		860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */; };
+		8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8619376C1A08979100B8A193 /* MainTabControllerTest.m */; };
+		8619391B1A08A79600B8A193 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 861939121A08A75A00B8A193 /* libKIF.a */; };
 		8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */; };
+		863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */; };
+		863D37E11A088C8F00DDD818 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863D37E01A088C8F00DDD818 /* CoreGraphics.framework */; };
 		866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */; };
 		86A3351119EC7E0F000DFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351019EC7E0F000DFA43 /* main.m */; };
 		86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A3351319EC7E0F000DFA43 /* AppDelegate.m */; };
@@ -53,6 +57,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		861939111A08A75A00B8A193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EABD46AA1857A0C700A5F081;
+			remoteInfo = KIF;
+		};
+		861939131A08A75A00B8A193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB72047C1680DDAD00278DA2;
+			remoteInfo = "KIF-OCUnit";
+		};
+		861939151A08A75A00B8A193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB60ECC1177F8C83005A041A;
+			remoteInfo = "Test Host";
+		};
+		861939171A08A75A00B8A193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EABD46CD1857A0F300A5F081;
+			remoteInfo = "KIF Tests";
+		};
+		861939191A08A75A00B8A193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB60ECEB177F8DB3005A041A;
+			remoteInfo = "KIF Tests-OCUnit";
+		};
 		86A3352519EC7E0F000DFA43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 86A3350319EC7E0F000DFA43 /* Project object */;
@@ -113,8 +152,12 @@
 		860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewCell.m; sourceTree = "<group>"; };
 		860ED7BA19F58AA3008D9810 /* InviteFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendTableViewCell.h; sourceTree = "<group>"; };
 		860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendTableViewCell.m; sourceTree = "<group>"; };
+		8619376C1A08979100B8A193 /* MainTabControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabControllerTest.m; sourceTree = "<group>"; };
+		861939081A08A75A00B8A193 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KIF.xcodeproj; path = KIF/KIF.xcodeproj; sourceTree = "<group>"; };
 		8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendViewController.h; sourceTree = "<group>"; };
 		8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendViewController.m; sourceTree = "<group>"; };
+		863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginControllerTest.m; sourceTree = "<group>"; };
+		863D37E01A088C8F00DDD818 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8661649E19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithButtonsTableViewCell.h; sourceTree = "<group>"; };
 		8661649F19F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithButtonsTableViewCell.m; sourceTree = "<group>"; };
 		86A3350B19EC7E0F000DFA43 /* YANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +207,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8619391B1A08A79600B8A193 /* libKIF.a in Frameworks */,
+				863D37E11A088C8F00DDD818 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +308,31 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		861937A81A08A6C800B8A193 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				861939081A08A75A00B8A193 /* KIF.xcodeproj */,
+				863D37E01A088C8F00DDD818 /* CoreGraphics.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		861939091A08A75A00B8A193 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				861939121A08A75A00B8A193 /* libKIF.a */,
+				861939141A08A75A00B8A193 /* libKIF-OCUnit.a */,
+				861939161A08A75A00B8A193 /* Test Host.app */,
+				861939181A08A75A00B8A193 /* KIF Tests - XCTest.xctest */,
+				8619391A1A08A75A00B8A193 /* KIF Tests-OCUnit.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		86A3350219EC7E0F000DFA43 = {
 			isa = PBXGroup;
 			children = (
+				861937A81A08A6C800B8A193 /* Frameworks */,
 				86A3350D19EC7E0F000DFA43 /* YANA */,
 				86A3352719EC7E0F000DFA43 /* YANATests */,
 				86A3350C19EC7E0F000DFA43 /* Products */,
@@ -317,8 +384,10 @@
 		86A3352719EC7E0F000DFA43 /* YANATests */ = {
 			isa = PBXGroup;
 			children = (
-				86A3352A19EC7E0F000DFA43 /* YANATests.m */,
 				86A3352819EC7E0F000DFA43 /* Supporting Files */,
+				86A3352A19EC7E0F000DFA43 /* YANATests.m */,
+				863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */,
+				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
 			);
 			path = YANATests;
 			sourceTree = "<group>";
@@ -460,6 +529,12 @@
 			mainGroup = 86A3350219EC7E0F000DFA43;
 			productRefGroup = 86A3350C19EC7E0F000DFA43 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 861939091A08A75A00B8A193 /* Products */;
+					ProjectRef = 861939081A08A75A00B8A193 /* KIF.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				86A3350A19EC7E0F000DFA43 /* YANA */,
@@ -467,6 +542,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		861939121A08A75A00B8A193 /* libKIF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKIF.a;
+			remoteRef = 861939111A08A75A00B8A193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		861939141A08A75A00B8A193 /* libKIF-OCUnit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libKIF-OCUnit.a";
+			remoteRef = 861939131A08A75A00B8A193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		861939161A08A75A00B8A193 /* Test Host.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Test Host.app";
+			remoteRef = 861939151A08A75A00B8A193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		861939181A08A75A00B8A193 /* KIF Tests - XCTest.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "KIF Tests - XCTest.xctest";
+			remoteRef = 861939171A08A75A00B8A193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8619391A1A08A75A00B8A193 /* KIF Tests-OCUnit.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "KIF Tests-OCUnit.octest";
+			remoteRef = 861939191A08A75A00B8A193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		86A3350919EC7E0F000DFA43 /* Resources */ = {
@@ -540,6 +653,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */,
+				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,
+				863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +818,12 @@
 				);
 				INFOPLIST_FILE = YANATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YANA.app/YANA";
 			};
@@ -718,6 +839,12 @@
 				);
 				INFOPLIST_FILE = YANATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YANA.app/YANA";
 			};
