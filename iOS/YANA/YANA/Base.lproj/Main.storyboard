@@ -936,7 +936,7 @@
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="MVK-Qo-Xx0"/>
         <segue reference="2b4-QI-Nxk"/>
-        <segue reference="JgW-eq-FsQ"/>
     </inferredMetricsTieBreakers>
 </document>

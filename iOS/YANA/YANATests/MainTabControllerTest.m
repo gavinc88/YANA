@@ -53,4 +53,28 @@
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
 }
 
+- (void)test01OpenCreateMealRequest {
+    [tester tapViewWithAccessibilityLabel:@"Requests"];
+    [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
+    
+    //verify that CreateMealRequestViewController is opened
+    [tester tapScreenAtPoint:CGPointMake(300, 20)];
+    [tester waitForViewWithAccessibilityLabel:@"Create Meal Request"];
+    
+    //return to home screen
+    [tester tapViewWithAccessibilityLabel:@"Cancel"];
+}
+
+- (void)test02OpenSearchAndAddFriend {
+    [tester tapViewWithAccessibilityLabel:@"Friends"];
+    [tester waitForViewWithAccessibilityLabel:@"Friends"];
+    
+    //verify that CreateMealRequestViewController is opened
+    [tester tapScreenAtPoint:CGPointMake(300, 20)];
+    [tester waitForViewWithAccessibilityLabel:@"Friend Search"];
+    
+    //return to home screen
+    [tester tapViewWithAccessibilityLabel:@"Done"];
+}
+
 @end
