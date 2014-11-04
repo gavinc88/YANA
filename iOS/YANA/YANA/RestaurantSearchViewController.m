@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "OAMutableURLRequest.h"
+#import "InviteFriendsTableViewController.h"
 
 @interface RestaurantSearchViewController ()
 
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initializeUser];
     self.restaurants = [[NSMutableArray alloc] init];
 
     // Do any additional setup after loading the view.
@@ -28,6 +30,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// initialize User
+- (void)initializeUser{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = appDelegate.user;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -98,16 +106,44 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"restaurantCell" forIndexPath:indexPath];
     cell.textLabel.text = [self.restaurants objectAtIndex:indexPath.row];
     
-    
-    
-    NSLog(@"tableview loaded");
+    if ([self.selectedRestaurant isEqualToString:cell.textLabel.text]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedRestaurant = [self.restaurants objectAtIndex:indexPath.row];
+    NSLog(@"selected restaurant is %@", self.selectedRestaurant);
+    [self.tableView reloadData];
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
+        NSLog(@"Preparing for segue to InviteFriendsViewController");
+        
+        //Create MealRequest object
+        self.mealRequest = [self prepareMealRequest];
+        
+        //pass MealRequest object to InviteFriendViewController
+        InviteFriendsTableViewController *controller = segue.destinationViewController;
+        controller.mealRequest = self.mealRequest;
+        
+        [controller.mealRequest toString];
+    }
+    
+}
+
+- (MealRequest *)prepareMealRequest {
+    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:self.time restaurant:self.selectedRestaurant comment:nil];
+}
 
 /*
 #pragma mark - Navigation

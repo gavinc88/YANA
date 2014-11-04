@@ -10,6 +10,7 @@
 #import "InviteFriendsTableViewController.h"
 #import "AppDelegate.h"
 #import "MealRequest.h"
+#import "RestaurantSearchViewController.h"
 
 
 @interface CreateMealRequestViewController ()
@@ -47,6 +48,15 @@ NSDateFormatter *timeFormatter;
         
         [controller.mealRequest toString];
     }
+    if([segue.identifier isEqualToString:@"searchRestaurantButton"]){
+        NSLog(@"Preparing for segue to RestaurantSearchViewController");
+        RestaurantSearchViewController *controller = segue.destinationViewController;
+        //pass time and type to RestaurantSearchViewController
+        controller.time = self.time;
+        controller.type = self.type;
+    }
+
+    
 }
 
 - (MealRequest *)prepareMealRequest {

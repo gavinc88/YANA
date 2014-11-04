@@ -267,7 +267,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Invite Friends" id="VdO-1Q-k7n">
                             <connections>
-                                <segue destination="Twq-2p-gmz" kind="show" id="MJw-Ov-P4X"/>
+                                <segue destination="Twq-2p-gmz" kind="show" identifier="inviteFriendsButton" id="MJw-Ov-P4X"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -358,7 +358,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NfX-hd-uYX" kind="show" id="Gyd-xW-xwt"/>
+                                    <segue destination="NfX-hd-uYX" kind="show" identifier="searchRestaurantButton" id="Gyd-xW-xwt"/>
                                 </connections>
                             </button>
                         </subviews>

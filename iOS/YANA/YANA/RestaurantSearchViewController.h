@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MealRequest.h"
+#import "User.h"
+
 
 @interface RestaurantSearchViewController : UIViewController
 
@@ -19,5 +22,15 @@
 @property (nonatomic, strong) NSMutableArray *restaurants;
 
 @property (nonatomic, strong) NSString *searchTerm;
+
+@property (strong, nonatomic) NSString *selectedRestaurant;
+
+@property (strong, nonatomic) MealRequest *mealRequest;
+
+@property (nonatomic, strong) User *user;
+
+@property (strong, nonatomic) NSString *time;
+
+@property (strong, nonatomic) NSString *type;
 
 @end
