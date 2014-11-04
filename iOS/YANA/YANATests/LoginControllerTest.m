@@ -25,30 +25,19 @@
     [super tearDown];
 }
 
-- (void)navigateToLoginPage
-{
-    //[tester tapViewWithAccessibilityLabel:@"Login/Sign Up"];
-}
-
-- (void)returnToLoggedOutHomeScreen
-{
-    //[tester tapViewWithAccessibilityLabel:@"Logout"];
-    //[tester tapViewWithAccessibilityLabel:@"Logout"]; // Dismiss alert.
-}
-
-- (void)test00FailLogin
-{
+- (void)test00FailLogin {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester enterText:@"login" intoViewWithAccessibilityLabel:@"usernameTextField"];
-    [tester enterText:@"wrong_password" intoViewWithAccessibilityLabel:@"passwordTextField"];
+    [tester enterText:@"wrong" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
     
-    // Verify that the login succeeded
+    // Verify that the login failed with alert message
     [tester waitForViewWithAccessibilityLabel:@"Invalid Credentials"];
     [tester tapViewWithAccessibilityLabel:@"OK"];
 }
 
-- (void)test01SuccessfulLogin
-{
+- (void)test01SuccessfulLogin {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester clearTextFromAndThenEnterText:@"login"
            intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester clearTextFromAndThenEnterText:@"test"
@@ -57,6 +46,13 @@
     
     // Verify that the login succeeded
     [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
+}
+
+- (void)test02Logout {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [tester tapViewWithAccessibilityLabel:@"Settings"];
+    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester waitForViewWithAccessibilityLabel:@"loginButton"];
 }
 
 @end

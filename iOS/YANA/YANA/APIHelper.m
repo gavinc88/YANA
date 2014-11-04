@@ -28,7 +28,7 @@ NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
 NSString* const action_delete_friend = @"friends/delete_friend";
 NSString* const action_get_friend_list = @"friends/friend_list";
-NSString* const action_get_profile_by_id = @"users/get_profile_by_id";
+NSString* const action_get_profile_by_id = @"users/profile";
 NSString* const action_update_device_token = @"users/update_device_token";
 
 - (instancetype) init{
@@ -227,8 +227,6 @@ NSString* const action_update_device_token = @"users/update_device_token";
 
 - (NSDictionary *) createMealRequest:(MealRequest *)mealRequest {
     NSString *requestURL = [self generateFullUrl:action_create_request];
-  
-    NSLog(@"%@", mealRequest.invitedFriends);
     
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
                           mealRequest.ownerid, @"user_id",
@@ -239,7 +237,6 @@ NSString* const action_update_device_token = @"users/update_device_token";
                           mealRequest.restaurant, @"restaurant",
                           mealRequest.comment, @"comment",
                           nil];
-    NSLog(@"create meal request args: %@", args);
     
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     

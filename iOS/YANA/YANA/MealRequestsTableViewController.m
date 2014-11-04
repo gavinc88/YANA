@@ -37,7 +37,7 @@ APIHelper *apiHelper;
         NSLog(@"returned from InviteFriends");
         InviteFriendsTableViewController *source = [segue sourceViewController];
         if (source.mealRequestCreated && source.mealRequest) {
-            [source.mealRequest toString];
+            //[source.mealRequest toString];
             [self.mealRequestsFromSelf addObject:source.mealRequest];
             [self.tableView reloadData];
         }else{
@@ -285,7 +285,6 @@ APIHelper *apiHelper;
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
-        NSLog(@"statusCode: %d", statusCode);
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             request.acceptedUser = self.user.userid;
@@ -339,7 +338,6 @@ APIHelper *apiHelper;
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
-        NSLog(@"statusCode: %d", statusCode);
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             request.responded = YES;

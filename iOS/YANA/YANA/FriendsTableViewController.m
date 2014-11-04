@@ -30,7 +30,6 @@ APIHelper *apiHelper;
 
 - (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue
 {
-    NSLog(@"returned from SearchAndAddFriend");
     SearchAndAddFriendViewController *source = [segue sourceViewController];
     if ([source.addedFriends count]) {
         [self sorthFriends];
@@ -41,7 +40,6 @@ APIHelper *apiHelper;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepareForSegue for %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"openSearchAndAddFriend"]) {
-        NSLog(@"opening SearchAndAddFriend");
         SearchAndAddFriendNavigationController *destViewController = segue.destinationViewController;
         // Hide bottom tab bar in the detail view
         destViewController.hidesBottomBarWhenPushed = YES;

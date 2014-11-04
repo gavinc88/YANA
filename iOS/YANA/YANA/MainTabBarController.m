@@ -44,7 +44,7 @@ APIHelper *apiHelper;
 - (void)initializeUser{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = appDelegate.user;
-    [self.user toString];
+    //[self.user toString];
 }
 
 - (void)updateUser{

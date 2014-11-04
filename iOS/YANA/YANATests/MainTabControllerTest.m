@@ -26,13 +26,31 @@
 }
 
 - (void)login {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester enterText:@"login" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"test" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
 }
 
 - (void)logout {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [tester tapViewWithAccessibilityLabel:@"Settings"];
+    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+}
+
+- (void)test00SwitchingTabs {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    //verify switched to Friends tab
+    [tester tapViewWithAccessibilityLabel:@"Friends"];
+    [tester waitForViewWithAccessibilityLabel:@"Friends"];
     
+    //verify switched bakc to Meal Requests tab
+    [tester tapViewWithAccessibilityLabel:@"Requests"];
+    [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
+    
+    //verify switched to Friends tab again
+    [tester tapViewWithAccessibilityLabel:@"Friends"];
+    [tester waitForViewWithAccessibilityLabel:@"Friends"];
 }
 
 @end

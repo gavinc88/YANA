@@ -37,7 +37,6 @@ APIHelper *apiHelper;
     NSDictionary *response = [apiHelper loginWithUsername:self.usernameText.text andPassword:self.passwordText.text];
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
-        NSLog(@"statusCode: %d", statusCode);
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             NSString *userid = [response objectForKey:@"user_id"];
@@ -127,7 +126,6 @@ APIHelper *apiHelper;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"openMain"]) {
-        NSLog(@"preparingForSegue for LoginViewController");
         AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ad.user = self.user;
         [self registerDeviceToken];
