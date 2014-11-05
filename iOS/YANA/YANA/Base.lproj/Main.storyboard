@@ -514,7 +514,7 @@
                                     <outlet property="delegate" destination="y5v-ly-pdB" id="l3A-kP-Mfr"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="friendSearchResultTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Hi8-Pn-G0J">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="friendSearchResultTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Hi8-Pn-G0J">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -608,7 +608,7 @@
         <scene sceneID="K2s-ue-ygH">
             <objects>
                 <tableViewController id="66S-HI-aoh" customClass="FriendsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -915,7 +915,7 @@
         <!--Friend Profile-->
         <scene sceneID="Qf5-7B-gcN">
             <objects>
-                <viewController title="Friend Profile" id="tZb-cH-ynb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendViewController" title="Friend Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tZb-cH-ynb" customClass="FriendProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ddF-2H-v7x"/>
                         <viewControllerLayoutGuide type="bottom" id="mI9-5F-fXC"/>

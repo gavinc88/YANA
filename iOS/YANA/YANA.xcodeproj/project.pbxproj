@@ -33,6 +33,7 @@
 		860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */; };
 		8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8619376C1A08979100B8A193 /* MainTabControllerTest.m */; };
 		8619391B1A08A79600B8A193 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 861939121A08A75A00B8A193 /* libKIF.a */; };
+		8619391E1A0A131800B8A193 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8619391D1A0A131800B8A193 /* FriendProfileViewController.m */; };
 		8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */; };
 		863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */; };
 		863D37E11A088C8F00DDD818 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863D37E01A088C8F00DDD818 /* CoreGraphics.framework */; };
@@ -154,6 +155,8 @@
 		860ED7BB19F58AA3008D9810 /* InviteFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendTableViewCell.m; sourceTree = "<group>"; };
 		8619376C1A08979100B8A193 /* MainTabControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabControllerTest.m; sourceTree = "<group>"; };
 		861939081A08A75A00B8A193 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KIF.xcodeproj; path = KIF/KIF.xcodeproj; sourceTree = "<group>"; };
+		8619391C1A0A131800B8A193 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
+		8619391D1A0A131800B8A193 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
 		8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendViewController.h; sourceTree = "<group>"; };
 		8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendViewController.m; sourceTree = "<group>"; };
 		863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginControllerTest.m; sourceTree = "<group>"; };
@@ -275,13 +278,15 @@
 			path = Crytpo;
 			sourceTree = "<group>";
 		};
-		34D5D15B19F996E4005D011C /* User Profile */ = {
+		34D5D15B19F996E4005D011C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				34D5D15819F99276005D011C /* UserProfileViewController.h */,
 				34D5D15919F99276005D011C /* UserProfileViewController.m */,
+				8619391C1A0A131800B8A193 /* FriendProfileViewController.h */,
+				8619391D1A0A131800B8A193 /* FriendProfileViewController.m */,
 			);
-			name = "User Profile";
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		860ED7BD19F5D32B008D9810 /* Main */ = {
@@ -367,7 +372,7 @@
 				860ED7BD19F5D32B008D9810 /* Main */,
 				86AC7CD619F65D5500760EC4 /* CreateMealRequest */,
 				86AC7CD719F65D8600760EC4 /* FriendManagement */,
-				34D5D15B19F996E4005D011C /* User Profile */,
+				34D5D15B19F996E4005D011C /* Profile */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				86A9B95E19EF96B4005A7314 /* User.m in Sources */,
 				860ED7B619F58036008D9810 /* Friend.m in Sources */,
 				3430B4771A085A320090A9C9 /* sha1.c in Sources */,
+				8619391E1A0A131800B8A193 /* FriendProfileViewController.m in Sources */,
 				3430B47C1A085A320090A9C9 /* OAMutableURLRequest.m in Sources */,
 				3430B4741A085A320090A9C9 /* NSURL+Base.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,

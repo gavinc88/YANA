@@ -11,6 +11,7 @@
 #import "APIHelper.h"
 #import "AddFriendTableViewCell.h"
 #import "User.h"
+#import "FriendProfileViewController.h"
 
 @interface SearchAndAddFriendViewController ()
 
@@ -30,10 +31,6 @@ APIHelper *apiHelper;
     apiHelper = [[APIHelper alloc]init];
     self.tableData = [[NSMutableArray alloc] init];
     self.addedFriends = [[NSMutableArray alloc] init];
-    //Friend *friend1 = [[Friend alloc] initWithid:@"123" andUsername:@"Will Smith"];
-    //[self.tableData addObject:friend1];
-    //Friend *friend2 = [[Friend alloc] initWithid:@"456" andUsername:@"Will Tang"];
-    //[self.tableData addObject:friend2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,6 +125,8 @@ APIHelper *apiHelper;
     [self.tableView reloadData];
 }
 
+#pragma mark - TableView
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -154,6 +153,28 @@ APIHelper *apiHelper;
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Friend *selectedFriend = [self.tableData objectAtIndex:indexPath.row];
+    FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
+    if(selectedFriend){
+        viewController.userid = self.user.userid;
+        viewController.targetid = selectedFriend.friendid;
+        viewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Can't open friend profile. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
+
+#pragma mark - Actions
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
     NSLog(@"add clicked");
@@ -203,12 +224,6 @@ APIHelper *apiHelper;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
-}
-
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    //[self setHidesBottomBarWhenPushed:YES];
-    //[self.tabBarController.tabBar setHidden:YES];
 }
 
 /*

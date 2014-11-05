@@ -15,6 +15,7 @@
 #import "SearchAndAddFriendNavigationController.h"
 #import "SearchAndAddFriendViewController.h"
 #import "UserProfileViewController.h"
+#import "FriendProfileViewController.h"
 
 @interface FriendsTableViewController ()
 
@@ -140,9 +141,8 @@ APIHelper *apiHelper;
     return nil;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0){
+    if(indexPath.section == 0){
         AddFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:addFriendCellIdentifier forIndexPath:indexPath];
         
         Friend *friend = self.friendsWhoAddedYou[indexPath.row];
@@ -165,6 +165,31 @@ APIHelper *apiHelper;
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Friend *selectedFriend;
+    if(indexPath.section == 0){
+        selectedFriend = self.friendsWhoAddedYou[indexPath.row];
+    }else{
+        selectedFriend = self.allFriends[indexPath.row];
+    }
+    FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
+    if(selectedFriend){
+        viewController.userid = self.user.userid;
+        viewController.targetid = selectedFriend.friendid;
+        viewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Can't open friend profile. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
@@ -184,7 +209,6 @@ BOOL deleted = NO;
             Friend *friend = self.allFriends[indexPath.row];
             [self deleteFriend:friend];
             if(deleted){
-//                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [self.allFriends removeObject:friend];
                 deleted = NO;
             }
@@ -215,9 +239,6 @@ BOOL deleted = NO;
 }
 
 - (IBAction)addButtonClicked:(UIButton *)sender {
-    NSLog(@"add clicked");
-    NSLog(@"current Row=%d", sender.tag);
-    
     Friend *friend = self.friendsWhoAddedYou[sender.tag];
     
     //update server
@@ -262,8 +283,6 @@ BOOL deleted = NO;
 }
 
 - (IBAction)inviteButtonClicked:(UIButton *)sender {
-    NSLog(@"invite clicked");
-    NSLog(@"current Row=%d",sender.tag);
     //Friend *friend = self.friendsWhoAddedYou[sender.tag];
     [self.tableView reloadData];
 }
