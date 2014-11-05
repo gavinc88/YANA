@@ -63,7 +63,8 @@ extern NSString* const action_get_profile_by_id;
                     fromYou:(NSString *)userid;
 
 - (NSDictionary *) getFriendList:(NSString *)userid;
-- (NSDictionary *) getUserById:(NSString *)userid;
+- (NSDictionary *) getProfile:(NSString *)userid
+                     targetid:(NSString *)targetid;
 
 - (NSDictionary *) updateDeviceToken:(NSString *)deviceToken
                              forUser:(NSString *)userid;

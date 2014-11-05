@@ -327,10 +327,11 @@ NSString* const action_update_device_token = @"users/update_device_token";
     return jsonResponse;
 }
 
-- (NSDictionary *) getUserById:(NSString *)userid{
+- (NSDictionary *) getProfile:(NSString *)userid
+                     targetid:(NSString *)targetid{
     NSString *requestURL = [self generateFullUrl:action_get_profile_by_id];
     
-    requestURL = [requestURL stringByAppendingFormat:@"/%@", userid];
+    requestURL = [requestURL stringByAppendingFormat:@"/%@/%@", userid, targetid];
     
     NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
     

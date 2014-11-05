@@ -52,12 +52,10 @@ APIHelper *apiHelper;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepareForSegue for %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"openCreateMealRequest"]) {
-        NSLog(@"opening CreateMealRequest");
         CreateMealRequestViewController *destViewController = segue.destinationViewController;
         destViewController.hidesBottomBarWhenPushed = YES;
     } else if([segue.identifier isEqualToString:@"openUserProfile"]) {
-        NSLog(@"opening CreateMealRequest");
-        CreateMealRequestViewController *destViewController = segue.destinationViewController;
+        UserProfileViewController *destViewController = segue.destinationViewController;
         destViewController.hidesBottomBarWhenPushed = YES;
     }
 }

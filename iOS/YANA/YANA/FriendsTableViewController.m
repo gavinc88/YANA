@@ -14,6 +14,7 @@
 #import "InviteFriendTableViewCell.h"
 #import "SearchAndAddFriendNavigationController.h"
 #import "SearchAndAddFriendViewController.h"
+#import "UserProfileViewController.h"
 
 @interface FriendsTableViewController ()
 
@@ -41,7 +42,9 @@ APIHelper *apiHelper;
     NSLog(@"prepareForSegue for %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"openSearchAndAddFriend"]) {
         SearchAndAddFriendNavigationController *destViewController = segue.destinationViewController;
-        // Hide bottom tab bar in the detail view
+        destViewController.hidesBottomBarWhenPushed = YES;
+    }else if([segue.identifier isEqualToString:@"openUserProfile"]) {
+        UserProfileViewController *destViewController = segue.destinationViewController;
         destViewController.hidesBottomBarWhenPushed = YES;
     }
 }

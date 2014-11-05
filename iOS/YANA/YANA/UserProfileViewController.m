@@ -22,8 +22,8 @@
     // Do any additional setup after loading the view.
     APIHelper *helper = [[APIHelper alloc] init];
     [self initializeUser];
-    NSDictionary *response = [helper getUserById:self.user.userid];
-    NSLog(@"user info is %@", response);
+    NSDictionary *response = [helper getProfile:self.user.userid targetid:self.user.userid];
+    //TODO: user response data instead
     self.userInfo.text = [NSString stringWithFormat:@"My username: %@", self.user.username];
 }
 
@@ -50,14 +50,6 @@
                      completion:nil];
 }
 
-//// Hide main tab bar
-//-(void) viewWillAppear:(BOOL)animated {
-//    
-//    [super viewWillAppear:YES];
-//    [self setHidesBottomBarWhenPushed:YES];
-//    [self.tabBarController.tabBar setHidden:YES];
-//}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"backToLoginPage"]){
         APIHelper *helper = [[APIHelper alloc] init];
@@ -65,6 +57,5 @@
         NSLog(@"Logout response is %@", response);
     }
 }
-
 
 @end
