@@ -34,6 +34,7 @@
 		8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8619376C1A08979100B8A193 /* MainTabControllerTest.m */; };
 		8619391B1A08A79600B8A193 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 861939121A08A75A00B8A193 /* libKIF.a */; };
 		8619391E1A0A131800B8A193 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8619391D1A0A131800B8A193 /* FriendProfileViewController.m */; };
+		861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 861939221A0B072400B8A193 /* FriendsTableViewControllerTest.m */; };
 		8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */; };
 		863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */; };
 		863D37E11A088C8F00DDD818 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863D37E01A088C8F00DDD818 /* CoreGraphics.framework */; };
@@ -157,6 +158,7 @@
 		861939081A08A75A00B8A193 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KIF.xcodeproj; path = KIF/KIF.xcodeproj; sourceTree = "<group>"; };
 		8619391C1A0A131800B8A193 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
 		8619391D1A0A131800B8A193 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
+		861939221A0B072400B8A193 /* FriendsTableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewControllerTest.m; sourceTree = "<group>"; };
 		8621535119F5E74A004EA111 /* SearchAndAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendViewController.h; sourceTree = "<group>"; };
 		8621535219F5E74A004EA111 /* SearchAndAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendViewController.m; sourceTree = "<group>"; };
 		863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginControllerTest.m; sourceTree = "<group>"; };
@@ -391,8 +393,8 @@
 			children = (
 				86A3352819EC7E0F000DFA43 /* Supporting Files */,
 				86A3352A19EC7E0F000DFA43 /* YANATests.m */,
-				863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */,
-				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
+				86AFD2241A0B77400021D0EF /* UI & Functional Tests */,
+				86AFD22B1A0B77530021D0EF /* Unit Tests */,
 			);
 			path = YANATests;
 			sourceTree = "<group>";
@@ -464,6 +466,23 @@
 				86A9B95319EF8204005A7314 /* FriendsNavigationController.m */,
 			);
 			name = "Unused ViewControllers";
+			sourceTree = "<group>";
+		};
+		86AFD2241A0B77400021D0EF /* UI & Functional Tests */ = {
+			isa = PBXGroup;
+			children = (
+				863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */,
+				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
+			);
+			name = "UI & Functional Tests";
+			sourceTree = "<group>";
+		};
+		86AFD22B1A0B77530021D0EF /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				861939221A0B072400B8A193 /* FriendsTableViewControllerTest.m */,
+			);
+			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -660,6 +679,7 @@
 			files = (
 				86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */,
 				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,
+				861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */,
 				863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +806,10 @@
 				INFOPLIST_FILE = YANA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/iOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4d818457-165f-4184-a0fb-104208b6c439";
 			};
@@ -805,6 +829,10 @@
 				INFOPLIST_FILE = YANA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/iOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4d818457-165f-4184-a0fb-104208b6c439";
 			};
@@ -824,6 +852,10 @@
 				);
 				INFOPLIST_FILE = YANATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YANATests",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -845,6 +877,10 @@
 				);
 				INFOPLIST_FILE = YANATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YANATests",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

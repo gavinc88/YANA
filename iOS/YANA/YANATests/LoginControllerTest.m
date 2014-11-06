@@ -26,7 +26,6 @@
 }
 
 - (void)test00FailLogin {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester enterText:@"login" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"wrong" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
@@ -37,7 +36,6 @@
 }
 
 - (void)test01SuccessfulLogin {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester clearTextFromAndThenEnterText:@"login"
            intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester clearTextFromAndThenEnterText:@"test"

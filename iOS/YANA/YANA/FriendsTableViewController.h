@@ -19,4 +19,6 @@
 
 - (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue;
 
+- (void)sortFriends;
+
 @end

@@ -39,7 +39,6 @@
 }
 
 - (void)test00SwitchingTabs {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     //verify switched to Friends tab
     [tester tapViewWithAccessibilityLabel:@"Friends"];
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
