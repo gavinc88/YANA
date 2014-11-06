@@ -27,7 +27,7 @@
 
 - (void)login {
     NSLog(@"%s",__PRETTY_FUNCTION__);
-    [tester enterText:@"login" intoViewWithAccessibilityLabel:@"usernameTextField"];
+    [tester enterText:@"iosTest" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"test" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
 }
@@ -38,7 +38,7 @@
     [tester tapViewWithAccessibilityLabel:@"logoutButton"];
 }
 
-- (void)test00SwitchingTabs {
+- (void)test1SwitchingTabs {
     //verify switched to Friends tab
     [tester tapViewWithAccessibilityLabel:@"Friends"];
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
@@ -52,7 +52,7 @@
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
 }
 
-- (void)test01OpenCreateMealRequest {
+- (void)test2OpenCreateMealRequest {
     [tester tapViewWithAccessibilityLabel:@"Requests"];
     [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
     
@@ -64,11 +64,11 @@
     [tester tapViewWithAccessibilityLabel:@"Cancel"];
 }
 
-- (void)test02OpenSearchAndAddFriend {
+- (void)test3OpenSearchAndAddFriend {
     [tester tapViewWithAccessibilityLabel:@"Friends"];
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
     
-    //verify that CreateMealRequestViewController is opened
+    //verify that SearchAndAddFriendViewController is opened
     [tester tapScreenAtPoint:CGPointMake(300, 20)];
     [tester waitForViewWithAccessibilityLabel:@"Friend Search"];
     

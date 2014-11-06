@@ -65,7 +65,10 @@ FriendsTableViewController *mockTableViewContorller;
 
 - (void)test03AddFriends {
     XCTAssertEqual([self.vc.allFriends count], 0);
-    [self initializeMockFriends];
+    
+    [self initializeMockFriends]; //add 4 friends
+    
+    //verify 4 friends added to allFriends and tableView
     XCTAssertEqual([self.vc.allFriends count], 4);
     XCTAssertEqual([self.vc.tableView numberOfRowsInSection:1], 4);
 }
@@ -73,6 +76,7 @@ FriendsTableViewController *mockTableViewContorller;
 - (void)test04SortFriends {
     [self initializeMockFriends];
     
+    //check default order
     Friend *friendAtIndex0 = [self.vc.allFriends objectAtIndex:0];
     XCTAssertEqual(friendAtIndex0.friendUsername, @"Friend B", @"Friend B should be at index 0 before sorting.");
     Friend *friendAtIndex3 = [self.vc.allFriends objectAtIndex:3];
@@ -80,6 +84,7 @@ FriendsTableViewController *mockTableViewContorller;
     
     [self.vc sortFriends];
     
+    //check order after sort
     Friend *friendAtIndex0AfterSort = [self.vc.allFriends objectAtIndex:0];
     XCTAssertEqual(friendAtIndex0AfterSort.friendUsername, @"Friend A", @"Friend A should be at index 0 after sorting.");
     Friend *friendAtIndex3AfterSort = [self.vc.allFriends objectAtIndex:3];
@@ -90,7 +95,6 @@ FriendsTableViewController *mockTableViewContorller;
     [self initializeMockFriends];
     
     UITableViewCell *cellAtIndex0 = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    NSLog(@"reuse identifier: %@", cellAtIndex0.reuseIdentifier);
     XCTAssertTrue([cellAtIndex0.reuseIdentifier isEqualToString:@"inviteFriendCell"]);
 }
 

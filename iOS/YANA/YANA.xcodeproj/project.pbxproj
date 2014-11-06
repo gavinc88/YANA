@@ -56,6 +56,7 @@
 		86AC7CD519F65D0100760EC4 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CD419F65D0100760EC4 /* APIHelper.m */; };
 		86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */; };
 		86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */; };
+		86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,7 @@
 		86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
 		86AC7CE019F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendNavigationController.h; sourceTree = "<group>"; };
 		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
+		86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendFunctionalTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +475,7 @@
 			children = (
 				863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */,
 				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
+				86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */,
 			);
 			name = "UI & Functional Tests";
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,
 				861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */,
 				863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */,
+				86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

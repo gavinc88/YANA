@@ -604,11 +604,11 @@
             </objects>
             <point key="canvasLocation" x="3056" y="248"/>
         </scene>
-        <!--Friends-->
+        <!--Friend List-->
         <scene sceneID="K2s-ue-ygH">
             <objects>
-                <tableViewController storyboardIdentifier="FriendsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="66S-HI-aoh" customClass="FriendsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
+                <tableViewController storyboardIdentifier="FriendsTableViewController" title="Friend List" useStoryboardIdentifierAsRestorationIdentifier="YES" id="66S-HI-aoh" customClass="FriendsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Friend List" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03t-y6-2BP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -971,7 +971,7 @@
                                             <constraint firstAttribute="width" constant="260" id="81b-I2-6x0"/>
                                             <constraint firstAttribute="height" constant="21" id="Yiv-2v-pfd"/>
                                         </constraints>
-                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet metus et tristique molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec finibus pharetra purus non mollis. Fusce placerat mollis eros a egestas. Vestibulum venenatis elit in lorem tempus, at cursus mauris tempor. Cras sed turpis ac metus elementum commodo at eu turpis. Etiam sed lacinia urna. Donec mattis tincidunt dolor, eget imperdiet libero tristique vel. Curabitur fringilla consectetur felis, id ultricies erat laoreet quis. Phasellus magna nisl, luctus nec lectus eu, tristique tincidunt velit. Vivamus faucibus sed neque a pharetra. Etiam facilisis vulputate posuere. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet metus et tristique molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec finibus pharetra purus non mollis. Fusce placerat mollis eros a egestas. Vestibulum venenatis elit in lorem tempus, at cursus mauris tempor. Cras sed turpis ac metus elementum commodo at eu turpis. Etiam sed lacinia urna. Donec mattis tincidunt dolor, eget imperdiet libero tristique vel. Curabitur fringilla consectetur felis, id ultricies erat laoreet quis. Phasellus magna nisl, luctus nec lectus eu, tristique tincidunt velit. Vivamus faucibus sed neque a pharetra. Etiam facilisis vulputate posuere. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1035,7 +1035,7 @@
                                             <constraint firstAttribute="width" constant="260" id="dZN-2S-zf0"/>
                                             <constraint firstAttribute="height" constant="21" id="kZk-ZY-5jk"/>
                                         </constraints>
-                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet metus et tristique molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec finibus pharetra purus non mollis. Fusce placerat mollis eros a egestas. Vestibulum venenatis elit in lorem tempus, at cursus mauris tempor. Cras sed turpis ac metus elementum commodo at eu turpis. Etiam sed lacinia urna. Donec mattis tincidunt dolor, eget imperdiet libero tristique vel. Curabitur fringilla consectetur felis, id ultricies erat laoreet quis. Phasellus magna nisl, luctus nec lectus eu, tristique tincidunt velit. Vivamus faucibus sed neque a pharetra. Etiam facilisis vulputate posuere. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet metus et tristique molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec finibus pharetra purus non mollis. Fusce placerat mollis eros a egestas. Vestibulum venenatis elit in lorem tempus, at cursus mauris tempor. Cras sed turpis ac metus elementum commodo at eu turpis. Etiam sed lacinia urna. Donec mattis tincidunt dolor, eget imperdiet libero tristique vel. Curabitur fringilla consectetur felis, id ultricies erat laoreet quis. Phasellus magna nisl, luctus nec lectus eu, tristique tincidunt velit. Vivamus faucibus sed neque a pharetra. Etiam facilisis vulputate posuere. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

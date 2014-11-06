@@ -25,8 +25,8 @@
     [super tearDown];
 }
 
-- (void)test00FailLogin {
-    [tester enterText:@"login" intoViewWithAccessibilityLabel:@"usernameTextField"];
+- (void)test1FailLogin {
+    [tester enterText:@"iosTest" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"wrong" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
     
@@ -35,8 +35,8 @@
     [tester tapViewWithAccessibilityLabel:@"OK"];
 }
 
-- (void)test01SuccessfulLogin {
-    [tester clearTextFromAndThenEnterText:@"login"
+- (void)test2SuccessfulLogin {
+    [tester clearTextFromAndThenEnterText:@"iosTest"
            intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester clearTextFromAndThenEnterText:@"test"
            intoViewWithAccessibilityLabel:@"passwordTextField"];
@@ -46,7 +46,7 @@
     [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
 }
 
-- (void)test02Logout {
+- (void)test3Logout {
     NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester tapViewWithAccessibilityLabel:@"Settings"];
     [tester tapViewWithAccessibilityLabel:@"logoutButton"];

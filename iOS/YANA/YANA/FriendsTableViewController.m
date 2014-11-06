@@ -94,6 +94,9 @@ APIHelper *apiHelper;
     self.tableView.rowHeight = 44;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
+    //for testing purposes
+    [self.tableView setAccessibilityLabel:@"Friend List"];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -188,6 +191,9 @@ APIHelper *apiHelper;
         
         cell.addButton.tag = indexPath.row;
         [cell.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //for testing purposes
+        [cell setAccessibilityLabel:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
         return cell;
     }else{
         InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
@@ -197,6 +203,9 @@ APIHelper *apiHelper;
         
         cell.inviteButton.tag = indexPath.row;
         [cell.inviteButton addTarget:self action:@selector(inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //for testing purposes
+        [cell setAccessibilityLabel:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
         return cell;
     }
 }
