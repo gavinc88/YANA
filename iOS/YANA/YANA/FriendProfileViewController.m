@@ -14,12 +14,12 @@
 @interface FriendProfileViewController ()
 
 //properties for profile viewed
-@property (nonatomic, weak) NSString *username;
-@property (nonatomic, weak) NSString *about;
-@property (nonatomic, weak) NSString *age;
-@property (nonatomic, weak) NSString *foodPreferences;
-@property (nonatomic, weak) NSString *gender;
-@property (nonatomic, weak) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *about;
+@property (nonatomic, strong) NSString *age;
+@property (nonatomic, strong) NSString *foodPreferences;
+@property (nonatomic, strong) NSString *gender;
+@property (nonatomic, strong) NSString *phoneNumber;
 
 @property (nonatomic) BOOL isFriend;
 
@@ -35,7 +35,19 @@ APIHelper *apiHelper;
     apiHelper = [[APIHelper alloc] init];
     [self getProfileInfo];
     [self updateCurrentFriend];
+    [self displayProfileInfo];
     [self addToolbar];
+    
+}
+
+-(void)viewWillLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"resizing scrollview");
+    CGRect visibleRect;
+    visibleRect.origin = self.scrollview.contentOffset;
+    visibleRect.size = self.scrollview.contentSize;
+    self.scrollview.contentSize = CGSizeMake(visibleRect.size.width, visibleRect.size.height+44);
+    //self.scrollview.contentSize = CGSizeMake(320,800);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +73,7 @@ APIHelper *apiHelper;
             
             NSDictionary *profile = [response objectForKey:@"profile"];
             self.username = [profile objectForKey:@"username"];
+            NSLog(@"dict:%@ \n username: %@",profile,self.username);
             self.about = [profile objectForKey:@"about"];
             self.age = [profile objectForKey:@"age"];
             self.foodPreferences = [profile objectForKey:@"foodPreferences"];
@@ -94,6 +107,15 @@ APIHelper *apiHelper;
             }
         }
     }
+}
+
+- (void)displayProfileInfo {
+    self.usernameLabel.text = self.username ? self.username : @"(error)";
+    self.aboutLabel.text = self.about ? self.about : @"(none)";
+    self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
+    self.ageLabel.text = self.age ? self.age : @"(not specified)";
+    self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
+    self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
 
 - (void)addToolbar {
@@ -170,6 +192,7 @@ APIHelper *apiHelper;
             
             //create new instance of friend and save it to user
             self.currentFriend = [[Friend alloc] initWithid:self.targetid andUsername:self.username];
+            [self.currentFriend toString];
             [self.user.friends addObject:self.currentFriend];
             [self saveFriends];
             [self.navigationController popToRootViewControllerAnimated:YES];

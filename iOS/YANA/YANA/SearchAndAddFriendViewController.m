@@ -25,6 +25,12 @@ APIHelper *apiHelper;
 
 #pragma mark - Setup
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self initializeUser]; //used to update friends list for filtering
+    [self displaySearchResult];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeUser];
@@ -45,11 +51,9 @@ APIHelper *apiHelper;
 #pragma mark - Search
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    //NSLog(@"searchBarTextDidBeginEditing");
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"textDidChange");
     if ([searchText length] == 0)
     {
         [searchBar performSelector:@selector(resignFirstResponder)
@@ -59,7 +63,6 @@ APIHelper *apiHelper;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"Cancel clicked");
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -137,7 +140,6 @@ APIHelper *apiHelper;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"cellForRowAtIndexPath");
     static NSString *addFriendCellIdentifier = @"addFriendCell";
     
     AddFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:addFriendCellIdentifier];
@@ -170,7 +172,6 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
-    
 }
 
 #pragma mark - Actions

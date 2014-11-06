@@ -36,7 +36,6 @@ APIHelper *apiHelper;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self updateFriends];
-    
 }
 
 - (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue
@@ -194,7 +193,6 @@ APIHelper *apiHelper;
         InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
         
         Friend *friend = self.allFriends[indexPath.row];
-        NSLog(@"friend username: %@", friend.friendUsername);
         [cell.friendUsername setText:friend.friendUsername];
         
         cell.inviteButton.tag = indexPath.row;

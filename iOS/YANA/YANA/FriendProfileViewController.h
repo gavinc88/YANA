@@ -17,5 +17,12 @@
 @property (nonatomic, strong) Friend *currentFriend;
 @property (nonatomic) BOOL removed;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *aboutLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *foodPreferencesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
 
 @end
