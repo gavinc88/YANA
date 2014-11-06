@@ -237,7 +237,7 @@ NSString* const action_update_device_token = @"users/update_device_token";
                           mealRequest.restaurant, @"restaurant",
                           mealRequest.comment, @"comment",
                           nil];
-    
+    NSLog(@"%@",args);
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;

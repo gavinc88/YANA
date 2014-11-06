@@ -16,6 +16,9 @@
 #import "SearchAndAddFriendViewController.h"
 #import "UserProfileViewController.h"
 #import "FriendProfileViewController.h"
+#import "MealRequestsTableViewController.h"
+#import "InviteFriendsTableViewController.h"
+#import "MealRequestsNavigationController.h"
 
 @interface FriendsTableViewController ()
 
@@ -30,12 +33,41 @@ APIHelper *apiHelper;
 
 #pragma mark - Segue
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self updateFriends];
+    
+}
+
 - (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue
 {
     SearchAndAddFriendViewController *source = [segue sourceViewController];
     if ([source.addedFriends count]) {
-        [self sorthFriends];
+        [self sortFriends];
         [self.tableView reloadData];
+    }
+}
+
+- (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
+{
+    if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
+        //update meal request table view with new meal request
+        InviteFriendsTableViewController *source = [segue sourceViewController];
+        if (source.mealRequestCreated && source.mealRequest) {
+            self.tabBarController.selectedIndex = 0;
+            MealRequestsNavigationController *requestTab = [self.tabBarController.childViewControllers objectAtIndex:0];
+            MealRequestsTableViewController *requestTabView = (MealRequestsTableViewController *)requestTab.topViewController;
+            [requestTabView.mealRequestsFromSelf addObject:source.mealRequest];
+            [requestTabView.tableView reloadData];
+        }else{
+            NSLog(@"meal request is null");
+        }
+    }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
+        self.tabBarController.selectedIndex = 0;
+        //clear friend selection
+        for(Friend *friend in self.user.friends){
+            friend.selected = NO;
+        }
     }
 }
 
@@ -47,6 +79,8 @@ APIHelper *apiHelper;
     }else if([segue.identifier isEqualToString:@"openUserProfile"]) {
         UserProfileViewController *destViewController = segue.destinationViewController;
         destViewController.hidesBottomBarWhenPushed = YES;
+    }else if([segue.identifier isEqualToString:@"inviteToMealRequest"]) {
+        
     }
 }
 
@@ -85,10 +119,14 @@ APIHelper *apiHelper;
 - (void)initializeFriends{
     self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
     self.allFriends = self.user.friends;
-    
-    [self sorthFriends];
-    
+    [self sortFriends];
     [self saveFriends];
+}
+
+- (void)updateFriends{
+    [self initializeUser];
+    [self initializeFriends];
+    [self.tableView reloadData];
 }
 
 - (void)initializeMockFriends{
@@ -108,7 +146,7 @@ APIHelper *apiHelper;
     [self.allFriends addObject:f2];
     [self.allFriends addObject:f3];
     
-    [self sorthFriends];
+    [self sortFriends];
 }
 
 #pragma mark - Table view data source
@@ -156,7 +194,7 @@ APIHelper *apiHelper;
         InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
         
         Friend *friend = self.allFriends[indexPath.row];
-        
+        NSLog(@"friend username: %@", friend.friendUsername);
         [cell.friendUsername setText:friend.friendUsername];
         
         cell.inviteButton.tag = indexPath.row;
@@ -174,7 +212,6 @@ APIHelper *apiHelper;
     }
     FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
     if(selectedFriend){
-        viewController.userid = self.user.userid;
         viewController.targetid = selectedFriend.friendid;
         viewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:viewController animated:YES];
@@ -220,7 +257,7 @@ BOOL deleted = NO;
 
 #pragma mark - Actions
 
-- (void)sorthFriends{
+- (void)sortFriends{
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
                                                  ascending:YES];
@@ -229,7 +266,6 @@ BOOL deleted = NO;
     //sort alphabetically
     NSArray *sortedArray;
     sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
-    
     [self.friendsWhoAddedYou removeAllObjects];
     [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
     
@@ -283,12 +319,11 @@ BOOL deleted = NO;
 }
 
 - (IBAction)inviteButtonClicked:(UIButton *)sender {
-    //Friend *friend = self.friendsWhoAddedYou[sender.tag];
-    [self.tableView reloadData];
+    Friend *friend = self.allFriends[sender.tag];
+    friend.selected = YES;
 }
 
 - (void)deleteFriend:(Friend *)friend {
-    NSLog(@"delete clicked");
     //update server
     NSDictionary *response = [apiHelper deleteFriend:friend.friendid fromYou:self.user.userid];
     

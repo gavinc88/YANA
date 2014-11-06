@@ -9,12 +9,12 @@
 #import "MealRequestsTableViewController.h"
 #import "AppDelegate.h"
 #import "APIHelper.h"
-#import "MealRequest.h"
 #import "MealRequestWithButtonsTableViewCell.h"
 #import "MealRequestWithoutButtonsTableViewCell.h"
 #import "CreateMealRequestViewController.h"
 #import "UserProfileViewController.h"
 #import "InviteFriendsTableViewController.h"
+#import "Friend.h"
 
 @interface MealRequestsTableViewController ()
 
@@ -34,7 +34,7 @@ APIHelper *apiHelper;
 - (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
 {
     if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
-        NSLog(@"returned from InviteFriends");
+        //update meal request table view with new meal request
         InviteFriendsTableViewController *source = [segue sourceViewController];
         if (source.mealRequestCreated && source.mealRequest) {
             //[source.mealRequest toString];
@@ -44,8 +44,10 @@ APIHelper *apiHelper;
             NSLog(@"meal request is null");
         }
     }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
-        NSLog(@"returned from CreateMealRequest");
-        
+        //clear friend selection
+        for(Friend *friend in self.user.friends){
+            friend.selected = NO;
+        }
     }
 }
 

@@ -26,13 +26,14 @@ APIHelper *apiHelper;
     self.mealRequestCreated = NO;
     apiHelper = [[APIHelper alloc] init];
     [self initializeUser];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-    
     [self initializeFriends];
-    
+    [self preselectFriends];
+    if([self.selectedFriends count]){
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     self.tableView.rowHeight = 44;
-    
-    [self.mealRequest toString];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,8 +47,6 @@ APIHelper *apiHelper;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepraring segue back to MealRequestsViewController");
-    
     [self createMealRequest];
 }
 
@@ -85,7 +84,11 @@ APIHelper *apiHelper;
         [alert show];
     }
     
+    //clear selected friends after meal request created
+    [self clearFriendSelection];
 }
+
+#pragma mark - Selected Friends Management
 
 - (void) initializeMockFriends {
     self.allFriends = [[NSMutableArray alloc] init];
@@ -117,14 +120,28 @@ APIHelper *apiHelper;
         
         //prepare for sorting
         NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                     ascending:YES];
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername" ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         //sort
         NSArray *sortedArray;
         sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
         [self.allFriends removeAllObjects];
         [self.allFriends addObjectsFromArray:sortedArray];
+    }
+}
+
+- (void) preselectFriends {
+    for(Friend *friend in self.allFriends){
+        if(friend.selected){
+            [self.selectedFriends addObject:friend.friendid];
+        }
+    }
+}
+
+//friend.selected is persisted in the friend object, must clear it so the checklist starts fresh for the next create meal request
+- (void) clearFriendSelection {
+    for(Friend *friend in self.allFriends){
+        friend.selected = NO;
     }
 }
 

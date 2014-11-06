@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface MainTabBarController : UITabBarController
+@interface MainTabBarController : UITabBarController<UITabBarControllerDelegate, UITabBarDelegate>
+
+@property (nonatomic,retain) IBOutlet UITabBarController *tabController;
 
 @end

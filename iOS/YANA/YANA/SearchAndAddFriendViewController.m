@@ -158,7 +158,6 @@ APIHelper *apiHelper;
     Friend *selectedFriend = [self.tableData objectAtIndex:indexPath.row];
     FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
     if(selectedFriend){
-        viewController.userid = self.user.userid;
         viewController.targetid = selectedFriend.friendid;
         viewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:viewController animated:YES];

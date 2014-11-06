@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Friend.h"
 
 @interface FriendProfileViewController : UIViewController
 
-@property (nonatomic, strong) NSString* userid; //id of logged in user
 @property (nonatomic, strong) NSString* targetid; //id of profile viewed
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) Friend *currentFriend;
+@property (nonatomic) BOOL removed;
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "MealRequest.h"
 
 @interface MealRequestsTableViewController : UITableViewController
 
@@ -16,6 +17,8 @@
 @property (nonatomic, strong) NSMutableArray *mealRequestsFromOthers;
 
 @property (nonatomic, strong) User *user;
+
+@property (nonatomic, strong) MealRequest *addedSelfRequest;
 
 
 

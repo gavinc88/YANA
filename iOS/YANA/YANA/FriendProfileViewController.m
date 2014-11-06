@@ -7,7 +7,9 @@
 //
 
 #import "FriendProfileViewController.h"
+#import "AppDelegate.h"
 #import "APIHelper.h"
+#import "CreateMealRequestViewController.h"
 
 @interface FriendProfileViewController ()
 
@@ -29,8 +31,10 @@ APIHelper *apiHelper;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initializeUser];
     apiHelper = [[APIHelper alloc] init];
     [self getProfileInfo];
+    [self updateCurrentFriend];
     [self addToolbar];
 }
 
@@ -39,8 +43,13 @@ APIHelper *apiHelper;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initializeUser{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.user = ad.user;
+}
+
 - (void)getProfileInfo {
-    NSDictionary *response = [apiHelper getProfile:self.userid targetid:self.targetid];
+    NSDictionary *response = [apiHelper getProfile:self.user.userid targetid:self.targetid];
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
@@ -75,7 +84,16 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
+}
 
+- (void)updateCurrentFriend {
+    if(self.isFriend){
+        for(Friend *f in self.user.friends){
+            if([f.friendid isEqualToString:self.targetid]){
+                self.currentFriend = f;
+            }
+        }
+    }
 }
 
 - (void)addToolbar {
@@ -101,14 +119,83 @@ APIHelper *apiHelper;
 
 - (IBAction)inviteClicked:(id)sender {
     NSLog(@"Invite Selected");
+    self.currentFriend.selected = YES;
+    //segue to create meal request
+    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateMealRequestNavigationController"];
+    viewController.hidesBottomBarWhenPushed = YES;
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 - (IBAction)removeClicked:(id)sender {
     NSLog(@"Remove Selected");
+    NSDictionary *response = [apiHelper deleteFriend:self.targetid fromYou:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            [self.user.friends removeObject:self.currentFriend];
+            [self saveFriends];
+            self.removed = YES;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (IBAction)addClicked:(id)sender {
-    NSLog(@"Remove Selected");
+    NSLog(@"Add Selected");
+    NSDictionary *response = [apiHelper addFriend:self.targetid toYou:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            //create new instance of friend and save it to user
+            self.currentFriend = [[Friend alloc] initWithid:self.targetid andUsername:self.username];
+            [self.user.friends addObject:self.currentFriend];
+            [self saveFriends];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Can't add friend. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void) saveFriends{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ad.user = self.user;
 }
 
 /*
