@@ -11,6 +11,7 @@
 #import "User.h"
 #import "OAMutableURLRequest.h"
 #import "InviteFriendsTableViewController.h"
+#import "CreateMealRequestViewController.h"
 
 @interface RestaurantSearchViewController ()
 
@@ -143,6 +144,16 @@
 
 - (MealRequest *)prepareMealRequest {
     return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:self.time restaurant:self.selectedRestaurant comment:nil];
+}
+
+#import "CreateMealRequestViewController.h"
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+    if (![parent isEqual:self.parentViewController]) {
+        NSLog(@"Back pressed");
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.selectedRestaurant = self.selectedRestaurant;
+    }
 }
 
 /*

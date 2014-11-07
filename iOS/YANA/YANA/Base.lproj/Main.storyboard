@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -262,11 +262,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Search" id="2DN-La-jKL">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DyY-xp-pwz">
-                            <connections>
-                                <segue destination="Xja-WT-uZ8" kind="unwind" unwindAction="unwindFromCreateMealRequest:" id="4gB-fJ-LqI"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Invite Friends" id="VdO-1Q-k7n">
                             <connections>
                                 <segue destination="Twq-2p-gmz" kind="show" identifier="inviteFriendsButton" id="MJw-Ov-P4X"/>
@@ -279,7 +274,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMP-Vl-ZMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Xja-WT-uZ8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3056" y="-492"/>
         </scene>
