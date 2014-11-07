@@ -31,6 +31,7 @@ APIHelper *apiHelper;
     [self initializeUser];
     [self getAllRequests];
     [self getAllFriends];
+    [self getFriendsWhoAddedYou];
     [self updateUser];
     self.delegate = self;
 }
@@ -142,6 +143,40 @@ APIHelper *apiHelper;
     } else if(tabBarController.selectedIndex == 1) {
 //        FriendsTableViewController *friendsTabView = [self.tabBarController.childViewControllers objectAtIndex:0];
 //        NSLog(@"Friends Tab selected");
+    }
+}
+
+- (void)getFriendsWhoAddedYou{
+    self.user.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    
+    NSDictionary *response = [apiHelper getFriendRequests:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"from_id"] andUsername:friend[@"from_username"]];
+                [self.user.friendsWhoAddedYou addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Can't get friends who added you. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 

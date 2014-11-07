@@ -119,7 +119,7 @@ APIHelper *apiHelper;
 }
 
 - (void)initializeFriends{
-    self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    self.friendsWhoAddedYou = self.user.friendsWhoAddedYou;
     self.allFriends = self.user.friends;
     [self sortFriends];
     [self saveFriends];
@@ -170,7 +170,7 @@ APIHelper *apiHelper;
     
     if(section == 0){
         if([self.friendsWhoAddedYou count]){
-            return @"Who Added You";
+            return @"Friends Who Added You";
         }else{
             return nil;
         }
@@ -365,6 +365,7 @@ BOOL deleted = NO;
 
 - (void) saveFriends{
     self.user.friends = self.allFriends;
+    self.user.friendsWhoAddedYou = self.friendsWhoAddedYou;
     AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     ad.user = self.user;
 }
