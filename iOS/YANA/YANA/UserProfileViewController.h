@@ -10,8 +10,26 @@
 #import "User.h"
 
 @interface UserProfileViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextView *userInfo;
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) User *user;
+@property (strong, nonatomic) IBOutlet UITextField *usernameBox;
+@property (strong, nonatomic) IBOutlet UITextField *aboutBox;
+@property (strong, nonatomic) IBOutlet UITextField *genderBox;
+@property (strong, nonatomic) IBOutlet UITextField *ageBox;
+@property (strong, nonatomic) IBOutlet UITextField *foodPreferencesBox;
+@property (strong, nonatomic) IBOutlet UITextField *phoneNumberBox;
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *aboutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *genderLabel;
+@property (strong, nonatomic) IBOutlet UILabel *ageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *foodPreferencesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *about;
+@property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSString *age;
+@property (strong, nonatomic) NSString *foodPreferences;
+@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
