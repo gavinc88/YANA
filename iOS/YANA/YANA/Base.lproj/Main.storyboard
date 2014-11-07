@@ -142,6 +142,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="updateButtonClicked:" destination="fEm-fF-NIK" eventType="touchUpInside" id="Szy-BI-6Qb"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnu-Ei-zZg">
                                         <rect key="frame" x="18" y="380" width="271" height="30"/>
@@ -237,6 +240,7 @@
                         <outlet property="phoneNumberBox" destination="nhn-oX-Rgc" id="BKD-Yv-QxJ"/>
                         <outlet property="phoneNumberLabel" destination="sk1-Sm-zMH" id="vJ9-L3-bik"/>
                         <outlet property="scrollView" destination="FbL-c2-yTF" id="Ck9-12-lMH"/>
+                        <outlet property="updateButton" destination="PZm-o1-afa" id="frA-pn-6rY"/>
                         <outlet property="usernameBox" destination="IsQ-Y4-zFF" id="HGV-51-Le1"/>
                         <outlet property="usernameLabel" destination="C97-VW-qqf" id="0cj-vO-5oM"/>
                     </connections>

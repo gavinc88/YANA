@@ -31,5 +31,7 @@
 @property (strong, nonatomic) NSString *foodPreferences;
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIButton *updateButton;
+- (IBAction)updateButtonClicked:(id)sender;
 
 @end

@@ -59,7 +59,8 @@ APIHelper *apiHelper;
 }
 
 - (void)getProfileInfo {
-    NSDictionary *response = [apiHelper getProfile:self.user.userid targetid:self.user.userid];
+    APIHelper *helper = [[APIHelper alloc] init];
+    NSDictionary *response = [helper getProfile:self.user.userid targetid:self.user.userid];
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
@@ -104,6 +105,11 @@ APIHelper *apiHelper;
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
 
+- (void)updateProfile {
+    APIHelper *helper = [[APIHelper alloc] init];
+    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[[NSNumber alloc] initWithInt:2]  about:self.aboutLabel.text gender:self.genderLabel.text age:self.ageLabel.text foodPreferences:self.foodPreferencesLabel.text phoneNumber:self.phoneNumberLabel.text];
+    NSLog(@"response is %@", response);
+}
 
 - (IBAction)logoutClicked:(UIButton *)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -136,4 +142,15 @@ APIHelper *apiHelper;
     self.phoneNumberBox.hidden = NO;
 }
 
+- (IBAction)updateButtonClicked:(id)sender {
+    [self updateProfile];
+    [self getProfileInfo];
+    [self displayProfileInfo];
+    self.usernameBox.hidden = YES;
+    self.aboutBox.hidden = YES;
+    self.ageBox.hidden = YES;
+    self.foodPreferencesBox.hidden = YES;
+    self.genderBox.hidden = YES;
+    self.phoneNumberBox.hidden = YES;
+}
 @end

@@ -68,6 +68,15 @@ extern NSString* const action_get_profile_by_id;
 - (NSDictionary *) getProfile:(NSString *)userid
                      targetid:(NSString *)targetid;
 
+- (NSDictionary *) editProfile: (NSString *)userid
+                   withPrivacy: (NSNumber *)privacy
+                         about: (NSString *)about
+                        gender: (NSString *)gender
+                           age: (NSString *)age
+               foodPreferences: (NSString *)foodPreferences
+                   phoneNumber: (NSString *)phoneNumber;
+
+
 - (NSDictionary *) updateDeviceToken:(NSString *)deviceToken
                              forUser:(NSString *)userid;
 
