@@ -31,7 +31,7 @@ NSString* const action_update_device_token = @"users/update_device_token";
 NSString* const action_get_friend_list = @"friends/friend_list";
 NSString* const action_get_friend_requests = @"friends/friend_requests";
 NSString* const action_get_profile_by_id = @"users/profile";
-
+NSString* const action_edit_profile = @"users/edit_profile";
 
 - (instancetype) init{
     self = [super init];
@@ -359,6 +359,24 @@ NSString* const action_get_profile_by_id = @"users/profile";
                           userid, @"user_id",
                           nil];
     
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
+}
+
+- (NSDictionary *) editProfile:(NSString *)userid withPrivacy:(NSNumber *)privacy about:(NSString *)about gender:(NSString *)gender age:(NSString *)age foodPreferences:(NSString *)foodPreferences phoneNumber:(NSString *)phoneNumber {
+    NSString *requestURL = [self generateFullUrl:action_edit_profile];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          userid, @"user_id",
+                          privacy, @"privacy",
+                          about, @"about",
+                          gender, @"gender",
+                          age, @"age",
+                          foodPreferences, @"foodPreferences",
+                          phoneNumber, @"phoneNumber",
+                          nil];
+    NSLog(@"%@",args);
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;
