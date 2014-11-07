@@ -20,8 +20,6 @@
 
 @implementation FriendsTableViewControllerTest
 
-FriendsTableViewController *mockTableViewContorller;
-
 - (void)setUp {
     [super setUp];
     
@@ -35,7 +33,6 @@ FriendsTableViewController *mockTableViewContorller;
 }
 
 - (void)tearDown {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     self.vc = nil;
     [super tearDown];
 }
@@ -48,22 +45,16 @@ FriendsTableViewController *mockTableViewContorller;
     [self.vc.allFriends addObjectsFromArray:@[fb,fa,fc,fd]];
 }
 
--(void)test00ThatViewLoads
-{
-    XCTAssertNotNil(self.vc.view, @"View not initiated properly");
-}
-
--(void)test01ThatTableViewLoads
-{
+-(void)test1ThatTableViewLoads {
     XCTAssertNotNil(self.vc.tableView, @"TableView not initiated");
 }
 
-- (void)test02UserInitialized {
+- (void)test2UserInitialized {
     XCTAssertEqual(self.vc.user.userid, @"123");
     XCTAssertEqual(self.vc.user.username, @"tester");
 }
 
-- (void)test03AddFriends {
+- (void)test3AddFriends {
     XCTAssertEqual([self.vc.allFriends count], 0);
     
     [self initializeMockFriends]; //add 4 friends
@@ -73,7 +64,7 @@ FriendsTableViewController *mockTableViewContorller;
     XCTAssertEqual([self.vc.tableView numberOfRowsInSection:1], 4);
 }
 
-- (void)test04SortFriends {
+- (void)test4SortFriends {
     [self initializeMockFriends];
     
     //check default order
@@ -91,7 +82,7 @@ FriendsTableViewController *mockTableViewContorller;
     XCTAssertEqual(friendAtIndex3AfterSort.friendUsername, @"Friend D", @"Friend D should still be at index 3 after sorting.");
 }
 
-- (void)test05UseInviteFriendTableViewCell {
+- (void)test5UseInviteFriendTableViewCell {
     [self initializeMockFriends];
     
     UITableViewCell *cellAtIndex0 = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];

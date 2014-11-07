@@ -91,7 +91,7 @@
         <!--Meal Requests-->
         <scene sceneID="SBj-0B-v9a">
             <objects>
-                <tableViewController id="exD-5H-l1U" customClass="MealRequestsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MealRequestsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="exD-5H-l1U" customClass="MealRequestsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="v1W-xf-6uV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1183,8 +1183,8 @@
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JgW-eq-FsQ"/>
-        <segue reference="hu3-sb-lcf"/>
+        <segue reference="MVK-Qo-Xx0"/>
+        <segue reference="SzM-vW-YgW"/>
         <segue reference="MJw-Ov-P4X"/>
     </inferredMetricsTieBreakers>
 </document>

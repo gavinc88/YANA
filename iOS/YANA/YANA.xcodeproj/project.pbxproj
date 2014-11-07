@@ -57,6 +57,7 @@
 		86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */; };
 		86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */; };
 		86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */; };
+		86AFD2301A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		86AC7CE019F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendNavigationController.h; sourceTree = "<group>"; };
 		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
 		86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendFunctionalTest.m; sourceTree = "<group>"; };
+		86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewControllerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				861939221A0B072400B8A193 /* FriendsTableViewControllerTest.m */,
+				86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */,
 			);
 			name = "Unit Tests";
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86AFD2301A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m in Sources */,
 				86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */,
 				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,
 				861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */,

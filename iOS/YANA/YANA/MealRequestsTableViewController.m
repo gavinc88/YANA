@@ -262,6 +262,7 @@ APIHelper *apiHelper;
             ([request.restaurant isEqualToString:@""] || !request.restaurant) ? @"(Location TBD)" : [NSString stringWithFormat:@"@ %@", request.restaurant]];
 }
 
+//used for accepted user
 - (NSString *)getUsernameByid:(NSString *)userid {
     
     NSDictionary *response = [apiHelper searchUserById:userid];
@@ -277,8 +278,6 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)acceptButtonClicked:(UIButton *)sender {
-    NSLog(@"accept clicked");
-    NSLog(@"current Row=%d", sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
     
     NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"accept" ForUser:self.user.userid];
@@ -330,8 +329,6 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)declineButtonClicked:(UIButton *)sender {
-    NSLog(@"decline clicked");
-    NSLog(@"current Row=%d",sender.tag);
     MealRequest *request = self.mealRequestsFromOthers[sender.tag];
     
     NSDictionary *response = [apiHelper handleMealRequestsForRequest:request.requestid WithAction:@"decline" ForUser:self.user.userid];
