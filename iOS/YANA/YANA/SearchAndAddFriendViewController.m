@@ -125,6 +125,13 @@ APIHelper *apiHelper;
     //remove all filtered friends afterwards to avoid mutating self.tableData
     [self.tableData removeObjectsInArray:toBeFilteredFriends];
     
+    //sort search result alphabetically
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [self.tableData sortedArrayUsingDescriptors:sortDescriptors];
+    [self.tableData removeAllObjects];
+    [self.tableData addObjectsFromArray:sortedArray];
     [self.tableView reloadData];
 }
 

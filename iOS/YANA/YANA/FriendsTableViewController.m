@@ -98,11 +98,13 @@ APIHelper *apiHelper;
     [self.tableView setIsAccessibilityElement:YES];
     [self.tableView setAccessibilityLabel:@"Friend List"];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshFriendList)
+                  forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,24 +134,79 @@ APIHelper *apiHelper;
     [self.tableView reloadData];
 }
 
-- (void)initializeMockFriends{
-    self.friendsWhoAddedYou = [[NSMutableArray alloc] init];
-    Friend *newf1 = [[Friend alloc] initWithid:@"123" andUsername:@"Shane Wong 2"];
-    Friend *newf2 = [[Friend alloc] initWithid:@"456" andUsername:@"Kevin Hsieh 2"];
-    Friend *newf3 = [[Friend alloc] initWithid:@"789" andUsername:@"Yaohui Ye 2"];
-    [self.friendsWhoAddedYou addObject:newf1];
-    [self.friendsWhoAddedYou addObject:newf2];
-    [self.friendsWhoAddedYou addObject:newf3];
+- (void)refreshFriendList {
+    [self getAllFriends];
+    [self getFriendsWhoAddedYou];
+    [self updateFriends];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getAllFriends{
+    self.user.friends = [[NSMutableArray alloc] init];
     
-    self.allFriends = [[NSMutableArray alloc] init];
-    Friend *f1 = [[Friend alloc] initWithid:@"1" andUsername:@"Shane Wong"];
-    Friend *f2 = [[Friend alloc] initWithid:@"2" andUsername:@"Kevin Hsieh"];
-    Friend *f3 = [[Friend alloc] initWithid:@"3" andUsername:@"Yaohui Ye"];
-    [self.allFriends addObject:f1];
-    [self.allFriends addObject:f2];
-    [self.allFriends addObject:f3];
+    NSDictionary *response = [apiHelper getFriendList:self.user.userid];
     
-    [self sortFriends];
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
+                [self.user.friends addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Get all friends failed. Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Get all friends failed. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)getFriendsWhoAddedYou{
+    self.user.friendsWhoAddedYou = [[NSMutableArray alloc] init];
+    
+    NSDictionary *response = [apiHelper getFriendRequests:self.user.userid];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSArray *friends = [response objectForKey:@"friends"];
+            for(NSDictionary *friend in friends){
+                Friend *f = [[Friend alloc] initWithid:friend[@"from_id"] andUsername:friend[@"from_username"]];
+                [self.user.friendsWhoAddedYou addObject:f];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Can't get friends who added you. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Table view data source
@@ -283,8 +340,7 @@ BOOL deleted = NO;
 
 - (void)sortFriends{
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                 ascending:YES];
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     //sort alphabetically

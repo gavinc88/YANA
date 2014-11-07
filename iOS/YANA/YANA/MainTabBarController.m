@@ -135,17 +135,6 @@ APIHelper *apiHelper;
     }
 }
 
-//may be useful in the future
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (tabBarController.selectedIndex == 0) {
-//        NSLog(@"Requsts Tab selected");
-//        MealRequestsTableViewController *requestsTabView = [[self.tabBarController.childViewControllers objectAtIndex:0] objectAtIndex:0];
-    } else if(tabBarController.selectedIndex == 1) {
-//        FriendsTableViewController *friendsTabView = [self.tabBarController.childViewControllers objectAtIndex:0];
-//        NSLog(@"Friends Tab selected");
-    }
-}
-
 - (void)getFriendsWhoAddedYou{
     self.user.friendsWhoAddedYou = [[NSMutableArray alloc] init];
     
@@ -177,6 +166,17 @@ APIHelper *apiHelper;
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
         [alert show];
+    }
+}
+
+//may be useful in the future
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (tabBarController.selectedIndex == 0) {
+        //        NSLog(@"Requsts Tab selected");
+        //        MealRequestsTableViewController *requestsTabView = [[self.tabBarController.childViewControllers objectAtIndex:0] objectAtIndex:0];
+    } else if(tabBarController.selectedIndex == 1) {
+        //        FriendsTableViewController *friendsTabView = [self.tabBarController.childViewControllers objectAtIndex:0];
+        //        NSLog(@"Friends Tab selected");
     }
 }
 
