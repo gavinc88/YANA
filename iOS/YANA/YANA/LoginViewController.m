@@ -11,6 +11,7 @@
 #import "APIHelper.h"
 #import "User.h"
 #import "MainTabBarController.h"
+#import "KeychainItemWrapper.h"
 
 @interface LoginViewController ()
 
@@ -26,6 +27,12 @@ APIHelper *apiHelper;
 {
     [super viewDidLoad];
     apiHelper = [[APIHelper alloc]init];
+    
+    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+    if ([keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)] != nil) {
+        self.usernameText.text = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
+        self.passwordText.text = [keychainWrapper objectForKey: (__bridge id)(kSecValueData)];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +44,16 @@ APIHelper *apiHelper;
     NSDictionary *response = [apiHelper loginWithUsername:self.usernameText.text andPassword:self.passwordText.text];
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
+        // request succeeded
+        if (statusCode == 1) {
+            KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc]    initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+            NSString *olduser = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
+            if (![olduser isEqualToString:self.usernameText.text]) {
+                UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"Save username and password?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles: @"Delete all credentials", nil];
+                [sheet showInView:self.view];
+            }
+        }
+        
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             NSString *userid = [response objectForKey:@"user_id"];
@@ -79,6 +96,14 @@ APIHelper *apiHelper;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             NSString *userid = [response objectForKey:@"user_id"];
             self.user = [[User alloc] initWithUserid:userid username:self.usernameText.text];
+            //keychain
+            KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc]    initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+            NSString *olduser = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
+            if (![olduser isEqualToString:self.usernameText.text]) {
+                UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"Save username and password?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles: @"Delete all credentials", nil];
+                [sheet showInView:self.view];
+            }
+            
             [self performSegueWithIdentifier:@"openMain" sender:self];
         }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.INVALID_USERNAME]){
             UIAlertView *alert = [[UIAlertView alloc]
@@ -172,6 +197,19 @@ APIHelper *apiHelper;
     
     [textField resignFirstResponder];
     return YES;
+}
+    
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSString *choice = [actionSheet buttonTitleAtIndex: buttonIndex];
+    if ([choice isEqualToString: @"Yes"]) {
+        // Save user info in the keychain
+        KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+        [keychainWrapper setObject:self.usernameText.text forKey:(__bridge id)(kSecAttrAccount)];
+        [keychainWrapper setObject:self.passwordText.text forKey:(__bridge id)(kSecValueData)];
+    } else if ([choice isEqualToString: @"Delete all credentials"]){
+        KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+        [keychainWrapper resetKeychainItem];
+    }
 }
 
 //- (IBAction)textFieldDidEnd:(id)sender {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340B968B1A0D7E7200C863BD /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 340B968A1A0D7E7200C863BD /* KeychainItemWrapper.m */; };
 		3430B4721A085A320090A9C9 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B44E1A085A320090A9C9 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4731A085A320090A9C9 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4501A085A320090A9C9 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4741A085A320090A9C9 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4521A085A320090A9C9 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -106,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		340B968A1A0D7E7200C863BD /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		340B96921A0D7E9600C863BD /* KeychainItemWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		3430B44D1A085A320090A9C9 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		3430B44E1A085A320090A9C9 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		3430B44F1A085A320090A9C9 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 			children = (
 				86A9B96319EFACE6005A7314 /* LoginViewController.h */,
 				86A9B96419EFACE6005A7314 /* LoginViewController.m */,
+				340B968A1A0D7E7200C863BD /* KeychainItemWrapper.m */,
+				340B96921A0D7E9600C863BD /* KeychainItemWrapper.h */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
 				3430B4821A085A320090A9C9 /* OATokenManager.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
+				340B968B1A0D7E7200C863BD /* KeychainItemWrapper.m in Sources */,
 				86A3351119EC7E0F000DFA43 /* main.m in Sources */,
 				86A9B95719EF8245005A7314 /* MealRequestsTableViewController.m in Sources */,
 				3430B47A1A085A320090A9C9 /* OADataFetcher.m in Sources */,

@@ -43,6 +43,11 @@ APIHelper *apiHelper;
     self.scrollView.contentSize = CGSizeMake(visibleRect.size.width, visibleRect.size.height);
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.placeholder = nil;
+}
+
+
 - (void)initializeUser{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = appDelegate.user;
