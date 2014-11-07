@@ -17,5 +17,7 @@
 
 @property (nonatomic, strong) NSString *deviceToken;
 
+@property (nonatomic, strong) NSString *selectedRestaurant;
+
 @end
 

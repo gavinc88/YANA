@@ -32,6 +32,15 @@ NSDateFormatter *timeFormatter;
     [self.timePicker setDate: currentTime];
     self.time = [timeFormatter stringFromDate:[self.timePicker date]];
     self.type = @"other";
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self.restaurantTextBox setText:@""];
+    appDelegate.selectedRestaurant = @"";
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self.restaurantTextBox setText:appDelegate.selectedRestaurant];
 }
 
 /* Pass the MealRequest Object to InviteFriendsViewController */
