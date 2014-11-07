@@ -95,6 +95,7 @@ APIHelper *apiHelper;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     //for testing purposes
+    [self.tableView setIsAccessibilityElement:YES];
     [self.tableView setAccessibilityLabel:@"Friend List"];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -159,10 +160,26 @@ APIHelper *apiHelper;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0)
-        return [self.friendsWhoAddedYou count];
-    else if(section == 1)
-        return [self.allFriends count];
+    if ([self.allFriends count] || [self.friendsWhoAddedYou count]) {
+        if(section == 0)
+            return [self.friendsWhoAddedYou count];
+        else if(section == 1)
+            return [self.allFriends count];
+    } else {
+        // Display a message when the table is empty
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        messageLabel.text = @"No friends found.\nPlease add friends by\npressing the \"+\" button.";
+        messageLabel.textColor = [UIColor blackColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        messageLabel.font = [UIFont fontWithName:@"Palatino-Italic" size:20];
+        [messageLabel sizeToFit];
+        
+        self.tableView.backgroundView = messageLabel;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+    }
     return 0;
 }
 
@@ -292,18 +309,19 @@ BOOL deleted = NO;
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
-            [self.friendsWhoAddedYou removeObject:friend];
-            [self.allFriends addObject:friend];
+//            [self.friendsWhoAddedYou removeObject:friend];
+//            [self.allFriends addObject:friend];
+            [self.user.friendsWhoAddedYou removeObject:friend];
             [self.user.friends addObject:friend];
             
             //resort all friends before reload
-            NSSortDescriptor *sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-                                                         ascending:YES];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-            [self.allFriends removeAllObjects];
-            [self.allFriends addObjectsFromArray:sortedArray];
+//            NSSortDescriptor *sortDescriptor;
+//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
+//                                                         ascending:YES];
+//            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//            NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
+//            [self.allFriends removeAllObjects];
+//            [self.allFriends addObjectsFromArray:sortedArray];
             [self.tableView reloadData];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]

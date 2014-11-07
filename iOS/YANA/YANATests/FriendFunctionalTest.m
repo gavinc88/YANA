@@ -72,7 +72,7 @@
 
 - (void)test2InviteFriendFromFriendsTableViewController {
     //tap on invite to invite "gavin" from FriendsTableViewController
-    [tester tapScreenAtPoint:CGPointMake(300, 100)];
+    [tester tapScreenAtPoint:CGPointMake(300, 170)];
     [tester waitForViewWithAccessibilityLabel:@"Create Meal Request"];
     
     //tap on invite friends to check if "gavin" is selected
@@ -86,7 +86,7 @@
 
 - (void)test3InviteFriendFromFriendProfile {
     //tap on row to invite "gavin2" from FriendProfileViewController
-    [tester tapScreenAtPoint:CGPointMake(100, 150)];
+    [tester tapScreenAtPoint:CGPointMake(100, 220)];
     [tester waitForViewWithAccessibilityLabel:@"Friend Profile"];
     [tester tapViewWithAccessibilityLabel:@"Invite" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"Create Meal Request"];
@@ -118,16 +118,43 @@
     //verify that there is at least 1 friend in the list
     UITableView *tableView = (UITableView *)[tester waitForViewWithAccessibilityLabel:@"Friend List"];
     NSInteger friendCount = [tableView numberOfRowsInSection:1];
-    XCTAssertTrue(friendCount >= 1, @"There should 2 friends in Friend List!");
+    XCTAssertTrue(friendCount >= 1, @"There should at least 1 friend in Friend List!");
     
     //tap on row to remove "gavin2" from FriendProfileViewController
-    [tester tapScreenAtPoint:CGPointMake(100, 100)];
+    [tester tapScreenAtPoint:CGPointMake(100, 170)];
     [tester waitForViewWithAccessibilityLabel:@"Friend Profile"];
     [tester tapViewWithAccessibilityLabel:@"Remove" traits:UIAccessibilityTraitButton];
     
     //verify that the screen goes back to friends list and check that "gavin2" is gone
     [tester waitForViewWithAccessibilityLabel:@"Friends"];
     [tester waitForAbsenceOfViewWithAccessibilityLabel:@"gavin2"];
+}
+
+- (void)test6HandleRequestsFromOthers {
+    UITableView *tableView = (UITableView *)[tester waitForViewWithAccessibilityLabel:@"Friend List"];
+    NSInteger friendRequestCount = [tableView numberOfRowsInSection:0];
+    NSInteger friendCount = [tableView numberOfRowsInSection:1];
+    
+    //verify that there is at least 1 friend in friends who added you list
+    XCTAssertTrue(friendRequestCount >= 1, @"There should at least 1 friend in friends who added you list.");
+    
+    //tap on add button for "iosTester2"
+    [tester tapScreenAtPoint:CGPointMake(300, 100)];
+    
+    //check that size of friends who added you list went down by 1
+    NSInteger newFriendRequestCount = [tableView numberOfRowsInSection:0];
+    XCTAssertEqual(newFriendRequestCount, friendRequestCount - 1);
+    
+    //check that size of all friends list went up by 1
+    NSInteger newFriendCount = [tableView numberOfRowsInSection:1];
+    XCTAssertEqual(newFriendCount, friendCount + 1);
+    
+    //delete friend to reset conditions
+    [tester swipeViewWithAccessibilityLabel:@"Section 1 Row 0" inDirection:KIFSwipeDirectionLeft];
+    [tester tapViewWithAccessibilityLabel:@"Delete"];
+    
+    //verify that "gavin" is gone
+    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"iosTester2"];
 }
 
 @end
