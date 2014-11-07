@@ -70,13 +70,18 @@ APIHelper *apiHelper;
     [self initializeTimeFormatter];
     [self initializeUser];
     [self initializeMealRequests];
-    //[self initializeMockMealRequests];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //for testing purposes
+    [self.tableView setIsAccessibilityElement:YES];
+    [self.tableView setAccessibilityLabel:@"Meal Request List"];
+   
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshMealRequestList)
+                  forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,21 +89,21 @@ APIHelper *apiHelper;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)initializeTimeFormatter{
+- (void)initializeTimeFormatter {
     timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h:mm a"];
 }
 
-- (void)initializeUser{
+- (void)initializeUser {
     AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = ad.user;
 }
 
-- (void)initializeMockUser{
+- (void)initializeMockUser {
     self.user = [[User alloc] initWithUserid:@"userid" username:@"Gavin"];
 }
 
-- (void)initializeMealRequests{
+- (void)initializeMealRequests {
     self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
     self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
     
@@ -111,39 +116,56 @@ APIHelper *apiHelper;
     }
 }
 
-- (void)initializeMockMealRequests{
-    self.mealRequestsFromSelf = [[NSMutableArray alloc] init];
+- (void)refreshMealRequestList {
+    [self getAllRequests];
+    [self initializeUser];
+    [self initializeMealRequests];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getAllRequests {
+    self.user.mealRequests = [[NSMutableArray alloc] init];
     
-    NSMutableArray *tempNSMutableArray = [[NSMutableArray alloc] init];
+    NSDictionary *response = [apiHelper getAllMealRequests:self.user.userid];
     
-    MealRequest *r1 = [[MealRequest alloc]initForSelfWithRequestId:@"requestid" ownerid:self.user.userid ownername:@"Gavin" type:@"Lunch" time:@"1:00 PM"restaurant:@"Restaurant A" comment:nil acceptedUser:@"" declinedUsers:tempNSMutableArray];
-    [self.mealRequestsFromSelf addObject:r1];
-    
-    MealRequest *r2 = [[MealRequest alloc]initForSelfWithRequestId:@"requestid" ownerid:self.user.userid ownername:@"Gavin" type:@"Dinner" time:@"7:30 PM"restaurant:@"Restaurant B" comment:nil acceptedUser:@"" declinedUsers:tempNSMutableArray];
-    [self.mealRequestsFromSelf addObject:r2];
-    
-    
-    self.mealRequestsFromOthers = [[NSMutableArray alloc] init];
-    
-    MealRequest *r3 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Kevin" type:@"Dinner" time:@"6:00 PM" restaurant:@"Restaurant C" comment:nil acceptedUser:@"" declinedUsers:tempNSMutableArray selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r3]; //show buttons
-    
-    MealRequest *r4 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Shane" type:@"Other" time:@"6:30 PM" restaurant:@"Restaurant D" comment:@"latenight" acceptedUser:self.user.userid declinedUsers:tempNSMutableArray selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r4];// show accepted
-    
-    NSMutableArray *declinedUsers = [[NSMutableArray alloc] init];
-    [declinedUsers addObject:self.user.userid];
-    MealRequest *r5 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Kevin" type:@"Lunch" time:@"1:30 PM" restaurant:@"Restaurant E" comment:nil acceptedUser:@"" declinedUsers:declinedUsers selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r5]; //show declined
-    
-    MealRequest *r6 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Yaohui" type:@"Dinner" time:@"7:00 PM" restaurant:@"Restaurant F" comment:nil acceptedUser:@"someone's id" declinedUsers:tempNSMutableArray selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r6]; //show someone else accepted it; check by checking if accepted_friends = nil
-    
-    MealRequest *r7 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Kevin" type:@"Dinner" time:@"8:30 AM" restaurant:@"Restaurant G" comment:nil acceptedUser:@"" declinedUsers:tempNSMutableArray selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r7]; //test accept
-    
-    MealRequest *r8 = [[MealRequest alloc] initForOthersWithRequestId:@"requestid" ownerid:@"ownerid" ownername:@"Kevin" type:@"Dinner" time:@"11:00 PM" restaurant:@"Restaurant H" comment:nil acceptedUser:@"" declinedUsers:tempNSMutableArray selfId:self.user.userid];
-    [self.mealRequestsFromOthers addObject:r8]; //test decline
+    if (response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+            NSArray *requests = [response objectForKey:@"requests"];
+            for(NSDictionary *request in requests){
+                NSString *requestid = request[@"_id"];
+                NSString *ownerid = request[@"owner_id"];
+                NSString *ownerUsername = request[@"owner_username"];
+                NSString *mealTime = request[@"meal_time"];
+                NSString *mealType = request[@"meal_type"];
+                NSString *restaurant = request[@"restaurant"];
+                NSString *comment = request[@"comment"];
+                NSString *acceptedUser = request[@"accepted_user"];
+                NSMutableArray *declinedUsers = request[@"declined_users"];
+                
+                MealRequest *mealRequest = [[MealRequest alloc] initWithRequestId:requestid ownerid:ownerid ownername:ownerUsername type:mealType time:mealTime restaurant:restaurant comment:comment acceptedUser:acceptedUser declinedUsers:declinedUsers selfId:self.user.userid];
+                [self.user.mealRequests addObject:mealRequest];
+            }
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Get all meal requests failed. Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Server Error"
+                              message:@"Get all meal requests failed. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Table view data source
