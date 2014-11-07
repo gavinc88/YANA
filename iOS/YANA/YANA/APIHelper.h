@@ -69,10 +69,10 @@ extern NSString* const action_get_profile_by_id;
                      targetid:(NSString *)targetid;
 
 - (NSDictionary *) editProfile: (NSString *)userid
-                   withPrivacy: (NSNumber *)privacy
+                   withPrivacy: (NSNumber *) privacy
                          about: (NSString *)about
                         gender: (NSString *)gender
-                           age: (NSString *)age
+                           age: (NSNumber *) age
                foodPreferences: (NSString *)foodPreferences
                    phoneNumber: (NSString *)phoneNumber;
 

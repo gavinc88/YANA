@@ -364,7 +364,7 @@ NSString* const action_edit_profile = @"users/edit_profile";
     return jsonResponse;
 }
 
-- (NSDictionary *) editProfile:(NSString *)userid withPrivacy:(NSNumber *)privacy about:(NSString *)about gender:(NSString *)gender age:(NSString *)age foodPreferences:(NSString *)foodPreferences phoneNumber:(NSString *)phoneNumber {
+- (NSDictionary *) editProfile:(NSString *)userid withPrivacy:(NSNumber *)privacy about:(NSString *)about gender:(NSString *)gender age:(NSNumber *)age foodPreferences:(NSString *)foodPreferences phoneNumber:(NSString *)phoneNumber {
     NSString *requestURL = [self generateFullUrl:action_edit_profile];
     
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -373,10 +373,10 @@ NSString* const action_edit_profile = @"users/edit_profile";
                           about, @"about",
                           gender, @"gender",
                           age, @"age",
-                          foodPreferences, @"foodPreferences",
-                          phoneNumber, @"phoneNumber",
+                          foodPreferences, @"food_preferences",
+                          phoneNumber, @"phone_number",
                           nil];
-    NSLog(@"%@",args);
+    NSLog(@"args are %@",args);
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;

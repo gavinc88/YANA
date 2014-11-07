@@ -30,12 +30,7 @@ APIHelper *apiHelper;
                                    target:self
                                    action:@selector(editButtonPressed:)];
     self.navigationItem.rightBarButtonItem = editButton;
-    self.usernameBox.hidden = YES;
-    self.aboutBox.hidden = YES;
-    self.ageBox.hidden = YES;
-    self.foodPreferencesBox.hidden = YES;
-    self.genderBox.hidden = YES;
-    self.phoneNumberBox.hidden = YES;
+    [self hideTextField];
 
 }
 
@@ -53,6 +48,30 @@ APIHelper *apiHelper;
     self.user = appDelegate.user;
 }
 
+- (void) hideTextField {
+    self.aboutBox.hidden = YES;
+    self.ageBox.hidden = YES;
+    self.foodPreferencesBox.hidden = YES;
+    self.genderBox.hidden = YES;
+    self.phoneNumberBox.hidden = YES;
+}
+
+- (void) showTextField {
+    self.aboutBox.hidden = NO;
+    self.ageBox.hidden = NO;
+    self.foodPreferencesBox.hidden = NO;
+    self.genderBox.hidden = NO;
+    self.phoneNumberBox.hidden = NO;
+}
+
+- (void) resetTextField {
+    self.aboutBox.text = nil;
+    self.ageBox.text = nil;
+    self.foodPreferencesBox.text = nil;
+    self.genderBox.text = nil;
+    self.phoneNumberBox.text = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,17 +84,17 @@ APIHelper *apiHelper;
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
-        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+        if([helper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:helper.SUCCESS]){
             
 
             NSDictionary *profile = [response objectForKey:@"profile"];
-            self.username = [profile objectForKey:@"username"];
+            self.username = [response objectForKey:@"username"];
             NSLog(@"dict:%@ \n username: %@",profile,self.username);
             self.about = [profile objectForKey:@"about"];
-            self.age = [profile objectForKey:@"age"];
-            self.foodPreferences = [profile objectForKey:@"foodPreferences"];
+            self.age = [NSString stringWithFormat:@"%@",[profile objectForKey:@"age"]];
+            self.foodPreferences = [profile objectForKey:@"food_preferences"];
             self.gender = [profile objectForKey:@"gender"];
-            self.phoneNumber = [profile objectForKey:@"phoneNumber"];
+            self.phoneNumber = [profile objectForKey:@"phone_number"];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
@@ -97,7 +116,10 @@ APIHelper *apiHelper;
 }
 
 - (void)displayProfileInfo {
-    self.usernameLabel.text = self.username ? self.username : @"(error)";
+    self.usernameLabel.text = self.username ? self.username : self.user.username;
+    if ([self.about isEqualToString:@""]) {
+        self.aboutLabel.text = @"(none)";
+    } else self.aboutLabel.text = self.about;
     self.aboutLabel.text = self.about ? self.about : @"(none)";
     self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
     self.ageLabel.text = self.age ? self.age : @"(not specified)";
@@ -105,10 +127,12 @@ APIHelper *apiHelper;
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
 
+
+
 - (void)updateProfile {
     APIHelper *helper = [[APIHelper alloc] init];
-    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[[NSNumber alloc] initWithInt:2]  about:self.aboutLabel.text gender:self.genderLabel.text age:self.ageLabel.text foodPreferences:self.foodPreferencesLabel.text phoneNumber:self.phoneNumberLabel.text];
-    NSLog(@"response is %@", response);
+    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[NSNumber numberWithInt:[self.privacy intValue]]  about:self.aboutBox.text gender:self.genderBox.text age:[NSNumber numberWithInt:[self.ageBox.text intValue]] foodPreferences:self.foodPreferencesBox.text phoneNumber:self.phoneNumberBox.text];
+    NSLog(@"edit_profile response is %@", response);
 }
 
 - (IBAction)logoutClicked:(UIButton *)sender {
@@ -134,23 +158,25 @@ APIHelper *apiHelper;
 
 - (void)editButtonPressed:(id)sender
 {
-    self.usernameBox.hidden = NO;
-    self.aboutBox.hidden = NO;
-    self.ageBox.hidden = NO;
-    self.foodPreferencesBox.hidden = NO;
-    self.genderBox.hidden = NO;
-    self.phoneNumberBox.hidden = NO;
+    [self showTextField];
+    self.aboutBox.text = self.aboutLabel.text;
+    self.ageBox.text = self.ageLabel.text;
+    self.genderBox.text = self.genderLabel.text;
+    self.phoneNumberBox.text = self.phoneNumberLabel.text;
+    self.foodPreferencesBox.text = self.foodPreferencesLabel.text;
+    
 }
 
 - (IBAction)updateButtonClicked:(id)sender {
+//    [self validateInput];
     [self updateProfile];
     [self getProfileInfo];
     [self displayProfileInfo];
-    self.usernameBox.hidden = YES;
-    self.aboutBox.hidden = YES;
-    self.ageBox.hidden = YES;
-    self.foodPreferencesBox.hidden = YES;
-    self.genderBox.hidden = YES;
-    self.phoneNumberBox.hidden = YES;
+    [self hideTextField];
 }
+
+- (IBAction)segmentedControllerValueChanged:(id)sender {
+    self.privacy = [NSString stringWithFormat:@"%ld",(long)self.segmentedController.selectedSegmentIndex];
+}
+
 @end

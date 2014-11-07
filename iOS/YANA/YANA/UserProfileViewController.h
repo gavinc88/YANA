@@ -12,7 +12,6 @@
 @interface UserProfileViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) User *user;
-@property (strong, nonatomic) IBOutlet UITextField *usernameBox;
 @property (strong, nonatomic) IBOutlet UITextField *aboutBox;
 @property (strong, nonatomic) IBOutlet UITextField *genderBox;
 @property (strong, nonatomic) IBOutlet UITextField *ageBox;
@@ -30,8 +29,10 @@
 @property (strong, nonatomic) NSString *age;
 @property (strong, nonatomic) NSString *foodPreferences;
 @property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *privacy;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
 - (IBAction)updateButtonClicked:(id)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedController;
 
 @end
