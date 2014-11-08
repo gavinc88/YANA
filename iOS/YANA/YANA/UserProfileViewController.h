@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *about;
 @property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSString *age;
+@property (strong, nonatomic) NSNumber *age;
 @property (strong, nonatomic) NSString *foodPreferences;
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) NSString *privacy;

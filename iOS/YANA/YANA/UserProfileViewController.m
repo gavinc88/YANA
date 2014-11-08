@@ -134,7 +134,7 @@ APIHelper *apiHelper;
     } else self.aboutLabel.text = self.about;
     self.aboutLabel.text = self.about ? self.about : @"(none)";
     self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-    self.ageLabel.text = self.age ? self.age : @"(not specified)";
+    self.ageLabel.text = [NSString stringWithFormat:@"%@",self.age]? : @"(not specified)";
     self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
@@ -143,7 +143,7 @@ APIHelper *apiHelper;
 
 - (void)updateProfile {
     APIHelper *helper = [[APIHelper alloc] init];
-    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[NSNumber numberWithInt:[self.privacy intValue]]  about:self.aboutBox.text gender:self.genderBox.text age:[NSNumber numberWithInt:[self.ageBox.text intValue]] foodPreferences:self.foodPreferencesBox.text phoneNumber:self.phoneNumberBox.text];
+    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[NSNumber numberWithInt:[self.privacy intValue]]  about:self.about gender:self.gender age:self.age foodPreferences:self.foodPreferences phoneNumber:self.phoneNumber];
     NSLog(@"edit_profile response is %@", response);
 }
 
@@ -181,6 +181,31 @@ APIHelper *apiHelper;
 
 - (IBAction)updateButtonClicked:(id)sender {
 //    [self validateInput];
+    if (![self.aboutBox.text isEqualToString:@""]) {
+        self.about = self.aboutBox.text;
+    } else {
+        self.about = nil;
+    }
+    if (![self.ageBox.text isEqualToString:@""]) {
+        self.age = [NSNumber numberWithInt:[self.ageBox.text intValue]];
+    } else {
+        self.age = nil;
+    }
+    if (![self.genderBox.text isEqualToString:@""]) {
+        self.gender = self.genderBox.text;
+    } else {
+        self.gender = nil;
+    }
+    if (![self.foodPreferencesBox.text isEqualToString:@""]) {
+        self.foodPreferences = self.foodPreferencesBox.text;
+    } else {
+        self.foodPreferences = nil;
+    }
+    if (![self.phoneNumberBox.text isEqualToString:@""]) {
+        self.phoneNumber = self.phoneNumberBox.text;
+    } else {
+        self.phoneNumber = nil;
+    }
     [self updateProfile];
     [self getProfileInfo];
     [self displayProfileInfo];
