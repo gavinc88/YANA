@@ -558,7 +558,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-yR-K5f">
                                 <rect key="frame" x="29" y="402" width="541" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label=""/>
+                                <accessibility key="accessibilityConfiguration" label="Invite friends"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zDO-ba-v1C"/>
                                 </constraints>
