@@ -34,6 +34,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
 - (IBAction)updateButtonClicked:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedController;
-
+@property BOOL clearField;
 
 @end

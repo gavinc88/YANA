@@ -31,7 +31,8 @@ APIHelper *apiHelper;
                                    action:@selector(editButtonPressed:)];
     self.navigationItem.rightBarButtonItem = editButton;
     [self hideTextField];
-
+    self.ageBox.keyboardType = UIKeyboardTypeDecimalPad;
+    self.phoneNumberBox.keyboardType = UIKeyboardTypeDecimalPad;
 }
 
 -(void)viewWillLayoutSubviews {
@@ -40,13 +41,8 @@ APIHelper *apiHelper;
     CGRect visibleRect;
     visibleRect.origin = self.scrollView.contentOffset;
     visibleRect.size = self.scrollView.contentSize;
-    self.scrollView.contentSize = CGSizeMake(visibleRect.size.width, visibleRect.size.height);
+    self.scrollView.contentSize = CGSizeMake(visibleRect.size.width, visibleRect.size.height+40);
 }
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    textField.placeholder = nil;
-}
-
 
 - (void)initializeUser{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -75,6 +71,11 @@ APIHelper *apiHelper;
     self.foodPreferencesBox.text = nil;
     self.genderBox.text = nil;
     self.phoneNumberBox.text = nil;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,12 +165,18 @@ APIHelper *apiHelper;
 - (void)editButtonPressed:(id)sender
 {
     [self showTextField];
-    self.aboutBox.text = self.aboutLabel.text;
-    self.ageBox.text = self.ageLabel.text;
-    self.genderBox.text = self.genderLabel.text;
-    self.phoneNumberBox.text = self.phoneNumberLabel.text;
-    self.foodPreferencesBox.text = self.foodPreferencesLabel.text;
+    self.aboutBox.placeholder = self.aboutLabel.text;
+    self.ageBox.placeholder = self.ageLabel.text;
+    self.genderBox.placeholder = self.genderLabel.text;
+    self.phoneNumberBox.placeholder = self.phoneNumberLabel.text;
+    self.foodPreferencesBox.placeholder = self.foodPreferencesLabel.text;
     
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)updateButtonClicked:(id)sender {
