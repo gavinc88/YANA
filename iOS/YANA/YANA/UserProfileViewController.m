@@ -103,7 +103,7 @@ APIHelper *apiHelper;
             self.username = [response objectForKey:@"username"];
             NSLog(@"dict:%@ \n username: %@",profile,self.username);
             self.about = [profile objectForKey:@"about"];
-            self.age = [NSString stringWithFormat:@"%@",[profile objectForKey:@"age"]];
+            self.age = [profile objectForKey:@"age"];
             self.foodPreferences = [profile objectForKey:@"food_preferences"];
             self.gender = [profile objectForKey:@"gender"];
             self.phoneNumber = [profile objectForKey:@"phone_number"];
@@ -129,12 +129,9 @@ APIHelper *apiHelper;
 
 - (void)displayProfileInfo {
     self.usernameLabel.text = self.username ? self.username : self.user.username;
-    if ([self.about isEqualToString:@""]) {
-        self.aboutLabel.text = @"(none)";
-    } else self.aboutLabel.text = self.about;
     self.aboutLabel.text = self.about ? self.about : @"(none)";
     self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-    self.ageLabel.text = [NSString stringWithFormat:@"%@",self.age]? : @"(not specified)";
+    self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%@", self.age] : @"(not specified)";
     self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
@@ -168,14 +165,32 @@ APIHelper *apiHelper;
     }
 }
 
+- (void)resetValues {
+    self.about = nil;
+    self.age = nil;
+    self.gender = nil;
+    self.phoneNumber = nil;
+    self.foodPreferences = nil;
+}
+
 - (void)editButtonPressed:(id)sender
 {
     [self showTextField];
-    self.aboutBox.placeholder = self.aboutLabel.text;
-    self.ageBox.placeholder = self.ageLabel.text;
-    self.genderBox.placeholder = self.genderLabel.text;
-    self.phoneNumberBox.placeholder = self.phoneNumberLabel.text;
-    self.foodPreferencesBox.placeholder = self.foodPreferencesLabel.text;
+    if (self.about == nil) {
+        self.aboutBox.placeholder = self.aboutLabel.text;
+    }
+    if (self.age == nil) {
+        self.ageBox.placeholder = self.ageLabel.text;
+    }
+    if (self.gender == nil) {
+        self.genderBox.placeholder = self.genderLabel.text;
+    }
+    if (self.phoneNumber == nil) {
+        self.phoneNumberBox.placeholder = self.phoneNumberLabel.text;
+    }
+    if (self.foodPreferences == nil) {
+        self.foodPreferencesBox.placeholder = self.foodPreferencesLabel.text;
+    }
     
 }
 
@@ -210,6 +225,7 @@ APIHelper *apiHelper;
     [self getProfileInfo];
     [self displayProfileInfo];
     [self hideTextField];
+    [self resetValues];
 }
 
 - (IBAction)segmentedControllerValueChanged:(id)sender {
