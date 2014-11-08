@@ -37,7 +37,6 @@ APIHelper *apiHelper;
 
 -(void)viewWillLayoutSubviews {
     [super viewDidLayoutSubviews];
-    NSLog(@"resizing scrollview");
     CGRect visibleRect;
     visibleRect.origin = self.scrollView.contentOffset;
     visibleRect.size = self.scrollView.contentSize;
@@ -73,9 +72,16 @@ APIHelper *apiHelper;
     self.phoneNumberBox.text = nil;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"UI touched");
     [self.view endEditing:YES];
+    self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,12 +177,6 @@ APIHelper *apiHelper;
     self.phoneNumberBox.placeholder = self.phoneNumberLabel.text;
     self.foodPreferencesBox.placeholder = self.foodPreferencesLabel.text;
     
-}
-
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    
-    [textField resignFirstResponder];
-    return YES;
 }
 
 - (IBAction)updateButtonClicked:(id)sender {

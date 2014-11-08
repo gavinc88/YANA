@@ -42,6 +42,9 @@
            intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
     
+    // close save keychain
+    [tester tapViewWithAccessibilityLabel:@"No" traits:UIAccessibilityTraitButton];
+    
     // Verify that the login succeeded
     [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
 }

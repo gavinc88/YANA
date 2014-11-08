@@ -38,13 +38,9 @@ APIHelper *apiHelper;
     [self updateFriends];
 }
 
-- (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue
-{
-    SearchAndAddFriendViewController *source = [segue sourceViewController];
-    if ([source.addedFriends count]) {
-        [self sortFriends];
-        [self.tableView reloadData];
-    }
+- (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue {
+    NSLog(@"unwindFromSearchAndAddFriend");
+    [self refreshFriendList];
 }
 
 - (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
@@ -86,10 +82,11 @@ APIHelper *apiHelper;
 #pragma mark - Setup
 
 - (void)viewDidLoad {
+    NSLog(@"viewDidLoad");
     [super viewDidLoad];
     [self initializeUser];
     [self initializeFriends];
-    //[self initializeMockFriends];
+    
     apiHelper = [[APIHelper alloc] init];
     self.tableView.rowHeight = 44;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
@@ -117,15 +114,11 @@ APIHelper *apiHelper;
     self.user = ad.user;
 }
 
-- (void)initializeMockUser{
-    self.user = [[User alloc] initWithUserid:@"userid" username:@"Gavin"];
-}
-
 - (void)initializeFriends{
+    NSLog(@"initialize friends");
     self.friendsWhoAddedYou = self.user.friendsWhoAddedYou;
     self.allFriends = self.user.friends;
     [self sortFriends];
-    [self saveFriends];
 }
 
 - (void)updateFriends{
@@ -155,6 +148,7 @@ APIHelper *apiHelper;
                 Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
                 [self.user.friends addObject:f];
             }
+            [self saveFriends];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
@@ -189,6 +183,7 @@ APIHelper *apiHelper;
                 Friend *f = [[Friend alloc] initWithid:friend[@"from_id"] andUsername:friend[@"from_username"]];
                 [self.user.friendsWhoAddedYou addObject:f];
             }
+            [self saveFriends];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
@@ -217,6 +212,7 @@ APIHelper *apiHelper;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"number of rows in section");
     if ([self.allFriends count] || [self.friendsWhoAddedYou count]) {
         if(section == 0)
             return [self.friendsWhoAddedYou count];

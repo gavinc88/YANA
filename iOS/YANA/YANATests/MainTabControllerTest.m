@@ -30,6 +30,7 @@
     [tester enterText:@"iosTest" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"test" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
+    [tester tapViewWithAccessibilityLabel:@"No" traits:UIAccessibilityTraitButton];
 }
 
 - (void)logout {

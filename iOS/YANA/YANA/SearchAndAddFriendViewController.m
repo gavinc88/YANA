@@ -195,8 +195,8 @@ APIHelper *apiHelper;
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-            [self.addedFriends addObject:friend];
             [self.user.friends addObject:friend];
+            [self saveFriends];
             [self.tableData removeObject:friend];
             [self.tableView reloadData];
         }else if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.ALREADY_FOLLOWED]){
@@ -231,6 +231,11 @@ APIHelper *apiHelper;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+- (void) saveFriends{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ad.user = self.user;
 }
 
 /*
