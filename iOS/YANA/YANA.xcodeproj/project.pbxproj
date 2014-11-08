@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		340B968B1A0D7E7200C863BD /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 340B968A1A0D7E7200C863BD /* KeychainItemWrapper.m */; };
+		341A795C1A0DC50F00172D17 /* EditProfileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 341A795B1A0DC50F00172D17 /* EditProfileTest.m */; };
 		3430B4721A085A320090A9C9 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B44E1A085A320090A9C9 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4731A085A320090A9C9 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4501A085A320090A9C9 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4741A085A320090A9C9 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4521A085A320090A9C9 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -109,6 +110,7 @@
 /* Begin PBXFileReference section */
 		340B968A1A0D7E7200C863BD /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		340B96921A0D7E9600C863BD /* KeychainItemWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		341A795B1A0DC50F00172D17 /* EditProfileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileTest.m; sourceTree = "<group>"; };
 		3430B44D1A085A320090A9C9 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		3430B44E1A085A320090A9C9 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		3430B44F1A085A320090A9C9 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				863D37DD1A088C2E00DDD818 /* LoginControllerTest.m */,
 				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
 				86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */,
+				341A795B1A0DC50F00172D17 /* EditProfileTest.m */,
 			);
 			name = "UI & Functional Tests";
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */,
 				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,
 				861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */,
+				341A795C1A0DC50F00172D17 /* EditProfileTest.m in Sources */,
 				863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */,
 				86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */,
 			);

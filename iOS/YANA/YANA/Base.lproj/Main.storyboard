@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -67,36 +68,42 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJv-TC-3G3">
                                         <rect key="frame" x="10" y="69" width="139" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" label="aboutLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xy-Dy-bIz">
                                         <rect key="frame" x="10" y="115" width="139" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" label="genderLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCq-kE-oJM">
                                         <rect key="frame" x="10" y="164" width="139" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" label="ageLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVW-5s-Jcv">
                                         <rect key="frame" x="10" y="213" width="131" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" label="foodPreferencesLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sk1-Sm-zMH">
                                         <rect key="frame" x="10" y="265" width="131" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" label="phoneNumberLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-nX-QL5">
                                         <rect key="frame" x="157" y="49" width="136" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="aboutTextField"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="136" id="6jS-zT-bc4"/>
                                         </constraints>
@@ -108,6 +115,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-wq-kJ5">
                                         <rect key="frame" x="157" y="98" width="136" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="genderTextField"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -116,6 +124,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZz-kU-8M3">
                                         <rect key="frame" x="159" y="144" width="136" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="ageTextField"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="136" id="iXE-IZ-G7C"/>
                                         </constraints>
@@ -127,6 +136,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9iZ-hc-6UU">
                                         <rect key="frame" x="159" y="193" width="136" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="foodPreferencesTextField"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -135,6 +145,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhn-oX-Rgc">
                                         <rect key="frame" x="159" y="242" width="136" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="phoneNumberTextField"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -176,6 +187,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZm-o1-afa">
                                         <rect key="frame" x="8" y="384" width="271" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="updateButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="271" id="eQs-Jc-77z"/>
                                         </constraints>
@@ -502,6 +514,7 @@
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZyK-Hz-gXq">
                                 <rect key="frame" x="33" y="281" width="535" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="restaurantTextField"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -545,6 +558,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-yR-K5f">
                                 <rect key="frame" x="29" y="402" width="541" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label=""/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zDO-ba-v1C"/>
                                 </constraints>
@@ -1367,8 +1381,8 @@
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hu3-sb-lcf"/>
-        <segue reference="JgW-eq-FsQ"/>
+        <segue reference="MVK-Qo-Xx0"/>
+        <segue reference="SzM-vW-YgW"/>
         <segue reference="2b4-QI-Nxk"/>
     </inferredMetricsTieBreakers>
 </document>

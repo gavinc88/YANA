@@ -226,6 +226,12 @@ APIHelper *apiHelper;
     [self displayProfileInfo];
     [self hideTextField];
     [self resetValues];
+    //set up accessibility values for KIF testing
+    [self.aboutLabel setValue:self.aboutLabel.text forKey:@"accessibilityValue"];
+    [self.ageLabel setValue:self.ageLabel.text forKey:@"accessibilityValue"];
+    [self.genderLabel setValue:self.genderLabel.text forKey:@"accessibilityValue"];
+    [self.foodPreferencesLabel setValue:self.foodPreferencesLabel.text forKey:@"accessibilityValue"];
+    [self.phoneNumberLabel setValue:self.phoneNumberLabel.text forKey:@"accessibilityValue"];
 }
 
 - (IBAction)segmentedControllerValueChanged:(id)sender {
