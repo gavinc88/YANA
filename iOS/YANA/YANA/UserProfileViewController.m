@@ -196,27 +196,27 @@ APIHelper *apiHelper;
 
 - (IBAction)updateButtonClicked:(id)sender {
 //    [self validateInput];
-    if (![self.aboutBox.text isEqualToString:@""]) {
+    if (![self.aboutBox.text isEqualToString:@""] && ![self.aboutBox.text isEqualToString:self.aboutLabel.text]) {
         self.about = self.aboutBox.text;
     } else {
         self.about = nil;
     }
-    if (![self.ageBox.text isEqualToString:@""]) {
+    if (![self.ageBox.text isEqualToString:@""] && ![self.ageBox.text isEqualToString:self.ageLabel.text]) {
         self.age = [NSNumber numberWithInt:[self.ageBox.text intValue]];
     } else {
         self.age = nil;
     }
-    if (![self.genderBox.text isEqualToString:@""]) {
+    if (![self.genderBox.text isEqualToString:@""] && ![self.genderBox.text isEqualToString:self.genderLabel.text]) {
         self.gender = self.genderBox.text;
     } else {
         self.gender = nil;
     }
-    if (![self.foodPreferencesBox.text isEqualToString:@""]) {
+    if (![self.foodPreferencesBox.text isEqualToString:@""] && ![self.foodPreferencesBox.text isEqualToString:self.foodPreferencesLabel.text]) {
         self.foodPreferences = self.foodPreferencesBox.text;
     } else {
         self.foodPreferences = nil;
     }
-    if (![self.phoneNumberBox.text isEqualToString:@""]) {
+    if (![self.phoneNumberBox.text isEqualToString:@""] && ![self.phoneNumberBox.text isEqualToString:self.phoneNumberLabel.text]) {
         self.phoneNumber = self.phoneNumberBox.text;
     } else {
         self.phoneNumber = nil;
