@@ -27,6 +27,7 @@
 		3430B4811A085A320090A9C9 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B46E1A085A320090A9C9 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4821A085A320090A9C9 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4701A085A320090A9C9 /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3477C5CA1A073B6B0089EC22 /* RestaurantSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */; };
+		34BBA7F81A106877004AB6E5 /* CreateMealRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */; };
 		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
 		34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D15919F99276005D011C /* UserProfileViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
@@ -149,6 +150,7 @@
 		3430B4711A085A320090A9C9 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchViewController.h; sourceTree = "<group>"; };
 		3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantSearchViewController.m; sourceTree = "<group>"; };
+		34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestTest.m; sourceTree = "<group>"; };
 		34D1327D19F480F2001EDB51 /* CreateMealRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMealRequestViewController.h; sourceTree = "<group>"; };
 		34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestViewController.m; sourceTree = "<group>"; };
 		34D5D15819F99276005D011C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				8619376C1A08979100B8A193 /* MainTabControllerTest.m */,
 				86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */,
 				341A795B1A0DC50F00172D17 /* EditProfileTest.m */,
+				34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */,
 			);
 			name = "UI & Functional Tests";
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				861939231A0B072400B8A193 /* FriendsTableViewControllerTest.m in Sources */,
 				341A795C1A0DC50F00172D17 /* EditProfileTest.m in Sources */,
 				863D37DE1A088C2E00DDD818 /* LoginControllerTest.m in Sources */,
+				34BBA7F81A106877004AB6E5 /* CreateMealRequestTest.m in Sources */,
 				86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
