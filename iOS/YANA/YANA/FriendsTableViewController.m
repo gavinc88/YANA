@@ -33,14 +33,8 @@ APIHelper *apiHelper;
 
 #pragma mark - Segue
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self updateFriends];
-}
-
 - (IBAction)unwindFromSearchAndAddFriend:(UIStoryboardSegue *)segue {
-    NSLog(@"unwindFromSearchAndAddFriend");
-    [self refreshFriendList];
+    [self updateFriends];
 }
 
 - (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
@@ -49,6 +43,7 @@ APIHelper *apiHelper;
         //update meal request table view with new meal request
         InviteFriendsTableViewController *source = [segue sourceViewController];
         if (source.mealRequestCreated && source.mealRequest) {
+            //switch to meal requests tab
             self.tabBarController.selectedIndex = 0;
             MealRequestsNavigationController *requestTab = [self.tabBarController.childViewControllers objectAtIndex:0];
             MealRequestsTableViewController *requestTabView = (MealRequestsTableViewController *)requestTab.topViewController;
@@ -58,7 +53,6 @@ APIHelper *apiHelper;
             NSLog(@"meal request is null");
         }
     }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
-        self.tabBarController.selectedIndex = 0;
         //clear friend selection
         for(Friend *friend in self.user.friends){
             friend.selected = NO;
@@ -82,12 +76,11 @@ APIHelper *apiHelper;
 #pragma mark - Setup
 
 - (void)viewDidLoad {
-    NSLog(@"viewDidLoad");
     [super viewDidLoad];
-    [self initializeUser];
-    [self initializeFriends];
-    
+    [self initializeUserWithSortedFriends];
     apiHelper = [[APIHelper alloc] init];
+    
+    //fix UI warning messages
     self.tableView.rowHeight = 44;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
@@ -95,7 +88,7 @@ APIHelper *apiHelper;
     [self.tableView setIsAccessibilityElement:YES];
     [self.tableView setAccessibilityLabel:@"Friend List"];
     
-    // Initialize the refresh control.
+    // Initialize the refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor purpleColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
@@ -109,22 +102,40 @@ APIHelper *apiHelper;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)initializeUser{
+- (void)initializeUserWithSortedFriends {
     AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = ad.user;
-}
-
-- (void)initializeFriends{
-    NSLog(@"initialize friends");
-    self.friendsWhoAddedYou = self.user.friendsWhoAddedYou;
-    self.allFriends = self.user.friends;
     [self sortFriends];
 }
 
+#pragma mark - Friend List Management
+
+//update friends in this view controller only
 - (void)updateFriends{
-    [self initializeUser];
-    [self initializeFriends];
+    [self initializeUserWithSortedFriends];
     [self.tableView reloadData];
+}
+
+- (void)sortFriends{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    //sort alphabetically
+    NSArray *sortedArray;
+    sortedArray = [self.user.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
+    [self.user.friendsWhoAddedYou removeAllObjects];
+    [self.user.friendsWhoAddedYou addObjectsFromArray:sortedArray];
+    
+    sortedArray = [self.user.friends sortedArrayUsingDescriptors:sortDescriptors];
+    [self.user.friends removeAllObjects];
+    [self.user.friends addObjectsFromArray:sortedArray];
+}
+
+//update friends to global user object
+- (void) saveFriends{
+    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ad.user = self.user;
 }
 
 - (void)refreshFriendList {
@@ -143,15 +154,18 @@ APIHelper *apiHelper;
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
             NSArray *friends = [response objectForKey:@"friends"];
+            
             for(NSDictionary *friend in friends){
                 Friend *f = [[Friend alloc] initWithid:friend[@"to_id"] andUsername:friend[@"to_username"]];
                 [self.user.friends addObject:f];
             }
+            
             [self saveFriends];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
+                                  initWithTitle:@"Server Error"
                                   message:@"Get all friends failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
@@ -160,7 +174,7 @@ APIHelper *apiHelper;
         }
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
+                              initWithTitle:@"Error"
                               message:@"Get all friends failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -178,16 +192,19 @@ APIHelper *apiHelper;
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
             NSArray *friends = [response objectForKey:@"friends"];
+            
             for(NSDictionary *friend in friends){
                 Friend *f = [[Friend alloc] initWithid:friend[@"from_id"] andUsername:friend[@"from_username"]];
                 [self.user.friendsWhoAddedYou addObject:f];
             }
+            
             [self saveFriends];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  initWithTitle:@"Server Error"
+                                  message:@"Can't get friends who added you. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -195,7 +212,7 @@ APIHelper *apiHelper;
         }
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Server Error"
+                              initWithTitle:@"Error"
                               message:@"Can't get friends who added you. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
@@ -207,17 +224,19 @@ APIHelper *apiHelper;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"number of rows in section");
-    if ([self.allFriends count] || [self.friendsWhoAddedYou count]) {
+    if ([self.user.friends count] || [self.user.friendsWhoAddedYou count]) {
+        //clear empty message
+        self.tableView.backgroundView = nil;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        
         if(section == 0)
-            return [self.friendsWhoAddedYou count];
+            return [self.user.friendsWhoAddedYou count];
         else if(section == 1)
-            return [self.allFriends count];
+            return [self.user.friends count];
     } else {
         // Display a message when the table is empty
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -239,7 +258,7 @@ APIHelper *apiHelper;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     if(section == 0){
-        if([self.friendsWhoAddedYou count]){
+        if([self.user.friendsWhoAddedYou count]){
             return @"Friends Who Added You";
         }else{
             return nil;
@@ -255,7 +274,7 @@ APIHelper *apiHelper;
     if(indexPath.section == 0){
         AddFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:addFriendCellIdentifier forIndexPath:indexPath];
         
-        Friend *friend = self.friendsWhoAddedYou[indexPath.row];
+        Friend *friend = self.user.friendsWhoAddedYou[indexPath.row];
         
         [cell.friendUsername setText:friend.friendUsername];
         
@@ -268,7 +287,7 @@ APIHelper *apiHelper;
     }else{
         InviteFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteFriendCellIdentifier forIndexPath:indexPath];
         
-        Friend *friend = self.allFriends[indexPath.row];
+        Friend *friend = self.user.friends[indexPath.row];
         [cell.friendUsername setText:friend.friendUsername];
         
         cell.inviteButton.tag = indexPath.row;
@@ -283,9 +302,9 @@ APIHelper *apiHelper;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Friend *selectedFriend;
     if(indexPath.section == 0){
-        selectedFriend = self.friendsWhoAddedYou[indexPath.row];
+        selectedFriend = self.user.friendsWhoAddedYou[indexPath.row];
     }else{
-        selectedFriend = self.allFriends[indexPath.row];
+        selectedFriend = self.user.friends[indexPath.row];
     }
     FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
     if(selectedFriend){
@@ -301,12 +320,10 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
-    
 }
 
-// Override to support conditional editing of the table view.
+// Enable swipe to delete
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
@@ -317,13 +334,13 @@ BOOL deleted = NO;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         if(indexPath.section == 0){
-            [self.friendsWhoAddedYou removeObjectAtIndex:indexPath.row];
+            [self.user.friendsWhoAddedYou removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }else if(indexPath.section == 1){
-            Friend *friend = self.allFriends[indexPath.row];
+            Friend *friend = self.user.friends[indexPath.row];
             [self deleteFriend:friend];
             if(deleted){
-                [self.allFriends removeObject:friend];
+                [self.user.friends removeObject:friend];
                 deleted = NO;
             }
         }
@@ -334,24 +351,8 @@ BOOL deleted = NO;
 
 #pragma mark - Actions
 
-- (void)sortFriends{
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
-    //sort alphabetically
-    NSArray *sortedArray;
-    sortedArray = [self.friendsWhoAddedYou sortedArrayUsingDescriptors:sortDescriptors];
-    [self.friendsWhoAddedYou removeAllObjects];
-    [self.friendsWhoAddedYou addObjectsFromArray:sortedArray];
-    
-    sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-    [self.allFriends removeAllObjects];
-    [self.allFriends addObjectsFromArray:sortedArray];
-}
-
 - (IBAction)addButtonClicked:(UIButton *)sender {
-    Friend *friend = self.friendsWhoAddedYou[sender.tag];
+    Friend *friend = self.user.friendsWhoAddedYou[sender.tag];
     
     //update server
     NSDictionary *response = [apiHelper addFriend:friend.friendid toYou:self.user.userid];
@@ -361,24 +362,14 @@ BOOL deleted = NO;
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
-//            [self.friendsWhoAddedYou removeObject:friend];
-//            [self.allFriends addObject:friend];
             [self.user.friendsWhoAddedYou removeObject:friend];
             [self.user.friends addObject:friend];
-            
-            //resort all friends before reload
-//            NSSortDescriptor *sortDescriptor;
-//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendUsername"
-//                                                         ascending:YES];
-//            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//            NSArray *sortedArray = [self.allFriends sortedArrayUsingDescriptors:sortDescriptors];
-//            [self.allFriends removeAllObjects];
-//            [self.allFriends addObjectsFromArray:sortedArray];
+            [self saveFriends];
             [self.tableView reloadData];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  initWithTitle:@"Server Error"
+                                  message:@"Add friend failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -387,7 +378,7 @@ BOOL deleted = NO;
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
-                              message:@"Please check your internet connection or try again later."
+                              message:@"Add friend failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -396,7 +387,7 @@ BOOL deleted = NO;
 }
 
 - (IBAction)inviteButtonClicked:(UIButton *)sender {
-    Friend *friend = self.allFriends[sender.tag];
+    Friend *friend = self.user.friends[sender.tag];
     friend.selected = YES;
 }
 
@@ -410,11 +401,12 @@ BOOL deleted = NO;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             deleted = YES;
             [self.user.friends removeObject:friend];
+            [self saveFriends];
             [self.tableView reloadData];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  initWithTitle:@"Server Error"
+                                  message:@"Delete friend failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -423,45 +415,12 @@ BOOL deleted = NO;
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
-                              message:@"Please check your internet connection or try again later."
+                              message:@"Delete friend failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
         [alert show];
     }
-    
-    [self saveFriends];
 }
-
-- (void) saveFriends{
-    self.user.friends = self.allFriends;
-    self.user.friendsWhoAddedYou = self.friendsWhoAddedYou;
-    AppDelegate *ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    ad.user = self.user;
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
