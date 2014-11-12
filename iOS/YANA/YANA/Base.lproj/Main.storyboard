@@ -803,7 +803,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYW-Gf-jpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fMr-Y7-Pm3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3056" y="248"/>
+            <point key="canvasLocation" x="3056" y="240"/>
         </scene>
         <!--Friend List-->
         <scene sceneID="K2s-ue-ygH">
@@ -941,7 +941,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaY-Ph-Uje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="248"/>
+            <point key="canvasLocation" x="1634" y="240"/>
         </scene>
         <!--Friends-->
         <scene sceneID="aBs-Rf-lVZ">
@@ -958,7 +958,40 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxk-XJ-c3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="248"/>
+            <point key="canvasLocation" x="942" y="240"/>
+        </scene>
+        <!--Nearby Users-->
+        <scene sceneID="I1Q-nb-PZ7">
+            <objects>
+                <viewController id="8eI-j0-d5G" customClass="NearbyUsersMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H8m-VW-fNf"/>
+                        <viewControllerLayoutGuide type="bottom" id="3eR-Ks-GGI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uy4-pl-O6y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-jV-aUc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HIw-jV-aUc" secondAttribute="trailing" constant="-16" id="Ayz-mY-R76"/>
+                            <constraint firstItem="3eR-Ks-GGI" firstAttribute="top" secondItem="HIw-jV-aUc" secondAttribute="bottom" id="BuX-zl-wiR"/>
+                            <constraint firstItem="HIw-jV-aUc" firstAttribute="leading" secondItem="Uy4-pl-O6y" secondAttribute="leadingMargin" constant="-16" id="Fnj-Fz-ta2"/>
+                            <constraint firstItem="HIw-jV-aUc" firstAttribute="top" secondItem="Uy4-pl-O6y" secondAttribute="topMargin" id="JDi-HQ-ma4"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Nearby Users" image="nearbyUsers" id="AHB-F4-ZWh"/>
+                    <connections>
+                        <outlet property="mapView" destination="HIw-jV-aUc" id="YiW-qb-wtZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vdY-y4-wfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="948"/>
         </scene>
         <!--Requests-->
         <scene sceneID="qam-Iy-cDk">
@@ -980,7 +1013,7 @@
         <!--MainTab-->
         <scene sceneID="85R-cA-75s">
             <objects>
-                <tabBarController title="MainTab" id="irN-av-fR1" customClass="MainTabBarController" sceneMemberID="viewController">
+                <tabBarController title="MainTab" hidesBottomBarWhenPushed="YES" id="irN-av-fR1" customClass="MainTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="rcQ-RW-xJP"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QKk-IZ-DpC">
@@ -991,6 +1024,7 @@
                     <connections>
                         <segue destination="7lW-uy-nif" kind="relationship" relationship="viewControllers" id="b1u-Yr-zKn"/>
                         <segue destination="Eee-QN-lvT" kind="relationship" relationship="viewControllers" id="Jbt-vL-o5W"/>
+                        <segue destination="8eI-j0-d5G" kind="relationship" relationship="viewControllers" id="4d1-gQ-r0j"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKa-WZ-Jhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1096,7 +1130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97f-ua-6U9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="-1684"/>
+            <point key="canvasLocation" x="222" y="-1242"/>
         </scene>
         <!--Search And Add Friend Navigation Controller-->
         <scene sceneID="uu8-oQ-Cjr">
@@ -1114,7 +1148,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfF-lA-CjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2344" y="248"/>
+            <point key="canvasLocation" x="2344" y="240"/>
         </scene>
         <!--Friend Profile-->
         <scene sceneID="Qf5-7B-gcN">
@@ -1324,11 +1358,12 @@
     </scenes>
     <resources>
         <image name="friends" width="29" height="30"/>
+        <image name="nearbyUsers" width="30" height="30"/>
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="MVK-Qo-Xx0"/>
         <segue reference="hu3-sb-lcf"/>
-        <segue reference="JgW-eq-FsQ"/>
         <segue reference="MJw-Ov-P4X"/>
     </inferredMetricsTieBreakers>
 </document>
