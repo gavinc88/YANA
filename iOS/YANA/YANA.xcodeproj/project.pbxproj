@@ -319,8 +319,6 @@
 				86A9B95619EF8245005A7314 /* MealRequestsTableViewController.m */,
 				86A9B95819EF827B005A7314 /* FriendsTableViewController.h */,
 				86A9B95919EF827B005A7314 /* FriendsTableViewController.m */,
-				86D9C7831A1332E2002C759D /* NearbyUsersMapViewController.h */,
-				86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -391,10 +389,11 @@
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
+				34D5D15B19F996E4005D011C /* Profile */,
 				860ED7BD19F5D32B008D9810 /* Main */,
 				86AC7CD619F65D5500760EC4 /* CreateMealRequest */,
 				86AC7CD719F65D8600760EC4 /* FriendManagement */,
-				34D5D15B19F996E4005D011C /* Profile */,
+				86D9C7891A1342C5002C759D /* NearbyUsers */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -509,6 +508,15 @@
 				86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */,
 			);
 			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		86D9C7891A1342C5002C759D /* NearbyUsers */ = {
+			isa = PBXGroup;
+			children = (
+				86D9C7831A1332E2002C759D /* NearbyUsersMapViewController.h */,
+				86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */,
+			);
+			name = NearbyUsers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
