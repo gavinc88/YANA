@@ -373,8 +373,6 @@
 			children = (
 				3430B44B1A085A320090A9C9 /* OAuth */,
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
-				3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */,
-				3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86AC7CD319F65D0100760EC4 /* APIHelper.h */,
@@ -440,6 +438,8 @@
 				34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */,
 				86AC7CDB19F7B81000760EC4 /* InviteFriendsTableViewController.h */,
 				86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */,
+				3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */,
+				3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */,
 			);
 			name = CreateMealRequest;
 			sourceTree = "<group>";
