@@ -28,10 +28,19 @@ APIHelper *apiHelper;
     [super viewDidLoad];
     apiHelper = [[APIHelper alloc]init];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
     if ([keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)] != nil) {
         self.usernameText.text = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
         self.passwordText.text = [keychainWrapper objectForKey: (__bridge id)(kSecValueData)];
+    }
+    if ([self isUserLogged] && self.loggedOut == NO) {
+        [self.loginButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+        [self performSegueWithIdentifier:@"openMain" sender:self];
+    } else {
+        NSLog(@"user is not logged");
     }
 }
 
@@ -47,8 +56,9 @@ APIHelper *apiHelper;
         // request succeeded
         if (statusCode == 1) {
             KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc]    initWithIdentifier:@"UserAuthToken" accessGroup:nil];
-            NSString *olduser = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
-            if (![olduser isEqualToString:self.usernameText.text]) {
+            NSString *oldUsername = [keychainWrapper objectForKey: (__bridge id)(kSecAttrAccount)];
+            NSString *oldPassword = [keychainWrapper objectForKey: (__bridge id)(kSecValueData)];
+            if (![oldUsername isEqualToString:self.usernameText.text] || ![oldPassword isEqualToString:self.passwordText.text]) {
                 UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"Save username and password?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles: @"Delete all credentials", nil];
                 [sheet showInView:self.view];
             }
@@ -210,6 +220,14 @@ APIHelper *apiHelper;
         KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
         [keychainWrapper resetKeychainItem];
     }
+}
+- (BOOL)isUserLogged
+{
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+    NSString *username = [wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *password = [wrapper objectForKey:(__bridge id)kSecValueData];
+    BOOL isLogged = ([username length] > 0 && [password length] > 0);
+    return isLogged;
 }
 
 //- (IBAction)textFieldDidEnd:(id)sender {
