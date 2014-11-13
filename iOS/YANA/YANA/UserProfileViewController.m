@@ -16,12 +16,16 @@
 @end
 
 @implementation UserProfileViewController
+
 APIHelper *apiHelper;
+
+static NSString *NONE = @"(none)";
+static NSString *NOT_SPECIFIED = @"(not specified)";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    apiHelper = [[APIHelper alloc] init];
     [self initializeUser];
-    //TODO: user response data instead
     [self getProfileInfo];
     [self displayProfileInfo];
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
@@ -79,29 +83,25 @@ APIHelper *apiHelper;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    
     [textField resignFirstResponder];
     return YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)getProfileInfo {
-    APIHelper *helper = [[APIHelper alloc] init];
-    NSDictionary *response = [helper getProfile:self.user.userid targetid:self.user.userid];
+    NSDictionary *response = [apiHelper getProfile:self.user.userid targetid:self.user.userid];
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
-        if([helper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:helper.SUCCESS]){
-            
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
 
+            self.privacy = [response objectForKey:@"privacy"];
             NSDictionary *profile = [response objectForKey:@"profile"];
-            self.username = [response objectForKey:@"username"];
-            NSLog(@"dict:%@ \n username: %@",profile,self.username);
+            self.username = [profile objectForKey:@"username"];
             self.about = [profile objectForKey:@"about"];
             self.age = [profile objectForKey:@"age"];
             self.foodPreferences = [profile objectForKey:@"food_preferences"];
@@ -109,8 +109,8 @@ APIHelper *apiHelper;
             self.phoneNumber = [profile objectForKey:@"phone_number"];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  initWithTitle:@"Server Error"
+                                  message:@"Get profile info failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -118,8 +118,36 @@ APIHelper *apiHelper;
         }
     }else{
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
+                              initWithTitle:@"Connection Error"
                               message:@"Get profile info failed. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)updateProfile {
+    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:self.about gender:self.gender age:self.age foodPreferences:self.foodPreferences phoneNumber:self.phoneNumber];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Server Error"
+                                  message:@"Update failed. Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Connection Error"
+                              message:@"Update failed. Please check your internet connection or try again later."
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -134,14 +162,6 @@ APIHelper *apiHelper;
     self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%@", self.age] : @"(not specified)";
     self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
-}
-
-
-
-- (void)updateProfile {
-    APIHelper *helper = [[APIHelper alloc] init];
-    NSDictionary *response = [helper editProfile:self.user.userid withPrivacy:[NSNumber numberWithInt:[self.privacy intValue]]  about:self.about gender:self.gender age:self.age foodPreferences:self.foodPreferences phoneNumber:self.phoneNumber];
-    NSLog(@"edit_profile response is %@", response);
 }
 
 - (IBAction)logoutClicked:(UIButton *)sender {
@@ -173,59 +193,63 @@ APIHelper *apiHelper;
     self.foodPreferences = nil;
 }
 
-- (void)editButtonPressed:(id)sender
-{
+- (void)editButtonPressed:(id)sender {
     [self showTextField];
-    if (self.about == nil) {
-        self.aboutBox.placeholder = self.aboutLabel.text;
-    }
-    if (self.age == nil) {
-        self.ageBox.placeholder = self.ageLabel.text;
-    }
-    if (self.gender == nil) {
-        self.genderBox.placeholder = self.genderLabel.text;
-    }
-    if (self.phoneNumber == nil) {
-        self.phoneNumberBox.placeholder = self.phoneNumberLabel.text;
-    }
-    if (self.foodPreferences == nil) {
-        self.foodPreferencesBox.placeholder = self.foodPreferencesLabel.text;
+    
+    if(self.aboutLabel.text){
+        self.aboutBox.text = self.aboutLabel.text;
+    }else{
+        self.aboutBox.placeholder = @"(about)";
     }
     
+    if(self.ageLabel.text){
+        self.ageBox.text = self.ageLabel.text;
+    }else{
+        self.ageBox.placeholder = @"(age)";
+    }
+    
+    if(self.genderLabel.text){
+        self.genderBox.text = self.genderLabel.text;
+    }else{
+        self.genderBox.placeholder = @"(gender)";
+    }
+    
+    if(self.foodPreferencesLabel.text){
+        self.foodPreferencesBox.text = self.foodPreferencesLabel.text;
+    }else{
+        self.foodPreferencesBox.placeholder = @"(foodPreferences)";
+    }
+    
+    if(self.phoneNumberLabel.text){
+        self.phoneNumberBox.text = self.phoneNumberLabel.text;
+    }else{
+        self.phoneNumberBox.placeholder = @"(phoneNumber)";
+    }
 }
 
 - (IBAction)updateButtonClicked:(id)sender {
 //    [self validateInput];
-    if (![self.aboutBox.text isEqualToString:@""] && ![self.aboutBox.text isEqualToString:self.aboutLabel.text]) {
-        self.about = self.aboutBox.text;
-    } else {
-        self.about = nil;
-    }
-    if (![self.ageBox.text isEqualToString:@""] && ![self.ageBox.text isEqualToString:self.ageLabel.text]) {
-        self.age = [NSNumber numberWithInt:[self.ageBox.text intValue]];
-    } else {
-        self.age = nil;
-    }
-    if (![self.genderBox.text isEqualToString:@""] && ![self.genderBox.text isEqualToString:self.genderLabel.text]) {
-        self.gender = self.genderBox.text;
-    } else {
-        self.gender = nil;
-    }
-    if (![self.foodPreferencesBox.text isEqualToString:@""] && ![self.foodPreferencesBox.text isEqualToString:self.foodPreferencesLabel.text]) {
-        self.foodPreferences = self.foodPreferencesBox.text;
-    } else {
-        self.foodPreferences = nil;
-    }
-    if (![self.phoneNumberBox.text isEqualToString:@""] && ![self.phoneNumberBox.text isEqualToString:self.phoneNumberLabel.text]) {
-        self.phoneNumber = self.phoneNumberBox.text;
-    } else {
-        self.phoneNumber = nil;
-    }
+    
+    //[self displayProfileInfo];
+    //update text labels
+    self.aboutLabel.text = [self.aboutBox.text isEqualToString:@""] ? NONE : self.aboutBox.text;
+    self.ageLabel.text = [self.ageBox.text isEqualToString:@""] ? NOT_SPECIFIED : self.ageBox.text;
+    self.genderLabel.text = [self.genderBox.text isEqualToString:@""] ? NOT_SPECIFIED : self.genderBox.text;
+    self.foodPreferencesLabel.text = [self.foodPreferencesBox.text isEqualToString:@""] ? NOT_SPECIFIED : self.foodPreferencesBox.text;
+    self.phoneNumberLabel.text = [self.phoneNumberBox.text isEqualToString:@""] ? NOT_SPECIFIED : self.phoneNumberBox.text;
+    
+    //update values that need to be sent to server: nil if "(none)" or "(not specified)"
+    self.about = [self.aboutLabel.text isEqualToString:NONE] ? nil : self.aboutLabel.text;
+    self.age = self.age = [self.ageLabel.text isEqualToString:NOT_SPECIFIED] ? nil :[NSNumber numberWithInt:[self.ageLabel.text intValue]];
+    self.gender = [self.genderLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.genderLabel.text;
+    self.foodPreferences = [self.foodPreferencesLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.foodPreferencesLabel.text;
+    self.phoneNumber = [self.phoneNumberLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.phoneNumberLabel.text;
+    
     [self updateProfile];
-    [self getProfileInfo];
-    [self displayProfileInfo];
+    //[self getProfileInfo];
     [self hideTextField];
     [self resetValues];
+    
     //set up accessibility values for KIF testing
     [self.aboutLabel setValue:self.aboutLabel.text forKey:@"accessibilityValue"];
     [self.ageLabel setValue:self.ageLabel.text forKey:@"accessibilityValue"];
@@ -235,7 +259,7 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)segmentedControllerValueChanged:(id)sender {
-    self.privacy = [NSString stringWithFormat:@"%ld",(long)self.segmentedController.selectedSegmentIndex];
+    self.privacy = [NSNumber numberWithInteger:self.segmentedController.selectedSegmentIndex];
 }
 
 @end

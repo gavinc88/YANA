@@ -120,6 +120,7 @@ APIHelper *apiHelper;
     [self getAllRequests];
     [self initializeUser];
     [self initializeMealRequests];
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
