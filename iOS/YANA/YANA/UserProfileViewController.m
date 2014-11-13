@@ -10,7 +10,7 @@
 #import "APIHelper.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "KeychainItemWrapper.h"
+
 @interface UserProfileViewController ()
 
 @end
@@ -148,12 +148,6 @@ APIHelper *apiHelper;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     LoginViewController *loginController = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
-    
-    //keychain
-    loginController.loggedOut = YES;
-    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
-    [keychainWrapper setObject:@"" forKey:(__bridge id)(kSecValueData)];
-    
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.user = nil;
