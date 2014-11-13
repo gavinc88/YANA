@@ -364,30 +364,26 @@ NSString* const action_edit_profile = @"users/edit_profile";
     return jsonResponse;
 }
 
-- (NSDictionary *) editProfile:(NSString *)userid withPrivacy:(NSNumber *)privacy about:(NSString *)about gender:(NSString *)gender age:(NSNumber *)age foodPreferences:(NSString *)foodPreferences phoneNumber:(NSString *)phoneNumber {
+- (NSDictionary *) editProfile:(NSString *)userid
+                   withPrivacy:(NSNumber *)privacy
+                         about:(NSString *)about
+                        gender:(NSString *)gender
+                           age:(NSNumber *)age
+               foodPreferences:(NSString *)foodPreferences
+                   phoneNumber:(NSString *)phoneNumber {
     NSString *requestURL = [self generateFullUrl:action_edit_profile];
     
-    NSMutableDictionary *argss = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userid, @"user_id", privacy, @"privacy",nil];
-    if (about != nil) {
-        [argss setObject:about forKey:@"about"];
-    }
-    NSLog(@"args are %@",argss);
-    if (gender != nil) {
-        [argss setObject:gender forKey:@"gender"];
-    }
-    NSLog(@"args are %@",argss);
-    if (age != nil) {
-        [argss setObject:age forKey:@"age"];
-    }
-    NSLog(@"args are %@",argss);
-    if (foodPreferences != nil) {
-        [argss setObject:foodPreferences forKey:@"food_preferences"];
-    }
-    NSLog(@"args are %@",argss);
-    if (phoneNumber != nil) {
-        [argss setObject:phoneNumber forKey:@"phone_number"];
-    }
-    NSLog(@"args are %@",argss);
+    //it's ok to send nil as value. server will just return null for those fields and client can display "(not specified)"
+    NSMutableDictionary *argss = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                  userid, @"user_id",
+                                  privacy, @"privacy",
+                                  about, @"about",
+                                  gender, @"gender",
+                                  age, @"age",
+                                  foodPreferences, @"food_preferences",
+                                  phoneNumber, @"phone_number",
+                                  nil];
+    
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:argss];
     
     return jsonResponse;

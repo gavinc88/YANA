@@ -16,18 +16,24 @@
 //properties for profile viewed
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *about;
-@property (nonatomic, strong) NSString *age;
+@property (nonatomic) NSInteger age;
 @property (nonatomic, strong) NSString *foodPreferences;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *phoneNumber;
 
-@property (nonatomic) BOOL isFriend;
+@property (nonatomic) BOOL isMyFriend; //user is following target user
+@property (nonatomic) BOOL isFriendWithMe;  //user is followed by target user
+@property (nonatomic) int privacy;
 
 @end
 
 @implementation FriendProfileViewController
 
 APIHelper *apiHelper;
+
+NSInteger const PRIVATE = 0;
+NSInteger const FRIENDS = 1;
+NSInteger const GLOBAL = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,12 +43,10 @@ APIHelper *apiHelper;
     [self updateCurrentFriend];
     [self displayProfileInfo];
     [self addToolbar];
-    
 }
 
 -(void)viewWillLayoutSubviews {
     [super viewDidLayoutSubviews];
-    NSLog(@"resizing scrollview");
     CGRect visibleRect;
     visibleRect.origin = self.scrollview.contentOffset;
     visibleRect.size = self.scrollview.contentSize;
@@ -67,18 +71,21 @@ APIHelper *apiHelper;
         int statusCode = [[response objectForKey:@"errCode"] intValue];
         
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            self.privacy = [[response objectForKey:@"privacy"] intValue];
             
             int follow = [[response objectForKey:@"follow"] intValue];
-            self.isFriend = follow == 1 ? YES : NO;
+            self.isMyFriend = follow == 1 ? YES : NO;
+            
+            int followed = [[response objectForKey:@"followed"] intValue];
+            self.isFriendWithMe = followed == 1 ? YES : NO;
             
             NSDictionary *profile = [response objectForKey:@"profile"];
             self.username = [profile objectForKey:@"username"];
-            NSLog(@"dict:%@ \n username: %@",profile,self.username);
             self.about = [profile objectForKey:@"about"];
-            self.age = [profile objectForKey:@"age"];
-            self.foodPreferences = [profile objectForKey:@"foodPreferences"];
+            self.age = [[profile objectForKey:@"age"] integerValue];
+            self.foodPreferences = [profile objectForKey:@"food_preferences"];
             self.gender = [profile objectForKey:@"gender"];
-            self.phoneNumber = [profile objectForKey:@"phoneNumber"];
+            self.phoneNumber = [profile objectForKey:@"phone_number"];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
@@ -100,7 +107,7 @@ APIHelper *apiHelper;
 }
 
 - (void)updateCurrentFriend {
-    if(self.isFriend){
+    if(self.isMyFriend){
         for(Friend *f in self.user.friends){
             if([f.friendid isEqualToString:self.targetid]){
                 self.currentFriend = f;
@@ -110,19 +117,47 @@ APIHelper *apiHelper;
 }
 
 - (void)displayProfileInfo {
-    self.usernameLabel.text = self.username ? self.username : @"(error)";
-    self.aboutLabel.text = self.about ? self.about : @"(none)";
-    self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-    self.ageLabel.text = self.age ? self.age : @"(not specified)";
-    self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
-    self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
+    //username is always visible
+    if(self.username){
+        self.usernameLabel.text = self.username ? self.username : @"(error)";
+    }
+    
+    //about is always visible
+    if(self.about){
+        self.aboutLabel.text = self.about ? self.about : @"(error)";
+    }
+    
+    //rest of the fields depends on privacy setting; hide label if field is null
+    if((self.privacy == PRIVATE) || (self.privacy == FRIENDS && !self.isFriendWithMe)){ //hide all cases
+        self.genderLabel.hidden = YES;
+        self.genderTitleLabel.hidden = YES;
+        self.ageLabel.hidden = YES;
+        self.ageTitleLabel.hidden = YES;
+        self.foodPreferencesLabel.hidden = YES;
+        self.foodPreferencesTitleLabel.hidden = YES;
+        self.phoneNumberLabel.hidden = YES;
+        self.phoneNumberTitleLabel.hidden = YES;
+    }else{ //show all cases
+        self.genderLabel.hidden = NO;
+        self.genderTitleLabel.hidden = NO;
+        self.ageLabel.hidden = NO;
+        self.ageTitleLabel.hidden = NO;
+        self.foodPreferencesLabel.hidden = NO;
+        self.foodPreferencesTitleLabel.hidden = NO;
+        self.phoneNumberLabel.hidden = NO;
+        self.phoneNumberTitleLabel.hidden = NO;
+        self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
+        self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%ld",(long)self.age] : @"(not specified)";
+        self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
+        self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
+    }
 }
 
 - (void)addToolbar {
     NSArray *toolbarItems;
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    if(self.isFriend){
+    if(self.isMyFriend){
         UIBarButtonItem *inviteItem = [[UIBarButtonItem alloc]initWithTitle:@"Invite" style:UIBarButtonItemStyleBordered target:self action:@selector(inviteClicked:)];
         UIBarButtonItem *removeItem = [[UIBarButtonItem alloc]initWithTitle:@"Remove" style:UIBarButtonItemStyleBordered target:self action:@selector(removeClicked:)];
         toolbarItems = [NSArray arrayWithObjects:inviteItem, spaceItem, removeItem, nil];
@@ -140,7 +175,6 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)inviteClicked:(id)sender {
-    NSLog(@"Invite Selected");
     self.currentFriend.selected = YES;
     //segue to create meal request
     UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateMealRequestNavigationController"];
@@ -149,7 +183,6 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)removeClicked:(id)sender {
-    NSLog(@"Remove Selected");
     NSDictionary *response = [apiHelper deleteFriend:self.targetid fromYou:self.user.userid];
     
     if(response){
@@ -182,7 +215,6 @@ APIHelper *apiHelper;
 }
 
 - (IBAction)addClicked:(id)sender {
-    NSLog(@"Add Selected");
     NSDictionary *response = [apiHelper addFriend:self.targetid toYou:self.user.userid];
     
     if(response){
