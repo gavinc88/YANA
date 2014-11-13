@@ -61,6 +61,8 @@
 		86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */; };
 		86AFD22D1A0B7C700021D0EF /* FriendFunctionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */; };
 		86AFD2301A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */; };
+		86D9C7851A1332E2002C759D /* NearbyUsersMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */; };
+		86D9C7861A133324002C759D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D9C7811A1331F2002C759D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +211,9 @@
 		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
 		86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendFunctionalTest.m; sourceTree = "<group>"; };
 		86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewControllerTest.m; sourceTree = "<group>"; };
+		86D9C7811A1331F2002C759D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		86D9C7831A1332E2002C759D /* NearbyUsersMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyUsersMapViewController.h; sourceTree = "<group>"; };
+		86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyUsersMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D9C7861A133324002C759D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +337,7 @@
 		861937A81A08A6C800B8A193 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				86D9C7811A1331F2002C759D /* MapKit.framework */,
 				861939081A08A75A00B8A193 /* KIF.xcodeproj */,
 				863D37E01A088C8F00DDD818 /* CoreGraphics.framework */,
 			);
@@ -373,8 +380,6 @@
 			children = (
 				3430B44B1A085A320090A9C9 /* OAuth */,
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
-				3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */,
-				3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86AC7CD319F65D0100760EC4 /* APIHelper.h */,
@@ -384,10 +389,11 @@
 				86A3350E19EC7E0F000DFA43 /* Supporting Files */,
 				86A9B95B19EF969C005A7314 /* Model */,
 				860ED7BE19F5D346008D9810 /* Login */,
+				34D5D15B19F996E4005D011C /* Profile */,
 				860ED7BD19F5D32B008D9810 /* Main */,
 				86AC7CD619F65D5500760EC4 /* CreateMealRequest */,
 				86AC7CD719F65D8600760EC4 /* FriendManagement */,
-				34D5D15B19F996E4005D011C /* Profile */,
+				86D9C7891A1342C5002C759D /* NearbyUsers */,
 			);
 			path = YANA;
 			sourceTree = "<group>";
@@ -440,6 +446,8 @@
 				34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */,
 				86AC7CDB19F7B81000760EC4 /* InviteFriendsTableViewController.h */,
 				86AC7CDC19F7B81000760EC4 /* InviteFriendsTableViewController.m */,
+				3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */,
+				3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */,
 			);
 			name = CreateMealRequest;
 			sourceTree = "<group>";
@@ -500,6 +508,15 @@
 				86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */,
 			);
 			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		86D9C7891A1342C5002C759D /* NearbyUsers */ = {
+			isa = PBXGroup;
+			children = (
+				86D9C7831A1332E2002C759D /* NearbyUsersMapViewController.h */,
+				86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */,
+			);
+			name = NearbyUsers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -660,6 +677,7 @@
 				3430B4741A085A320090A9C9 /* NSURL+Base.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
+				86D9C7851A1332E2002C759D /* NearbyUsersMapViewController.m in Sources */,
 				3430B4731A085A320090A9C9 /* NSString+URLEncoding.m in Sources */,
 				34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */,
 				3430B47E1A085A320090A9C9 /* OAProblem.m in Sources */,

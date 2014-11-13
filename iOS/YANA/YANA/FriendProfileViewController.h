@@ -25,4 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *foodPreferencesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *genderTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *foodPreferencesTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberTitleLabel;
+
 @end
