@@ -1,0 +1,35 @@
+@startuml
+participant APIHelper
+participant User
+participant MealRequestsTable
+participant MealRequestDetail
+participant Main
+participant NearbyUsersMap
+participant NearbyUsersFilter
+participant FriendProfile
+participant FriendsTable
+participant CreateMealRequest
+
+MealRequestsTable -> MealRequestDetail : click on meal request
+MealRequestDetail -> APIHelper : POST cancel_request
+APIHelper -> User : update meal_requests array
+User -> MealRequestsTable : update requests table
+
+Main -> NearbyUsersMap : click on "Nearby Users" tab
+NearbyUsersMap -> APIHelper : GET nearby_users
+APIHelper -> NearbyUsersMap : display nearby users
+
+NearbyUsersMap -> FriendProfile : click on user pin on map
+FriendProfile -> APIHelper : GET friend profile
+APIHelper -> FriendProfile : display friend profile
+
+FriendProfile -> CreateMealRequest : click on "invite"
+FriendProfile -> APIHelper : POST add_user
+APIHelper -> User : update friends array
+User -> FriendsTable : update friend table
+
+NearbyUsersMap -> NearbyUsersFilter : click on "Filter" button
+NearbyUsersFilter -> APIHelper : GET nearby_users_with_filter
+APIHelper -> NearbyUsersMap : displayed filtered nearby users
+
+@enduml

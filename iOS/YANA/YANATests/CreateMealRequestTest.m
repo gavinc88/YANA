@@ -28,9 +28,10 @@
     [tester tapViewWithAccessibilityLabel:@"Invite friends"];
     [tester waitForViewWithAccessibilityLabel: @"Invite Friends"];
     //select the first friend
-    [tester tapScreenAtPoint:CGPointMake(300, 100)];
+    [tester tapViewWithAccessibilityLabel:@"shane" traits:UIAccessibilityTraitStaticText];
+    //wait for Done button to become enabled
+    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Done" traits:UIAccessibilityTraitNotEnabled];
     //click on Done button
-    [tester waitForViewWithAccessibilityLabel:@"Done" traits:UIAccessibilityTraitButton];
     [tester tapViewWithAccessibilityLabel:@"Done" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
 }

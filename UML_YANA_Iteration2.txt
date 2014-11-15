@@ -1,0 +1,32 @@
+@startuml
+participant APIHelper
+participant User
+participant UserProfile
+participant CreateMealRequest
+participant YelpSearch
+participant YelpAPI
+participant FriendsTable
+participant SearchFriend
+participant FriendProfile
+
+UserProfile -> APIHelper : GET user_by_id
+APIHelper -> User : update user detail
+User -> UserProfile : display user update
+
+UserProfile -> APIHelper : POST edit_profile
+APIHelper -> UserProfile : display updated profile
+
+CreateMealRequest -> YelpSearch : click on "Find Restaurant"
+YelpSearch --> YelpAPI : search with YelpAPI
+YelpAPI --> YelpSearch : return search result
+YelpSearch -> CreateMealRequest : update restaurant name
+
+FriendsTable -> FriendProfile : click on Friend in table
+FriendProfile -> APIHelper : GET profile
+APIHelper -> FriendProfile : return friend profile detail
+
+SearchFriend -> FriendProfile : click on friend
+FriendProfile -> APIHelper : GET profile
+APIHelper -> FriendProfile : display friend profile detail
+
+@enduml
