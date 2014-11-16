@@ -373,17 +373,24 @@ NSString* const action_edit_profile = @"users/edit_profile";
                    phoneNumber:(NSString *)phoneNumber {
     NSString *requestURL = [self generateFullUrl:action_edit_profile];
     
-    //it's ok to send nil as value. server will just return null for those fields and client can display "(not specified)"
-    NSMutableDictionary *argss = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                  userid, @"user_id",
-                                  privacy, @"privacy",
-                                  about, @"about",
-                                  gender, @"gender",
-                                  age, @"age",
-                                  foodPreferences, @"food_preferences",
-                                  phoneNumber, @"phone_number",
-                                  nil];
-    
+    NSMutableDictionary *argss = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userid, @"user_id", privacy, @"privacy",nil];
+    if (about != nil) {
+        [argss setObject:about forKey:@"about"];
+    }
+    if (gender != nil) {
+        [argss setObject:gender forKey:@"gender"];
+    }
+    if (age != nil) {
+        [argss setObject:age forKey:@"age"];
+    }
+    if (foodPreferences != nil) {
+        [argss setObject:foodPreferences forKey:@"food_preferences"];
+    }
+    if (phoneNumber != nil) {
+        [argss setObject:phoneNumber forKey:@"phone_number"];
+    }
+
+
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:argss];
     
     return jsonResponse;

@@ -101,7 +101,6 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
 
             self.privacy = [response objectForKey:@"privacy"];
             NSDictionary *profile = [response objectForKey:@"profile"];
-            self.username = [profile objectForKey:@"username"];
             self.about = [profile objectForKey:@"about"];
             self.age = [profile objectForKey:@"age"];
             self.foodPreferences = [profile objectForKey:@"food_preferences"];
@@ -156,10 +155,10 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
 }
 
 - (void)displayProfileInfo {
-    self.usernameLabel.text = self.username ? self.username : self.user.username;
+    self.usernameLabel.text = self.user.username;
     self.aboutLabel.text = self.about ? self.about : @"(none)";
     self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-    self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%@", self.age] : @"(not specified)";
+    self.ageLabel.text = ![self.age isEqualToNumber:[NSNumber numberWithInt:0]] ? [NSString stringWithFormat:@"%@", self.age] : @"(not specified)";
     self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
     self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
 }
@@ -202,34 +201,34 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
 - (void)editButtonPressed:(id)sender {
     [self showTextField];
     
-    if(self.aboutLabel.text){
+    if(![self.aboutLabel.text isEqualToString:@"(none)"]){
         self.aboutBox.text = self.aboutLabel.text;
     }else{
-        self.aboutBox.placeholder = @"(about)";
+        self.aboutBox.placeholder = @"(none)";
     }
     
-    if(self.ageLabel.text){
+    if(![self.ageLabel.text isEqualToString:@"(not specified)"]){
         self.ageBox.text = self.ageLabel.text;
     }else{
-        self.ageBox.placeholder = @"(age)";
+        self.ageBox.placeholder = @"(not specified)";
     }
     
-    if(self.genderLabel.text){
+    if(![self.genderLabel.text isEqualToString:@"(not specified)"]){
         self.genderBox.text = self.genderLabel.text;
     }else{
-        self.genderBox.placeholder = @"(gender)";
+        self.genderBox.placeholder = @"(not specified)";
     }
     
-    if(self.foodPreferencesLabel.text){
+    if(![self.foodPreferencesLabel.text isEqualToString:@"(not specified)"]){
         self.foodPreferencesBox.text = self.foodPreferencesLabel.text;
     }else{
-        self.foodPreferencesBox.placeholder = @"(foodPreferences)";
+        self.foodPreferencesBox.placeholder = @"(not specified)";
     }
     
-    if(self.phoneNumberLabel.text){
+    if(![self.phoneNumberLabel.text isEqualToString:@"(not specified)"]){
         self.phoneNumberBox.text = self.phoneNumberLabel.text;
     }else{
-        self.phoneNumberBox.placeholder = @"(phoneNumber)";
+        self.phoneNumberBox.placeholder = @"(not specified)";
     }
 }
 
@@ -245,11 +244,11 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
     self.phoneNumberLabel.text = [self.phoneNumberBox.text isEqualToString:@""] ? NOT_SPECIFIED : self.phoneNumberBox.text;
     
     //update values that need to be sent to server: nil if "(none)" or "(not specified)"
-    self.about = [self.aboutLabel.text isEqualToString:NONE] ? nil : self.aboutLabel.text;
-    self.age = self.age = [self.ageLabel.text isEqualToString:NOT_SPECIFIED] ? nil :[NSNumber numberWithInt:[self.ageLabel.text intValue]];
-    self.gender = [self.genderLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.genderLabel.text;
-    self.foodPreferences = [self.foodPreferencesLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.foodPreferencesLabel.text;
-    self.phoneNumber = [self.phoneNumberLabel.text isEqualToString:NOT_SPECIFIED] ? nil : self.phoneNumberLabel.text;
+    self.about = self.aboutLabel.text;
+    self.age = [NSNumber numberWithInt:[self.ageLabel.text intValue]];
+    self.gender = self.genderLabel.text;
+    self.foodPreferences = self.foodPreferencesLabel.text;
+    self.phoneNumber = self.phoneNumberLabel.text;
     
     [self updateProfile];
     //[self getProfileInfo];
