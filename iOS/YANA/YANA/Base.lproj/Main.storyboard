@@ -943,6 +943,91 @@
             </objects>
             <point key="canvasLocation" x="1634" y="240"/>
         </scene>
+        <!--Nearby Users Filter Options-->
+        <scene sceneID="Uq3-KH-UdQ">
+            <objects>
+                <viewController title="Nearby Users Filter Options" id="D9U-8t-YOT" customClass="NearbyUsersFilterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GzT-wO-2uM"/>
+                        <viewControllerLayoutGuide type="bottom" id="hzN-z0-LMs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MkY-36-YU9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
+                                <rect key="frame" x="16" y="79" width="62" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
+                                <rect key="frame" x="160" y="107" width="280" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="EDA-fE-xp8"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Male"/>
+                                    <segment title="Female"/>
+                                    <segment title="Other"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
+                                <rect key="frame" x="16" y="150" width="89.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-3Z-rf8" customClass="NMRangeSlider">
+                                <rect key="frame" x="160" y="190.5" width="280" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="AgeRangeSlider">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="VRF-Bf-KDb"/>
+                                    <constraint firstAttribute="height" constant="40" id="aKg-9c-Ug3"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="labelSliderChanged:" destination="D9U-8t-YOT" eventType="valueChanged" id="t1h-YD-Zvl"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6WJ-HR-LdJ" firstAttribute="leading" secondItem="MkY-36-YU9" secondAttribute="leadingMargin" id="CCw-h5-OLI"/>
+                            <constraint firstItem="OJa-wR-lqo" firstAttribute="top" secondItem="GzT-wO-2uM" secondAttribute="bottom" constant="15" id="I6j-Za-Up6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vyi-3Z-rf8" secondAttribute="trailing" constant="15" id="afA-bk-a90"/>
+                            <constraint firstItem="OJa-wR-lqo" firstAttribute="leading" secondItem="MkY-36-YU9" secondAttribute="leadingMargin" id="c93-QO-HJR"/>
+                            <constraint firstAttribute="centerX" secondItem="Vyi-3Z-rf8" secondAttribute="centerX" id="d37-B7-l17"/>
+                            <constraint firstAttribute="centerX" secondItem="o3B-tE-M5D" secondAttribute="centerX" id="dyg-yC-61J"/>
+                            <constraint firstAttribute="centerX" secondItem="Vyi-3Z-rf8" secondAttribute="centerX" id="fmO-IG-CRS"/>
+                            <constraint firstItem="Vyi-3Z-rf8" firstAttribute="top" secondItem="6WJ-HR-LdJ" secondAttribute="bottom" constant="8" id="mHj-1i-ajG"/>
+                            <constraint firstItem="Vyi-3Z-rf8" firstAttribute="top" secondItem="6WJ-HR-LdJ" secondAttribute="bottom" constant="20" id="o8p-dE-JQK"/>
+                            <constraint firstItem="o3B-tE-M5D" firstAttribute="top" secondItem="OJa-wR-lqo" secondAttribute="bottom" constant="8" id="qnm-NS-ite"/>
+                            <constraint firstItem="6WJ-HR-LdJ" firstAttribute="top" secondItem="o3B-tE-M5D" secondAttribute="bottom" constant="15" id="tGD-HQ-pQ2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="afA-bk-a90"/>
+                                <exclude reference="d37-B7-l17"/>
+                                <exclude reference="mHj-1i-ajG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nearby Users Filter Options" id="RqM-Im-P9z">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7aP-YV-xln"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ageRangeSlider" destination="Vyi-3Z-rf8" id="bue-Zi-MlU"/>
+                        <outlet property="genderSegmentControl" destination="o3B-tE-M5D" id="G5X-b1-cRm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aqj-5o-07o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1634" y="948"/>
+        </scene>
         <!--Friends-->
         <scene sceneID="aBs-Rf-lVZ">
             <objects>
@@ -984,14 +1069,20 @@
                             <constraint firstItem="HIw-jV-aUc" firstAttribute="top" secondItem="Uy4-pl-O6y" secondAttribute="topMargin" id="JDi-HQ-ma4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Nearby Users" image="nearbyUsers" id="AHB-F4-ZWh"/>
+                    <navigationItem key="navigationItem" title="Nearby Users" id="j2K-d4-DJU">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="z0F-ns-332">
+                            <connections>
+                                <segue destination="D9U-8t-YOT" kind="show" id="s9e-Wr-7KE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="HIw-jV-aUc" id="YiW-qb-wtZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdY-y4-wfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="948"/>
+            <point key="canvasLocation" x="942" y="948"/>
         </scene>
         <!--Requests-->
         <scene sceneID="qam-Iy-cDk">
@@ -1024,7 +1115,7 @@
                     <connections>
                         <segue destination="7lW-uy-nif" kind="relationship" relationship="viewControllers" id="b1u-Yr-zKn"/>
                         <segue destination="Eee-QN-lvT" kind="relationship" relationship="viewControllers" id="Jbt-vL-o5W"/>
-                        <segue destination="8eI-j0-d5G" kind="relationship" relationship="viewControllers" id="4d1-gQ-r0j"/>
+                        <segue destination="ZnT-ej-ka1" kind="relationship" relationship="viewControllers" id="4d1-gQ-r0j"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKa-WZ-Jhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1355,6 +1446,25 @@
             </objects>
             <point key="canvasLocation" x="2344" y="-1242"/>
         </scene>
+        <!--Nearby Users-->
+        <scene sceneID="Asn-bB-8EW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZnT-ej-ka1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Nearby Users" image="nearbyUsers" id="AHB-F4-ZWh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="je0-AD-hKL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8eI-j0-d5G" kind="relationship" relationship="rootViewController" id="tyo-h4-fU8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s7V-JV-OTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="948"/>
+        </scene>
     </scenes>
     <resources>
         <image name="friends" width="29" height="30"/>
@@ -1362,8 +1472,8 @@
         <image name="reqeusts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MVK-Qo-Xx0"/>
         <segue reference="hu3-sb-lcf"/>
+        <segue reference="JgW-eq-FsQ"/>
         <segue reference="MJw-Ov-P4X"/>
     </inferredMetricsTieBreakers>
 </document>
