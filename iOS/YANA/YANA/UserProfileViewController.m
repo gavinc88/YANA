@@ -183,10 +183,9 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"backToLoginPage"]){
-        APIHelper *helper = [[APIHelper alloc] init];
-        NSDictionary *response = [helper logout:self.user.userid];
-        NSLog(@"Logout response is %@", response);
+    if([segue.identifier isEqualToString:@"editAbout"]){
+
+
     }
 }
 

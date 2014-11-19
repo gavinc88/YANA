@@ -30,6 +30,11 @@
 		34BBA7F81A106877004AB6E5 /* CreateMealRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */; };
 		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
 		34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D5D15919F99276005D011C /* UserProfileViewController.m */; };
+		34E2A8AB1A1C8FA3005BBEF5 /* UserProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8AA1A1C8FA3005BBEF5 /* UserProfileTableViewController.m */; };
+		34E2A8AE1A1C9EE8005BBEF5 /* AboutUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8AD1A1C9EE8005BBEF5 /* AboutUserTableViewController.m */; };
+		34E2A8B11A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B01A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m */; };
+		34E2A8B41A1CBB32005BBEF5 /* AgeUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B31A1CBB32005BBEF5 /* AgeUserTableViewController.m */; };
+		34E2A8B71A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
@@ -185,6 +190,16 @@
 		34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestViewController.m; sourceTree = "<group>"; };
 		34D5D15819F99276005D011C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		34D5D15919F99276005D011C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		34E2A8A91A1C8FA3005BBEF5 /* UserProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileTableViewController.h; path = ../UserProfileTableViewController.h; sourceTree = "<group>"; };
+		34E2A8AA1A1C8FA3005BBEF5 /* UserProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileTableViewController.m; path = ../UserProfileTableViewController.m; sourceTree = "<group>"; };
+		34E2A8AC1A1C9EE8005BBEF5 /* AboutUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUserTableViewController.h; sourceTree = "<group>"; };
+		34E2A8AD1A1C9EE8005BBEF5 /* AboutUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUserTableViewController.m; sourceTree = "<group>"; };
+		34E2A8AF1A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPreferencesUserTableViewController.h; sourceTree = "<group>"; };
+		34E2A8B01A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodPreferencesUserTableViewController.m; sourceTree = "<group>"; };
+		34E2A8B21A1CBB32005BBEF5 /* AgeUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeUserTableViewController.h; sourceTree = "<group>"; };
+		34E2A8B31A1CBB32005BBEF5 /* AgeUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeUserTableViewController.m; sourceTree = "<group>"; };
+		34E2A8B51A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberUserTableViewController.h; sourceTree = "<group>"; };
+		34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberUserTableViewController.m; sourceTree = "<group>"; };
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
 		860ED7B419F58036008D9810 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -358,6 +373,16 @@
 		34D5D15B19F996E4005D011C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				34E2A8B51A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.h */,
+				34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */,
+				34E2A8B21A1CBB32005BBEF5 /* AgeUserTableViewController.h */,
+				34E2A8B31A1CBB32005BBEF5 /* AgeUserTableViewController.m */,
+				34E2A8AF1A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.h */,
+				34E2A8B01A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m */,
+				34E2A8AC1A1C9EE8005BBEF5 /* AboutUserTableViewController.h */,
+				34E2A8AD1A1C9EE8005BBEF5 /* AboutUserTableViewController.m */,
+				34E2A8A91A1C8FA3005BBEF5 /* UserProfileTableViewController.h */,
+				34E2A8AA1A1C8FA3005BBEF5 /* UserProfileTableViewController.m */,
 				34D5D15819F99276005D011C /* UserProfileViewController.h */,
 				34D5D15919F99276005D011C /* UserProfileViewController.m */,
 				8619391C1A0A131800B8A193 /* FriendProfileViewController.h */,
@@ -822,6 +847,7 @@
 				8619391E1A0A131800B8A193 /* FriendProfileViewController.m in Sources */,
 				3430B47C1A085A320090A9C9 /* OAMutableURLRequest.m in Sources */,
 				3430B4741A085A320090A9C9 /* NSURL+Base.m in Sources */,
+				34E2A8B71A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m in Sources */,
 				86A9B95119EF81B4005A7314 /* MealRequestsNavigationController.m in Sources */,
 				860ED7BC19F58AA3008D9810 /* InviteFriendTableViewCell.m in Sources */,
 				86D9C7851A1332E2002C759D /* NearbyUsersMapViewController.m in Sources */,
@@ -830,10 +856,13 @@
 				3430B47E1A085A320090A9C9 /* OAProblem.m in Sources */,
 				3430B47B1A085A320090A9C9 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
+				34E2A8AE1A1C9EE8005BBEF5 /* AboutUserTableViewController.m in Sources */,
 				8621535319F5E74A004EA111 /* SearchAndAddFriendViewController.m in Sources */,
 				86A9B96619EFACE6005A7314 /* LoginViewController.m in Sources */,
 				86AC7CD519F65D0100760EC4 /* APIHelper.m in Sources */,
+				34E2A8B11A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m in Sources */,
 				866164A019F1CC8C001CF4F1 /* MealRequestWithButtonsTableViewCell.m in Sources */,
+				34E2A8B41A1CBB32005BBEF5 /* AgeUserTableViewController.m in Sources */,
 				3430B4821A085A320090A9C9 /* OATokenManager.m in Sources */,
 				86A9B95419EF8204005A7314 /* FriendsNavigationController.m in Sources */,
 				340B968B1A0D7E7200C863BD /* KeychainItemWrapper.m in Sources */,
@@ -848,6 +877,7 @@
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,
 				860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */,
 				3430B4751A085A320090A9C9 /* Base64Transcoder.c in Sources */,
+				34E2A8AB1A1C8FA3005BBEF5 /* UserProfileTableViewController.m in Sources */,
 				86AC7CDD19F7B81000760EC4 /* InviteFriendsTableViewController.m in Sources */,
 				860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */,
 				3430B4761A085A320090A9C9 /* hmac.c in Sources */,
