@@ -25,7 +25,12 @@ APIHelper *apiHelper;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
-    self.foodPreferencesTextField.placeholder = self.foodPreferences;
+    self.saveButton.enabled = NO;
+    if (!self.foodPreferences || [self.foodPreferences isEqualToString:@""]) {
+        self.foodPreferencesTextField.placeholder = @"(None)";
+    } else {
+        self.foodPreferencesTextField.text = self.foodPreferences;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,5 +70,9 @@ APIHelper *apiHelper;
         [alert show];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)editingChanged:(id)sender {
+    self.saveButton.enabled = YES;
 }
 @end

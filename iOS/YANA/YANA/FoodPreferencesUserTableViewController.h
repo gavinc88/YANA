@@ -11,6 +11,7 @@
 @interface FoodPreferencesUserTableViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 - (IBAction)saveButtonPressed:(id)sender;
+- (IBAction)editingChanged:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *foodPreferencesTextField;
 @property (strong, nonatomic) User *user;
 @property (nonatomic, strong) NSString *foodPreferences;

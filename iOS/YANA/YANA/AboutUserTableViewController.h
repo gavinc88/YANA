@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSNumber *privacy;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (strong, nonatomic) IBOutlet UITextField *aboutTextField;
+- (IBAction)editingChanged:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
 @end

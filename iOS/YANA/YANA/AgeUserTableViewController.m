@@ -26,7 +26,12 @@ APIHelper *apiHelper;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
-    self.ageTextField.placeholder = [NSString stringWithFormat:@"%@", self.age];
+    if (!self.age || [self.age intValue] == 0) {
+        self.ageTextField.placeholder = @"(Not specified)";
+    } else {
+        self.ageTextField.text = [NSString stringWithFormat:@"%@",self.age];
+    }
+    self.saveButton.enabled = NO;
     self.ageTextField.keyboardType = UIKeyboardTypeDecimalPad;
 }
 
@@ -42,31 +47,39 @@ APIHelper *apiHelper;
 
 
 - (IBAction)saveButtonPressed:(id)sender {
-    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:[NSNumber numberWithInt:[self.ageTextField.text intValue]] foodPreferences:nil phoneNumber:nil];
-    
-    if(response){
-        int statusCode = [[response objectForKey:@"errCode"] intValue];
+    if (![self.ageTextField.text isEqualToString:@""]){
+        NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:[NSNumber numberWithInt:[self.ageTextField.text intValue]] foodPreferences:nil phoneNumber:nil];
         
-        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+        if(response){
+            int statusCode = [[response objectForKey:@"errCode"] intValue];
             
+            if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+                
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Server Error"
+                                      message:@"Update failed. Please check your internet connection or try again later."
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Server Error"
+                                  initWithTitle:@"Connection Error"
                                   message:@"Update failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
         }
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Connection Error"
-                              message:@"Update failed. Please check your internet connection or try again later."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)editingChanged:(id)sender {
+    if (![self.ageTextField.text isEqualToString:@""]) {
+        self.saveButton.enabled = YES;
+    }
 }
 @end
