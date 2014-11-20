@@ -25,8 +25,13 @@ APIHelper *apiHelper;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
-    self.phoneNumberTextField.placeholder = [NSString stringWithFormat:@"%@", self.phoneNumber];
-    self.phoneNumberTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.saveButton.enabled = NO;
+    if (!self.phoneNumber || [self.phoneNumber intValue] == 0) {
+        self.phoneNumberTextField.placeholder = @"(Not specified)";
+    } else {
+        self.phoneNumberTextField.text = [NSString stringWithFormat:@"%@",self.phoneNumber];
+    }
+    self.saveButton.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,5 +71,9 @@ APIHelper *apiHelper;
         [alert show];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)editingChanged:(id)sender {
+    self.saveButton.enabled = YES;
 }
 @end

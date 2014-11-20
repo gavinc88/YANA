@@ -774,6 +774,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="PCt-qH-6do" eventType="editingChanged" id="Mg8-3K-lot"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -842,6 +845,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="5vk-Z1-bfm" eventType="editingChanged" id="MRM-7m-KhQ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -910,6 +916,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="AWx-io-HGd" eventType="editingChanged" id="QWD-KB-GFU"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1191,6 +1200,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="NdX-z5-cTA" eventType="editingChanged" id="xfh-KF-XYB"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1230,7 +1242,7 @@
         <!--User Profile-->
         <scene sceneID="bhU-s0-n80">
             <objects>
-                <tableViewController id="Olx-h3-oIQ" customClass="UserProfileTableViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Olx-h3-oIQ" customClass="UserProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" sectionIndexMinimumDisplayRowCount="6" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0SB-Yf-po3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1402,27 +1414,30 @@
                             </tableViewSection>
                             <tableViewSection id="Ji2-ep-f3K">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hvn-7j-uNr">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="hvn-7j-uNr">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hvn-7j-uNr" id="XDT-dM-G5r">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kz-Aj-JIT">
-                                                    <rect key="frame" x="492" y="0.0" width="108" height="44"/>
+                                                    <rect key="frame" x="492" y="0.0" width="108" height="45"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="108" id="Cgs-2F-MQd"/>
+                                                        <constraint firstAttribute="width" constant="108" id="lRH-eC-CrW"/>
                                                     </constraints>
                                                     <state key="normal" title="Logout">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="logoutClicked:" destination="Olx-h3-oIQ" eventType="touchUpInside" id="kja-8H-0pT"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3kz-Aj-JIT" secondAttribute="bottom" constant="-8.5" id="KaY-l7-Pdl"/>
-                                                <constraint firstItem="3kz-Aj-JIT" firstAttribute="top" secondItem="XDT-dM-G5r" secondAttribute="top" id="nE6-mF-6mC"/>
-                                                <constraint firstAttribute="trailing" secondItem="3kz-Aj-JIT" secondAttribute="trailing" id="xFg-5K-mai"/>
+                                                <constraint firstItem="3kz-Aj-JIT" firstAttribute="top" secondItem="XDT-dM-G5r" secondAttribute="top" id="1Nh-D4-VhJ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3kz-Aj-JIT" secondAttribute="bottom" constant="-8.5" id="71h-zk-sek"/>
+                                                <constraint firstAttribute="trailing" secondItem="3kz-Aj-JIT" secondAttribute="trailing" id="Zu1-vp-jme"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

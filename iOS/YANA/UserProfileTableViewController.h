@@ -20,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *privacyLabel;
 @property (strong, nonatomic) NSNumber *privacy;
 @property (strong, nonatomic) NSNumber *age;
+- (IBAction)logoutClicked:(id)sender;
 
 @end

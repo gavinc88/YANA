@@ -13,6 +13,8 @@
 #import "FoodPreferencesUserTableViewController.h"
 #import "AgeUserTableViewController.h"
 #import "PhoneNumberUserTableViewController.h"
+#import "LoginViewController.h"
+#import "KeychainItemWrapper.h"
 @interface UserProfileTableViewController ()
 
 @end
@@ -34,6 +36,7 @@ APIHelper *apiHelper;
 }
 - (void)viewDidAppear:(BOOL)animated{
     [self displayProfileInfo];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +73,7 @@ APIHelper *apiHelper;
             self.age = [profile objectForKey:@"age"];
             self.usernameLabel.text = self.user.username;
             self.aboutLabel.text = [profile objectForKey:@"about"];
-            self.ageLabel.text = [NSString stringWithFormat: @"%@", [profile objectForKey:@"age"]];
+            self.ageLabel.text = [profile objectForKey:@"age"]? [NSString stringWithFormat: @"%@", [profile objectForKey:@"age"]] : @"";
             self.foodPreferencesLabel.text = [profile objectForKey:@"food_preferences"];
             self.genderLabel.text = [profile objectForKey:@"gender"];
             self.phoneNumberLabel.text = [profile objectForKey:@"phone_number"];
@@ -93,6 +96,7 @@ APIHelper *apiHelper;
         [alert show];
     }
 }
+
 
 
 /*
@@ -167,4 +171,22 @@ APIHelper *apiHelper;
  }
 
 
+- (IBAction)logoutClicked:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    LoginViewController *loginController = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+    
+    //keychain
+    loginController.loggedOut = YES;
+    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"UserAuthToken" accessGroup:nil];
+    [keychainWrapper setObject:@"" forKey:(__bridge id)(kSecValueData)];
+    
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.user = nil;
+    
+    [self presentViewController:loginController
+                       animated:YES
+                     completion:nil];
+}
 @end

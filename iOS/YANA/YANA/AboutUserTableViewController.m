@@ -25,7 +25,12 @@ APIHelper *apiHelper;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
-    self.aboutTextField.placeholder = self.about;
+    self.saveButton.enabled = NO;
+    if (!self.about || [self.about isEqualToString:@""]) {
+        self.aboutTextField.placeholder = @"(None)";
+    } else {
+        self.aboutTextField.text = self.about;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +42,10 @@ APIHelper *apiHelper;
     self.user = appDelegate.user;
 }
 
+
+- (IBAction)editingChanged:(id)sender {
+    self.saveButton.enabled = YES;
+}
 
 - (IBAction)saveButtonPressed:(id)sender {
     NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:self.aboutTextField.text gender:nil age:nil foodPreferences:nil phoneNumber:nil];
