@@ -76,18 +76,21 @@ APIHelper *apiHelper;
     [self.tableData removeAllObjects];
     
     NSDictionary *response = [apiHelper searchUserByUsername:self.friendSearchBar.text];
+    
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
-        NSLog(@"statusCode: %d", statusCode);
+        
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            
             NSArray *users = [response objectForKey:@"users"];
             for(NSDictionary *user in users){
                 Friend *friend = [[Friend alloc] initWithid:user[@"user_id"] andUsername:user[@"username"]];
                 [self.tableData addObject:friend];
                 [friend toString];
             }
+            
             [self displaySearchResult];
-            //self.friendSearchMessage.text = [NSString stringWithFormat:@"\"%@\" found.", self.friendSearchBar.text];
+            
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"

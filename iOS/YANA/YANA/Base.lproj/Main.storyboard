@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -672,13 +672,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
-                                <rect key="frame" x="16" y="79" width="62" height="21"/>
+                                <rect key="frame" x="16" y="119" width="62" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
-                                <rect key="frame" x="160" y="107" width="280" height="29"/>
+                                <rect key="frame" x="160" y="147" width="280" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EDA-fE-xp8"/>
                                 </constraints>
@@ -690,13 +690,13 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
-                                <rect key="frame" x="16" y="150" width="90" height="21"/>
+                                <rect key="frame" x="16" y="190" width="89.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-3Z-rf8" customClass="NMRangeSlider">
-                                <rect key="frame" x="160" y="191" width="280" height="40"/>
+                                <rect key="frame" x="160" y="231" width="280" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="AgeRangeSlider">
                                     <bool key="isElement" value="YES"/>
@@ -709,11 +709,27 @@
                                     <action selector="labelSliderChanged:" destination="D9U-8t-YOT" eventType="valueChanged" id="t1h-YD-Zvl"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends Only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="572-QW-kMJ">
+                                <rect key="frame" x="16" y="84" width="101.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
+                                <rect key="frame" x="217.5" y="79" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Esd-7d-nlQ" firstAttribute="top" secondItem="GzT-wO-2uM" secondAttribute="bottom" constant="15" id="6D3-kf-tod"/>
+                            <constraint firstItem="572-QW-kMJ" firstAttribute="top" secondItem="GzT-wO-2uM" secondAttribute="bottom" constant="20" id="ANX-r1-YKZ"/>
                             <constraint firstItem="6WJ-HR-LdJ" firstAttribute="leading" secondItem="MkY-36-YU9" secondAttribute="leadingMargin" id="CCw-h5-OLI"/>
+                            <constraint firstItem="Esd-7d-nlQ" firstAttribute="trailing" secondItem="MkY-36-YU9" secondAttribute="trailingMargin" id="Dsi-nE-wvc"/>
                             <constraint firstItem="OJa-wR-lqo" firstAttribute="top" secondItem="GzT-wO-2uM" secondAttribute="bottom" constant="15" id="I6j-Za-Up6"/>
+                            <constraint firstItem="Esd-7d-nlQ" firstAttribute="centerY" secondItem="572-QW-kMJ" secondAttribute="centerY" id="IT6-nb-xXf"/>
+                            <constraint firstItem="Esd-7d-nlQ" firstAttribute="leading" secondItem="572-QW-kMJ" secondAttribute="trailing" constant="100" id="UyB-JU-c8A"/>
+                            <constraint firstItem="572-QW-kMJ" firstAttribute="leading" secondItem="MkY-36-YU9" secondAttribute="leadingMargin" id="WTH-s3-gd4"/>
+                            <constraint firstItem="OJa-wR-lqo" firstAttribute="top" secondItem="572-QW-kMJ" secondAttribute="bottom" constant="15" id="aKG-vw-WTk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vyi-3Z-rf8" secondAttribute="trailing" constant="15" id="afA-bk-a90"/>
                             <constraint firstItem="OJa-wR-lqo" firstAttribute="leading" secondItem="MkY-36-YU9" secondAttribute="leadingMargin" id="c93-QO-HJR"/>
                             <constraint firstAttribute="centerX" secondItem="Vyi-3Z-rf8" secondAttribute="centerX" id="d37-B7-l17"/>
@@ -726,23 +742,28 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="I6j-Za-Up6"/>
+                                <exclude reference="6D3-kf-tod"/>
+                                <exclude reference="Dsi-nE-wvc"/>
                                 <exclude reference="afA-bk-a90"/>
                                 <exclude reference="d37-B7-l17"/>
                                 <exclude reference="mHj-1i-ajG"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Nearby Users Filter Options" id="RqM-Im-P9z">
+                    <navigationItem key="navigationItem" title="Filter Options" id="RqM-Im-P9z">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="P3Y-mI-Ybq"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="7aP-YV-xln"/>
                     </navigationItem>
                     <connections>
                         <outlet property="ageRangeSlider" destination="Vyi-3Z-rf8" id="bue-Zi-MlU"/>
+                        <outlet property="friendsOnlySwitch" destination="Esd-7d-nlQ" id="2RC-SI-ZMZ"/>
                         <outlet property="genderSegmentControl" destination="o3B-tE-M5D" id="G5X-b1-cRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqj-5o-07o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="948"/>
+            <point key="canvasLocation" x="1633" y="960"/>
         </scene>
         <!--User Food Preferences-->
         <scene sceneID="deT-5t-S7h">
@@ -1009,7 +1030,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdY-y4-wfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="948"/>
+            <point key="canvasLocation" x="941" y="960"/>
         </scene>
         <!--Requests-->
         <scene sceneID="qam-Iy-cDk">
@@ -1686,7 +1707,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s7V-JV-OTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="948"/>
+            <point key="canvasLocation" x="221" y="960"/>
         </scene>
     </scenes>
     <resources>

@@ -11,11 +11,13 @@
 
 @interface NearbyUsersFilterViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UISwitch *friendsOnlySwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *ageRangeSlider;
 @property (retain, nonatomic) UILabel *lowerLabel;
 @property (retain, nonatomic) UILabel *upperLabel;
 
+@property BOOL friendsOnly;
 @property (strong, nonatomic) NSString *gender;
 @property int startAge;
 @property int endAge;

@@ -178,22 +178,10 @@ APIHelper *apiHelper;
             if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
                 //do nothing
             }else{
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      initWithTitle:@"Error"
-                                      message:@"Please check your internet connection or try again later."
-                                      delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
-                [alert show];
+                NSLog(@"Can't register device. Please check your internet connection or try again later.");
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Server Error"
-                                  message:@"Can't register device. Please check your internet connection or try again later."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
+            NSLog(@"Can't register device. Please check your internet connection or try again later.");
         }
     }
 }

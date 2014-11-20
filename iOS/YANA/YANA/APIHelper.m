@@ -202,6 +202,7 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     
     // set json args to request's HTTPBody
     if(jsonArgs){
+        NSLog(@"JSON: %@", jsonArgs);
         urlRequest.HTTPBody = jsonArgs;
     }else{
         NSLog(@"invalid json input");
@@ -236,8 +237,6 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
         
         if (json != nil && jsonError == nil){
             NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-            
-            NSLog(@"JSON args: %@", jsonString);
         }else{
             NSLog(@"error forming json: %@", jsonError);
             return nil;

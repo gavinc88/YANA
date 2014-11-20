@@ -255,6 +255,7 @@
 		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
 		86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendFunctionalTest.m; sourceTree = "<group>"; };
 		86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewControllerTest.m; sourceTree = "<group>"; };
+		86B0970A1A1DAFE300819162 /* BerkeleyLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BerkeleyLocation.gpx; sourceTree = "<group>"; };
 		86D9C7811A1331F2002C759D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		86D9C7831A1332E2002C759D /* NearbyUsersMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyUsersMapViewController.h; sourceTree = "<group>"; };
 		86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyUsersMapViewController.m; sourceTree = "<group>"; };
@@ -604,6 +605,7 @@
 				86D9C7841A1332E2002C759D /* NearbyUsersMapViewController.m */,
 				86D9C81B1A1BE906002C759D /* NearbyUsersFilterViewController.h */,
 				86D9C81C1A1BE906002C759D /* NearbyUsersFilterViewController.m */,
+				86B0970A1A1DAFE300819162 /* BerkeleyLocation.gpx */,
 			);
 			name = NearbyUsers;
 			sourceTree = "<group>";

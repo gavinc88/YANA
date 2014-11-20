@@ -14,4 +14,16 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property(nonatomic, retain) CLLocationManager *locationManager;
 
+@property (strong, nonatomic) NSMutableDictionary *nearbyUsers; //key = username/annotation.title; value = {"annotation" : MKPointAnnotation, "userid" : user_id
+
+@property (strong, nonatomic) NSNumber *longitude;
+@property (strong, nonatomic) NSNumber *latitude;
+@property (strong, nonatomic) NSNumber *range;
+
+@property BOOL hasFilter;
+@property BOOL friendsOnly;
+@property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSNumber *startAge;
+@property (strong, nonatomic) NSNumber *endAge;
+
 @end
