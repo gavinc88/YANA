@@ -25,6 +25,9 @@ extern NSString* const action_add_friend;
 extern NSString* const action_delete_friend;
 extern NSString* const action_get_friend_list;
 extern NSString* const action_get_profile_by_id;
+extern NSString* const action_update_device_token;
+extern NSString* const aciton_update_current_locaiton;
+extern NSString* const action_get_nearby_users;
 
 @property (nonatomic, strong) NSString* SUCCESS;
 @property (nonatomic, strong) NSString* INVALID_USERNAME;
@@ -39,6 +42,7 @@ extern NSString* const action_get_profile_by_id;
 @property (nonatomic, strong) NSString* MEAL_REQUEST_EXPIRED;
 @property (nonatomic, strong) NSString* NO_PERMISSION;
 @property (nonatomic, strong) NSString* NOT_FOLLOWING;
+@property (nonatomic, strong) NSString* INVALID_REQUEST_ID;
 @property (nonatomic, strong) NSString* ERROR;
 
 @property (nonatomic, strong) NSDictionary* statusCodeDictionary;
@@ -79,5 +83,28 @@ extern NSString* const action_get_profile_by_id;
 
 - (NSDictionary *) updateDeviceToken:(NSString *)deviceToken
                              forUser:(NSString *)userid;
+
+- (NSDictionary *) updateUserLocation:(NSString *)userid
+                            longitude:(NSNumber *)longitude
+                             latitude:(NSNumber *)latitude;
+
+- (NSDictionary *) getNearbyUsers:(NSString *)userid
+                        longitude:(NSNumber *)longitude
+                         latitude:(NSNumber *)latitude
+                            range:(NSNumber *)range
+                      friendsOnly:(BOOL)friendsOnly
+                           gender:(NSString *)gender
+                         startAge:(NSNumber *)startAge
+                           endAge:(NSNumber *)endAge;
+
+- (NSData *) getArgsForActionGetNearbyUsers:(NSString *)userid
+                                        longitude:(NSNumber *)longitude
+                                         latitude:(NSNumber *)latitude
+                                            range:(NSNumber *)range
+                                      friendsOnly:(BOOL)friendsOnly
+                                           gender:(NSString *)gender
+                                         startAge:(NSNumber *)startAge
+                                           endAge:(NSNumber *)endAge;
+
 
 @end

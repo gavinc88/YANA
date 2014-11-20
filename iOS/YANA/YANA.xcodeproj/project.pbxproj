@@ -96,6 +96,7 @@
 		86D9C8131A1BE778002C759D /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D9C7F71A1BE778002C759D /* slider-metal-trackBackground@2x.png */; };
 		86D9C8141A1BE778002C759D /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D9C7F91A1BE778002C759D /* NMRangeSlider.m */; };
 		86D9C81D1A1BE906002C759D /* NearbyUsersFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D9C81C1A1BE906002C759D /* NearbyUsersFilterViewController.m */; };
+		86D9C8201A1D44E4002C759D /* APIHelperArgsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D9C81F1A1D44E4002C759D /* APIHelperArgsTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,7 @@
 		86D9C7F91A1BE778002C759D /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRangeSlider.m; sourceTree = "<group>"; };
 		86D9C81B1A1BE906002C759D /* NearbyUsersFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyUsersFilterViewController.h; sourceTree = "<group>"; };
 		86D9C81C1A1BE906002C759D /* NearbyUsersFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyUsersFilterViewController.m; sourceTree = "<group>"; };
+		86D9C81F1A1D44E4002C759D /* APIHelperArgsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelperArgsTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,6 +591,7 @@
 			children = (
 				861939221A0B072400B8A193 /* FriendsTableViewControllerTest.m */,
 				86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */,
+				86D9C81F1A1D44E4002C759D /* APIHelperArgsTest.m */,
 			);
 			name = "Unit Tests";
 			sourceTree = "<group>";
@@ -891,6 +894,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D9C8201A1D44E4002C759D /* APIHelperArgsTest.m in Sources */,
 				86AFD2301A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m in Sources */,
 				86A3352B19EC7E0F000DFA43 /* YANATests.m in Sources */,
 				8619376D1A08979100B8A193 /* MainTabControllerTest.m in Sources */,

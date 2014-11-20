@@ -32,6 +32,8 @@ NSString* const action_get_friend_list = @"friends/friend_list";
 NSString* const action_get_friend_requests = @"friends/friend_requests";
 NSString* const action_get_profile_by_id = @"users/profile";
 NSString* const action_edit_profile = @"users/edit_profile";
+NSString* const aciton_update_current_locaiton = @"users/update_location";
+NSString* const action_get_nearby_users = @"users/nearby_users";
 
 - (instancetype) init{
     self = [super init];
@@ -48,6 +50,7 @@ NSString* const action_edit_profile = @"users/edit_profile";
     self.MEAL_REQUEST_EXPIRED = @"MEAL_REQUEST_EXPIRED";
     self.NO_PERMISSION = @"NO_PERMISSION";
     self.NOT_FOLLOWING = @"NOT_FOLLOWING";
+    self.INVALID_REQUEST_ID = @"INVALID_REQUEST_ID";
     self.ERROR = @"ERROR";
     if(self){
         self.statusCodeDictionary = @{
@@ -64,6 +67,7 @@ NSString* const action_edit_profile = @"users/edit_profile";
           @"-10" : self.MEAL_REQUEST_EXPIRED,
           @"-11" : self.NO_PERMISSION,
           @"-12" : self.NOT_FOLLOWING,
+          @"-13" : self.INVALID_REQUEST_ID,
           @"-99" : self.ERROR
           };
     }
@@ -102,7 +106,7 @@ NSString* const action_edit_profile = @"users/edit_profile";
 }
 
 - (NSDictionary *) makeSynchronousGetRequestWithURL:(NSString *)url
-                                             andParams:(NSDictionary *)params{
+                                          andParams:(NSDictionary *)params{
     // Format params to url
     if([params count]){
         
@@ -187,6 +191,64 @@ NSString* const action_edit_profile = @"users/edit_profile";
     }
 }
 
+- (NSDictionary *) makeSynchronousPostRequestWithURL:(NSString *)url
+                                             andArgs:(NSData *)jsonArgs{
+    NSLog(@"new POST to %@", url);
+    
+    // Setup POST request
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    urlRequest.HTTPMethod = @"POST";
+    [urlRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    // set json args to request's HTTPBody
+    if(jsonArgs){
+        urlRequest.HTTPBody = jsonArgs;
+    }else{
+        NSLog(@"invalid json input");
+        return nil;
+    }
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(error){
+        NSLog(@"server error: %@", error);
+        return nil;
+    }
+    
+    NSError *jsonError = nil;
+    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &jsonError];
+    
+    if(jsonError){
+        NSLog(@"error converting response to json: %@\n\nresponse: %@", jsonError, jsonResponse);
+        return nil;
+    }else{
+        NSLog(@"response: %@", jsonResponse);
+        return jsonResponse;
+    }
+}
+
+- (NSData *) convertDictionaryToNSData:(NSDictionary *)args{
+    NSError *jsonError = nil;
+    NSData *json;
+    if ([NSJSONSerialization isValidJSONObject:args]){
+        json = [NSJSONSerialization dataWithJSONObject:args options:NSJSONWritingPrettyPrinted error:&jsonError];
+        
+        if (json != nil && jsonError == nil){
+            NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+            
+            NSLog(@"JSON args: %@", jsonString);
+        }else{
+            NSLog(@"error forming json: %@", jsonError);
+            return nil;
+        }
+    }else{
+        NSLog(@"Invalid args");
+        return nil;
+    }
+    return json;
+}
+
 - (NSDictionary *) createUserWithUsername:(NSString *)username
                           andPassword:(NSString *)password{
     NSString *requestURL = [self generateFullUrl:action_create_user];
@@ -239,7 +301,7 @@ NSString* const action_edit_profile = @"users/edit_profile";
                           mealRequest.restaurant, @"restaurant",
                           mealRequest.comment, @"comment",
                           nil];
-    NSLog(@"%@",args);
+    
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
     return jsonResponse;
@@ -394,6 +456,81 @@ NSString* const action_edit_profile = @"users/edit_profile";
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:argss];
     
     return jsonResponse;
+}
+
+- (NSDictionary *) updateUserLocation:(NSString *)userid
+                            longitude:(NSNumber *)longitude
+                             latitude:(NSNumber *)latitude{
+    NSString *requestURL = [self generateFullUrl:aciton_update_current_locaiton];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          userid, @"user_id",
+                          longitude, @"lon",
+                          latitude, @"lat",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
+}
+
+- (NSDictionary *) getNearbyUsers:(NSString *)userid
+                        longitude:(NSNumber *)longitude
+                         latitude:(NSNumber *)latitude
+                            range:(NSNumber *)range
+                      friendsOnly:(BOOL)friendsOnly
+                           gender:(NSString *)gender
+                         startAge:(NSNumber *)startAge
+                           endAge:(NSNumber *)endAge{
+    NSString *requestURL = [self generateFullUrl:action_get_nearby_users];
+    
+    NSData *args = [self getArgsForActionGetNearbyUsers:userid longitude:longitude latitude:latitude range:range friendsOnly:friendsOnly gender:gender startAge:startAge endAge:endAge];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL andArgs:args];
+    
+    return jsonResponse;
+}
+
+- (NSData *) getArgsForActionGetNearbyUsers:(NSString *)userid
+                                               longitude:(NSNumber *)longitude
+                                                latitude:(NSNumber *)latitude
+                                                   range:(NSNumber *)range
+                                             friendsOnly:(BOOL)friendsOnly
+                                                  gender:(NSString *)gender
+                                                startAge:(NSNumber *)startAge
+                                                  endAge:(NSNumber *)endAge{
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userid, @"user_id", nil];
+    
+    //set search location and range
+    NSMutableDictionary *nearby = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                   longitude, @"lon",
+                                   latitude, @"lat",
+                                   range, @"range",
+                                   nil];
+    if(nearby){
+        [args setObject:nearby forKey:@"nearby"];
+    }
+    
+    //set filter options
+    [args setObject:[NSNumber numberWithBool:friendsOnly] forKey:@"friends_only"];
+    
+    if(gender){
+        [args setObject:gender forKey:@"gender"];
+    }
+    
+    NSMutableDictionary *age = [[NSMutableDictionary alloc] init];
+    if(startAge){
+        [age setValue:startAge forKey:@"age_low"];
+    }
+    if(endAge){
+        [age setValue:endAge forKey:@"age_high"];
+    }
+    if([age count]){
+        [args setValue:age forKey:@"age"];
+    }
+    
+    return [self convertDictionaryToNSData:args];
 }
 
 @end
