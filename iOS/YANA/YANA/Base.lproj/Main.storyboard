@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -834,6 +835,73 @@
             </objects>
             <point key="canvasLocation" x="3056" y="960"/>
         </scene>
+        <!--User Gender-->
+        <scene sceneID="Dbs-H1-InH">
+            <objects>
+                <tableViewController id="iHk-FL-Qv3" customClass="GenderUserTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XIY-tQ-urX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="2AM-f0-fLo">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="dNP-PB-T5i">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dNP-PB-T5i" id="7o3-yn-mZY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D82-EW-eI0">
+                                                    <rect key="frame" x="8" y="14" width="57" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="0iG-PM-0mx">
+                                                    <rect key="frame" x="388" y="11" width="204" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="204" id="Uww-NU-bgn"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Male"/>
+                                                        <segment title="Female"/>
+                                                        <segment title="Other"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0iG-PM-0mx" firstAttribute="top" secondItem="7o3-yn-mZY" secondAttribute="topMargin" constant="3" id="2HD-Eh-PBJ"/>
+                                                <constraint firstItem="0iG-PM-0mx" firstAttribute="firstBaseline" secondItem="D82-EW-eI0" secondAttribute="firstBaseline" id="M6a-6v-Ykf"/>
+                                                <constraint firstItem="0iG-PM-0mx" firstAttribute="trailing" secondItem="7o3-yn-mZY" secondAttribute="trailingMargin" id="VXi-lV-xQZ"/>
+                                                <constraint firstItem="D82-EW-eI0" firstAttribute="leading" secondItem="7o3-yn-mZY" secondAttribute="leadingMargin" id="WJx-oe-LNm"/>
+                                                <constraint firstItem="D82-EW-eI0" firstAttribute="centerY" secondItem="7o3-yn-mZY" secondAttribute="centerY" id="k0N-v1-8aX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="iHk-FL-Qv3" id="d3u-uo-w2L"/>
+                            <outlet property="delegate" destination="iHk-FL-Qv3" id="JiR-l3-ERQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User Gender" id="pwY-y4-F0L">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="lj4-el-kPR">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="iHk-FL-Qv3" id="C5z-ZU-AVd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="genderSelector" destination="0iG-PM-0mx" id="O8I-wI-6hj"/>
+                        <outlet property="saveButton" destination="lj4-el-kPR" id="9kH-Si-UkC"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xP6-BZ-KWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5008" y="960"/>
+        </scene>
         <!--User Phone Number-->
         <scene sceneID="Ybt-8k-rxx">
             <objects>
@@ -1333,6 +1401,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="iHk-FL-Qv3" kind="show" identifier="editGender" id="bB7-P5-alh"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ageCell" textLabel="YSR-uf-hn0" detailTextLabel="Pi1-tM-wco" style="IBUITableViewCellStyleValue1" id="h1R-cH-y6N">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

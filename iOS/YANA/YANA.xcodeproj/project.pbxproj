@@ -35,6 +35,7 @@
 		34E2A8B11A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B01A1CB2A6005BBEF5 /* FoodPreferencesUserTableViewController.m */; };
 		34E2A8B41A1CBB32005BBEF5 /* AgeUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B31A1CBB32005BBEF5 /* AgeUserTableViewController.m */; };
 		34E2A8B71A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */; };
+		34E2A8BB1A1D698E005BBEF5 /* GenderUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E2A8BA1A1D698E005BBEF5 /* GenderUserTableViewController.m */; };
 		860ED7B319F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */; };
 		860ED7B619F58036008D9810 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B519F58036008D9810 /* Friend.m */; };
 		860ED7B919F58A97008D9810 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 860ED7B819F58A97008D9810 /* AddFriendTableViewCell.m */; };
@@ -201,6 +202,8 @@
 		34E2A8B31A1CBB32005BBEF5 /* AgeUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeUserTableViewController.m; sourceTree = "<group>"; };
 		34E2A8B51A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberUserTableViewController.h; sourceTree = "<group>"; };
 		34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberUserTableViewController.m; sourceTree = "<group>"; };
+		34E2A8B91A1D698E005BBEF5 /* GenderUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderUserTableViewController.h; sourceTree = "<group>"; };
+		34E2A8BA1A1D698E005BBEF5 /* GenderUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderUserTableViewController.m; sourceTree = "<group>"; };
 		860ED7B119F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestWithoutButtonsTableViewCell.h; sourceTree = "<group>"; };
 		860ED7B219F1EDD3008D9810 /* MealRequestWithoutButtonsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestWithoutButtonsTableViewCell.m; sourceTree = "<group>"; };
 		860ED7B419F58036008D9810 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 		34D5D15B19F996E4005D011C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				34E2A8B91A1D698E005BBEF5 /* GenderUserTableViewController.h */,
+				34E2A8BA1A1D698E005BBEF5 /* GenderUserTableViewController.m */,
 				34E2A8B51A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.h */,
 				34E2A8B61A1CC22F005BBEF5 /* PhoneNumberUserTableViewController.m */,
 				34E2A8B21A1CBB32005BBEF5 /* AgeUserTableViewController.h */,
@@ -877,6 +882,7 @@
 				3430B47A1A085A320090A9C9 /* OADataFetcher.m in Sources */,
 				86AC7CE219F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m in Sources */,
 				3430B47D1A085A320090A9C9 /* OAPlaintextSignatureProvider.m in Sources */,
+				34E2A8BB1A1D698E005BBEF5 /* GenderUserTableViewController.m in Sources */,
 				3430B47F1A085A320090A9C9 /* OARequestParameter.m in Sources */,
 				3430B4721A085A320090A9C9 /* NSMutableURLRequest+Parameters.m in Sources */,
 				86A9B95A19EF827B005A7314 /* FriendsTableViewController.m in Sources */,

@@ -15,6 +15,7 @@
 #import "PhoneNumberUserTableViewController.h"
 #import "LoginViewController.h"
 #import "KeychainItemWrapper.h"
+#import "GenderUserTableViewController.h"
 @interface UserProfileTableViewController ()
 
 @end
@@ -168,6 +169,12 @@ APIHelper *apiHelper;
          controller3.phoneNumber = [NSNumber numberWithInt:[self.phoneNumberLabel.text intValue]];
          controller3.privacy = self.privacy;
      }
+     if([segue.identifier isEqualToString:@"editGender"]){
+         GenderUserTableViewController *controller4 = segue.destinationViewController;
+         controller4.gender = self.genderLabel.text;
+         controller4.privacy = self.privacy;
+     }
+     
  }
 
 

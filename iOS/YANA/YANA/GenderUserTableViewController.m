@@ -1,38 +1,37 @@
 //
-//  PhoneNumberUserTableViewController.m
+//  GenderUserTableViewController.m
 //  YANA
 //
 //  Created by Shane on 11/19/14.
 //  Copyright (c) 2014 CS169. All rights reserved.
 //
 
-#import "PhoneNumberUserTableViewController.h"
+#import "GenderUserTableViewController.h"
 #import "APIHelper.h"
 #import "User.h"
 #import "AppDelegate.h"
-@interface PhoneNumberUserTableViewController ()
+
+@interface GenderUserTableViewController ()
 
 @end
 
-@implementation PhoneNumberUserTableViewController
+@implementation GenderUserTableViewController
 APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if ([self.gender isEqualToString:@"male"]){
+        self.genderSelector.selectedSegmentIndex = 0;
+    } else if ([self.gender isEqualToString:@"female"]){
+        self.genderSelector.selectedSegmentIndex = 1;
+    } else if ([self.gender isEqualToString:@"other"]){
+        self.genderSelector.selectedSegmentIndex = 2;
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
-    self.saveButton.enabled = NO;
-    if (!self.phoneNumber || [self.phoneNumber intValue] == 0) {
-        self.phoneNumberTextField.placeholder = @"(Not specified)";
-    } else {
-        self.phoneNumberTextField.text = [NSString stringWithFormat:@"%@",self.phoneNumber];
-    }
-    self.saveButton.enabled = NO;
-    self.phoneNumberTextField.keyboardType = UIKeyboardTypeDecimalPad;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,8 +44,16 @@ APIHelper *apiHelper;
     self.user = appDelegate.user;
 }
 
-- (IBAction)saveButtonPressed:(id)sender {
-    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:nil foodPreferences:nil phoneNumber:self.phoneNumberTextField.text];
+- (IBAction)saveButtonClicked:(id)sender {
+    if (self.genderSelector.selectedSegmentIndex == 0) {
+          self.gender = @"male";
+    } else if (self.genderSelector.selectedSegmentIndex == 1) {
+        self.gender = @"female";
+    } else if (self.genderSelector.selectedSegmentIndex == 2) {
+        self.gender = @"other";
+    }
+    
+    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:self.gender age:nil foodPreferences:nil phoneNumber:nil];
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];
@@ -72,9 +79,5 @@ APIHelper *apiHelper;
         [alert show];
     }
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)editingChanged:(id)sender {
-    self.saveButton.enabled = YES;
 }
 @end
