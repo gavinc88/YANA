@@ -38,7 +38,6 @@ APIHelper *apiHelper;
     }
     if ([self isUserLogged] && self.loggedOut == NO) {
         [self.loginButton sendActionsForControlEvents: UIControlEventTouchUpInside];
-        [self performSegueWithIdentifier:@"openMain" sender:self];
     } else {
         NSLog(@"user is not logged");
     }
