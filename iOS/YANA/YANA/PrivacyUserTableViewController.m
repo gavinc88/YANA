@@ -1,31 +1,24 @@
 //
-//  GenderUserTableViewController.m
+//  PrivacyUserTableViewController.m
 //  YANA
 //
 //  Created by Shane on 11/19/14.
 //  Copyright (c) 2014 CS169. All rights reserved.
 //
 
-#import "GenderUserTableViewController.h"
+#import "PrivacyUserTableViewController.h"
 #import "APIHelper.h"
 #import "User.h"
 #import "AppDelegate.h"
-
-@interface GenderUserTableViewController ()
+@interface PrivacyUserTableViewController ()
 
 @end
 
-@implementation GenderUserTableViewController
+@implementation PrivacyUserTableViewController
 APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if ([self.gender isEqualToString:@"male"]){
-        self.genderSelector.selectedSegmentIndex = 0;
-    } else if ([self.gender isEqualToString:@"female"]){
-        self.genderSelector.selectedSegmentIndex = 1;
-    } else if ([self.gender isEqualToString:@"other"]){
-        self.genderSelector.selectedSegmentIndex = 2;
-    }
+    self.privacySelector.selectedSegmentIndex = [self.privacy intValue];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -45,16 +38,11 @@ APIHelper *apiHelper;
     self.user = appDelegate.user;
 }
 
+
 - (IBAction)saveButtonClicked:(id)sender {
-    if (self.genderSelector.selectedSegmentIndex == 0) {
-          self.gender = @"male";
-    } else if (self.genderSelector.selectedSegmentIndex == 1) {
-        self.gender = @"female";
-    } else if (self.genderSelector.selectedSegmentIndex == 2) {
-        self.gender = @"other";
-    }
+    self.privacy = [NSNumber numberWithInteger:self.privacySelector.selectedSegmentIndex];
     
-    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:self.gender age:nil foodPreferences:nil phoneNumber:nil];
+    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:nil foodPreferences:nil phoneNumber:nil];
     
     if(response){
         int statusCode = [[response objectForKey:@"errCode"] intValue];

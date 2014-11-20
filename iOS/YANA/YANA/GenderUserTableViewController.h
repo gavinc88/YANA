@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderSelector;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) User *user;
+- (IBAction)valueChanged:(id)sender;
 @property (strong, nonatomic) NSNumber *privacy;
 @end

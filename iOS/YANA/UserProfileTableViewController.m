@@ -16,6 +16,7 @@
 #import "LoginViewController.h"
 #import "KeychainItemWrapper.h"
 #import "GenderUserTableViewController.h"
+#import "PrivacyUserTableViewController.h"
 @interface UserProfileTableViewController ()
 
 @end
@@ -60,13 +61,13 @@ APIHelper *apiHelper;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             self.privacy = [response objectForKey:@"privacy"];
-            if (self.privacy == [NSNumber numberWithInt:0]) {
+            if ([self.privacy isEqualToNumber:[NSNumber numberWithInt:0]]) {
                 self.privacyLabel.text = @"Private";
             }
-            if (self.privacy == [NSNumber numberWithInt:1]) {
+            if ([self.privacy isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 self.privacyLabel.text = @"Friends Only";
             }
-            if (self.privacy == [NSNumber numberWithInt:2]) {
+            if ([self.privacy isEqualToNumber:[NSNumber numberWithInt:2]]) {
                 self.privacyLabel.text = @"Global";
             }
             
@@ -174,7 +175,10 @@ APIHelper *apiHelper;
          controller4.gender = self.genderLabel.text;
          controller4.privacy = self.privacy;
      }
-     
+     if([segue.identifier isEqualToString:@"editPrivacy"]){
+         PrivacyUserTableViewController *controller5 = segue.destinationViewController;
+         controller5.privacy = self.privacy;
+     }
  }
 
 

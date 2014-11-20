@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -673,12 +673,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
-                                <rect key="frame" x="16" y="119" width="62" height="20.5"/>
+                                <rect key="frame" x="16" y="119" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
                                 <rect key="frame" x="160" y="147" width="280" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EDA-fE-xp8"/>
@@ -690,8 +690,8 @@
                                     <segment title="Other"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
-                                <rect key="frame" x="16" y="190" width="89.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
+                                <rect key="frame" x="16" y="190" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -711,13 +711,13 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends Only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="572-QW-kMJ">
-                                <rect key="frame" x="16" y="84" width="101.5" height="20.5"/>
+                                <rect key="frame" x="16" y="84" width="102" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
-                                <rect key="frame" x="217.5" y="79" width="51" height="31"/>
+                                <rect key="frame" x="218" y="79" width="51" height="31"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -835,14 +835,82 @@
             </objects>
             <point key="canvasLocation" x="3056" y="960"/>
         </scene>
+        <!--User Privacy Settings-->
+        <scene sceneID="RGL-ZP-jTV">
+            <objects>
+                <tableViewController id="3VX-47-75j" customClass="PrivacyUserTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NXR-wT-UnP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="o3b-AM-48s">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ay1-my-pzF">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ay1-my-pzF" id="fZ7-MM-gSo">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlr-ky-n7a">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5mS-OE-a86">
+                                                    <rect key="frame" x="160" y="8" width="280" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="280" id="3LK-h7-O5a"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Private"/>
+                                                        <segment title="Friends Only"/>
+                                                        <segment title="Everyone"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="3VX-47-75j" eventType="valueChanged" id="quA-tn-0ep"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5mS-OE-a86" firstAttribute="top" secondItem="fZ7-MM-gSo" secondAttribute="topMargin" id="X5C-M3-j2Y"/>
+                                                <constraint firstItem="5mS-OE-a86" firstAttribute="centerX" secondItem="fZ7-MM-gSo" secondAttribute="centerX" id="ePc-lm-fJH"/>
+                                                <constraint firstItem="wlr-ky-n7a" firstAttribute="leading" secondItem="fZ7-MM-gSo" secondAttribute="leadingMargin" id="miu-GL-wNv"/>
+                                                <constraint firstItem="wlr-ky-n7a" firstAttribute="top" secondItem="fZ7-MM-gSo" secondAttribute="topMargin" constant="3" id="ydW-jM-kIG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="3VX-47-75j" id="u51-Pg-NLM"/>
+                            <outlet property="delegate" destination="3VX-47-75j" id="ni7-74-fzD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User Privacy Settings" id="fn1-uI-ey3">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="s2u-q3-5uC">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="3VX-47-75j" id="TYf-dw-dnW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="privacySelector" destination="5mS-OE-a86" id="QK1-If-biH"/>
+                        <outlet property="saveButton" destination="s2u-q3-5uC" id="oSe-Fv-wkQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwz-ep-HI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5661" y="960"/>
+        </scene>
         <!--User Gender-->
         <scene sceneID="Dbs-H1-InH">
             <objects>
                 <tableViewController id="iHk-FL-Qv3" customClass="GenderUserTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XIY-tQ-urX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="XIY-tQ-urX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="2AM-f0-fLo">
                                 <cells>
@@ -867,6 +935,9 @@
                                                         <segment title="Female"/>
                                                         <segment title="Other"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="iHk-FL-Qv3" eventType="valueChanged" id="LU2-Zk-pIl"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -1501,6 +1572,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3VX-47-75j" kind="show" identifier="editPrivacy" id="Mtl-Uz-FWV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
