@@ -213,6 +213,7 @@ APIHelper *apiHelper;
         MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"NearbyUserPin"];
         annotationView.canShowCallout = YES;
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        annotationView.image = [UIImage imageNamed:@"locationPin"];
         return annotationView;
     }
     return nil;
