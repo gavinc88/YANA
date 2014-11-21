@@ -23,6 +23,7 @@ NSString* const action_logout = @"users/logout";
 NSString* const action_create_request = @"request/create_request";
 NSString* const action_view_requests = @"request/request_list";
 NSString* const action_handle_meal_request = @"request/handle_request";
+NSString* const action_delete_meal_request = @"request/delete_request";
 NSString* const action_search_users_by_name = @"users/search_users_by_name";
 NSString* const action_search_users_by_id = @"users/search_users_by_id";
 NSString* const action_add_friend = @"friends/add_friend";
@@ -329,6 +330,14 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     
+    return jsonResponse;
+}
+
+- (NSDictionary *) deleteMealRequestWithID:(NSString *)req_id{
+    NSString *requestURL = [self generateFullUrl:action_delete_meal_request];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:req_id, @"request_id",nil];
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
     return jsonResponse;
 }
 

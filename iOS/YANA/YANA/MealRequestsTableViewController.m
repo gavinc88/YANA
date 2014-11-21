@@ -261,6 +261,13 @@ APIHelper *apiHelper;
     }
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"tableviewcell selected...........");
+    [self performSegueWithIdentifier:@"showMealRequest" sender:self];
+}
+
+
 - (NSString *)constructTitleForSelf:(MealRequest *)request{
     return [NSString stringWithFormat:@"Requested %@ at %@\n%@",
             request.type,

@@ -19,6 +19,7 @@ extern NSString* const action_logout;
 extern NSString* const action_create_request;
 extern NSString* const action_view_requests;
 extern NSString* const action_handle_meal_request;
+extern NSString* const action_delete_meal_request;
 extern NSString* const action_search_users_by_name;
 extern NSString* const action_search_users_by_id;
 extern NSString* const action_add_friend;
@@ -58,6 +59,7 @@ extern NSString* const action_get_nearby_users;
 - (NSDictionary *) handleMealRequestsForRequest:(NSString *)req_id
                                      WithAction:(NSString *)action
                                         ForUser:(NSString *)userid;
+- (NSDictionary *) deleteMealRequestWithID: (NSString *)req_id;
 
 - (NSDictionary *) searchUserByUsername:(NSString *)username;
 - (NSDictionary *) searchUserById:(NSString *)userid;

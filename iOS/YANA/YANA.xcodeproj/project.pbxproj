@@ -26,6 +26,7 @@
 		3430B4801A085A320090A9C9 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B46B1A085A320090A9C9 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4811A085A320090A9C9 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B46E1A085A320090A9C9 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3430B4821A085A320090A9C9 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3430B4701A085A320090A9C9 /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3444F68E1A1EF128005C44D6 /* MealRequestDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3444F68D1A1EF128005C44D6 /* MealRequestDetailTableViewController.m */; };
 		3477C5CA1A073B6B0089EC22 /* RestaurantSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */; };
 		34BBA7F81A106877004AB6E5 /* CreateMealRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */; };
 		34D1327F19F480F2001EDB51 /* CreateMealRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D1327E19F480F2001EDB51 /* CreateMealRequestViewController.m */; };
@@ -187,6 +188,8 @@
 		3430B46F1A085A320090A9C9 /* OATokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OATokenManager.h; sourceTree = "<group>"; };
 		3430B4701A085A320090A9C9 /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
 		3430B4711A085A320090A9C9 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		3444F68C1A1EF128005C44D6 /* MealRequestDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealRequestDetailTableViewController.h; sourceTree = "<group>"; };
+		3444F68D1A1EF128005C44D6 /* MealRequestDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestDetailTableViewController.m; sourceTree = "<group>"; };
 		3477C5C81A073B6B0089EC22 /* RestaurantSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchViewController.h; sourceTree = "<group>"; };
 		3477C5C91A073B6B0089EC22 /* RestaurantSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantSearchViewController.m; sourceTree = "<group>"; };
 		34BBA7F71A106877004AB6E5 /* CreateMealRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMealRequestTest.m; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 			children = (
 				3430B44B1A085A320090A9C9 /* OAuth */,
 				86A3351819EC7E0F000DFA43 /* Main.storyboard */,
+				3444F68C1A1EF128005C44D6 /* MealRequestDetailTableViewController.h */,
+				3444F68D1A1EF128005C44D6 /* MealRequestDetailTableViewController.m */,
 				86A3351D19EC7E0F000DFA43 /* LaunchScreen.xib */,
 				86A3351B19EC7E0F000DFA43 /* Images.xcassets */,
 				86AC7CD319F65D0100760EC4 /* APIHelper.h */,
@@ -873,6 +878,7 @@
 				3430B4731A085A320090A9C9 /* NSString+URLEncoding.m in Sources */,
 				34D5D15A19F99276005D011C /* UserProfileViewController.m in Sources */,
 				3430B47E1A085A320090A9C9 /* OAProblem.m in Sources */,
+				3444F68E1A1EF128005C44D6 /* MealRequestDetailTableViewController.m in Sources */,
 				3430B47B1A085A320090A9C9 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				86A3351419EC7E0F000DFA43 /* AppDelegate.m in Sources */,
 				34E2A8C51A1DC497005BBEF5 /* PrivacyUserTableViewController.m in Sources */,
