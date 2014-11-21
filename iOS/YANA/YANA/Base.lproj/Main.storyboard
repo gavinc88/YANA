@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -131,10 +131,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-vG-4DA">
-                                                    <rect key="frame" x="450" y="1" width="150" height="44"/>
+                                                    <rect key="frame" x="280" y="1" width="320" height="44"/>
                                                     <color key="backgroundColor" red="0.10704117607268271" green="1" blue="0.20438311420731714" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="J5C-lK-23S"/>
+                                                        <constraint firstAttribute="width" constant="320" id="J5C-lK-23S"/>
                                                     </constraints>
                                                     <state key="normal" title="Call Friend">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,10 +156,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-KH-FC9">
-                                                    <rect key="frame" x="450" y="0.0" width="150" height="45"/>
+                                                    <rect key="frame" x="280" y="0.0" width="320" height="45"/>
                                                     <color key="backgroundColor" red="1" green="0.35572349190751362" blue="0.37095994681950129" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="dSd-oz-G5a"/>
+                                                        <constraint firstAttribute="width" constant="320" id="dSd-oz-G5a"/>
                                                     </constraints>
                                                     <state key="normal" title="Cancel Meal Request">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,12 +306,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Meal Requests" id="rHE-0N-ETu">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="1dP-wT-7k3">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="1dP-wT-7k3">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Olx-h3-oIQ" kind="show" id="PqP-5T-tag"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qOb-cr-oai">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="qOb-cr-oai">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="vZC-N7-YNW" kind="presentation" identifier="openCreateMealRequest" id="SzM-vW-YgW"/>
                             </connections>
@@ -375,6 +377,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Search" id="2DN-La-jKL">
                         <barButtonItem key="rightBarButtonItem" title="Invite Friends" id="VdO-1Q-k7n">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Twq-2p-gmz" kind="show" identifier="inviteFriendsButton" id="MJw-Ov-P4X"/>
                             </connections>
@@ -551,7 +554,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Create Meal Request" id="Mlm-JE-ueY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="azl-t0-7aW">
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="azl-t0-7aW">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="psR-8y-Df3" kind="unwind" identifier="exitFromCreateMealRequest" unwindAction="unwindFromCreateMealRequest:" id="rzc-Br-4uL"/>
                             </connections>
@@ -592,6 +596,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Invite Friends" id="IkP-dQ-Jkw">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="oiA-3q-xsj">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Done"/>
                             </userDefinedRuntimeAttributes>
@@ -635,7 +640,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhh-jJ-jIC" id="O3H-ks-TIh">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Gavin Chu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-WS-v6D">
                                                     <rect key="frame" x="18" y="12" width="210" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="210" id="4fe-sO-4YZ"/>
@@ -699,6 +704,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Friend Search" id="aGQ-xO-vv1">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="j9x-k2-ynd">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="doneclicked:" destination="y5v-ly-pdB" id="iYa-fc-UYb"/>
                                 <segue destination="fMr-Y7-Pm3" kind="unwind" unwindAction="unwindFromSearchAndAddFriend:" id="fMV-KG-T7Q"/>
@@ -730,7 +736,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="friendUsername" tableViewCell="3hE-00-uh4" id="5DB-q3-Kqo">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="inviteButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-eA-p4A">
+                                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="inviteButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-eA-p4A">
                                             <rect key="frame" x="519" y="0.0" width="81" height="44"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -745,7 +751,7 @@
                                                 <segue destination="vZC-N7-YNW" kind="presentation" identifier="inviteToMealRequest" id="hu3-sb-lcf"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="inviteFriendUsername" text="Yaohui Ye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCV-PP-VWv">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="inviteFriendUsername" text="Yaohui Ye" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCV-PP-VWv">
                                             <rect key="frame" x="18" y="12" width="210" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="6xc-Rp-zUZ"/>
@@ -786,7 +792,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kvy-nP-4pk" id="We0-2y-cXu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addFriendUsername" text="Kevin Hsieh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csW-H8-Wuf">
                                             <rect key="frame" x="18" y="12" width="210" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="210" id="aC8-Jk-rOP"/>
@@ -837,12 +843,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="8SP-oF-TJI">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="7Wr-DF-GL5">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="7Wr-DF-GL5">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Olx-h3-oIQ" kind="show" id="Zac-Xo-nhj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YYj-x1-o9a">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="lhs-t2-oNO" kind="presentation" identifier="openSearchAndAddFriend" id="hDg-HI-aeX"/>
                             </connections>
@@ -865,14 +873,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
-                                <rect key="frame" x="16" y="119" width="62" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
+                                <rect key="frame" x="16" y="119.5" width="62" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
-                                <rect key="frame" x="160" y="147" width="280" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="o3B-tE-M5D">
+                                <rect key="frame" x="160" y="148" width="280" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EDA-fE-xp8"/>
                                 </constraints>
@@ -883,14 +891,14 @@
                                     <segment title="Other"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
-                                <rect key="frame" x="16" y="190" width="90" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
+                                <rect key="frame" x="16" y="191" width="89.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-3Z-rf8" customClass="NMRangeSlider">
-                                <rect key="frame" x="160" y="231" width="280" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-3Z-rf8" customClass="NMRangeSlider">
+                                <rect key="frame" x="160" y="231.5" width="280" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="AgeRangeSlider">
                                     <bool key="isElement" value="YES"/>
@@ -904,13 +912,13 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends Only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="572-QW-kMJ">
-                                <rect key="frame" x="16" y="84" width="102" height="21"/>
+                                <rect key="frame" x="16" y="84" width="101.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
-                                <rect key="frame" x="218" y="79" width="51" height="31"/>
+                                <rect key="frame" x="217.5" y="79" width="51" height="31"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -946,8 +954,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Filter Options" id="RqM-Im-P9z">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="P3Y-mI-Ybq"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7aP-YV-xln"/>
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="P3Y-mI-Ybq">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7aP-YV-xln">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ageRangeSlider" destination="Vyi-3Z-rf8" id="bue-Zi-MlU"/>
@@ -1014,6 +1026,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Food Preferences" id="Vpa-1S-Rxp">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="sMQ-Tw-3Ez">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="PCt-qH-6do" id="UgN-hr-iL6"/>
                             </connections>
@@ -1082,6 +1095,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Privacy Settings" id="fn1-uI-ey3">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="s2u-q3-5uC">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonClicked:" destination="3VX-47-75j" id="TYf-dw-dnW"/>
                             </connections>
@@ -1112,7 +1126,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dNP-PB-T5i" id="7o3-yn-mZY">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D82-EW-eI0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D82-EW-eI0">
                                                     <rect key="frame" x="8" y="14" width="57" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1152,6 +1166,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Gender" id="pwY-y4-F0L">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="lj4-el-kPR">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonClicked:" destination="iHk-FL-Qv3" id="C5z-ZU-AVd"/>
                             </connections>
@@ -1223,6 +1238,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Phone Number" id="MhZ-a5-ODw">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Q3U-aM-Z3C">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="5vk-Z1-bfm" id="YtL-Ed-C09"/>
                             </connections>
@@ -1294,6 +1310,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Age" id="qmh-Ks-3Rg">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="rYE-9A-fnu">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="AWx-io-HGd" id="hKZ-xe-Zy1"/>
                             </connections>
@@ -1351,6 +1368,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Nearby Users" id="j2K-d4-DJU">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="z0F-ns-332">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="D9U-8t-YOT" kind="show" id="s9e-Wr-7KE"/>
                             </connections>
@@ -1368,7 +1386,7 @@
         <scene sceneID="qam-Iy-cDk">
             <objects>
                 <navigationController id="7lW-uy-nif" customClass="MealRequestsNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Requests" image="reqeusts" id="zcc-e6-Gfd"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="requests" id="zcc-e6-Gfd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tsq-XM-kGK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1384,13 +1402,14 @@
         <!--MainTab-->
         <scene sceneID="85R-cA-75s">
             <objects>
-                <tabBarController title="MainTab" hidesBottomBarWhenPushed="YES" id="irN-av-fR1" customClass="MainTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBarController" title="MainTab" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="irN-av-fR1" customClass="MainTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="rcQ-RW-xJP"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QKk-IZ-DpC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.82745098039999998" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.25882352939999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="7lW-uy-nif" kind="relationship" relationship="viewControllers" id="b1u-Yr-zKn"/>
@@ -1434,7 +1453,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="197" placeholderIntrinsicHeight="30" restorationIdentifier="loginButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="On1-jp-N5M">
                                 <rect key="frame" x="60" y="215" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.25882352941176467" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="loginButton">
                                     <accessibilityTraits key="traits" none="YES" button="YES"/>
                                 </accessibility>
@@ -1448,7 +1467,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="30" restorationIdentifier="createUserButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhB-jX-LaW">
                                 <rect key="frame" x="60" y="255" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.25882352939999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="createUserButton"/>
                                 <state key="normal" title="Create User">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1472,7 +1491,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.82745098039215681" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="On1-jp-N5M" firstAttribute="leading" secondItem="KYt-Kg-1Co" secondAttribute="leading" constant="60" id="1bO-dX-poH"/>
                             <constraint firstItem="yhB-jX-LaW" firstAttribute="leading" secondItem="KYt-Kg-1Co" secondAttribute="leading" constant="60" id="BZM-Q9-dG3"/>
@@ -1578,6 +1597,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="About User" id="EKZ-uw-9oS">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="D9B-WD-Kkx">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="NdX-z5-cTA" id="lnT-WW-LuH"/>
                             </connections>
@@ -1779,10 +1799,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kz-Aj-JIT">
-                                                    <rect key="frame" x="492" y="0.0" width="108" height="45"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="280" y="0.0" width="320" height="45"/>
+                                                    <color key="backgroundColor" red="0.94901960780000005" green="0.25882352939999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="108" id="lRH-eC-CrW"/>
+                                                        <constraint firstAttribute="width" constant="320" id="lRH-eC-CrW"/>
                                                     </constraints>
                                                     <state key="normal" title="Logout">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1896,31 +1916,31 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(not specified)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-DW-W5p">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not specified)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-DW-W5p">
                                         <rect key="frame" x="30" y="216" width="230" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(not specified)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6me-Ee-JaI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not specified)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6me-Ee-JaI">
                                         <rect key="frame" x="30" y="272" width="230" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppt-PG-9ZP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppt-PG-9ZP">
                                         <rect key="frame" x="15" y="245" width="35" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Food Preferences:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3H-3S-WGf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Preferences:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3H-3S-WGf">
                                         <rect key="frame" x="15" y="301" width="141" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5n-U9-Qxw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5n-U9-Qxw">
                                         <rect key="frame" x="30" y="321" width="260" height="102"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="dZN-2S-zf0"/>
@@ -1930,13 +1950,13 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Phone Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs4-UG-RP1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs4-UG-RP1">
                                         <rect key="frame" x="15" y="431" width="121" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(none)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q4-jr-NEc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(none)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q4-jr-NEc">
                                         <rect key="frame" x="30" y="451" width="230" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2049,13 +2069,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friends" width="29" height="30"/>
-        <image name="nearbyUsers" width="30" height="30"/>
-        <image name="reqeusts" width="30" height="30"/>
+        <image name="add" width="32" height="32"/>
+        <image name="cancel" width="32" height="32"/>
+        <image name="friends" width="32" height="32"/>
+        <image name="nearbyUsers" width="32" height="32"/>
+        <image name="requests" width="32" height="32"/>
+        <image name="settings" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="PqP-5T-tag"/>
         <segue reference="SzM-vW-YgW"/>
-        <segue reference="MJw-Ov-P4X"/>
+        <segue reference="2b4-QI-Nxk"/>
     </inferredMetricsTieBreakers>
 </document>

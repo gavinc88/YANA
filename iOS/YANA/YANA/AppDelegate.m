@@ -33,6 +33,23 @@
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
+    
+    //set navigation bar background to yellow
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:248.0/255.0 green:211.0/255.0 blue:60.0/255.0 alpha:1]];
+    
+    //set navigation bar text font
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor blackColor], NSForegroundColorAttributeName,
+                                                           [UIFont fontWithName:@"MarkerFelt-Thin" size:21.0], NSFontAttributeName, nil]];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    
+    //customize tab bar
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:248.0/255.0 green:211.0/255.0 blue:60.0/255.0 alpha:1]];
+    [[UITabBar appearance] setTintColor:[UIColor redColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f], NSForegroundColorAttributeName : [UIColor colorWithRed:0 green:0 blue:0 alpha:1]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f], NSForegroundColorAttributeName : [UIColor redColor]} forState:UIControlStateSelected];
+    
     return YES;
 }
 

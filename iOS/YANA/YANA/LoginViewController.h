@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
-@property  BOOL *loggedOut;
+@property  BOOL loggedOut;
 @end

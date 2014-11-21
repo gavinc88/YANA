@@ -77,7 +77,6 @@ static NSString *NOT_SPECIFIED = @"(not specified)";
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"UI touched");
     [self.view endEditing:YES];
     self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
 }

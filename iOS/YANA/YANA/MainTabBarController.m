@@ -34,6 +34,17 @@ APIHelper *apiHelper;
     [self getFriendsWhoAddedYou];
     [self updateUser];
     self.delegate = self;
+    [self customizeTabbar];
+}
+
+- (void)customizeTabbar {
+    UITabBarItem *tabBarItem0 = [self.tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem1 = [self.tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem2 = [self.tabBar.items objectAtIndex:2];
+    
+    [tabBarItem0 setImage: [[UIImage imageNamed:@"requests"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [tabBarItem1 setImage: [[UIImage imageNamed:@"friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [tabBarItem2 setImage: [[UIImage imageNamed:@"nearbyUsers"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 }
 
 - (void)didReceiveMemoryWarning {
