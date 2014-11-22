@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <FBLoginViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property  BOOL loggedOut;
 @end

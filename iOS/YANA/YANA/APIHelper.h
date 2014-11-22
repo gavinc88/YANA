@@ -52,6 +52,10 @@ extern NSString* const action_get_nearby_users;
                           andPassword:(NSString *)password;
 - (NSDictionary *) loginWithUsername:(NSString *)username
                      andPassword:(NSString *)password;
+- (NSDictionary *) loginWithFacebook:(NSString *)facebook_id
+                         AndUsername:(NSString *)username
+                            AndEmail:(NSString *)email;
+
 - (NSDictionary *) logout:(NSString *)userid;
 
 - (NSDictionary *) createMealRequest:(MealRequest *)mealRequest;

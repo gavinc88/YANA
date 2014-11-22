@@ -14,11 +14,15 @@
 
 @implementation APIHelper
 
-#define ServerApiURL @"http://yana169.herokuapp.com"
-NSString* const base_url = @"http://yana169.herokuapp.com";
+//#define ServerApiURL @"http://yana169.herokuapp.com"
+//NSString* const base_url = @"http://yana169.herokuapp.com";
+
+#define ServerApiURL @"http://localhost:3000"
+NSString* const base_url = @"http://localhost:3000";
 
 NSString* const action_create_user = @"users/create_user";
 NSString* const action_login = @"users/login";
+NSString* const action_loginFB = @"users/auth/facebook";
 NSString* const action_logout = @"users/logout";
 NSString* const action_create_request = @"request/create_request";
 NSString* const action_view_requests = @"request/request_list";
@@ -270,6 +274,23 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
                           username, @"username",
                           password, @"password",
+                          nil];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];
+    
+    return jsonResponse;
+}
+
+- (NSDictionary *) loginWithFacebook:(NSString *)facebook_id
+                         AndUsername:(NSString *)username
+                            AndEmail:(NSString *)email {
+
+    NSString *requestURL = [self generateFullUrl:action_loginFB];
+    
+    NSDictionary *args = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          facebook_id, @"facebook_id",
+                          username, @"username",
+                          email, @"email",
                           nil];
     
     NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL args:args];

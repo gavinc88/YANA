@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -874,7 +874,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-wR-lqo">
-                                <rect key="frame" x="16" y="119.5" width="62" height="20.5"/>
+                                <rect key="frame" x="16" y="120" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -892,13 +892,13 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
-                                <rect key="frame" x="16" y="191" width="89.5" height="20.5"/>
+                                <rect key="frame" x="16" y="191" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-3Z-rf8" customClass="NMRangeSlider">
-                                <rect key="frame" x="160" y="231.5" width="280" height="40"/>
+                                <rect key="frame" x="160" y="232" width="280" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="AgeRangeSlider">
                                     <bool key="isElement" value="YES"/>
@@ -912,13 +912,13 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends Only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="572-QW-kMJ">
-                                <rect key="frame" x="16" y="84" width="101.5" height="20.5"/>
+                                <rect key="frame" x="16" y="84" width="102" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
-                                <rect key="frame" x="217.5" y="79" width="51" height="31"/>
+                                <rect key="frame" x="218" y="79" width="51" height="31"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1490,6 +1490,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kq1-60-pgn" customClass="FBLoginView">
+                                <rect key="frame" x="60" y="304" width="198" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KYt-Kg-1Co" id="1Yx-RV-fUg"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901960784312" green="0.82745098039215681" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1513,6 +1520,7 @@
                     <connections>
                         <outlet property="createAccountButton" destination="yhB-jX-LaW" id="Nir-Ko-4Bg"/>
                         <outlet property="loginButton" destination="On1-jp-N5M" id="pRz-dq-B5e"/>
+                        <outlet property="loginView" destination="kq1-60-pgn" id="vlG-hV-s6m"/>
                         <outlet property="passwordText" destination="Rx8-4b-PYA" id="cQL-B1-UOP"/>
                         <outlet property="usernameText" destination="l1q-Ju-vrY" id="BsL-1Y-62C"/>
                         <segue destination="irN-av-fR1" kind="show" identifier="openMain" id="foV-kG-Lbf"/>
