@@ -228,7 +228,8 @@ APIHelper *apiHelper;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
             NSString *userid = [response objectForKey:@"user_id"];
-            self.user = [[User alloc] initWithUserid:userid username:user.name];
+            self.user = [[User alloc] initWithUserid:userid username:[user objectForKey: @"email"]];
+            NSLog(self.user.userid);
             [self performSegueWithIdentifier:@"openMain" sender:self];
             
         } else {

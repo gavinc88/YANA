@@ -14,11 +14,11 @@
 
 @implementation APIHelper
 
-//#define ServerApiURL @"http://yana169.herokuapp.com"
-//NSString* const base_url = @"http://yana169.herokuapp.com";
+#define ServerApiURL @"http://yana169.herokuapp.com"
+NSString* const base_url = @"http://yana169.herokuapp.com";
 
-#define ServerApiURL @"http://localhost:3000"
-NSString* const base_url = @"http://localhost:3000";
+//#define ServerApiURL @"http://localhost:3000"
+//NSString* const base_url = @"http://localhost:3000";
 
 NSString* const action_create_user = @"users/create_user";
 NSString* const action_login = @"users/login";
