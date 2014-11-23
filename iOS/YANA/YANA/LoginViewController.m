@@ -29,6 +29,7 @@ APIHelper *apiHelper;
     apiHelper = [[APIHelper alloc]init];
     _loginView.readPermissions = @[@"public_profile", @"email"];
     _loginView.delegate = self;
+    [FBSession.activeSession closeAndClearTokenInformation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
