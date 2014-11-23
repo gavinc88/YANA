@@ -7,21 +7,34 @@
 //
 
 #import "MealRequestDetailTableViewController.h"
+#import "APIHelper.h"
 
 @interface MealRequestDetailTableViewController ()
 
 @end
 
 @implementation MealRequestDetailTableViewController
-
+APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    apiHelper = [[APIHelper alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.isUserMealRequest == NO) {
+        self.cancelButton.hidden = YES;
+    }
+    self.typeLabel.text = self.request.type;
+    self.mealRequestOwnerLabel.text = self.request.ownerUsername;
+    self.restaurantLabel.text = self.request.restaurant;
+    self.commentLabel.text = self.request.comment;
+    self.timeLabel.text = self.request.time;
+    self.invitedFriend = self.request.acceptedUser;
+    self.id = self.request.requestid;
+    NSLog(@"invitedFriend's ID is ........%@", self.invitedFriend);
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,72 +42,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)getFriendPhoneNumber {
     
-    // Configure the cell...
+    NSDictionary *response = [apiHelper getProfile:self.invitedFriend targetid:self.invitedFriend];
     
-    return cell;
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSDictionary *profile = [response objectForKey:@"profile"];
+            self.phoneNumber = [profile objectForKey:@"phone_number"];
+            NSLog(@"phone number is %@", self.phoneNumber);
+        }
+    }
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)deleteMealRequestWithID {
+    NSDictionary *response = [apiHelper deleteMealRequestWithID:self.id];
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
+        
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
+            NSLog(@"meal request deleted");
+        }
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (IBAction)callButtonPressed:(id)sender {
+    [self getFriendPhoneNumber];
+    NSString *phoneCallNum = [NSString stringWithFormat:@"tel://%@",self.phoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneCallNum]];
+    NSLog(@"phone number called %@", phoneCallNum);
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self deleteMealRequestWithID];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

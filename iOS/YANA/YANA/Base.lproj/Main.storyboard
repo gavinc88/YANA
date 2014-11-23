@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -15,6 +15,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Po-KH-FC9">
+                            <rect key="frame" x="0.0" y="393" width="600" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="0.35572349190751362" blue="0.37095994681950129" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="320" id="dSd-oz-G5a"/>
+                            </constraints>
+                            <state key="normal" title="Cancel Meal Request">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Vgk-il-4G6" eventType="touchUpInside" id="z3t-O8-3x1"/>
+                            </connections>
+                        </button>
                         <sections>
                             <tableViewSection id="fdu-3n-oja">
                                 <cells>
@@ -124,53 +139,29 @@
                             </tableViewSection>
                             <tableViewSection id="Xkz-y8-h8Z">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ya1-IJ-RMk">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hLS-tI-dz7">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ya1-IJ-RMk" id="rGn-gI-kgK">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hLS-tI-dz7" id="Iez-1E-Jer">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-vG-4DA">
-                                                    <rect key="frame" x="280" y="1" width="320" height="44"/>
-                                                    <color key="backgroundColor" red="0.10704117607268271" green="1" blue="0.20438311420731714" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="320" id="J5C-lK-23S"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NG-TS-lxM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <color key="backgroundColor" red="0.20963218221382543" green="0.93304135101010099" blue="0.50604355004621515" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Call Friend">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="callButtonPressed:" destination="Vgk-il-4G6" eventType="touchUpInside" id="4VR-Lu-8Sv"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="g5Y-vG-4DA" secondAttribute="trailing" id="aNZ-Dy-nkw"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="g5Y-vG-4DA" secondAttribute="bottom" constant="-10" id="bi0-Ju-zM4"/>
-                                                <constraint firstItem="g5Y-vG-4DA" firstAttribute="top" secondItem="rGn-gI-kgK" secondAttribute="topMargin" constant="-7" id="r8k-yW-LVR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cancelCell" id="sSb-4O-Of2">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sSb-4O-Of2" id="EkT-eb-Bxh">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-KH-FC9">
-                                                    <rect key="frame" x="280" y="0.0" width="320" height="45"/>
-                                                    <color key="backgroundColor" red="1" green="0.35572349190751362" blue="0.37095994681950129" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="320" id="dSd-oz-G5a"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Cancel Meal Request">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="7Po-KH-FC9" firstAttribute="top" secondItem="EkT-eb-Bxh" secondAttribute="top" id="BCr-fj-Vnj"/>
-                                                <constraint firstAttribute="trailing" secondItem="7Po-KH-FC9" secondAttribute="trailing" id="gxf-Ff-ale"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7Po-KH-FC9" secondAttribute="bottom" constant="-10" id="xeH-AL-FGK"/>
+                                                <constraint firstAttribute="trailing" secondItem="1NG-TS-lxM" secondAttribute="trailing" id="GKZ-ue-Sjn"/>
+                                                <constraint firstItem="1NG-TS-lxM" firstAttribute="top" secondItem="Iez-1E-Jer" secondAttribute="top" id="HzJ-69-FXO"/>
+                                                <constraint firstItem="1NG-TS-lxM" firstAttribute="leading" secondItem="Iez-1E-Jer" secondAttribute="leading" id="jEa-so-tg6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1NG-TS-lxM" secondAttribute="bottom" constant="-8.5" id="nsf-6j-8c3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -184,7 +175,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Meal Request" id="8Vj-fD-bA0"/>
                     <connections>
-                        <outlet property="callButton" destination="g5Y-vG-4DA" id="SSs-Bh-nkq"/>
+                        <outlet property="callButton" destination="1NG-TS-lxM" id="Vcn-D0-GJb"/>
                         <outlet property="cancelButton" destination="7Po-KH-FC9" id="81n-WN-J7a"/>
                         <outlet property="commentLabel" destination="rMG-hq-948" id="s2c-fA-neX"/>
                         <outlet property="mealRequestOwnerLabel" destination="OC4-dp-iA9" id="Sjy-Yy-o25"/>
@@ -195,7 +186,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbg-K6-Vsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-1910"/>
+            <point key="canvasLocation" x="1634" y="-1915"/>
         </scene>
         <!--Meal Requests-->
         <scene sceneID="SBj-0B-v9a">

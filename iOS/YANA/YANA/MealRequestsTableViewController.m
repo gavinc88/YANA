@@ -15,6 +15,7 @@
 #import "UserProfileViewController.h"
 #import "InviteFriendsTableViewController.h"
 #import "Friend.h"
+#import "MealRequestDetailTableViewController.h"
 
 @interface MealRequestsTableViewController ()
 
@@ -59,6 +60,10 @@ APIHelper *apiHelper;
     } else if([segue.identifier isEqualToString:@"openUserProfile"]) {
         UserProfileViewController *destViewController = segue.destinationViewController;
         destViewController.hidesBottomBarWhenPushed = YES;
+    } else if ([segue.identifier isEqualToString:@"showMealRequest"]) {
+        MealRequestDetailTableViewController *destViewController = segue.destinationViewController;
+        destViewController.isUserMealRequest = self.isUserMealRequest;
+        destViewController.request = self.requestSelected;
     }
 }
 
@@ -263,7 +268,16 @@ APIHelper *apiHelper;
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"tableviewcell selected...........");
+    if (indexPath.section == 0) {
+        self.isUserMealRequest = YES;
+        self.requestSelected = self.mealRequestsFromSelf[indexPath.row];
+        NSLog(@"request owner is...... %@", self.requestSelected.ownerUsername);
+    } else {
+        self.isUserMealRequest = NO;
+        self.requestSelected = self.mealRequestsFromOthers[indexPath.row];
+        NSLog(@"request owner is...... %@", self.requestSelected.ownerUsername);
+
+    }
     [self performSegueWithIdentifier:@"showMealRequest" sender:self];
 }
 
