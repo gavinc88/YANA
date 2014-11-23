@@ -118,11 +118,11 @@
     if(sender.selectedSegmentIndex == 0){
         self.gender = nil;
     }else if(sender.selectedSegmentIndex == 1){
-        self.gender = @"Male";
+        self.gender = @"male";
     }else if(sender.selectedSegmentIndex == 2){
-        self.gender = @"Female";
+        self.gender = @"female";
     }else if(sender.selectedSegmentIndex == 3){
-        self.gender = @"Other";
+        self.gender = @"other";
     }
 }
 

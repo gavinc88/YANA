@@ -12,6 +12,13 @@
 #import "User.h"
 #import "Friend.h"
 #import "NearbyUsersFilterViewController.h"
+#import "FriendProfileViewController.h"
+#import "MealRequestsNavigationController.h"
+#import "MealRequestsTableViewController.h"
+#import "InviteFriendsTableViewController.h"
+#import "FriendsNavigationController.h"
+#import "FriendsTableViewController.h"
+
 
 @interface NearbyUsersMapViewController ()
 
@@ -101,6 +108,40 @@ APIHelper *apiHelper;
               self.friendsOnly ? @"YES" : @"NO", self.gender, self.startAge, self.endAge);
     }else if([segue.identifier isEqualToString:@"cancelFromFilter"]){
         //do nothing
+    }
+}
+
+- (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue {
+    NSLog(@"unwindFromCreateMealRequest in nearbyUsers");
+    if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
+        //update meal request table view with new meal request
+        InviteFriendsTableViewController *source = [segue sourceViewController];
+        if (source.mealRequestCreated && source.mealRequest) {
+            //switch to meal requests tab
+            self.tabBarController.selectedIndex = 0;
+            MealRequestsNavigationController *requestTab = [self.tabBarController.childViewControllers objectAtIndex:0];
+            MealRequestsTableViewController *requestTabView = (MealRequestsTableViewController *)requestTab.topViewController;
+            [requestTabView.mealRequestsFromSelf addObject:source.mealRequest];
+            [requestTabView.tableView reloadData];
+        }else{
+            NSLog(@"meal request is null");
+        }
+    }else if([segue.identifier isEqualToString:@"exitFromCreateMealRequest"]) {
+        //clear friend selection
+        for(Friend *friend in self.user.friends){
+            friend.selected = NO;
+        }
+    }
+}
+
+- (IBAction)unwindFromFriendProfile:(UIStoryboardSegue *)segue {
+    NSLog(@"unwindFromFriendProfile");
+    if ([segue.identifier isEqualToString:@"exitFromFriendProfile"]) {
+        //switch to friend list tab
+        self.tabBarController.selectedIndex = 1;
+        FriendsNavigationController *friendsTab = [self.tabBarController.childViewControllers objectAtIndex:0];
+        FriendsTableViewController *friendsTabView = (FriendsTableViewController *)friendsTab.topViewController;
+        [friendsTabView updateFriends];
     }
 }
 
@@ -260,6 +301,22 @@ APIHelper *apiHelper;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKPointAnnotation *userAnnotation = (MKPointAnnotation *)annotation;
         NSLog(@"%@ Clicked", userAnnotation.title);
+        NSDictionary *selectedUser = [[NSDictionary alloc] init];
+        selectedUser = [self.nearbyUsers objectForKey:userAnnotation.title];
+        FriendProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendViewController"];
+        if(selectedUser){
+            viewController.targetid = selectedUser[@"userid"];
+            viewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:viewController animated:YES];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Can't open friend profile. Please check your internet connection or try again later."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
@@ -268,7 +325,6 @@ APIHelper *apiHelper;
         if(![annotation isKindOfClass:[MKUserLocation class]]){
             [self.mapView removeAnnotation:annotation];
         }
-        
     }
 }
 

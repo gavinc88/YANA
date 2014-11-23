@@ -17,4 +17,6 @@
 
 - (void)sortFriends;
 
+- (void)updateFriends;
+
 @end
