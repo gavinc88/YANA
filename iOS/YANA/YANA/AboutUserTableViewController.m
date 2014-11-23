@@ -31,6 +31,7 @@ APIHelper *apiHelper;
     } else {
         self.aboutTextField.text = self.about;
     }
+    self.aboutTextField.keyboardType = UIKeyboardTypeDefault;
 }
 
 - (void)didReceiveMemoryWarning {

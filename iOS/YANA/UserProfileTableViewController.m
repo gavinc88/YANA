@@ -68,7 +68,7 @@ APIHelper *apiHelper;
                 self.privacyLabel.text = @"Friends Only";
             }
             if ([self.privacy isEqualToNumber:[NSNumber numberWithInt:2]]) {
-                self.privacyLabel.text = @"Global";
+                self.privacyLabel.text = @"Everyone";
             }
             
             NSDictionary *profile = [response objectForKey:@"profile"];

@@ -31,6 +31,7 @@ APIHelper *apiHelper;
     } else {
         self.foodPreferencesTextField.text = self.foodPreferences;
     }
+    self.foodPreferencesTextField.keyboardType = UIKeyboardTypeDefault;
 }
 
 - (void)didReceiveMemoryWarning {
