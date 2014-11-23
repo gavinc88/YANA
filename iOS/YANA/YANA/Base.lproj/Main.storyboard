@@ -917,7 +917,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
-                                <rect key="frame" x="217.5" y="79" width="51" height="31"/>
+                                <rect key="frame" x="218" y="79" width="51" height="31"/>
                                 <connections>
                                     <action selector="friendsOnlySwitched:" destination="D9U-8t-YOT" eventType="valueChanged" id="iUU-GT-wus"/>
                                 </connections>
