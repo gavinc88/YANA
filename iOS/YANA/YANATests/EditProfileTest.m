@@ -19,82 +19,137 @@
     [tester clearTextFromAndThenEnterText:@"123" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
     [tester tapViewWithAccessibilityLabel:@"No" traits:UIAccessibilityTraitButton];
-    [tester tapViewWithAccessibilityLabel:@"Settings"];
+    [tester tapViewWithAccessibilityLabel:@"settings"];
 }
 
-- (void)test1UpdateProfilePageAboutText {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"aboutTextField"];
-    [tester clearTextFromAndThenEnterText:@"about the user" intoViewWithAccessibilityLabel:@"aboutTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"aboutLabel" value:@"about the user" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"aboutTextField"];
+- (void)test1EditAbout {
+    [tester tapViewWithAccessibilityLabel:@"About"];
+    [tester clearTextFromAndThenEnterText:@"about the user" intoViewWithAccessibilityLabel:@"aboutBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"about the user"];
 }
 
-- (void)test3UpdateProfilePageGenderText {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"genderTextField"];
-    [tester clearTextFromAndThenEnterText:@"male" intoViewWithAccessibilityLabel:@"genderTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"genderLabel" value:@"male" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"genderTextField"];
+- (void)test2EditGender {
+    // change gender to female
+    [tester tapViewWithAccessibilityLabel:@"Gender"];
+    [tester waitForViewWithAccessibilityLabel:@"User Gender"];
+    [tester tapViewWithAccessibilityLabel:@"Female"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"female"];
+    // change gender to other
+    [tester tapViewWithAccessibilityLabel:@"Gender"];
+    [tester waitForViewWithAccessibilityLabel:@"User Gender"];
+    [tester tapViewWithAccessibilityLabel:@"Other"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"other"];
 }
 
-- (void)test3UpdateProfilePageAgeText {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"ageTextField"];
-    [tester clearTextFromAndThenEnterText:@"45" intoViewWithAccessibilityLabel:@"ageTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"ageLabel" value:@"45" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"ageTextField"];
+- (void)test3EditAge {
+    [tester tapViewWithAccessibilityLabel:@"Age"];
+    [tester waitForViewWithAccessibilityLabel:@"User Age"];
+    [tester clearTextFromViewWithAccessibilityLabel:@"ageBox"];
+    [tester enterText:@"19" intoViewWithAccessibilityLabel:@"ageBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"19"];
 }
 
-- (void)test3UpdateProfilePageFoodPreferencesText {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"foodPreferencesTextField"];
-    [tester clearTextFromAndThenEnterText:@"Junk Food" intoViewWithAccessibilityLabel:@"foodPreferencesTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"foodPreferencesLabel" value:@"Junk Food" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"foodPreferencesTextFieldTextField"];
+- (void)test4EditFoodPreferences {
+    [tester tapViewWithAccessibilityLabel:@"Food Preferences"];
+    [tester waitForViewWithAccessibilityLabel:@"User Food Preferences"];
+    [tester clearTextFromAndThenEnterText:@"Tacos" intoViewWithAccessibilityLabel:@"foodPreferencesBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"Tacos"];
 }
 
-- (void)test5UpdateProfilePagePhoneNumberText {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"phoneNumberTextField"];
-    [tester clearTextFromAndThenEnterText:@"415888256" intoViewWithAccessibilityLabel:@"phoneNumberTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"phoneNumberLabel" value:@"415888256" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"phoneNumberTextField"];
-    
+- (void)test5EditPhoneNumber {
+    [tester tapViewWithAccessibilityLabel:@"Phone Number"];
+    [tester waitForViewWithAccessibilityLabel:@"User Phone Number"];
+    [tester clearTextFromViewWithAccessibilityLabel:@"phoneNumberBox"];
+    [tester enterText:@"510512512" intoViewWithAccessibilityLabel:@"phoneNumberBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"510512512"];
 }
 
-- (void) test6ResetEverything {
-    [tester tapViewWithAccessibilityLabel:@"edit"];
-    [tester waitForViewWithAccessibilityLabel:@"aboutTextField"];
-    [tester waitForViewWithAccessibilityLabel:@"genderTextField"];
-    [tester waitForViewWithAccessibilityLabel:@"ageTextField"];
-    [tester waitForViewWithAccessibilityLabel:@"foodPreferencesTextField"];
-    [tester waitForViewWithAccessibilityLabel:@"phoneNumberTextField"];
-    [tester clearTextFromAndThenEnterText:@"(none)" intoViewWithAccessibilityLabel:@"aboutTextField"];
-    [tester clearTextFromAndThenEnterText:@"(not specified)" intoViewWithAccessibilityLabel:@"genderTextField"];
-    [tester clearTextFromAndThenEnterText:@"0" intoViewWithAccessibilityLabel:@"ageTextField"];
-    [tester clearTextFromAndThenEnterText:@"(not specified)" intoViewWithAccessibilityLabel:@"foodPreferencesTextField"];
-    [tester clearTextFromAndThenEnterText:@"(not specified)" intoViewWithAccessibilityLabel:@"phoneNumberTextField"];
-    [tester tapViewWithAccessibilityLabel:@"updateButton"];
-    [tester waitForViewWithAccessibilityLabel:@"aboutLabel" value:@"(none)" traits:UIAccessibilityTraitStaticText];
-    [tester waitForViewWithAccessibilityLabel:@"genderLabel" value:@"(not specified)" traits:UIAccessibilityTraitStaticText];
-    [tester waitForViewWithAccessibilityLabel:@"ageLabel" value:@"0" traits:UIAccessibilityTraitStaticText];
-    [tester waitForViewWithAccessibilityLabel:@"foodPreferencesLabel" value:@"(not specified)" traits:UIAccessibilityTraitStaticText];
-    [tester waitForViewWithAccessibilityLabel:@"phoneNumberLabel" value:@"(not specified)" traits:UIAccessibilityTraitStaticText];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"aboutTextField"];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"genderTextField"];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"ageTextField"];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"foodPreferencesTextFieldTextField"];
-    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"phoneNumberTextField"];
+- (void)test6EditPrivacy {
+    //change to Friends Only
+    [tester tapViewWithAccessibilityLabel:@"Privacy Settings"];
+    [tester waitForViewWithAccessibilityLabel:@"User Privacy Settings"];
+    [tester tapViewWithAccessibilityLabel:@"Friends Only"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"Friends Only"];
+    //change to Global
+    [tester tapViewWithAccessibilityLabel:@"Privacy Settings"];
+    [tester waitForViewWithAccessibilityLabel:@"User Privacy Settings"];
+    [tester tapViewWithAccessibilityLabel:@"Everyone"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"Everyone"];
+}
+
+- (void)test7UpdateAll {
+    //update about
+    [tester tapViewWithAccessibilityLabel:@"About"];
+    [tester clearTextFromAndThenEnterText:@"about me" intoViewWithAccessibilityLabel:@"aboutBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"about me"];
+    //update gender
+    [tester tapViewWithAccessibilityLabel:@"Gender"];
+    [tester waitForViewWithAccessibilityLabel:@"User Gender"];
+    [tester tapViewWithAccessibilityLabel:@"Male"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"male"];
+    //update age
+    [tester tapViewWithAccessibilityLabel:@"Age"];
+    [tester waitForViewWithAccessibilityLabel:@"User Age"];
+    [tester clearTextFromViewWithAccessibilityLabel:@"ageBox"];
+    [tester enterText:@"21" intoViewWithAccessibilityLabel:@"ageBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"21"];
+    //update food preferences
+    [tester tapViewWithAccessibilityLabel:@"Food Preferences"];
+    [tester waitForViewWithAccessibilityLabel:@"User Food Preferences"];
+    [tester clearTextFromViewWithAccessibilityLabel:@"foodPreferencesBox"];
+    [tester enterText:@"Cucumbers" intoViewWithAccessibilityLabel:@"foodPreferencesBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"Cucumbers"];
+    //update phone number
+    [tester tapViewWithAccessibilityLabel:@"Phone Number"];
+    [tester waitForViewWithAccessibilityLabel:@"User Phone Number"];
+    [tester clearTextFromViewWithAccessibilityLabel:@"phoneNumberBox"];
+    [tester enterText:@"4154164177" intoViewWithAccessibilityLabel:@"phoneNumberBox"];
+    [tester waitForViewWithAccessibilityLabel:@"Save"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"4154164177"];
+    //update privacy
+    [tester tapViewWithAccessibilityLabel:@"Privacy Settings"];
+    [tester waitForViewWithAccessibilityLabel:@"User Privacy Settings"];
+    [tester tapViewWithAccessibilityLabel:@"Private"];
+    [tester tapViewWithAccessibilityLabel:@"Save"];
+    [tester waitForViewWithAccessibilityLabel:@"User Profile"];
+    [tester waitForViewWithAccessibilityLabel:@"Private"];
 }
 
 - (void) afterAll {
-    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester tapViewWithAccessibilityLabel:@"Logout"];
 }
 
 

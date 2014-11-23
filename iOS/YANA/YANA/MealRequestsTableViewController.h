@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) MealRequest *addedSelfRequest;
 
+@property BOOL isUserMealRequest;
 
+@property (nonatomic, strong) MealRequest *requestSelected;
 
 @end
