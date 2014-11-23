@@ -86,6 +86,10 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     urlRequest.HTTPMethod = @"GET";
     
+    //encode url params
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"encoded url: %@", url);
+    
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
@@ -203,7 +207,8 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     
     // set json args to request's HTTPBody
     if(jsonArgs){
-        NSLog(@"JSON: %@", jsonArgs);
+        NSString *jsonString = [[NSString alloc] initWithData:jsonArgs encoding:NSUTF8StringEncoding];
+        NSLog(@"JSON: %@", jsonString);
         urlRequest.HTTPBody = jsonArgs;
     }else{
         NSLog(@"invalid json input");
@@ -235,13 +240,6 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     NSData *json;
     if ([NSJSONSerialization isValidJSONObject:args]){
         json = [NSJSONSerialization dataWithJSONObject:args options:NSJSONWritingPrettyPrinted error:&jsonError];
-        
-        if (json != nil && jsonError == nil){
-            NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-        }else{
-            NSLog(@"error forming json: %@", jsonError);
-            return nil;
-        }
     }else{
         NSLog(@"Invalid args");
         return nil;
@@ -492,53 +490,53 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
                            endAge:(NSNumber *)endAge{
     NSString *requestURL = [self generateFullUrl:action_get_nearby_users];
     
-    NSData *args = [self getArgsForActionGetNearbyUsers:userid longitude:longitude latitude:latitude range:range friendsOnly:friendsOnly gender:gender startAge:startAge endAge:endAge];
+    NSString *parameters = [self getParametersForActionGetNearbyUsers:userid longitude:longitude latitude:latitude range:range friendsOnly:friendsOnly gender:gender startAge:startAge endAge:endAge];
     
-    NSDictionary *jsonResponse = [self makeSynchronousPostRequestWithURL:requestURL andArgs:args];
+    requestURL = [requestURL stringByAppendingString:parameters];
+    
+    NSDictionary *jsonResponse = [self makeSynchronousGetRequestWithURL:requestURL];
     
     return jsonResponse;
 }
 
-- (NSData *) getArgsForActionGetNearbyUsers:(NSString *)userid
-                                               longitude:(NSNumber *)longitude
-                                                latitude:(NSNumber *)latitude
-                                                   range:(NSNumber *)range
-                                             friendsOnly:(BOOL)friendsOnly
-                                                  gender:(NSString *)gender
-                                                startAge:(NSNumber *)startAge
-                                                  endAge:(NSNumber *)endAge{
+- (NSString *) getParametersForActionGetNearbyUsers:(NSString *)userid
+                                  longitude:(NSNumber *)longitude
+                                   latitude:(NSNumber *)latitude
+                                      range:(NSNumber *)range
+                                friendsOnly:(BOOL)friendsOnly
+                                     gender:(NSString *)gender
+                                   startAge:(NSNumber *)startAge
+                                     endAge:(NSNumber *)endAge{
     
-    NSMutableDictionary *args = [[NSMutableDictionary alloc] initWithObjectsAndKeys:userid, @"user_id", nil];
+    NSString *parameters = @"?";
     
-    //set search location and range
-    NSMutableDictionary *nearby = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                   longitude, @"lon",
-                                   latitude, @"lat",
-                                   range, @"range",
-                                   nil];
-    if(nearby){
-        [args setObject:nearby forKey:@"nearby"];
-    }
+    parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"user_id=%@", userid]];
     
-    //set filter options
-    [args setObject:[NSNumber numberWithBool:friendsOnly] forKey:@"friends_only"];
+    parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&lon=%@", longitude]];
     
-    if(gender){
-        [args setObject:gender forKey:@"gender"];
-    }
+    parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&lat=%@", latitude]];
     
-    NSMutableDictionary *age = [[NSMutableDictionary alloc] init];
+    if(range)
+        parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&range=%@", range]];
+    
+    parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&friends_only=%@", [NSNumber numberWithBool:friendsOnly]]];
+    
+    if(gender)
+        parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&gender=%@", gender]];
+    
     if(startAge){
-        [age setValue:startAge forKey:@"age_low"];
-    }
-    if(endAge){
-        [age setValue:endAge forKey:@"age_high"];
-    }
-    if([age count]){
-        [args setValue:age forKey:@"age"];
+        if([startAge intValue] != 0){
+            parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&age_low=%@", startAge]];
+        }
     }
     
-    return [self convertDictionaryToNSData:args];
+    if(endAge){
+        if([endAge intValue] != 50){
+            parameters = [parameters stringByAppendingString:[NSString stringWithFormat:@"&age_high=%@", endAge]];
+        }
+    }
+    
+    return parameters;
 }
 
 @end

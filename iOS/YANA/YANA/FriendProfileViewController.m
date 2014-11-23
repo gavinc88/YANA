@@ -14,12 +14,12 @@
 @interface FriendProfileViewController ()
 
 //properties for profile viewed
-@property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *about;
-@property (nonatomic) NSInteger age;
-@property (nonatomic, strong) NSString *foodPreferences;
-@property (nonatomic, strong) NSString *gender;
-@property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, weak) NSString *username;
+@property (nonatomic, weak) NSString *about;
+@property (nonatomic) NSNumber *age;
+@property (nonatomic, weak) NSString *foodPreferences;
+@property (nonatomic, weak) NSString *gender;
+@property (nonatomic, weak) NSString *phoneNumber;
 
 @property (nonatomic) BOOL isMyFriend; //user is following target user
 @property (nonatomic) BOOL isFriendWithMe;  //user is followed by target user
@@ -39,6 +39,16 @@ NSInteger const GLOBAL = 2;
     [super viewDidLoad];
     [self initializeUser];
     apiHelper = [[APIHelper alloc] init];
+    
+    //initialize local private variables
+    self.username = nil;
+    self.about = nil;
+    self.age = nil;
+    self.foodPreferences = nil;
+    self.gender = nil;
+    self.phoneNumber = nil;
+    [self printProfileInfo];
+    
     [self getProfileInfo];
     [self updateCurrentFriend];
     [self displayProfileInfo];
@@ -82,14 +92,16 @@ NSInteger const GLOBAL = 2;
             NSDictionary *profile = [response objectForKey:@"profile"];
             self.username = [profile objectForKey:@"username"];
             self.about = [profile objectForKey:@"about"];
-            self.age = [[profile objectForKey:@"age"] integerValue];
+            self.age = [profile objectForKey:@"age"];
             self.foodPreferences = [profile objectForKey:@"food_preferences"];
             self.gender = [profile objectForKey:@"gender"];
             self.phoneNumber = [profile objectForKey:@"phone_number"];
+            
+            [self printProfileInfo];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Error"
-                                  message:@"Please check your internet connection or try again later."
+                                  message:@"Get profile info failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -118,14 +130,10 @@ NSInteger const GLOBAL = 2;
 
 - (void)displayProfileInfo {
     //username is always visible
-    if(self.username){
-        self.usernameLabel.text = self.username ? self.username : @"(error)";
-    }
+    self.usernameLabel.text = self.username ? self.username : @"(error)";
     
     //about is always visible
-    if(self.about){
-        self.aboutLabel.text = self.about ? self.about : @"(error)";
-    }
+    self.aboutLabel.text = self.about ? self.about : @"(none)";
     
     //rest of the fields depends on privacy setting; hide label if field is null
     if((self.privacy == PRIVATE) || (self.privacy == FRIENDS && !self.isFriendWithMe)){ //hide all cases
@@ -147,10 +155,14 @@ NSInteger const GLOBAL = 2;
         self.phoneNumberLabel.hidden = NO;
         self.phoneNumberTitleLabel.hidden = NO;
         self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-        self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%ld",(long)self.age] : @"(not specified)";
+        self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%d",(int)self.age] : @"(not specified)";
         self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
         self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
     }
+}
+
+- (void)printProfileInfo {
+    NSLog(@" username: %@\n about: %@\n gender: %@\n age: %@\n foodPreferences: %@\n phoneNumber: %@", self.username, self.about, self.gender, self.age, self.foodPreferences, self.phoneNumber);
 }
 
 - (void)addToolbar {

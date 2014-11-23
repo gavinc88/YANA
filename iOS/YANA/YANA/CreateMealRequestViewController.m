@@ -23,7 +23,6 @@ NSDateFormatter *timeFormatter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"CreateMealRequestView loaded");
     [self initializeUser];
     [self initializeTimeFormatter];
     

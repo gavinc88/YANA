@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "Friend.h"
+#import "NearbyUsersFilterViewController.h"
 
 @interface NearbyUsersMapViewController ()
 
@@ -52,8 +53,8 @@ APIHelper *apiHelper;
     [self.locationManager startUpdatingLocation];
     
     [self updateCurrentLocation];
-    [self addMockUserAnnotations];
-    [self getNearbyUsers];
+    
+    //[self addMockUserAnnotations];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -62,7 +63,6 @@ APIHelper *apiHelper;
     self.locationManager.distanceFilter = kCLDistanceFilterNone; //Whenever we move
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
-    NSLog(@"location manager: %@", [self deviceLocation]);
     
     self.longitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude];
     self.latitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude];
@@ -73,6 +73,9 @@ APIHelper *apiHelper;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation, 1500, 1500);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     self.range = [NSNumber numberWithInt:10];
+    
+    [self updateCurrentLocation];
+    [self getNearbyUsers];
 }
 
 - (void)initializeUser{
@@ -82,6 +85,35 @@ APIHelper *apiHelper;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)unwindFromFilter:(UIStoryboardSegue *)segue {
+    NSLog(@"unwindFromFilter with identifier %@", segue.identifier);
+    if ([segue.identifier isEqualToString:@"exitFromFilter"]) {
+        NSLog(@"exitFromFilter");
+        NearbyUsersFilterViewController *source = [segue sourceViewController];
+        self.hasFilter = YES;
+        self.friendsOnly = source.friendsOnly;
+        self.gender = source.gender;
+        self.startAge = [NSNumber numberWithInt:source.startAge];
+        self.endAge = [NSNumber numberWithInt:source.endAge];
+        NSLog(@"received fitlers { friendsOnly: %@ ,\n gender: %@,\n startAge: %@,\n endAge: %@",
+              self.friendsOnly ? @"YES" : @"NO", self.gender, self.startAge, self.endAge);
+    }else if([segue.identifier isEqualToString:@"cancelFromFilter"]){
+        //do nothing
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"prepareForSegue for %@",segue.identifier);
+    if ([segue.identifier isEqualToString:@"openNearbyUsersFilter"]) {
+        NearbyUsersFilterViewController *destViewController = segue.destinationViewController;
+        destViewController.hidesBottomBarWhenPushed = YES;
+        destViewController.friendsOnly = self.friendsOnly;
+        destViewController.gender = self.gender;
+        destViewController.startAge = [self.startAge intValue];
+        destViewController.endAge = [self.endAge intValue];
+    }
 }
 
 //- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
@@ -108,6 +140,8 @@ APIHelper *apiHelper;
 }
 
 - (void) getNearbyUsers {
+    [self clearAnnotations];
+    
     self.nearbyUsers = [[NSMutableDictionary alloc] init];
     
     NSDictionary *response = [apiHelper getNearbyUsers:self.user.userid longitude:self.longitude latitude:self.latitude range:self.range friendsOnly:self.friendsOnly gender:self.gender startAge:self.startAge endAge:self.endAge];
@@ -119,6 +153,7 @@ APIHelper *apiHelper;
             
             //get an array of nearby users
             NSArray *nearbyUsers = [response objectForKey:@"users"];
+            NSLog(@"nearby user size: %d", [nearbyUsers count]);
             
             //create annotations and add them to self.nearbyUsers
             for(NSDictionary *user in nearbyUsers){
@@ -126,7 +161,7 @@ APIHelper *apiHelper;
                 NSString *userid = [user objectForKey:@"_id"];
                 NSString *username = [user objectForKey:@"username"];
                 
-                NSDictionary *profile = [response objectForKey:@"profile"];
+                NSDictionary *profile = [user objectForKey:@"profile"];
                 NSString *about = nil;
                 if(profile){
                     about = [profile objectForKey:@"about"];
@@ -134,7 +169,7 @@ APIHelper *apiHelper;
                 
                 //get latitude and longitude for creating annotation
                 NSNumber *latitude = [user objectForKey:@"latitude"];
-                NSNumber *longitude = [user objectForKey:@"longitiude"];
+                NSNumber *longitude = [user objectForKey:@"longitude"];
                 
                 MKPointAnnotation *userAnnotation = [[MKPointAnnotation alloc] init];
                 userAnnotation.coordinate = CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue]);
@@ -142,6 +177,7 @@ APIHelper *apiHelper;
                 if(about){
                     userAnnotation.subtitle = about;
                 }
+               // NSLog(@"user lat: %f long: %f", userAnnotation.coordinate.latitude, userAnnotation.coordinate.longitude);
                 
                 //add annotation to map view
                 [self.mapView addAnnotation:userAnnotation];
@@ -224,6 +260,15 @@ APIHelper *apiHelper;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKPointAnnotation *userAnnotation = (MKPointAnnotation *)annotation;
         NSLog(@"%@ Clicked", userAnnotation.title);
+    }
+}
+
+- (void)clearAnnotations {
+    for(id <MKAnnotation> annotation in self.mapView.annotations){
+        if(![annotation isKindOfClass:[MKUserLocation class]]){
+            [self.mapView removeAnnotation:annotation];
+        }
+        
     }
 }
 

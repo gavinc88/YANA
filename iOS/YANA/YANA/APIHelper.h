@@ -99,7 +99,7 @@ extern NSString* const action_get_nearby_users;
                          startAge:(NSNumber *)startAge
                            endAge:(NSNumber *)endAge;
 
-- (NSData *) getArgsForActionGetNearbyUsers:(NSString *)userid
+- (NSString *) getParametersForActionGetNearbyUsers:(NSString *)userid
                                         longitude:(NSNumber *)longitude
                                          latitude:(NSNumber *)latitude
                                             range:(NSNumber *)range

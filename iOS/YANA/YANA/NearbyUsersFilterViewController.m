@@ -7,6 +7,7 @@
 //
 
 #import "NearbyUsersFilterViewController.h"
+#import "NearbyUsersMapViewController.h"
 
 @interface NearbyUsersFilterViewController ()
 
@@ -16,10 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.startAge = 0;
-    self.endAge = 60;
+    [self resumeFilters];
+}
+
+//preset filter to last filtered state
+- (void)resumeFilters {
+    [self configureFriendsOnlySwitch];
+    [self configureGenderSegmentControl];
     [self configureAgeSlider];
-    [self initializeAgeLabels];
+    
+    NSLog(@"resumed fitlers { friendsOnly: %@ ,\n gender: %@,\n startAge: %d,\n endAge: %d",
+          self.friendsOnly ? @"YES" : @"NO", self.gender, self.startAge, self.endAge);
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -31,28 +39,38 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (void) configureAgeSlider{
-    NSLog(@"configureAgeSlider");
-    self.ageRangeSlider.minimumValue = 0;
-    self.ageRangeSlider.maximumValue = 60;
-    
-    self.ageRangeSlider.lowerValue = self.startAge;
-    self.ageRangeSlider.upperValue = self.endAge;
-    
-    self.ageRangeSlider.minimumRange = 1;
+- (void)configureFriendsOnlySwitch {
+    if(self.friendsOnly){
+        [self.friendsOnlySwitch setOn:YES animated:NO];
+    }else{
+        [self.friendsOnlySwitch setOn:NO animated:NO];
+    }
 }
 
-- (void) initializeAgeLabels{
+- (void)configureGenderSegmentControl {
+    if([self.gender isEqualToString:@"Male"]){
+        [self.genderSegmentControl setSelectedSegmentIndex:1];
+    }else if([self.gender isEqualToString:@"Female"]){
+        [self.genderSegmentControl setSelectedSegmentIndex:2];
+    }else if([self.gender isEqualToString:@"Other"]){
+        [self.genderSegmentControl setSelectedSegmentIndex:3];
+    }else{
+        [self.genderSegmentControl setSelectedSegmentIndex:0];
+    }
+}
+
+- (void)configureAgeSlider{
+    if(self.startAge == 0 && self.endAge == 0){//age range never initialized
+        self.startAge = 0;
+        self.endAge = 50;
+    }
+    self.ageRangeSlider.lowerValue = [self getNormalizeAge:self.startAge];
+    self.ageRangeSlider.upperValue = [self getNormalizeAge:self.endAge];
+    
+    [self initializeAgeLabels];
+}
+
+- (void)initializeAgeLabels{
     //programmatically add age label positioned above slider center
     self.lowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.ageRangeSlider.lowerCenter.x + self.ageRangeSlider.frame.origin.x, self.ageRangeSlider.center.y - 30.0f, 20, 20)];
     self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.ageRangeSlider.lowerValue];
@@ -63,27 +81,59 @@
     [self.view addSubview:self.upperLabel];
 }
 
-- (void) updateSliderLabels{
+- (void)updateSliderLabels{
     // You get get the center point of the slider handles and use this to arrange other subviews
     
     CGPoint lowerCenter;
     lowerCenter.x = (self.ageRangeSlider.lowerCenter.x + self.ageRangeSlider.frame.origin.x);
     lowerCenter.y = (self.ageRangeSlider.center.y - 30.0f);
     self.lowerLabel.center = lowerCenter;
-    self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.ageRangeSlider.lowerValue];
-    self.startAge = self.ageRangeSlider.lowerValue;
+    self.lowerLabel.text = [NSString stringWithFormat:@"%d", [self getActualAgeFromNormalizedAge:self.ageRangeSlider.lowerValue]];
+    
     
     CGPoint upperCenter;
     upperCenter.x = (self.ageRangeSlider.upperCenter.x + self.ageRangeSlider.frame.origin.x);
     upperCenter.y = (self.ageRangeSlider.center.y - 30.0f);
     self.upperLabel.center = upperCenter;
-    self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.ageRangeSlider.upperValue];
-    self.endAge = self.ageRangeSlider.upperValue;
+    self.upperLabel.text = [NSString stringWithFormat:@"%d", [self getActualAgeFromNormalizedAge:self.ageRangeSlider.upperValue]];
+    
 }
 
 // Handle control value changed events just like a normal slider
 - (IBAction)labelSliderChanged:(NMRangeSlider*)sender{
     [self updateSliderLabels];
+    self.startAge = [self getActualAgeFromNormalizedAge:self.ageRangeSlider.lowerValue];
+    self.endAge = [self getActualAgeFromNormalizedAge:self.ageRangeSlider.upperValue];
+}
+
+- (IBAction)friendsOnlySwitched:(UISwitch *)sender {
+    if(sender.isOn){
+        self.friendsOnly = YES;
+    }else{
+        self.friendsOnly = NO;
+    }
+}
+
+- (IBAction)genderSelected:(UISegmentedControl *)sender {
+    if(sender.selectedSegmentIndex == 0){
+        self.gender = nil;
+    }else if(sender.selectedSegmentIndex == 1){
+        self.gender = @"Male";
+    }else if(sender.selectedSegmentIndex == 2){
+        self.gender = @"Female";
+    }else if(sender.selectedSegmentIndex == 3){
+        self.gender = @"Other";
+    }
+}
+
+#define MAX_AGE ((float)50)
+
+- (float)getNormalizeAge:(int)actualAge {
+    return actualAge/MAX_AGE;
+}
+
+- (int)getActualAgeFromNormalizedAge:(float)normalizedAge {
+    return normalizedAge * MAX_AGE;
 }
 
 @end

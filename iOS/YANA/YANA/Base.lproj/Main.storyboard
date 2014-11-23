@@ -890,6 +890,9 @@
                                     <segment title="Female"/>
                                     <segment title="Other"/>
                                 </segments>
+                                <connections>
+                                    <action selector="genderSelected:" destination="D9U-8t-YOT" eventType="valueChanged" id="oXr-fd-Wp6"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Range:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WJ-HR-LdJ">
                                 <rect key="frame" x="16" y="191" width="89.5" height="20.5"/>
@@ -919,6 +922,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Esd-7d-nlQ">
                                 <rect key="frame" x="217.5" y="79" width="51" height="31"/>
+                                <connections>
+                                    <action selector="friendsOnlySwitched:" destination="D9U-8t-YOT" eventType="valueChanged" id="iUU-GT-wus"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -956,9 +962,15 @@
                     <navigationItem key="navigationItem" title="Filter Options" id="RqM-Im-P9z">
                         <barButtonItem key="leftBarButtonItem" image="cancel" id="P3Y-mI-Ybq">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="iYY-gP-vzJ" kind="unwind" identifier="cancelFromFilter" unwindAction="unwindFromFilter:" id="5hR-ua-q3d"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="7aP-YV-xln">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="iYY-gP-vzJ" kind="unwind" identifier="exitFromFilter" unwindAction="unwindFromFilter:" id="zl6-5j-YVB"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -968,6 +980,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqj-5o-07o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iYY-gP-vzJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1633" y="960"/>
         </scene>
@@ -1370,7 +1383,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="z0F-ns-332">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="D9U-8t-YOT" kind="show" id="s9e-Wr-7KE"/>
+                                <segue destination="D9U-8t-YOT" kind="show" identifier="openNearbyUsersFilter" id="s9e-Wr-7KE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

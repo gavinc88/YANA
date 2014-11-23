@@ -31,8 +31,7 @@ APIHelper *apiHelper;
 
 #pragma mark - Segue
 
-- (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue
-{
+- (IBAction)unwindFromCreateMealRequest:(UIStoryboardSegue *)segue {
     if ([segue.identifier isEqualToString:@"exitFromInviteFriends"]) {
         //update meal request table view with new meal request
         InviteFriendsTableViewController *source = [segue sourceViewController];
