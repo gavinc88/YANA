@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -1464,11 +1464,14 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="197" placeholderIntrinsicHeight="30" restorationIdentifier="loginButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="On1-jp-N5M">
-                                <rect key="frame" x="60" y="215" width="480" height="30"/>
+                                <rect key="frame" x="60" y="215" width="480" height="35"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.25882352941176467" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="loginButton">
                                     <accessibilityTraits key="traits" none="YES" button="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="paY-oC-WTT"/>
+                                </constraints>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1478,9 +1481,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="30" restorationIdentifier="createUserButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhB-jX-LaW">
-                                <rect key="frame" x="60" y="255" width="480" height="30"/>
+                                <rect key="frame" x="60" y="260" width="480" height="35"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.25882352939999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="createUserButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="r1R-Hz-J1e"/>
+                                </constraints>
                                 <state key="normal" title="Create User">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1490,7 +1496,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGu-xe-N44">
-                                <rect key="frame" x="137" y="518" width="46" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1502,9 +1508,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kq1-60-pgn" customClass="FBLoginView">
-                                <rect key="frame" x="60" y="304" width="198" height="51"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kq1-60-pgn" customClass="FBLoginView">
+                                <rect key="frame" x="200" y="305" width="200" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="26z-Rl-44D"/>
+                                    <constraint firstAttribute="width" constant="200" id="sZ8-hj-WAc"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="KYt-Kg-1Co" id="1Yx-RV-fUg"/>
                                 </connections>
@@ -1519,9 +1529,11 @@
                             <constraint firstItem="Rx8-4b-PYA" firstAttribute="top" secondItem="l1q-Ju-vrY" secondAttribute="bottom" constant="15" id="H6g-UR-Aty"/>
                             <constraint firstAttribute="trailing" secondItem="Tzv-wU-Cfo" secondAttribute="trailing" constant="20" id="LiK-TQ-bgv"/>
                             <constraint firstItem="Tzv-wU-Cfo" firstAttribute="top" secondItem="uzd-jj-JyE" secondAttribute="bottom" constant="43" id="MxT-Pe-koD"/>
+                            <constraint firstItem="kq1-60-pgn" firstAttribute="top" secondItem="yhB-jX-LaW" secondAttribute="bottom" constant="10" id="OHL-Io-ZU4"/>
                             <constraint firstAttribute="trailing" secondItem="yhB-jX-LaW" secondAttribute="trailing" constant="60" id="c4f-du-td6"/>
                             <constraint firstItem="l1q-Ju-vrY" firstAttribute="top" secondItem="Tzv-wU-Cfo" secondAttribute="bottom" constant="32" id="c8J-EA-0zh"/>
                             <constraint firstAttribute="trailing" secondItem="Rx8-4b-PYA" secondAttribute="trailing" constant="30" id="gbW-Z2-N6s"/>
+                            <constraint firstAttribute="centerX" secondItem="kq1-60-pgn" secondAttribute="centerX" id="iXN-ec-tcc"/>
                             <constraint firstItem="On1-jp-N5M" firstAttribute="top" secondItem="Rx8-4b-PYA" secondAttribute="bottom" constant="15" id="qk9-ZI-5ri"/>
                             <constraint firstItem="Tzv-wU-Cfo" firstAttribute="leading" secondItem="KYt-Kg-1Co" secondAttribute="leading" constant="20" id="uUG-gw-dx1"/>
                             <constraint firstItem="l1q-Ju-vrY" firstAttribute="leading" secondItem="KYt-Kg-1Co" secondAttribute="leading" constant="30" id="uai-0H-kFi"/>
