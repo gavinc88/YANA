@@ -51,8 +51,7 @@
 - (void)test3EditAge {
     [tester tapViewWithAccessibilityLabel:@"Age"];
     [tester waitForViewWithAccessibilityLabel:@"User Age"];
-    [tester clearTextFromViewWithAccessibilityLabel:@"ageBox"];
-    [tester enterText:@"19" intoViewWithAccessibilityLabel:@"ageBox"];
+    [tester clearTextFromAndThenEnterText:@"19" intoViewWithAccessibilityLabel:@"ageBox"];
     [tester waitForViewWithAccessibilityLabel:@"Save"];
     [tester tapViewWithAccessibilityLabel:@"Save"];
     [tester waitForViewWithAccessibilityLabel:@"User Profile"];
@@ -73,7 +72,7 @@
     [tester tapViewWithAccessibilityLabel:@"Phone Number"];
     [tester waitForViewWithAccessibilityLabel:@"User Phone Number"];
     [tester clearTextFromViewWithAccessibilityLabel:@"phoneNumberBox"];
-    [tester enterText:@"510512512" intoViewWithAccessibilityLabel:@"phoneNumberBox"];
+    [tester clearTextFromAndThenEnterText:@"510512512" intoViewWithAccessibilityLabel:@"phoneNumberBox"];
     [tester waitForViewWithAccessibilityLabel:@"Save"];
     [tester tapViewWithAccessibilityLabel:@"Save"];
     [tester waitForViewWithAccessibilityLabel:@"User Profile"];
@@ -115,8 +114,7 @@
     //update age
     [tester tapViewWithAccessibilityLabel:@"Age"];
     [tester waitForViewWithAccessibilityLabel:@"User Age"];
-    [tester clearTextFromViewWithAccessibilityLabel:@"ageBox"];
-    [tester enterText:@"21" intoViewWithAccessibilityLabel:@"ageBox"];
+    [tester clearTextFromAndThenEnterText:@"21" intoViewWithAccessibilityLabel:@"ageBox"];
     [tester waitForViewWithAccessibilityLabel:@"Save"];
     [tester tapViewWithAccessibilityLabel:@"Save"];
     [tester waitForViewWithAccessibilityLabel:@"User Profile"];

@@ -34,13 +34,13 @@
 }
 
 - (void)logout {
-    [tester tapViewWithAccessibilityLabel:@"Settings"];
-    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester tapViewWithAccessibilityLabel:@"settings" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"Logout" traits:UIAccessibilityTraitButton];
 }
 
 - (void)test1SearchAndAddFriend {
     //verify that SearchAndAddFriendViewController is opened
-    [tester tapScreenAtPoint:CGPointMake(300, 20)];
+    [tester tapViewWithAccessibilityLabel:@"add" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"Friend Search"];
     
     //tap on searchbar and enter "test"
@@ -82,7 +82,7 @@
     
     //close CreateMealRequest
     [tester tapViewWithAccessibilityLabel:@"Back" traits:UIAccessibilityTraitButton];
-    [tester tapViewWithAccessibilityLabel:@"Cancel" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"cancel" traits:UIAccessibilityTraitButton];
 }
 
 - (void)test3InviteFriendFromFriendProfile {
@@ -98,7 +98,7 @@
     
     //close CreateMealRequest
     [tester tapViewWithAccessibilityLabel:@"Back" traits:UIAccessibilityTraitButton];
-    [tester tapViewWithAccessibilityLabel:@"Cancel" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"cancel" traits:UIAccessibilityTraitButton];
 }
 
 - (void)test4RemoveFriendFromFriendsTableViewController {

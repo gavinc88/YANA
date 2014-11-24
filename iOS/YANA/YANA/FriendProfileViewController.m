@@ -14,12 +14,12 @@
 @interface FriendProfileViewController ()
 
 //properties for profile viewed
-@property (nonatomic, weak) NSString *username;
-@property (nonatomic, weak) NSString *about;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *about;
 @property (nonatomic) NSNumber *age;
-@property (nonatomic, weak) NSString *foodPreferences;
-@property (nonatomic, weak) NSString *gender;
-@property (nonatomic, weak) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *foodPreferences;
+@property (nonatomic, strong) NSString *gender;
+@property (nonatomic, strong) NSString *phoneNumber;
 
 @property (nonatomic) BOOL isMyFriend; //user is following target user
 @property (nonatomic) BOOL isFriendWithMe;  //user is followed by target user
@@ -47,7 +47,6 @@ NSInteger const GLOBAL = 2;
     self.foodPreferences = nil;
     self.gender = nil;
     self.phoneNumber = nil;
-    [self printProfileInfo];
     
     [self getProfileInfo];
     [self updateCurrentFriend];

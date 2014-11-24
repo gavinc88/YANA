@@ -14,15 +14,12 @@
 @end
 
 @implementation MealRequestDetailTableViewController
+
 APIHelper *apiHelper;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     apiHelper = [[APIHelper alloc] init];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     if (self.isUserMealRequest == NO) {
         self.cancelButton.hidden = YES;
     }
@@ -33,7 +30,7 @@ APIHelper *apiHelper;
     self.timeLabel.text = self.request.time;
     self.invitedFriend = self.request.acceptedUser;
     self.id = self.request.requestid;
-    NSLog(@"invitedFriend's ID is ........%@", self.invitedFriend);
+    //NSLog(@"invitedFriend's ID is ........%@", self.invitedFriend);
     
 }
 
@@ -52,7 +49,7 @@ APIHelper *apiHelper;
         if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             NSDictionary *profile = [response objectForKey:@"profile"];
             self.phoneNumber = [profile objectForKey:@"phone_number"];
-            NSLog(@"phone number is %@", self.phoneNumber);
+            //NSLog(@"phone number is %@", self.phoneNumber);
         }
     }
 }
@@ -70,9 +67,20 @@ APIHelper *apiHelper;
 
 - (IBAction)callButtonPressed:(id)sender {
     [self getFriendPhoneNumber];
-    NSString *phoneCallNum = [NSString stringWithFormat:@"tel://%@",self.phoneNumber];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneCallNum]];
-    NSLog(@"phone number called %@", phoneCallNum);
+    if(self.phoneNumber){
+        NSString *phoneCallNum = [NSString stringWithFormat:@"tel://%@",self.phoneNumber];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneCallNum]];
+        NSLog(@"phone number called %@", phoneCallNum);
+    }else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Call Failed"
+                              message:@"No one has accepted your meal request or the friend you are trying to call does not have a phone number."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+   
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {

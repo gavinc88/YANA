@@ -84,7 +84,6 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
 }
 
 - (NSDictionary *) makeSynchronousGetRequestWithURL:(NSString *)url{
-    NSLog(@"GET from %@", url);
     
     // Setup GET request
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -92,7 +91,7 @@ NSString* const action_get_nearby_users = @"users/nearby_users";
     
     //encode url params
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"encoded url: %@", url);
+    NSLog(@"GET from %@", url);
     
     NSURLResponse *response = nil;
     NSError *error = nil;

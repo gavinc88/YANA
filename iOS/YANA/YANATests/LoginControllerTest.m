@@ -50,9 +50,8 @@
 }
 
 - (void)test3Logout {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    [tester tapViewWithAccessibilityLabel:@"Settings"];
-    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester tapViewWithAccessibilityLabel:@"settings" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"Logout" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"loginButton"];
 }
 

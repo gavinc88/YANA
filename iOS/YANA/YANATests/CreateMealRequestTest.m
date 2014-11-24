@@ -37,8 +37,8 @@
 }
 
 - (void) afterAll {
-    [tester tapViewWithAccessibilityLabel:@"Settings"];
-    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester tapViewWithAccessibilityLabel:@"settings" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"Logout" traits:UIAccessibilityTraitButton];
 }
 
 

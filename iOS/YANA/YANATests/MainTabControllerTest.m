@@ -26,7 +26,6 @@
 }
 
 - (void)login {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [tester enterText:@"iosTest" intoViewWithAccessibilityLabel:@"usernameTextField"];
     [tester enterText:@"test" intoViewWithAccessibilityLabel:@"passwordTextField"];
     [tester tapViewWithAccessibilityLabel:@"loginButton"];
@@ -34,47 +33,64 @@
 }
 
 - (void)logout {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    [tester tapViewWithAccessibilityLabel:@"Settings"];
-    [tester tapViewWithAccessibilityLabel:@"logoutButton"];
+    [tester tapViewWithAccessibilityLabel:@"settings" traits:UIAccessibilityTraitButton];
+    [tester tapViewWithAccessibilityLabel:@"Logout" traits:UIAccessibilityTraitButton];
 }
 
 - (void)test1SwitchingTabs {
     //verify switched to Friends tab
-    [tester tapViewWithAccessibilityLabel:@"Friends"];
-    [tester waitForViewWithAccessibilityLabel:@"Friends"];
+    [tester tapViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitStaticText];
     
-    //verify switched bakc to Meal Requests tab
-    [tester tapViewWithAccessibilityLabel:@"Requests"];
-    [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
+    //verify switched back to Meal Requests tab
+    [tester tapViewWithAccessibilityLabel:@"Requests" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Meal Requests" traits:UIAccessibilityTraitStaticText];
+    
+    //verify switched to Nearby Users tab
+    [tester tapViewWithAccessibilityLabel:@"Nearby Users" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Nearby Users" traits:UIAccessibilityTraitStaticText];
     
     //verify switched to Friends tab again
-    [tester tapViewWithAccessibilityLabel:@"Friends"];
-    [tester waitForViewWithAccessibilityLabel:@"Friends"];
+    [tester tapViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitStaticText];
 }
 
 - (void)test2OpenCreateMealRequest {
-    [tester tapViewWithAccessibilityLabel:@"Requests"];
-    [tester waitForViewWithAccessibilityLabel:@"Meal Requests"];
+    [tester tapViewWithAccessibilityLabel:@"Requests" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Meal Requests" traits:UIAccessibilityTraitStaticText];
     
     //verify that CreateMealRequestViewController is opened
-    [tester tapScreenAtPoint:CGPointMake(300, 20)];
+    [tester tapViewWithAccessibilityLabel:@"add" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"Create Meal Request"];
     
     //return to home screen
-    [tester tapViewWithAccessibilityLabel:@"Cancel"];
+    [tester tapViewWithAccessibilityLabel:@"cancel" traits:UIAccessibilityTraitButton];
 }
 
 - (void)test3OpenSearchAndAddFriend {
-    [tester tapViewWithAccessibilityLabel:@"Friends"];
-    [tester waitForViewWithAccessibilityLabel:@"Friends"];
+    [tester tapViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Friends" traits:UIAccessibilityTraitStaticText];
     
     //verify that SearchAndAddFriendViewController is opened
-    [tester tapScreenAtPoint:CGPointMake(300, 20)];
+    [tester tapViewWithAccessibilityLabel:@"add" traits:UIAccessibilityTraitButton];
     [tester waitForViewWithAccessibilityLabel:@"Friend Search"];
     
     //return to home screen
     [tester tapViewWithAccessibilityLabel:@"Done"];
+}
+
+- (void)test4OpenNearbyUsersFilter {
+    [tester tapViewWithAccessibilityLabel:@"Nearby Users" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Nearby Users" traits:UIAccessibilityTraitStaticText];
+    
+    //verify that SearchAndAddFriendViewController is opened
+    [tester tapViewWithAccessibilityLabel:@"Filter" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Filter Options"];
+    
+    //return to home screen
+    [tester tapViewWithAccessibilityLabel:@"Done"];
+    [tester tapViewWithAccessibilityLabel:@"Requests" traits:UIAccessibilityTraitButton];
+    [tester waitForViewWithAccessibilityLabel:@"Meal Requests" traits:UIAccessibilityTraitStaticText];
 }
 
 @end
