@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xIF-ra-bXq">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1303,26 +1303,31 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vxw-MC-uS1">
-                                                    <rect key="frame" x="432" y="10" width="160" height="30"/>
-                                                    <accessibility key="accessibilityConfiguration" label="ageBox"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="eIy-vV-Gro">
+                                                    <rect key="frame" x="390" y="10" width="204" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="160" id="M3A-Kw-Ijs"/>
+                                                        <constraint firstAttribute="width" constant="200" id="Hzy-h2-2HC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="editingChanged:" destination="AWx-io-HGd" eventType="editingChanged" id="QWD-KB-GFU"/>
+                                                        <action selector="valueChanged:" destination="AWx-io-HGd" eventType="valueChanged" id="ty2-Vw-f5y"/>
                                                     </connections>
-                                                </textField>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jds-D9-SWr">
+                                                    <rect key="frame" x="342" y="14" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5M5-QH-Uob" firstAttribute="top" secondItem="S7q-I2-5Fn" secondAttribute="topMargin" constant="6" id="Eew-2p-LDv"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vxw-MC-uS1" secondAttribute="bottom" constant="1.5" id="GfL-6k-PIa"/>
-                                                <constraint firstItem="vxw-MC-uS1" firstAttribute="top" secondItem="S7q-I2-5Fn" secondAttribute="topMargin" constant="2" id="JMB-Th-Ept"/>
+                                                <constraint firstItem="eIy-vV-Gro" firstAttribute="trailing" secondItem="S7q-I2-5Fn" secondAttribute="trailingMargin" id="KG0-zk-w4x"/>
+                                                <constraint firstItem="jds-D9-SWr" firstAttribute="baseline" secondItem="5M5-QH-Uob" secondAttribute="baseline" id="ZXB-oU-3VJ"/>
                                                 <constraint firstItem="5M5-QH-Uob" firstAttribute="leading" secondItem="S7q-I2-5Fn" secondAttribute="leadingMargin" id="b8G-LJ-Rjl"/>
                                                 <constraint firstItem="5M5-QH-Uob" firstAttribute="centerY" secondItem="S7q-I2-5Fn" secondAttribute="centerY" id="hjU-Bn-yme"/>
-                                                <constraint firstItem="vxw-MC-uS1" firstAttribute="trailing" secondItem="S7q-I2-5Fn" secondAttribute="trailingMargin" id="qMx-3p-Gk3"/>
+                                                <constraint firstItem="eIy-vV-Gro" firstAttribute="leading" secondItem="jds-D9-SWr" secondAttribute="trailing" constant="8" symbolic="YES" id="kdz-di-ElS"/>
+                                                <constraint firstItem="jds-D9-SWr" firstAttribute="firstBaseline" secondItem="5M5-QH-Uob" secondAttribute="firstBaseline" id="s68-eX-j8p"/>
+                                                <constraint firstItem="eIy-vV-Gro" firstAttribute="top" secondItem="S7q-I2-5Fn" secondAttribute="topMargin" constant="2" id="z4f-9k-Nqr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1343,8 +1348,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="ageTextField" destination="vxw-MC-uS1" id="Rn5-U1-xAZ"/>
+                        <outlet property="label" destination="jds-D9-SWr" id="GIL-ym-viL"/>
                         <outlet property="saveButton" destination="rYE-9A-fnu" id="8id-rh-cWP"/>
+                        <outlet property="slider" destination="eIy-vV-Gro" id="fxp-VG-Hr9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghl-Vh-QuA" userLabel="First Responder" sceneMemberID="firstResponder"/>

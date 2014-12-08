@@ -27,12 +27,12 @@ APIHelper *apiHelper;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initializeUser];
     if (!self.age || [self.age intValue] == 0) {
-        self.ageTextField.placeholder = @"(Not specified)";
+        self.slider.value = 1;
     } else {
-        self.ageTextField.text = [NSString stringWithFormat:@"%@",self.age];
+        self.slider.value = [self.age intValue];
+        self.label.text = [NSString stringWithFormat:@"%i", [self.age intValue]];
     }
     self.saveButton.enabled = NO;
-    self.ageTextField.keyboardType = UIKeyboardTypeDecimalPad;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,39 +47,41 @@ APIHelper *apiHelper;
 
 
 - (IBAction)saveButtonPressed:(id)sender {
-    if (![self.ageTextField.text isEqualToString:@""]){
-        NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:[NSNumber numberWithInt:[self.ageTextField.text intValue]] foodPreferences:nil phoneNumber:nil];
+    NSDictionary *response = [apiHelper editProfile:self.user.userid withPrivacy:self.privacy  about:nil gender:nil age:[NSNumber numberWithInt: self.slider.value] foodPreferences:nil phoneNumber:nil];
+    
+    if(response){
+        int statusCode = [[response objectForKey:@"errCode"] intValue];
         
-        if(response){
-            int statusCode = [[response objectForKey:@"errCode"] intValue];
+        if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
             
-            if([apiHelper.statusCodeDictionary[[NSString stringWithFormat: @"%d", statusCode]] isEqualToString:apiHelper.SUCCESS]){
-                
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      initWithTitle:@"Server Error"
-                                      message:@"Update failed. Please check your internet connection or try again later."
-                                      delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
-                [alert show];
-            }
         }else{
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Connection Error"
+                                  initWithTitle:@"Server Error"
                                   message:@"Update failed. Please check your internet connection or try again later."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
         }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Connection Error"
+                              message:@"Update failed. Please check your internet connection or try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)editingChanged:(id)sender {
-    if (![self.ageTextField.text isEqualToString:@""]) {
-        self.saveButton.enabled = YES;
-    }
+
+- (IBAction)valueChanged:(id)sender {
+    NSLog(@"slider value changed");
+    self.saveButton.enabled = YES;
+    int sliderValue;
+    sliderValue = lroundf(self.slider.value);
+    [self.slider setValue:sliderValue animated:YES];
+    self.label.text = [NSString stringWithFormat:@"%i", sliderValue];
 }
 @end

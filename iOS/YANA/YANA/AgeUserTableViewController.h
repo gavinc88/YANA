@@ -12,9 +12,11 @@
 @interface AgeUserTableViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 - (IBAction)saveButtonPressed:(id)sender;
-- (IBAction)editingChanged:(id)sender;
-@property (strong, nonatomic) IBOutlet UITextField *ageTextField;
-@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) IBOutlet UISlider *slider;
+- (IBAction)valueChanged:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSNumber *age;
 @property (nonatomic, strong) NSNumber *privacy;
 @end
