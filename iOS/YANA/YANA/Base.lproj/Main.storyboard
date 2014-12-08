@@ -455,7 +455,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-tp-Wfm">
-                                <rect key="frame" x="15" y="94" width="568" height="162"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="AIM-x4-pXi"/>
                                     <constraint firstAttribute="height" constant="160" id="kS6-QC-3f4"/>
@@ -482,7 +482,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Twq-2p-gmz" kind="show" identifier="inviteFriendsButton" id="2b4-QI-Nxk"/>
+                                    <action selector="inviteFriendsButtonClicked:" destination="5Co-Pn-RHJ" eventType="touchUpInside" id="8gl-BU-WuK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLn-Ah-FjS">
@@ -497,7 +497,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NfX-hd-uYX" kind="show" identifier="searchRestaurantButton" id="Gyd-xW-xwt"/>
+                                    <action selector="yelpSearchButtonClicked:" destination="5Co-Pn-RHJ" eventType="touchUpInside" id="fi0-5f-epO"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GD4-wP-m4H">
@@ -513,6 +513,7 @@
                         <constraints>
                             <constraint firstItem="ZyK-Hz-gXq" firstAttribute="top" secondItem="gtc-VQ-ivJ" secondAttribute="bottom" constant="11" id="1T3-On-Mx9"/>
                             <constraint firstItem="gtc-VQ-ivJ" firstAttribute="leading" secondItem="x6V-CC-h1d" secondAttribute="leadingMargin" id="1z3-dW-Jtk"/>
+                            <constraint firstAttribute="centerX" secondItem="Qbe-yR-K5f" secondAttribute="centerX" constant="0.5" id="2Ul-KZ-VPa"/>
                             <constraint firstItem="Qbe-yR-K5f" firstAttribute="top" secondItem="GD4-wP-m4H" secondAttribute="bottom" constant="20" id="3zE-Gn-dnq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qbe-yR-K5f" secondAttribute="trailing" constant="14" id="6w0-bw-kzD"/>
                             <constraint firstItem="LLn-Ah-FjS" firstAttribute="top" secondItem="cYW-tp-Wfm" secondAttribute="bottom" id="8EN-78-Fep"/>
@@ -525,6 +526,7 @@
                             <constraint firstItem="Qbe-yR-K5f" firstAttribute="top" secondItem="ZyK-Hz-gXq" secondAttribute="bottom" constant="20" id="Kls-QK-rMq"/>
                             <constraint firstItem="gtc-VQ-ivJ" firstAttribute="centerX" secondItem="ZyK-Hz-gXq" secondAttribute="centerX" id="KoM-eS-mu9"/>
                             <constraint firstItem="gag-K4-hlm" firstAttribute="top" secondItem="dOE-gA-oUt" secondAttribute="bottom" constant="10" id="KsX-Hk-Ww8"/>
+                            <constraint firstItem="cYW-tp-Wfm" firstAttribute="leading" secondItem="x6V-CC-h1d" secondAttribute="leading" id="Mc6-og-S6O"/>
                             <constraint firstItem="qR9-dS-Cum" firstAttribute="leading" secondItem="gtc-VQ-ivJ" secondAttribute="leading" id="Os7-df-QSq"/>
                             <constraint firstItem="cYW-tp-Wfm" firstAttribute="top" secondItem="gag-K4-hlm" secondAttribute="bottom" id="PcQ-d8-i11"/>
                             <constraint firstItem="cYW-tp-Wfm" firstAttribute="leading" secondItem="x6V-CC-h1d" secondAttribute="leadingMargin" constant="-1" id="Sy5-M2-bAA"/>
@@ -540,11 +542,16 @@
                             <constraint firstItem="qR9-dS-Cum" firstAttribute="trailing" secondItem="gtc-VQ-ivJ" secondAttribute="trailing" id="nso-oz-sLE"/>
                             <constraint firstItem="gag-K4-hlm" firstAttribute="trailing" secondItem="x6V-CC-h1d" secondAttribute="trailingMargin" id="ojN-mw-avx"/>
                             <constraint firstItem="GD4-wP-m4H" firstAttribute="top" secondItem="qR9-dS-Cum" secondAttribute="bottom" constant="8" symbolic="YES" id="pYF-vc-8f9"/>
+                            <constraint firstAttribute="centerX" secondItem="cYW-tp-Wfm" secondAttribute="centerX" id="qWQ-DH-hP1"/>
+                            <constraint firstAttribute="trailing" secondItem="cYW-tp-Wfm" secondAttribute="trailing" id="xJw-1W-O12"/>
                             <constraint firstItem="GD4-wP-m4H" firstAttribute="leading" secondItem="ZyK-Hz-gXq" secondAttribute="leading" id="zUc-Lg-TVb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Vg6-sK-eej"/>
+                                <exclude reference="Sy5-M2-bAA"/>
+                                <exclude reference="TsV-mG-aAa"/>
+                                <exclude reference="f9B-nU-et8"/>
                                 <exclude reference="KoM-eS-mu9"/>
                                 <exclude reference="Os7-df-QSq"/>
                                 <exclude reference="nso-oz-sLE"/>
@@ -567,6 +574,8 @@
                         <outlet property="restaurantTextBox" destination="ZyK-Hz-gXq" id="rfu-Kf-P3H"/>
                         <outlet property="timePicker" destination="cYW-tp-Wfm" id="BoH-gv-p5z"/>
                         <outlet property="typeButtons" destination="gag-K4-hlm" id="D0l-Et-cdI"/>
+                        <segue destination="Twq-2p-gmz" kind="show" identifier="inviteFriendsButton" id="n7z-K4-LHh"/>
+                        <segue destination="NfX-hd-uYX" kind="show" identifier="searchRestaurantButton" id="aAd-W2-nFc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyI-bv-Zra" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2117,6 +2126,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Zac-Xo-nhj"/>
         <segue reference="SzM-vW-YgW"/>
-        <segue reference="2b4-QI-Nxk"/>
+        <segue reference="n7z-K4-LHh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,9 +22,4 @@
 @property (nonatomic, strong) User *user;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextBox;
 
-
-
-
-
-
 @end

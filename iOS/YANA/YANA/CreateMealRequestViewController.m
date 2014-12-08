@@ -19,17 +19,12 @@
 
 @implementation CreateMealRequestViewController
 
-NSDateFormatter *timeFormatter;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeUser];
-    [self initializeTimeFormatter];
     
     //set default type and time
-    NSDate *currentTime = [NSDate date];
-    [self.timePicker setDate: currentTime];
-    self.time = [timeFormatter stringFromDate:[self.timePicker date]];
+    [self setTimePickerForOther];
     self.type = @"other";
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -80,63 +75,102 @@ NSDateFormatter *timeFormatter;
 }
 
 // initialize User
-- (void)initializeUser{
+- (void)initializeUser {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.user = appDelegate.user;
 }
 
-- (void)initializeTimeFormatter{
-    timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"h:mm a"];
+- (void)setTimePickerForOther {
+    //solution from http://stackoverflow.com/questions/12739962/uidatepicker-setting-wrong-time
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    [components setCalendar:calendar];
+    NSInteger hour = components.hour;
+    NSInteger minute = components.minute;
+    
+    if (minute > 25) {
+        minute = 0;
+        hour += 1;
+    } else {
+        minute = 30;
+    }
+    
+    // Now we set the componentns to our rounded values
+    components.hour = hour;
+    components.minute = minute;
+    
+    // Now we get the date back from our modified date components.
+    NSDate *toNearestHalfHour = [components date];
+    [self.timePicker setDate: toNearestHalfHour];
+    
+    // Set current time as minimum date
+//    NSDate *currentTime = [NSDate date];
+//    [self.timePicker setMinimumDate:currentTime];
+    
+    //set max date to the next day
+    components.day++;
+    [self.timePicker setMaximumDate:[components date]];
 }
 
 - (IBAction)mealTypeSelected:(id)sender {
     NSLog(@"mealTypeSelected");
-    NSLog(@"the meal type picked is number %li", (long)self.typeButtons.selectedSegmentIndex);
     
     /* Get current NSDate components */
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
-    NSDateComponents *currComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSDateComponents *currComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSHourCalendarUnit fromDate:[NSDate date]];
     NSInteger currDay = [currComponents day];
     NSInteger currMonth = [currComponents month];
     NSInteger currYear = [currComponents year];
+    NSInteger currHour = [currComponents hour];
+    
+    NSInteger nextDay = currDay + 1;
     
     if (self.typeButtons.selectedSegmentIndex == 0) {
         [components setYear:currYear];
         [components setMonth:currMonth];
-        [components setDay:currDay];
+        if (currHour > 9) {
+            [components setDay:nextDay];
+        } else {
+            [components setDay:currDay];
+        }
         [components setHour:9];
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = [timeFormatter stringFromDate:date];
         self.type = @"breakfast";
     }
     if (self.typeButtons.selectedSegmentIndex == 1) {
         [components setYear:currYear];
         [components setMonth:currMonth];
-        [components setDay:currDay];
+        if (currHour > 12) {
+            [components setDay:nextDay];
+        } else {
+            [components setDay:currDay];
+        }
         [components setHour:12];
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = [timeFormatter stringFromDate:date];
         self.type = @"lunch";
     }
     if (self.typeButtons.selectedSegmentIndex == 2) {
         [components setYear:currYear];
         [components setMonth:currMonth];
-        [components setDay:currDay];
+        if (currHour > 19) {
+            [components setDay:nextDay];
+        } else {
+            [components setDay:currDay];
+        }
         [components setHour:19];
         [components setMinute:0];
         NSDate *date = [calendar dateFromComponents:components];
         [self.timePicker setDate: date];
-        self.time = [timeFormatter stringFromDate:date];
         self.type = @"dinner";
     }
     if (self.typeButtons.selectedSegmentIndex == 3) {
-        [self.timePicker setDate: [NSDate date]];
+        [self setTimePickerForOther];
         self.type = @"other";
     }
 }
@@ -170,6 +204,43 @@ NSDateFormatter *timeFormatter;
     [UIView setAnimationDuration: movementDuration];
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
+}
+
+- (IBAction)yelpSearchButtonClicked:(UIButton *)sender {
+    if ([self checkValidTime]) {
+        [self performSegueWithIdentifier:@"searchRestaurantButton" sender:sender];
+    } else {
+        [self displayInvalidTimeError];
+    }
+}
+
+- (IBAction)inviteFriendsButtonClicked:(UIButton *)sender {
+    if ([self checkValidTime]) {
+        [self performSegueWithIdentifier:@"inviteFriendsButton" sender:sender];
+    } else {
+        [self displayInvalidTimeError];
+    }
+}
+
+- (BOOL)checkValidTime {
+    NSDate *currentTime = [NSDate date];
+    NSDate *timePickerTime = [self.timePicker date];
+    NSComparisonResult result = [timePickerTime compare:currentTime];
+    if (result == NSOrderedAscending) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (void)displayInvalidTimeError {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Invalid Time"
+                          message:@"The time you have selected has already passed. Please select a time in the future."
+                          delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
