@@ -58,18 +58,20 @@ NSDateFormatter *timeFormatter;
     }
     if([segue.identifier isEqualToString:@"searchRestaurantButton"]){
         NSLog(@"Preparing for segue to RestaurantSearchViewController");
+        
+        //Create MealRequest object
+        self.mealRequest = [self prepareMealRequest];
+        
+        //pass MealRequest object to InviteFriendViewController
         RestaurantSearchViewController *controller = segue.destinationViewController;
-        //pass time and type to RestaurantSearchViewController
-        controller.time = self.time;
-        controller.type = self.type;
+        controller.mealRequest = self.mealRequest;
     }
-
-    
 }
 
 - (MealRequest *)prepareMealRequest {
-    NSString *time = [timeFormatter stringFromDate:[self.timePicker date]];
-    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:time restaurant:self.restaurantTextBox.text comment:self.commentTextBox.text];
+    NSTimeInterval unixTime = [[self.timePicker date] timeIntervalSince1970];
+    self.time = [NSString stringWithFormat:@"%d", (int)unixTime];
+    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:self.time restaurant:self.restaurantTextBox.text comment:self.commentTextBox.text];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -139,28 +141,25 @@ NSDateFormatter *timeFormatter;
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self animateTextField: textField up: YES];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     [self animateTextField: textField up: NO];
 }
 
-- (void) animateTextField: (UITextField*) textField up: (BOOL) up
-{
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up {
     const int movementDistance = 150; // tweak as needed
     const float movementDuration = 0.3f; // tweak as needed
     

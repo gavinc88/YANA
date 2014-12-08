@@ -24,8 +24,6 @@
     [super viewDidLoad];
     [self initializeUser];
     self.restaurants = [[NSMutableArray alloc] init];
-
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,18 +93,16 @@
     
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return [self.restaurants count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"restaurantCell" forIndexPath:indexPath];
     cell.textLabel.text = [self.restaurants objectAtIndex:indexPath.row];
     
@@ -118,7 +114,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedRestaurant = [self.restaurants objectAtIndex:indexPath.row];
     NSLog(@"selected restaurant is %@", self.selectedRestaurant);
@@ -126,12 +122,12 @@
 }
 
 #pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"inviteFriendsButton"]){
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"inviteFriendsButton"]) {
         NSLog(@"Preparing for segue to InviteFriendsViewController");
         
-        //Create MealRequest object
-        self.mealRequest = [self prepareMealRequest];
+        //update MealRequest object with selectedRestaurant
+        self.mealRequest.restaurant = self.selectedRestaurant;
         
         //pass MealRequest object to InviteFriendViewController
         InviteFriendsTableViewController *controller = segue.destinationViewController;
@@ -142,28 +138,11 @@
     
 }
 
-- (MealRequest *)prepareMealRequest {
-    return[[MealRequest alloc] initWithUserid:self.user.userid username:self.user.username type:self.type time:self.time restaurant:self.selectedRestaurant comment:nil];
-}
-
-#import "CreateMealRequestViewController.h"
-- (void)didMoveToParentViewController:(UIViewController *)parent
-{
+- (void)didMoveToParentViewController:(UIViewController *)parent {
     if (![parent isEqual:self.parentViewController]) {
-        NSLog(@"Back pressed");
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.selectedRestaurant = self.selectedRestaurant;
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

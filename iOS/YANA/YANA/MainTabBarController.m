@@ -82,7 +82,7 @@ APIHelper *apiHelper;
                 NSString *requestid = request[@"_id"];
                 NSString *ownerid = request[@"owner_id"];
                 NSString *ownerUsername = request[@"owner_username"];
-                NSString *mealTime = request[@"meal_time"];
+                NSString *mealTime = [self reformatUnixTime:request[@"meal_time"]];
                 NSString *mealType = request[@"meal_type"];
                 NSString *restaurant = request[@"restaurant"];
                 NSString *comment = request[@"comment"];
@@ -110,6 +110,14 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (NSString *)reformatUnixTime:(NSString *)unixTime {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[unixTime intValue]];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setLocale:[NSLocale currentLocale]];
+    [timeFormatter setDateFormat:@"h:mm a"];
+    return [timeFormatter stringFromDate:date];
 }
 
 - (void)getAllFriends{

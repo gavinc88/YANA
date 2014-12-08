@@ -26,8 +26,6 @@
 static NSString * const requestWithButtonsCellIdentifier = @"requestWithButtons";
 static NSString * const requestWithoutButtonsCellIdentifier = @"requestWithoutButtons";
 
-NSDateFormatter *timeFormatter;
-
 APIHelper *apiHelper;
 
 #pragma mark - Segue
@@ -37,7 +35,8 @@ APIHelper *apiHelper;
         //update meal request table view with new meal request
         InviteFriendsTableViewController *source = [segue sourceViewController];
         if (source.mealRequestCreated && source.mealRequest) {
-            //[source.mealRequest toString];
+            //reformat time before updating to meal request list
+            source.mealRequest.time = [self reformatUnixTime:source.mealRequest.time];
             [self.mealRequestsFromSelf addObject:source.mealRequest];
             [self.tableView reloadData];
         }else{
@@ -71,7 +70,6 @@ APIHelper *apiHelper;
 - (void)viewDidLoad {
     [super viewDidLoad];
     apiHelper = [[APIHelper alloc]init];
-    [self initializeTimeFormatter];
     [self initializeUser];
     [self initializeMealRequests];
     
@@ -91,11 +89,6 @@ APIHelper *apiHelper;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)initializeTimeFormatter {
-    timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"h:mm a"];
 }
 
 - (void)initializeUser {
@@ -143,7 +136,7 @@ APIHelper *apiHelper;
                 NSString *requestid = request[@"_id"];
                 NSString *ownerid = request[@"owner_id"];
                 NSString *ownerUsername = request[@"owner_username"];
-                NSString *mealTime = request[@"meal_time"];
+                NSString *mealTime = [self reformatUnixTime:request[@"meal_time"]];
                 NSString *mealType = request[@"meal_type"];
                 NSString *restaurant = request[@"restaurant"];
                 NSString *comment = request[@"comment"];
@@ -171,6 +164,14 @@ APIHelper *apiHelper;
                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (NSString *)reformatUnixTime:(NSString *)unixTime {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[unixTime intValue]];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setLocale:[NSLocale currentLocale]];
+    [timeFormatter setDateFormat:@"h:mm a"];
+    return [timeFormatter stringFromDate:date];
 }
 
 #pragma mark - Table view data source

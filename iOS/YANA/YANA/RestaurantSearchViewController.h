@@ -15,22 +15,18 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *restaurantSearchBar;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
-@property (nonatomic,retain) NSMutableArray *tableData;
+@property (nonatomic, retain) NSMutableArray *tableData;
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
 
 @property (nonatomic, strong) NSString *searchTerm;
 
-@property (strong, nonatomic) NSString *selectedRestaurant;
+@property (nonatomic, strong) NSString *selectedRestaurant;
 
-@property (strong, nonatomic) MealRequest *mealRequest;
+@property (nonatomic, strong) MealRequest *mealRequest;
 
 @property (nonatomic, strong) User *user;
-
-@property (strong, nonatomic) NSString *time;
-
-@property (strong, nonatomic) NSString *type;
 
 @end
