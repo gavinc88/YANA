@@ -154,7 +154,7 @@ NSInteger const GLOBAL = 2;
         self.phoneNumberLabel.hidden = NO;
         self.phoneNumberTitleLabel.hidden = NO;
         self.genderLabel.text = self.gender ? self.gender : @"(not specified)";
-        self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%d",(int)self.age] : @"(not specified)";
+        self.ageLabel.text = self.age ? [NSString stringWithFormat:@"%@", self.age] : @"(not specified)";
         self.foodPreferencesLabel.text = self.foodPreferences ? self.foodPreferences : @"(not specified)";
         self.phoneNumberLabel.text = self.phoneNumber ? self.phoneNumber : @"(not specified)";
     }

@@ -263,6 +263,7 @@
 		86AC7CE019F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndAddFriendNavigationController.h; sourceTree = "<group>"; };
 		86AC7CE119F9ACDC00760EC4 /* SearchAndAddFriendNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndAddFriendNavigationController.m; sourceTree = "<group>"; };
 		86ACEC4B1A1FC4CB000163F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		86ACEC541A24107C000163F2 /* NewYork.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NewYork.gpx; sourceTree = "<group>"; };
 		86AFD22C1A0B7C700021D0EF /* FriendFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendFunctionalTest.m; sourceTree = "<group>"; };
 		86AFD22F1A0C4B2B0021D0EF /* MealRequestsTableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealRequestsTableViewControllerTest.m; sourceTree = "<group>"; };
 		86B0970A1A1DAFE300819162 /* BerkeleyLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BerkeleyLocation.gpx; sourceTree = "<group>"; };
@@ -625,6 +626,7 @@
 				86D9C81B1A1BE906002C759D /* NearbyUsersFilterViewController.h */,
 				86D9C81C1A1BE906002C759D /* NearbyUsersFilterViewController.m */,
 				86B0970A1A1DAFE300819162 /* BerkeleyLocation.gpx */,
+				86ACEC541A24107C000163F2 /* NewYork.gpx */,
 			);
 			name = NearbyUsers;
 			sourceTree = "<group>";
