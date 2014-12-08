@@ -284,7 +284,7 @@ APIHelper *apiHelper;
 
 - (NSString *)constructTitleForSelf:(MealRequest *)request{
     return [NSString stringWithFormat:@"Requested %@ at %@\n%@",
-            request.type,
+            [request.type isEqualToString:@"other"] ? @"a meal" : request.type,
             request.time,
             ([request.restaurant isEqualToString:@""] || !request.restaurant) ? @"(Location TBD)" : [NSString stringWithFormat:@"@ %@", request.restaurant]];
 }
@@ -301,7 +301,7 @@ APIHelper *apiHelper;
 - (NSString *)constructTitleForOther:(MealRequest *)request{
     return [NSString stringWithFormat:@"%@: %@ at %@\n%@ ",
             request.ownerUsername,
-            request.type,
+            [request.type isEqualToString:@"other"] ? @"a meal" : request.type,
             request.time,
             ([request.restaurant isEqualToString:@""] || !request.restaurant) ? @"(Location TBD)" : [NSString stringWithFormat:@"@ %@", request.restaurant]];
 }
