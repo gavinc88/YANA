@@ -18,12 +18,14 @@
 @end
 
 @implementation RestaurantSearchViewController
-
+@synthesize checkedIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeUser];
     self.restaurants = [[NSMutableArray alloc] init];
+    self.imageURLs = [[NSMutableArray alloc] init];
+    self.inviteFriendsButton.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +55,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Search Clicked");
     [self.restaurants removeAllObjects];
+    self.inviteFriendsButton.enabled = NO;
     [self searchRestaurant];
 }
 
@@ -84,12 +87,20 @@
                                       error: nil];
     
     NSMutableArray *venueList = [JSON objectForKey:@"businesses"];
-    
+    NSLog(@"businesses are %@", venueList);
     for (int i = 0; i < [venueList count] ; i++) {
         [self.restaurants addObject:[[JSON objectForKey:@"businesses"][i] objectForKey:@"name"]];
+        NSString *url = [[JSON objectForKey:@"businesses"][i] objectForKey:@"image_url"];
+        if (url) {
+            [self.imageURLs addObject:url];
+        } else {
+            [self.imageURLs addObject:@"No Image"];
+        }
     }
+
     [self.tableView reloadData];
     NSLog(@"Restaurants are %@", self.restaurants);
+    NSLog(@"Image URLs are %@", self.imageURLs);
     
 }
 
@@ -104,23 +115,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"restaurantCell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.restaurants objectAtIndex:indexPath.row];
     
-    if ([self.selectedRestaurant isEqualToString:cell.textLabel.text]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    //load images
+    NSString *u = [self.imageURLs objectAtIndex:indexPath.row];
+    if (![u isEqualToString:@"No Image"]) {
+        NSURL *url = [NSURL URLWithString:[self.imageURLs objectAtIndex:indexPath.row]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [[UIImage alloc] initWithData:data];
+        [cell.imageView setImage:image];
     }
+    //load texts
+    cell.textLabel.text = [self.restaurants objectAtIndex:indexPath.row];
+    //uncheck checkmarks
+    cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedRestaurant = [self.restaurants objectAtIndex:indexPath.row];
     NSLog(@"selected restaurant is %@", self.selectedRestaurant);
-    [self.tableView reloadData];
+    if(self.checkedIndexPath)
+    {
+        UITableViewCell* uncheckCell = [tableView
+                                        cellForRowAtIndexPath:self.checkedIndexPath];
+        uncheckCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    if([self.checkedIndexPath isEqual:indexPath])
+    {
+        self.checkedIndexPath = nil;
+    }
+    else
+    {
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.checkedIndexPath = indexPath;
+    }
+    self.inviteFriendsButton.enabled = YES;
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+}
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"inviteFriendsButton"]) {

@@ -29,4 +29,10 @@
 
 @property (nonatomic, strong) User *user;
 
+@property (nonatomic, strong) NSMutableArray *imageURLs;
+
+@property (nonatomic,retain) NSIndexPath *checkedIndexPath;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *inviteFriendsButton;
+
 @end

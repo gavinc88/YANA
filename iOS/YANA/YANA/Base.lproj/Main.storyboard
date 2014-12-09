@@ -351,7 +351,7 @@
                                 <rect key="frame" x="0.0" y="108" width="600" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" id="f42-CD-R94">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" editingAccessoryType="checkmark" id="f42-CD-R94">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f42-CD-R94" id="fDA-zD-zDZ">
@@ -385,6 +385,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="inviteFriendsButton" destination="VdO-1Q-k7n" id="brS-qI-c9q"/>
                         <outlet property="restaurantSearchBar" destination="H7n-fK-KIU" id="fls-Nv-jOc"/>
                         <outlet property="tableView" destination="wCr-VP-OCo" id="PG1-zd-Z7p"/>
                     </connections>
@@ -2130,8 +2131,8 @@
         <image name="settings" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Zac-Xo-nhj"/>
         <segue reference="SzM-vW-YgW"/>
-        <segue reference="n7z-K4-LHh"/>
+        <segue reference="Zac-Xo-nhj"/>
+        <segue reference="MJw-Ov-P4X"/>
     </inferredMetricsTieBreakers>
 </document>
